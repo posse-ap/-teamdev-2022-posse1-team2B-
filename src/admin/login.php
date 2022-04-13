@@ -2,18 +2,19 @@
 session_start();
 require('../dbconnect.php');
 
-if (!empty($_POST)) {
+if (!empty($_POST)) { //POST送信された場合
   $login = $db->prepare('SELECT * FROM users WHERE email=? AND password=?');
   $login->execute(array(
-    $_POST['email'],
-    sha1($_POST['password'])
+    $_POST['email'], //emailというname造成の付いたHTML POSTメソッドに入力された値を受け取る
+    sha1($_POST['password']) //文字列のshaハッシュを計算する
+    // shaハッシュ 任意の長さの原文を元に160ビットの値を生成する。生成された値はハッシュ値という
   ));
   $user = $login->fetch();
-
+  
   if ($user) {
     $_SESSION = array();
-    $_SESSION['user_id'] = $user['id'];
-    $_SESSION['time'] = time();
+    $_SESSION['user_id'] = $user['id']; //セッション変数に登録
+    $_SESSION['time'] = time(); //time() 現在日時を取得
     header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/index.php');
     exit();
   } else {
