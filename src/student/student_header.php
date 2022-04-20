@@ -18,9 +18,5 @@ require('../dbconnect.php');
     <p>エージェンシー企業向け掲載依頼はこちら</p>
     <a href="./keep.php">keepしてるエージェンシー企業</a>
   </header>
-
-  <footer>
-    <img src="../img/boozer_logo.png" alt="boozer">
-  </footer>
 </body>
 </html>
