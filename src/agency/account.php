@@ -10,6 +10,9 @@ require('../dbconnect.php');
   <title>エージェンシー企業アカウント登録画面</title>
 </head>
 <body>
+  <?php 
+  include "agency_header.php"
+  ?>
   <h1>新規登録</h1>
   <div>
     <div>
