@@ -16,9 +16,5 @@ require('../dbconnect.php');
     <img src="../img/syukatudotcom_logo.png" alt="就活.com">
     <p>お問い合わせ</p>
   </header>
-
-  <footer>
-    <img src="../img/boozer_logo.png" alt="boozer">
-  </footer>
 </body>
 </html>
