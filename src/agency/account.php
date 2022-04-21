@@ -10,16 +10,8 @@ require('../dbconnect.php');
   <title>エージェンシー企業アカウント登録画面</title>
 </head>
 <body>
-  <?php 
-  // include "agency_header.php" //こっちだとDOCTYPEとかがダブっちゃう＋パスの書き方が不安→dirnameを使う
-  // include "agency_header2.php" //読み込みたい内容のみ書く
-  include (dirname(__FILE__) . "/agency_header2.php");
-  ?>
+  <?phpinclude (dirname(__FILE__) . "/agency_header2.php");?>
   <h1>新規登録</h1>
-    <!-- 
-          この見た目は回すべきか？何を回すべき？ 内容次第。項目をデータベースで登録して出力→回す。 そういうわけじゃないならそのまま書いて良い。
-          form 囲うのは一か所 dlタグ。フォーム HTML サンプルで検索
-    -->
   <div>
     <form>
         <div>
