@@ -110,9 +110,23 @@ SET
     
 
 -- students_table作成
-
+CREATE TABLE students (
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  names VARCHAR(255) NOT NULL,
+  post_num VARCHAR(255) UNIQUE NOT NULL,
+  prefectures VARCHAR(255) NOT NULL,
+  municipalities VARCHAR(255) NOT NULL,
+  adress_num VARCHAR(255) UNIQUE NOT NULL,
+  tel_num INT UNIQUE NOT NULL,
+  emails VARCHAR(255) UNIQUE NOT NULL,
+  coledge_id INT,
+  graduation_year INT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
 
 -- agents_table作成
+
 
 
 -- admmin_table作成
