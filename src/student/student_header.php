@@ -11,10 +11,11 @@ require('../dbconnect.php');
 </head>
 <body>
   <header>
-    
-    <p>CRAFT</p>
-    <p>by</p>
-    <img src="../img/syukatudotcom_logo.png" alt="就活.com">
+    <div>
+      <p>CRAFT</p>
+      <p>by</p>
+      <img src="../img/syukatudotcom_logo.png" alt="就活.com">
+    </div>
     <nav>
       <ul>
         <li>お問い合わせ</li>
