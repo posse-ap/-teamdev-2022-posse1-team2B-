@@ -1,26 +1,3 @@
-DROP SCHEMA IF EXISTS shukatsu;
-
-CREATE SCHEMA shukatsu;
-
-USE shukatsu;
-
-DROP TABLE IF EXISTS users;
-
-CREATE TABLE users (
-  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  emails VARCHAR(255) UNIQUE NOT NULL,
-  passwords VARCHAR(255) NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-INSERT INTO
-  users
-SET
-  emails = 'test@posse-ap.com',
-  passwords = sha1('password');
-
-
   -- 必要なデータ
 
 -- 学生画面
@@ -88,6 +65,30 @@ SET
 --     使用するテーブル : agents
 --     登録カラム : 上で登録していいけど、認証済みかどうかというカラムで、trueのものだけ学生画面に表示
 
+DROP SCHEMA IF EXISTS shukatsu;
+
+CREATE SCHEMA shukatsu;
+
+USE shukatsu;
+
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  emails VARCHAR(255) UNIQUE NOT NULL,
+  passwords VARCHAR(255) NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO
+  users
+SET
+  emails = 'test@posse-ap.com',
+  passwords = sha1('password');
+
+
+
     
 
 -- students_table作成
@@ -112,7 +113,7 @@ CREATE TABLE coledges (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   names VARCHAR(255) NOT NULL,
   undergraduates VARCHAR(255) NOT NULL,
-  departments VARCHAR(255) NOT NULL,
+  departments VARCHAR(255) NOT NULL
 );
 
 -- agents_table作成
