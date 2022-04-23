@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,10 +26,10 @@
     <a href="edit.php">編集</a>
     <button>削除</button>
   </div>
-  <a href="">企業一覧をもっと見る</a>
+  <a href="./agentslist.php">企業一覧をもっと見る</a>
 
   <a href="">明細確認</a>
-  <a href="">学生情報</a>
+  <a href="./students.php">学生情報</a>
   
 </body>
 </html>
