@@ -21,6 +21,7 @@ require('../dbconnect.php');
         <div>
             <label for="inquiryMailAddress">お問い合わせ通知先メールアドレス<span>必須</span></label>
             <p>※学生からのお問い合わせの通知先となります</p>
+            <input type="text" name="inquiry_mail_address" id="inquiryMailAddress" required>
         </div>
         <div>
             <label for="loginMailAddress">ログイン用メールアドレス<span>必須</span></label>
