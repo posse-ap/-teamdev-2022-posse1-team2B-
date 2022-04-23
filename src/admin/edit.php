@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,9 +12,9 @@
     <dd>会社名</dd><dt><input type="text"></dt>
     <dd>郵便番号</dd><dt><input type="text"></dt>
     <dd>住所</dd><dt><input type="text"></dt>
-    <dd>掲載期間</dd><dt><input type="text"></dt>
+    <dd>掲載期間</dd><dt><input type="number"></dt>
     <dd>アイコン画像</dd><dt><input type="file"></dt>
-    <dd>備考</dd><dt><input type="text"></dt>
+    <dd>備考</dd><dt><textarea name="" id="" cols="30" rows="10"></textarea></dt>
     <button>修正完了</button>
   </form>
   
