@@ -28,7 +28,7 @@
   </div>
   <a href="./agentslist.php">企業一覧をもっと見る</a>
 
-  <a href="">明細確認</a>
+  <a href="./payment.php">明細確認</a>
   <a href="./students.php">学生情報</a>
   
 </body>
