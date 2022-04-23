@@ -75,8 +75,8 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  emails VARCHAR(255) UNIQUE NOT NULL,
-  passwords VARCHAR(255) NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -84,8 +84,8 @@ CREATE TABLE users (
 INSERT INTO
   users
 SET
-  emails = 'test@posse-ap.com',
-  passwords = sha1('password');
+  email = 'test@posse-ap.com',
+  password = sha1('password');
 
 
 
@@ -95,25 +95,25 @@ SET
 DROP TABLE IF EXISTS students;
 CREATE TABLE students (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  names VARCHAR(255) NOT NULL,
-  post_num VARCHAR(255) UNIQUE NOT NULL,
-  prefectures VARCHAR(255) NOT NULL,
-  municipalities VARCHAR(255) NOT NULL,
-  adress_num VARCHAR(255) UNIQUE NOT NULL,
-  tel_num INT UNIQUE NOT NULL,
-  emails VARCHAR(255) UNIQUE NOT NULL,
+  student_name VARCHAR(255) NOT NULL,
+  post_number VARCHAR(255) UNIQUE NOT NULL,
+  prefecture VARCHAR(255) NOT NULL,
+  municipalitie VARCHAR(255) NOT NULL,
+  adress_number VARCHAR(255) UNIQUE NOT NULL,
+  tel_number INT UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
   coledge_id INT,
   graduation_year INT NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-DROP TABLE IF EXISTS coledges;
-CREATE TABLE coledges (
+DROP TABLE IF EXISTS colleges;
+CREATE TABLE colleges (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  names VARCHAR(255) NOT NULL,
-  undergraduates VARCHAR(255) NOT NULL,
-  departments VARCHAR(255) NOT NULL
+  college_name VARCHAR(255) NOT NULL,
+  undergraduate VARCHAR(255) NOT NULL,
+  college_department VARCHAR(255) NOT NULL
 );
 
 -- agents_table作成
@@ -121,14 +121,14 @@ CREATE TABLE coledges (
 DROP TABLE IF EXISTS agents;
 CREATE TABLE agents (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  names VARCHAR(255) NOT NULL,
-  urls VARCHAR(255) UNIQUE NOT NULL,
-  notification_emails VARCHAR(255) UNIQUE NOT NULL,
-  tel_num INT UNIQUE NOT NULL,
-  post_num VARCHAR(255) UNIQUE NOT NULL,
-  prefectures VARCHAR(255) NOT NULL,
-  municipalities VARCHAR(255) NOT NULL,
-  adress_num VARCHAR(255) UNIQUE NOT NULL,
+  agent_name VARCHAR(255) NOT NULL,
+  url VARCHAR(255) UNIQUE NOT NULL,
+  notification_email VARCHAR(255) UNIQUE NOT NULL,
+  tel_number INT UNIQUE NOT NULL,
+  post_number VARCHAR(255) UNIQUE NOT NULL,
+  prefecture VARCHAR(255) NOT NULL,
+  municipalitie VARCHAR(255) NOT NULL,
+  adress_number VARCHAR(255) UNIQUE NOT NULL,
   category VARCHAR(255) UNIQUE NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -139,8 +139,8 @@ CREATE TABLE managers (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   agent_id INT NOT NULL,
   user_id INT NOT NULL,
-  names VARCHAR(255) NOT NULL,
-  departments VARCHAR(255) NOT NULL,
+  manager_name VARCHAR(255) NOT NULL,
+  agent_department VARCHAR(255) NOT NULL,
   roll INT NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
