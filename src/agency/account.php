@@ -34,6 +34,6 @@ require('../dbconnect.php');
       <button>会員登録</button>
     </form>
   </div>
-  <?php include "agency_footer.php"; ?>
+  <?php include (dirname(__FILE__) . "/agency_footer.php");?>
 </body>
 </html>
