@@ -8,8 +8,8 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL,
+  emails VARCHAR(255) UNIQUE NOT NULL,
+  passwords VARCHAR(255) NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -17,27 +17,8 @@ CREATE TABLE users (
 INSERT INTO
   users
 SET
-  email = 'test@posse-ap.com',
-  password = sha1('password');
-
-DROP TABLE IF EXISTS events;
-
-CREATE TABLE events (
-  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-INSERT INTO
-  events
-SET
-  title = 'イベント1';
-
-INSERT INTO
-  events
-SET
-  title = 'イベント2';
+  emails = 'test@posse-ap.com',
+  passwords = sha1('password');
 
 
   -- 必要なデータ
@@ -164,4 +145,12 @@ CREATE TABLE managers (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- admmin_table作成
+
+DROP TABLE IF EXISTS intermediate;
+CREATE TABLE intermediate (
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  agent_id INT NOT NULL,
+  student_id INT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
