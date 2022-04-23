@@ -10,7 +10,7 @@ require('../dbconnect.php');
   <title>エージェンシー企業アカウント登録画面</title>
 </head>
 <body>
-  <?phpinclude (dirname(__FILE__) . "/agency_header2.php");?>
+  <?php include (dirname(__FILE__) . "/agency_header.php");?>
   <h1>新規登録</h1>
   <div>
     <form>
@@ -21,7 +21,6 @@ require('../dbconnect.php');
         <div>
             <label for="inquiryMailAddress">お問い合わせ通知先メールアドレス<span>必須</span></label>
             <p>※学生からのお問い合わせの通知先となります</p>
-            <!-- pタグここに入れて良いの？ -->
         </div>
         <div>
             <label for="loginMailAddress">ログイン用メールアドレス<span>必須</span></label>
@@ -34,8 +33,6 @@ require('../dbconnect.php');
       <button>会員登録</button>
     </form>
   </div>
-  <?php  
-  // include "agency_footer.php"
-  ?>
+  <?php include "agency_footer.php"; ?>
 </body>
 </html>
