@@ -8,16 +8,7 @@
 </head>
 <body>
   <!-- <?php include (dirname(__FILE__) . "/agency_header.php");?> -->
-  <h1>掲載内容新規作成</h1>
-  <div>
-    <form>
-        <div>
-            <label action="createcontents.php" method="GET" for="companyName">会社名<span>必須</span></label>
-            <input type="text" name="company_name" id="companyName" required>
-        </div>
-      <button type="submit">作成完了</button>
-    </form>
-  </div>
+  
   <!-- <?php include (dirname(__FILE__) . "/agency_footer.php");?> -->
 </body>
 </html>
