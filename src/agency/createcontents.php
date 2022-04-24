@@ -24,7 +24,7 @@
           </div>
           <div>
               <label for="iconImage">アイコン画像</label>
-              <input type="text" name="icon_image" id="iconImage" required>
+              <input type="file" name="icon_image" id="iconImage"  accept="image/*" required>
           </div>
           <button type="submit">作成完了</button>
       </form>
