@@ -15,7 +15,7 @@
   <a href="./createcontents.php">新規作成</a>
   <a href="./fixcontents.php">掲載情報修正依頼</a>
   <h1>申し込み済み学生情報</h1>
-  <a href="students.php">学生情報</a>
+  <a href="./students.php">学生情報</a>
   <?php include(dirname(__FILE__) . "/agency_footer.php");?>
 </body>
 </html>
