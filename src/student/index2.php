@@ -9,6 +9,8 @@
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
   <button>こだわり条件から探す</button>
+      <!-- お問い合わせ数のランキング
+    参考サイト https://qiita.com/mayu_schwarz/items/0ab9eb1ec5166c284bcd-->
   <div>
     <h1>月間ランキング</h1>
     <ol>
@@ -53,22 +55,29 @@
     <!-- 閉じるボタン -->
     <button>✕</button>
     <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
-    <div>キープ中の企業</div>
+    <a href="./keep.php">キープ中の企業</a>
     <ol>
       <li>        
         <p>会社名</p>
         <p>得意な業種</p>
         <p>対応エリア</p>
+        <form action="" method="">
+          <input type="hidden" name="company_name" value="会社名">
+          <input type="hidden" name="specialty_industries" value="得意な業種">
+          <input type="hidden" name="supported_area" value="対応エリア">
+          <input type="submit" value="">
+        </form>
       </li>
       <li>        
         <p>会社名</p>
         <p>得意な業種</p>
         <p>対応エリア</p>
-      </li>
-      <li>        
-        <p>会社名</p>
-        <p>得意な業種</p>
-        <p>対応エリア</p>
+        <form action="" method="">
+          <input type="hidden" name="company_name" value="会社名">
+          <input type="hidden" name="specialty_industries" value="得意な業種">
+          <input type="hidden" name="supported_area" value="対応エリア">
+          <input type="submit" value="">
+        </form>
       </li>
     </ol>
   </div>
