@@ -7,7 +7,7 @@
   <title>Top画面</title>
 </head>
 <body>
-  <?php include (dirname(__FILE__) . "/agency_header.php");?>
+  <?php include (dirname(__FILE__) . "/student_header.php");?>
   <button>こだわり条件から探す</button>
   <div>
     <h1>月間ランキング</h1>
@@ -47,6 +47,31 @@
       <div>九州</div>
     </div>
   </div>
-  <?php include (dirname(__FILE__) . "/agency_footer.php");?>
+  <!-- 業種別ランキングをクリックした時に表示されるモーダル -->
+  <div>
+    <h1>金融</h1>
+    <!-- 閉じるボタン -->
+    <button>✕</button>
+    <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
+    <div>キープ中の企業</div>
+    <ol>
+      <li>        
+        <p>会社名</p>
+        <p>得意な業種</p>
+        <p>対応エリア</p>
+      </li>
+      <li>        
+        <p>会社名</p>
+        <p>得意な業種</p>
+        <p>対応エリア</p>
+      </li>
+      <li>        
+        <p>会社名</p>
+        <p>得意な業種</p>
+        <p>対応エリア</p>
+      </li>
+    </ol>
+  </div>
+  <?php include (dirname(__FILE__) . "/student_footer.php");?>
 </body>
 </html>
