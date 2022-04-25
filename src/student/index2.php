@@ -9,6 +9,8 @@
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
   <button>こだわり条件から探す</button>
+  <!-- 別ファイルの絞り込み検索を開く→絞り込み検索の方をCSSでdisplay:none都かにして、includeでここに取り込む？
+        こだわり条件から探す、をaタグにする？-->
       <!-- お問い合わせ数のランキング
     参考サイト https://qiita.com/mayu_schwarz/items/0ab9eb1ec5166c284bcd-->
   <div>
