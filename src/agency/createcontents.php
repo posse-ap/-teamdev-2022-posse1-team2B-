@@ -7,6 +7,7 @@
   <title>掲載内容新規作成</title>
 </head>
 <body>
+  <?php include (dirname(__FILE__) . "/agency_header.php");?>
   <h1>掲載内容新規作成</h1>
     <div>
       <form>
@@ -29,5 +30,6 @@
           <button type="submit">作成完了</button>
       </form>
     </div>
+    <?php include (dirname(__FILE__) . "/agency_footer.php");?>
 </body>
 </html>
