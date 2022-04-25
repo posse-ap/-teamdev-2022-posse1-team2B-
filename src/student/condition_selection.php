@@ -53,10 +53,10 @@
         </div>
         <div>
           <h2>対象学生</h2>
-          <input type="checkbox" name="2024_graduation" id="2024_graduation">
-          <label from="kantoRegion">24卒</label>
-          <input type="checkbox" name="kansai_region" id="2025_graduation">
-          <label from="kansaiRegion">25卒</label>
+          <input type="checkbox" name="2024_graduation" id="2024Graduation">
+          <label from="2024Graduation">24卒</label>
+          <input type="checkbox" name="2025_graduation" id="2025Graduation">
+          <label from="2025Graduation">25卒</label>
         </div>
       </div>
       <button type="submit">検索</button>
