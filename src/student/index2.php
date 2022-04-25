@@ -51,7 +51,39 @@
   </div>
   <!-- 業種別ランキングをクリックした時に表示されるモーダル -->
   <div>
-    <h1>金融</h1>
+    <h1><?php echo $industry?></h1>
+    <!-- 閉じるボタン -->
+    <button>✕</button>
+    <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
+    <a href="./keep.php">キープ中の企業</a>
+    <ol>
+      <li>        
+        <p>会社名</p>
+        <p>得意な業種</p>
+        <p>対応エリア</p>
+        <form action="" method="">
+          <input type="hidden" name="company_name" value="会社名">
+          <input type="hidden" name="specialty_industries" value="得意な業種">
+          <input type="hidden" name="supported_area" value="対応エリア">
+          <input type="submit" value="">
+        </form>
+      </li>
+      <li>        
+        <p>会社名</p>
+        <p>得意な業種</p>
+        <p>対応エリア</p>
+        <form action="" method="">
+          <input type="hidden" name="company_name" value="会社名">
+          <input type="hidden" name="specialty_industries" value="得意な業種">
+          <input type="hidden" name="supported_area" value="対応エリア">
+          <input type="submit" value="">
+        </form>
+      </li>
+    </ol>
+  </div>
+  <!-- 対応エリア別ランキングをクリックしたときに表示されるモーダル -->
+  <div>
+    <h1><?php echo $area?>エリアのエージェンシー企業ランキング</h1>
     <!-- 閉じるボタン -->
     <button>✕</button>
     <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
