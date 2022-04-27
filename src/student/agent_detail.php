@@ -9,9 +9,6 @@
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
   <div>
-
-  </div>
-  <div>
     <p>○○企業</p>
     <dl>
       <dt>得意な業種</dt>
@@ -25,6 +22,10 @@
       <dt>備考</dt>
       <dd>LINEを用いて親身にサポートします。</dd>
     </dl>
+    <form action="" method="">
+      <input type="hidden" name="agent_id" value="<?php print($item['agent_id']) ?>">
+      <input type="submit" value="キープする">
+    </form>
   </div>
 
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
