@@ -21,9 +21,7 @@
         <p>得意な業種</p>
         <p>対応エリア</p>
         <form action="" method="">
-          <input type="hidden" name="company_name" value="会社名">
-          <input type="hidden" name="specialty_industries" value="得意な業種">
-          <input type="hidden" name="supported_area" value="対応エリア">
+          <input type="hidden" name="agent_id" value="<?php print();?>">
           <input type="submit" value="キープする">
         </form>
       </li>
@@ -32,9 +30,7 @@
         <p>得意な業種</p>
         <p>対応エリア</p>
         <form action="" method="">
-          <input type="hidden" name="company_name" value="会社名">
-          <input type="hidden" name="specialty_industries" value="得意な業種">
-          <input type="hidden" name="supported_area" value="対応エリア">
+          <input type="hidden" name="agent_id" value="<?php print();?>">
           <input type="submit" value="キープする">
         </form>
       </li>
@@ -43,9 +39,7 @@
         <p>得意な業種</p>
         <p>対応エリア</p>
         <form action="" method="">
-          <input type="hidden" name="company_name" value="会社名">
-          <input type="hidden" name="specialty_industries" value="得意な業種">
-          <input type="hidden" name="supported_area" value="対応エリア">
+          <input type="hidden" name="agent_id" value="<?php print();?>">
           <input type="submit" value="キープする">
         </form>
       </li>
@@ -83,9 +77,7 @@
         <p>得意な業種</p>
         <p>対応エリア</p>
         <form action="" method="">
-          <input type="hidden" name="company_name" value="会社名">
-          <input type="hidden" name="specialty_industries" value="得意な業種">
-          <input type="hidden" name="supported_area" value="対応エリア">
+          <input type="hidden" name="agent_id" value="<?php print();?>">
           <input type="submit" value="キープする">
         </form>
       </li>
@@ -94,9 +86,7 @@
         <p>得意な業種</p>
         <p>対応エリア</p>
         <form action="" method="">
-          <input type="hidden" name="company_name" value="会社名">
-          <input type="hidden" name="specialty_industries" value="得意な業種">
-          <input type="hidden" name="supported_area" value="対応エリア">
+          <input type="hidden" name="agent_id" value="<?php print();?>">
           <input type="submit" value="キープする">
         </form>
       </li>
@@ -110,28 +100,24 @@
     <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
     <a href="./keep.php">キープ中の企業</a>
     <ol>
-      <li>        
+    <li>        
         <p>会社名</p>
         <p>得意な業種</p>
         <p>対応エリア</p>
         <form action="" method="">
-          <input type="hidden" name="company_name" value="会社名">
-          <input type="hidden" name="specialty_industries" value="得意な業種">
-          <input type="hidden" name="supported_area" value="対応エリア">
+          <input type="hidden" name="agent_id" value="<?php print();?>">
           <input type="submit" value="キープする">
         </form>
-      </li>
-      <li>        
+    </li>
+    <li>        
         <p>会社名</p>
         <p>得意な業種</p>
         <p>対応エリア</p>
         <form action="" method="">
-          <input type="hidden" name="company_name" value="会社名">
-          <input type="hidden" name="specialty_industries" value="得意な業種">
-          <input type="hidden" name="supported_area" value="対応エリア">
+          <input type="hidden" name="agent_id" value="<?php print();?>">
           <input type="submit" value="キープする">
         </form>
-      </li>
+    </li>
     </ol>
   </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
