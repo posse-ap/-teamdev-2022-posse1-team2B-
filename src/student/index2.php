@@ -20,22 +20,41 @@
         <p>会社名</p>
         <p>得意な業種</p>
         <p>対応エリア</p>
+        <form action="" method="">
+          <input type="hidden" name="company_name" value="会社名">
+          <input type="hidden" name="specialty_industries" value="得意な業種">
+          <input type="hidden" name="supported_area" value="対応エリア">
+          <input type="submit" value="キープする">
+        </form>
       </li>
       <li>
         <p>会社名</p>
         <p>得意な業種</p>
         <p>対応エリア</p>
+        <form action="" method="">
+          <input type="hidden" name="company_name" value="会社名">
+          <input type="hidden" name="specialty_industries" value="得意な業種">
+          <input type="hidden" name="supported_area" value="対応エリア">
+          <input type="submit" value="キープする">
+        </form>
       </li>
       <li>
         <p>会社名</p>
         <p>得意な業種</p>
         <p>対応エリア</p>
+        <form action="" method="">
+          <input type="hidden" name="company_name" value="会社名">
+          <input type="hidden" name="specialty_industries" value="得意な業種">
+          <input type="hidden" name="supported_area" value="対応エリア">
+          <input type="submit" value="キープする">
+        </form>
       </li>
     </ol>
   <div>
   <div>
     <div>
       <h1>業種別ランキング</h1>
+      <!-- 何タグ使うべき？？ -->
       <div>金融</div>
       <div>IT</div>
       <div>広告</div>
@@ -67,7 +86,7 @@
           <input type="hidden" name="company_name" value="会社名">
           <input type="hidden" name="specialty_industries" value="得意な業種">
           <input type="hidden" name="supported_area" value="対応エリア">
-          <input type="submit" value="">
+          <input type="submit" value="キープする">
         </form>
       </li>
       <li>        
@@ -78,7 +97,7 @@
           <input type="hidden" name="company_name" value="会社名">
           <input type="hidden" name="specialty_industries" value="得意な業種">
           <input type="hidden" name="supported_area" value="対応エリア">
-          <input type="submit" value="">
+          <input type="submit" value="キープする">
         </form>
       </li>
     </ol>
@@ -99,7 +118,7 @@
           <input type="hidden" name="company_name" value="会社名">
           <input type="hidden" name="specialty_industries" value="得意な業種">
           <input type="hidden" name="supported_area" value="対応エリア">
-          <input type="submit" value="">
+          <input type="submit" value="キープする">
         </form>
       </li>
       <li>        
@@ -110,7 +129,7 @@
           <input type="hidden" name="company_name" value="会社名">
           <input type="hidden" name="specialty_industries" value="得意な業種">
           <input type="hidden" name="supported_area" value="対応エリア">
-          <input type="submit" value="">
+          <input type="submit" value="キープする">
         </form>
       </li>
     </ol>
