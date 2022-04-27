@@ -57,7 +57,7 @@
       </div>
       <div>
         <label for="inquiry">エージェンシー企業へのお問い合わせ内容</label>
-        <p>※複数企業にお問い合わせする場合、全ての企業に同一の記入したお問い合わせ内容が送信されます</p>
+        <span>※複数企業にお問い合わせする場合、全ての企業に同一の記入したお問い合わせ内容が送信されます</span>
         <input type="text" name="inquiry" id="inquiry" required>
       </div>
       <div>
