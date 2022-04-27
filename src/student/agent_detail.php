@@ -23,7 +23,7 @@
       <dd>LINEを用いて親身にサポートします。</dd>
     </dl>
     <form action="" method="">
-      <input type="hidden" name="agent_id" value="<?php print($item['agent_id']) ?>">
+      <input type="hidden" name="agent_id" value="<?php print($item['agent_id']);?>">
       <input type="submit" value="キープする">
     </form>
   </div>
