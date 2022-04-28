@@ -26,13 +26,13 @@ $user_name = "student";
   <title>Document</title>
 </head>
 <body>
-  <!-- include で別ディレクトリのファイルを持ってこようとすると、エラーを履く→どうすればいい？ -->
-  <?php include ("./student/student_footer.php");?>
+  <?php include ("./student/student_header.php");?>
   <span><?php print_r($action);?>完了</span>
   <div>
   <p><?php print_r($action);?>が完了しました</p>
   <a href="./index.php">Top画面に戻る</a>
   </div>
+  <?php include ("./student/student_footer.php");?>
 </body>
 </html>
 
