@@ -8,14 +8,14 @@
 </head>
 <body>
   <h2>掲載内容修正</h2>
-  <form action="./thanks.php">
+  <form action="../thanks.php">
     <dd>会社名</dd><dt><input type="text"></dt>
     <dd>郵便番号</dd><dt><input type="text"></dt>
     <dd>住所</dd><dt><input type="text"></dt>
     <dd>掲載期間</dd><dt><input type="number"></dt>
     <dd>アイコン画像</dd><dt><input type="file"></dt>
     <dd>備考</dd><dt><textarea name="" id="" cols="30" rows="10"></textarea></dt>
-    <button>修正完了</button>
+    <button type="submit" name='edit'>修正完了</button>
   </form>
   
 </body>

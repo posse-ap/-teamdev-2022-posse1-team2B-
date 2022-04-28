@@ -13,7 +13,7 @@ require('../dbconnect.php');
   <?php include (dirname(__FILE__) . "/agency_header.php");?>
   <h1>新規登録</h1>
   <div>
-    <form>
+    <form action="../thanks.php" method = "POST">
         <div>
             <label for="companyName">会社名<span>必須</span></label>
             <input type="text" name="company_name" id="companyName" required>
@@ -31,7 +31,7 @@ require('../dbconnect.php');
             <label for="loginPassWord">ログイン用パスワード<span>必須</span></label>
             <input type="password" name="login_password" id="loginPassword" required>
         </div>
-      <button>会員登録</button>
+      <button type="submit" name="registration">会員登録</button>
     </form>
   </div>
   <?php include (dirname(__FILE__) . "/agency_footer.php");?>

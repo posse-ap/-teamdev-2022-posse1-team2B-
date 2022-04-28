@@ -1,12 +1,19 @@
 <?php
 // もしname属性がformの送信ボタンを押したら、この文言を出力する
 $action = "";
-if(isset($_POST['form'])){
+if(isset($_POST['new_entry'])){
   $action = "エージェンシー企業の掲載";
-};
+  // create_contents.php
+} else if (isset($_POST['edit'])) {
+  $action = "登録情報の修正";
+  // edit.php
+} else if (isset($_POST['registration'])) {
+      $action = "会員登録";
+  // account.php 
+} else if (isset($_POST[''])) {
+    $action = "掲載の申請";
+}
 $user_name = "student";
-// else if (isset($_POST[''])) {
-//   $action = "登録情報の修正";
 // } else if (isset($_POST[''])) {
 //   $action = "掲載の申請";
 // } else if (isset($_POST[''])) {
