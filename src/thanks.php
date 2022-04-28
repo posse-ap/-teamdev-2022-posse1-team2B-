@@ -27,6 +27,7 @@ $user_name = "student";
 </head>
 <body>
   <!-- include で別ディレクトリのファイルを持ってこようとすると、エラーを履く→どうすればいい？ -->
+  <?php include ("./student/student_footer.php");?>
   <span><?php print_r($action);?>完了</span>
   <div>
   <p><?php print_r($action);?>が完了しました</p>
