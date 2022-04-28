@@ -13,6 +13,9 @@
   </div>
   <div>
     <div>
+      <img src="<?php print_r("$agent_img");?>" alt="エージェンシー企業の写真">
+    </div>
+    <div>
       <p><?php print_r($agent_name);?></p>
       <dl>
         <dt>得意な業種</dt>
