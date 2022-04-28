@@ -9,8 +9,6 @@
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
   <a href="condition_selection.php">こだわり条件から探す</a>
-  <!-- 別ファイルの絞り込み検索を開く→絞り込み検索の方をCSSでdisplay:none都かにして、includeでここに取り込む？
-        こだわり条件から探す、をaタグにする？-->
       <!-- お問い合わせ数のランキング
     参考サイト https://qiita.com/mayu_schwarz/items/0ab9eb1ec5166c284bcd-->
   <div>
@@ -77,7 +75,7 @@
         <p>得意な業種</p>
         <p>対応エリア</p>
         <form action="" method="">
-          <input type="hidden" name="agent_id" value="<?php print();?>">
+          <input type="hidden" name="agent_id" value="<?php ?>">
           <input type="submit" value="キープする">
         </form>
       </li>
@@ -86,7 +84,7 @@
         <p>得意な業種</p>
         <p>対応エリア</p>
         <form action="" method="">
-          <input type="hidden" name="agent_id" value="<?php print();?>">
+          <input type="hidden" name="agent_id" value="<?php ?>">
           <input type="submit" value="キープする">
         </form>
       </li>
@@ -105,7 +103,7 @@
         <p>得意な業種</p>
         <p>対応エリア</p>
         <form action="" method="">
-          <input type="hidden" name="agent_id" value="<?php print();?>">
+          <input type="hidden" name="agent_id" value="<?php ?>">
           <input type="submit" value="キープする">
         </form>
     </li>
@@ -114,7 +112,7 @@
         <p>得意な業種</p>
         <p>対応エリア</p>
         <form action="" method="">
-          <input type="hidden" name="agent_id" value="<?php print();?>">
+          <input type="hidden" name="agent_id" value="<?php ?>">
           <input type="submit" value="キープする">
         </form>
     </li>
