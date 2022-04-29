@@ -30,11 +30,6 @@ if(isset($_POST['new_entry'])){
     $action = "お問い合わせフォームの送信";
     $user_name = "student";
 };
-// } else if (isset($_POST[''])) {
-//   $action = "学生によるお問い合わせの取り消し申請";
-// } else if (isset($_POST[''])) {
-//   $action = "お問い合わせフォームの送信";
-// };
 
 // 見た目が一緒→見た目の部分だけファイル作って、includeで出力。
 // 共通部分だけ同じファイル。→urlが違うなら、別ファイルにする
