@@ -26,7 +26,7 @@
       </div>
       <div>
         <label>名(カナルビ)</label>
-        <p><?php echo $_POST["family_name_kana"];?></p>
+        <p><?php echo $_POST["student_name_kana"];?></p>
       </div>
       <div>
         <label>電話番号</label>
@@ -48,6 +48,18 @@
         <label>学科</label>
         <p><?php echo $_POST["department"];?></p>
       </div>
+    <!-- 入力した値を受け渡す -->
+      <button type="submit" name="btn_back" formaction="./contact.php">戻る</button>
+      <button type="submit" name="btn_submit">登録完了</button>
+      <input type="hidden" name="family_name" value="<?php echo $_POST['family_name']; ?>">
+      <input type="hidden" name="student_name" value="<?php echo $_POST['student_name']; ?>">
+      <input type="hidden" name="family_name_kana" value="<?php echo $_POST['family_name_kana']; ?>">
+      <input type="hidden" name="student_name_kana" value="<?php echo $_POST['student_name']; ?>">
+      <input type="hidden" name="telephone_number" value="<?php echo $_POST['telephone_number']; ?>">
+      <input type="hidden" name="email_address" value="<?php echo $_POST['email_address']; ?>">
+      <input type="hidden" name="alma_mater" value="<?php echo $_POST['alma_mater']; ?>">
+      <input type="hidden" name="faculty" value="<?php echo $_POST['faculty']; ?>">
+      <input type="hidden" name="department" value="<?php echo $_POST['department']; ?>">
     </form>
   </div>
   
