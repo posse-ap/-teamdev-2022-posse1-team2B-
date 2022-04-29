@@ -9,9 +9,6 @@
 <body>
   <?php include(dirname(__FILE__) . "/agency_header.php");?>
   <h1>掲載情報登録</h1>
-  <!-- <button type="button">新規作成</button>
-  <button type="button">掲載情報修正依頼</button> -->
-  <!-- 新規作成ページに移るだけだから、buttonタグじゃなくてaタグ？ -->
   <a href="./createcontents.php">新規作成</a>
   <a href="./fixcontents.php">掲載情報修正依頼</a>
   <h1>申し込み済み学生情報</h1>
