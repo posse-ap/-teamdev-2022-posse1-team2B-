@@ -31,10 +31,10 @@
         <dt>備考</dt>
         <dd><?php print_r($remarks)?></dd>
       </dl>
-      <form action="" method="">
+      <form action="./keep.php" method="POST">
         <input type="hidden" name="agent_id" value="<?php print($item['agent_id']);?>">
-        <input type="submit" value="キープする">
-        <input type="submit" value="エージェンシー企業に問い合わせる">
+        <button type="submit">キープする</button>
+        <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
       </form>
     </div>
   </div>

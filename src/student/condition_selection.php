@@ -82,8 +82,8 @@
         </dl>
         <form action="./keep.php" method="POST">
           <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-          <input type="submit" value="キープする">
-          <input type="submit" value="エージェンシー企業に問い合わせる">
+          <button type="submit">キープする</button>
+          <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
         </form>
       </li>
       <li>
@@ -101,8 +101,8 @@
         </dl>
         <form action="./keep.php" method="POST">
           <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-          <input type="submit" value="キープする">
-          <input type="submit" value="エージェンシー企業に問い合わせる">
+          <button type="submit">キープする</button>
+          <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
         </form>
       </li>
       <li>
@@ -120,8 +120,8 @@
         </dl>
         <form action="./keep.php" method="POST">
           <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-          <input type="submit" value="キープする">
-          <input type="submit" value="エージェンシー企業に問い合わせる">
+          <button type="submit">キープする</button>
+          <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
         </form>
       </li>
     </ul>
