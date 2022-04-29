@@ -63,7 +63,7 @@
     </form>
   </div>
   <div>
-    <h1>あなたにおすすめのエージェンシー企業</h1>
+    <h1>絞り込み結果</h1>
     <button>✕</button>
     <a href="./keep.php">キープ中の企業</a>
     <ul>
