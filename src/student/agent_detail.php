@@ -13,7 +13,7 @@
   </div>
   <div>
     <div>
-      <img src="<?php print_r("$agent_img");?>" alt="エージェンシー企業の写真">
+      <img src="../img/<?php print_r($agent_id);?>.png" alt="エージェンシー企業の写真">
     </div>
     <div>
       <!-- 閉じるボタン。前のページに戻る -->
