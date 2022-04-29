@@ -11,7 +11,7 @@
   <h1>企業に問い合わせる</h1>
   <div>
     <div>申し込み先企業：<?php $agency?></div>
-    <form>
+    <form action="./thanks.php" method="POST">
       <div>
         <label for="familyName">氏</label>
         <input type="text" name="family_name" id="familyName" required>
@@ -60,13 +60,10 @@
         <span>※複数企業にお問い合わせする場合、全ての企業に同一の記入したお問い合わせ内容が送信されます</span>
         <input type="text" name="inquiry" id="inquiry" required>
       </div>
-      <div>
-        <button>戻る</button>
-        <button>エージェンシー企業に問い合わせる</button>
-      </div>
+      <button type="submit">エージェンシー企業に問い合わせる</button>
     </form>
+    <button type="button">戻る</button>
   </div>
-
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
 </body>
 </html>
