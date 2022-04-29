@@ -8,8 +8,53 @@
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
-  <h1>企業に問い合わせる</h1>
+  <!-- 確認画面 -->
   <div>
+    <h1>お問い合わせ内容を確認</h1>
+    <form method="POST" action="../thanks.php">
+      <div>
+        <label>氏</label>
+        <p><?php echo $_POST["family_name"];?></p>
+      </div>
+      <div>
+        <label>名</label>
+        <p><?php echo $_POST["student_name"];?></p>
+      </div>
+      <div>
+        <label>氏(カナルビ)</label>
+        <p><?php echo $_POST["family_name_kana"];?></p>
+      </div>
+      <div>
+        <label>名(カナルビ)</label>
+        <p><?php echo $_POST["family_name_kana"];?></p>
+      </div>
+      <div>
+        <label>電話番号</label>
+        <p><?php echo $_POST["telephone_number"];?></p>
+      </div>
+      <div>
+        <label>メールアドレス</label>
+        <p><?php echo $_POST["email_address"];?></p>
+      </div>
+      <div>
+        <label>出身大学</label>
+        <p><?php echo $_POST["alma_mater"];?></p>
+      </div>
+      <div>
+        <label>学部</label>
+        <p><?php echo $_POST["faculty"];?></p>
+      </div>
+      <div>
+        <label>学科</label>
+        <p><?php echo $_POST["department"];?></p>
+      </div>
+    </form>
+  </div>
+  
+  
+  <!-- 問い合わせ入力画面 -->
+  <div>
+    <h1>企業に問い合わせる</h1>
     <div>申し込み先企業：<?php $agency?></div>
     <form>
       <div>
