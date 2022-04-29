@@ -18,8 +18,8 @@
         <p>会社名</p>
         <p>得意な業種</p>
         <p>対応エリア</p>
-        <form action="" method="">
-          <input type="hidden" name="agent_id" value="<?php ?>">
+        <form action="index2.php" method="POST">
+          <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
           <input type="submit" value="キープする">
         </form>
       </li>
@@ -27,8 +27,8 @@
         <p>会社名</p>
         <p>得意な業種</p>
         <p>対応エリア</p>
-        <form action="" method="">
-          <input type="hidden" name="agent_id" value="<?php ?>">
+        <form action="index2.php" method="POST">
+          <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
           <input type="submit" value="キープする">
         </form>
       </li>
@@ -36,93 +36,34 @@
         <p>会社名</p>
         <p>得意な業種</p>
         <p>対応エリア</p>
-        <form action="" method="">
-          <input type="hidden" name="agent_id" value="<?php ?>">
+        <form action="index2.php" method="POST">
+          <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
           <input type="submit" value="キープする">
         </form>
       </li>
     </ol>
   <div>
   <div>
-    <div>
-      <!-- h1→就活エージェンと検索ページみたいな見出しが本来のh1タグ
+    <!-- h1→就活エージェンと検索ページみたいな見出しが本来のh1タグ
     →その中に、同列の～ランキングがある→h2
     h1がないデザインは望ましくない。本の表紙がない状態
-  -->
-      <h1>業種別ランキング</h1>
-      <!-- 何タグ使うべき？？ 
-      業種別ランキングの中の一覧→listタグ→それぞれのページに遷移→liの中にaタグ
     -->
-      <div>金融</div>
-      <div>IT</div>
-      <div>広告</div>
-      <div>商社</div>
-      <div>食品</div>
-      <div>不動産</div>
-    </div>
-    <div>
-      <h1>求人エリア別ランキング</h1>
-      <div>関東</div>
-      <div>関西</div>
-      <div>東海</div>
-      <div>九州</div>
-    </div>
-  </div>
-  <!-- 業種別ランキングをクリックした時に表示されるモーダル -->
-  <div>
-    <h1><?php echo $industry?></h1>
-    <!-- 閉じるボタン -->
-    <button>✕</button>
-    <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
-    <a href="./keep.php">キープ中の企業</a>
-    <ol>
-      <li>        
-        <p>会社名</p>
-        <p>得意な業種</p>
-        <p>対応エリア</p>
-        <form action="" method="">
-          <input type="hidden" name="agent_id" value="<?php ?>">
-          <input type="submit" value="キープする">
-        </form>
-      </li>
-      <li>        
-        <p>会社名</p>
-        <p>得意な業種</p>
-        <p>対応エリア</p>
-        <form action="" method="">
-          <input type="hidden" name="agent_id" value="<?php ?>">
-          <input type="submit" value="キープする">
-        </form>
-      </li>
-    </ol>
-  </div>
-  <!-- 対応エリア別ランキングをクリックしたときに表示されるモーダル -->
-  <div>
-    <h1><?php echo $area?>エリアのエージェンシー企業ランキング</h1>
-    <!-- 閉じるボタン -->
-    <button>✕</button>
-    <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
-    <a href="./keep.php">キープ中の企業</a>
-    <ol>
-    <li>        
-        <p>会社名</p>
-        <p>得意な業種</p>
-        <p>対応エリア</p>
-        <form action="" method="">
-          <input type="hidden" name="agent_id" value="<?php ?>">
-          <input type="submit" value="キープする">
-        </form>
-    </li>
-    <li>        
-        <p>会社名</p>
-        <p>得意な業種</p>
-        <p>対応エリア</p>
-        <form action="" method="">
-          <input type="hidden" name="agent_id" value="<?php ?>">
-          <input type="submit" value="キープする">
-        </form>
-    </li>
-    </ol>
+    <h2>業種別ランキング</h2>
+    <ul>
+      <li><a href="#industryRank">金融</a></li>
+      <li><a href="#industryRank">IT</a></li>
+      <li><a href="#industryRank">広告</a></li>
+      <li><a href="#industryRank">商社</a></li>
+      <li><a href="#industryRank">食品</a></li>
+      <li><a href="#industryRank">不動産</a></li>
+    </ul>
+    <h2>求人エリア別ランキング</h2>
+    <ul>
+      <li><a href="#areaRank">関東</a></li>
+      <li><a href="#areaRank">関西</a></li>
+      <li><a href="#areaRank">東海</a></li>
+      <li><a href="#areaRank">九州</a></li>
+    </ul>
   </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
 </body>
