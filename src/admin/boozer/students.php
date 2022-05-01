@@ -17,6 +17,7 @@
     
     <?php
       foreach ($hoges as $hoge) : ?>
+      学生のデータを問い合わせぶん回す
     <div>
       <span><?= $hoge ?></span>
       <span><?= $hoge ?></span>

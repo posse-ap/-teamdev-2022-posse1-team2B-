@@ -20,6 +20,9 @@ if (!empty($_POST)) {
     $error = 'fail';
   }
 }
+
+$stmt = $db->query('SELECT id FROM students');
+$students = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +38,7 @@ if (!empty($_POST)) {
 <body>
   <div>
     <h1>管理者ログイン</h1>
+    <h2><? print_r($students); ?></h2>
     <form action="/admin/login.php" method="POST">
       <input type="email" name="email" required>
       <input type="password" required name="password">
