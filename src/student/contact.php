@@ -50,7 +50,7 @@
       </div>
     <!-- 入力した値を受け渡す -->
       <button type="submit" name="btn_back" formaction="./contact.php">戻る</button>
-      <button type="submit" name="btn_submit">登録完了</button>
+      <button type="submit" name="contact">登録完了</button>
       <input type="hidden" name="family_name" value="<?php echo $_POST['family_name']; ?>">
       <input type="hidden" name="student_name" value="<?php echo $_POST['student_name']; ?>">
       <input type="hidden" name="family_name_kana" value="<?php echo $_POST['family_name_kana']; ?>">
@@ -119,7 +119,7 @@
       </div>
       <div>
         <button>戻る</button>
-        <button type="submit" >エージェンシー企業に問い合わせる</button>
+        <button type="submit">エージェンシー企業に問い合わせる</button>
       </div>
     </form>
   </div>
