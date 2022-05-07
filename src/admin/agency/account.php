@@ -1,5 +1,5 @@
 <?php
-require('../dbconnect.php');
+require(dirname(__FILE__, 3) . '/dbconnect.php');
 ?>
 <!DOCTYPE html>
 <html lang="ja">

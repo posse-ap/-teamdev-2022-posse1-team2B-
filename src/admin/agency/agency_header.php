@@ -1,4 +1,3 @@
-  <link rel="stylesheet" href="./agency.css">
   <header>
     <div>
       <p>CRAFT</p>
@@ -14,6 +13,4 @@
       <p>サービス等に関するお問い合わせは、xxxx@co.jp までご連絡ください。 </p>
     </div>
   </header>
-  <script src="./agency.js"></script>
-
 

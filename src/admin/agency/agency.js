@@ -1,5 +1,4 @@
 "use strict";
-
 // ヘッダーのお問い合わせをクリックした時の処理
 let contact = document.getElementById("contact");
 let contactEmailAddress = document.getElementById("contactEmailAddress");
@@ -11,3 +10,5 @@ contact.addEventListener("click", function() {
 closeButton.addEventListener("click", function() {
   contactEmailAddress.classList.remove("show_contact");
 })
+
+// アカウント登録画面
