@@ -1,6 +1,3 @@
-<?php
-require('../dbconnect.php');
-?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -10,6 +7,5 @@ require('../dbconnect.php');
   <title>エージェント用TOP画面</title>
 </head>
 <body>
-  
 </body>
 </html>
