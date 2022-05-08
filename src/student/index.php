@@ -28,7 +28,7 @@
           <p>会社名</p>
           <p>得意な業種</p>
           <p>対応エリア</p>
-          <form action="index2.php" method="POST">
+          <form action="keep.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
             <button type="submit">キープする</button>
           </form>
@@ -37,7 +37,7 @@
           <p>会社名</p>
           <p>得意な業種</p>
           <p>対応エリア</p>
-          <form action="index2.php" method="POST">
+          <form action="keep.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
             <button type="submit">キープする</button>
           </form>
