@@ -100,7 +100,7 @@
   <div id="areaRank">
     <h1>関東エリアのエージェンシー企業ランキング</h1>
     <!-- 閉じるボタン -->
-    <button>✕</button>
+    <button id="closeButton">✕</button>
     <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
     <a href="./keep.php">キープ中の企業</a>
     <ol>
