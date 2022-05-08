@@ -1,7 +1,3 @@
-<?php
-require('../dbconnect.php');
-?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -11,16 +7,60 @@ require('../dbconnect.php');
   <title>Top画面</title>
 </head>
 <body>
-  <header>
-    <p>CRAFT</p>
-    <p>by</p>
-    <img src="../img/syukatudotcom_logo_white.png" alt="就活.com">
-    <p>エージェンシー企業向け掲載依頼はこちら</p>
-    <p>お問い合わせ</p>
-  </header>
-
-  <footer>
-    <img src="../img/boozer_logo_png" alt="boozer">
-  </footer>
+  <?php include (dirname(__FILE__) . "/student_header.php");?>
+  <a href="condition_selection.php">こだわり条件から探す</a>
+      <!-- お問い合わせ数のランキング
+    参考サイト https://qiita.com/mayu_schwarz/items/0ab9eb1ec5166c284bcd-->
+  <div>
+    <h1>月間ランキング</h1>
+    <ol>
+      <li>
+        <p>会社名</p>
+        <p>得意な業種</p>
+        <p>対応エリア</p>
+        <form action="index2.php" method="POST">
+          <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
+          <button type="submit">キープする</button>
+        </form>
+      </li>
+      <li>
+        <p>会社名</p>
+        <p>得意な業種</p>
+        <p>対応エリア</p>
+        <form action="index2.php" method="POST">
+          <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
+          <button type="submit">キープする</button>
+        </form>
+      </li>
+      <li>
+        <p>会社名</p>
+        <p>得意な業種</p>
+        <p>対応エリア</p>
+        <form action="index2.php" method="POST">
+          <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
+          <button type="submit">キープする</button>
+        </form>
+      </li>
+    </ol>
+  <div>
+  <div>
+    <h2>業種別ランキング</h2>
+    <ul>
+      <li><a href="#industryRank">金融</a></li>
+      <li><a href="#industryRank">IT</a></li>
+      <li><a href="#industryRank">広告</a></li>
+      <li><a href="#industryRank">商社</a></li>
+      <li><a href="#industryRank">食品</a></li>
+      <li><a href="#industryRank">不動産</a></li>
+    </ul>
+    <h2>求人エリア別ランキング</h2>
+    <ul>
+      <li><a href="#areaRank">関東</a></li>
+      <li><a href="#areaRank">関西</a></li>
+      <li><a href="#areaRank">東海</a></li>
+      <li><a href="#areaRank">九州</a></li>
+    </ul>
+  </div>
+  <?php include (dirname(__FILE__) . "/student_footer.php");?>
 </body>
 </html>

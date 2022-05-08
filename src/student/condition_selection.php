@@ -11,7 +11,7 @@
   <!-- こだわり条件から探すをクリックした場合に表示されるモーダル -->
   <div>
     <button>✕</button>
-    <form action="" method="">
+    <form action="condition_selection.php" method="POST">
       <h1>エージェンシー企業をこだわり条件で絞り込む</h1>
       <div>
         <div>
@@ -61,6 +61,70 @@
       </div>
       <button type="submit">検索</button>
     </form>
+  </div>
+  <div>
+    <h1>絞り込み結果</h1>
+    <button>✕</button>
+    <a href="./keep.php">キープ中の企業</a>
+    <ul>
+      <li>
+        <p><?php print_r($recommend_agent_name);?></p>
+        <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
+        <dl>
+          <dt>得意な業種</dt>
+          <dd><?php print_r($specialty_industry);?></dd>
+          <dt>対応エリア</dt>
+          <dd><?php print_r($supported_area);?></dd>
+          <dt>対象学生</dt>
+          <dd><?php print_r($target_student);?></dd>
+          <dt>対応企業の規模</dt>
+          <dd><?php print_r($supported_corporate_scale);?></dd>
+        </dl>
+        <form action="./keep.php" method="POST">
+          <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+          <button type="submit">キープする</button>
+          <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
+        </form>
+      </li>
+      <li>
+        <p><?php print_r($recommend_agent_name);?></p>
+        <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
+        <dl>
+          <dt>得意な業種</dt>
+          <dd><?php print_r($specialty_industry);?></dd>
+          <dt>対応エリア</dt>
+          <dd><?php print_r($supported_area);?></dd>
+          <dt>対象学生</dt>
+          <dd><?php print_r($target_student);?></dd>
+          <dt>対応企業の規模</dt>
+          <dd><?php print_r($supported_corporate_scale);?></dd>
+        </dl>
+        <form action="./keep.php" method="POST">
+          <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+          <button type="submit">キープする</button>
+          <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
+        </form>
+      </li>
+      <li>
+        <p><?php print_r($recommend_agent_name);?></p>
+        <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
+        <dl>
+          <dt>得意な業種</dt>
+          <dd><?php print_r($specialty_industry);?></dd>
+          <dt>対応エリア</dt>
+          <dd><?php print_r($supported_area);?></dd>
+          <dt>対象学生</dt>
+          <dd><?php print_r($target_student);?></dd>
+          <dt>対応企業の規模</dt>
+          <dd><?php print_r($supported_corporate_scale);?></dd>
+        </dl>
+        <form action="./keep.php" method="POST">
+          <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+          <button type="submit">キープする</button>
+          <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
+        </form>
+      </li>
+    </ul>
   </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
 </body>

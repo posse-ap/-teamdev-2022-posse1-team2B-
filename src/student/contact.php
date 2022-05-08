@@ -68,7 +68,8 @@
   <div>
     <h1>企業に問い合わせる</h1>
     <div>申し込み先企業：<?php $agency?></div>
-    <form method="POST">
+    <form action="./thanks.php" method="POST">
+
       <div>
         <label for="familyName">氏</label>
         <input type="text" name="family_name" id="familyName" required>
@@ -122,8 +123,8 @@
         <button type="submit">エージェンシー企業に問い合わせる</button>
       </div>
     </form>
+    <button type="button">戻る</button>
   </div>
-
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
 </body>
 </html>
