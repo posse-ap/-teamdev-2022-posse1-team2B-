@@ -2,7 +2,7 @@
     <div>
       <p>CRAFT</p>
       <p>by</p>
-      <img src="../img/syukatudotcom_logo.png" alt="就活.com">
+      <img src="../../img/syukatudotcom_logo.png" alt="就活.com">
     </div>
     <nav>
       <p id="contact">お問い合わせ</p>

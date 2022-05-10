@@ -7,6 +7,7 @@
   <title>Document</title>
 </head>
 <body>
+<?php include (dirname(__FILE__) . "/agency_header.php");?>
   <section>
     <h2>学生一覧</h2>
     <?php
@@ -36,6 +37,6 @@
     <a href="">戻る</a>
     <button>いたずらをboozerに報告</button>
   </section>
-
+  <?php include (dirname(__FILE__) . "/agency_footer.php");?>
 </body>
 </html>
