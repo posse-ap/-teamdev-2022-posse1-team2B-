@@ -15,3 +15,4 @@ studentInformationCloseButton.addEventListener("click", function() {
   studentInformation.classList.remove("show_contents")
 })
 // アカウント登録画面
+
