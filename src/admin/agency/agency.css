@@ -4,6 +4,9 @@
 .contact_email_address {
   display: none;
 }
-.show_contact {
+.show_contents {
   display: block;
 }
+/* .student_information {
+  display: none;
+} */
