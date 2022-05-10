@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>掲載内容新規作成</title>
+  <link rel="stylesheet" href="./agency.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/agency_header.php");?>
@@ -27,9 +28,11 @@
               <label for="iconImage">アイコン画像</label>
               <input type="file" name="icon_image" id="iconImage"  accept="image/*" required>
           </div>
+          <a href="./index.php">戻る</a>
           <button type="submit">作成完了</button>
       </form>
     </div>
     <?php include (dirname(__FILE__) . "/agency_footer.php");?>
 </body>
+<script src="./agency.js"></script>
 </html>
