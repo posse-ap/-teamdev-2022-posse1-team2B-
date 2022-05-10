@@ -11,7 +11,7 @@
   <?php include (dirname(__FILE__) . "/agency_header.php");?>
   <h1>掲載内容新規作成</h1>
     <div>
-      <form>
+      <form action="../../thanks.php" method="POST">
           <div>
               <label for="companyName">会社名<span>必須</span></label>
               <input type="text" name="company_name" id="companyName" required>
