@@ -8,7 +8,7 @@
   <nav>
     <ul>
       <li id="contact">お問い合わせ</li>
-      <li>エージェンシー企業向け掲載依頼はこちら</li>
+      <li id="request">エージェンシー企業向け掲載依頼はこちら</li>
       <li><a href="./keep.php">keepしてるエージェンシー企業</a></li>
     </ul>
   </nav>
