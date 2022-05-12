@@ -61,7 +61,7 @@
     <dd>学部</dd><dt><?= $student["undergraduate"]; ?></dt>
     <dd>学科</dd><dt><?= $student["college_department"]; ?></dt>
     <dd>卒業年</dd><dt><?= $student["graduation_year"]; ?></dt>
-    <dd>お問い合わせ内容</dd><dt><?php //お問い合わせ内容ってテーブルになくないか？？？？？？？？？？？？？？ ?></dt>
+    <dd>お問い合わせ内容</dd><dt><?php //お問い合わせ内容ってテーブルになくない？？？？？？？？？？？？？？ ?></dt>
     <a href="./students.php">戻る</a>
     <button>いたずらをboozerに報告</button>
   </section>
