@@ -10,7 +10,7 @@
   <?php include (dirname(__FILE__) . "/student_header.php");?>
   <!-- こだわり条件から探すをクリックした場合に表示されるモーダル -->
   <div>
-    <button>✕</button>
+    <a href="./index.php">✕</a>
     <form action="condition_selection.php" method="POST">
       <h1>エージェンシー企業をこだわり条件で絞り込む</h1>
       <div>
