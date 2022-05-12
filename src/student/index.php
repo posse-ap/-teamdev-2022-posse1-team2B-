@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Top画面</title>
+  <link rel="stylesheet" href="student.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
@@ -47,16 +48,16 @@
     <div>
       <h2>業種別ランキング</h2>
       <ul>
-        <li><a href="#industryRank" class="industry_rank" data-value="金融">金融</a></li>
-        <!--選択したaタグによって、金融かITかとかどうやって分ける？
+                <!--選択したaタグによって、金融かITかとかどうやって分ける？
           data-valueでvalue値を設定しておいてJSで取得する？
         https://teratail.com/questions/111346
         -->
-        <li><a href="#industryRank" class="industry_rank" data-value="IT">IT</a></li>
-        <li><a href="#industryRank" class="industry_rank" data-value="広告">広告</a></li>
-        <li><a href="#industryRank" class="industry_rank" data-value="商社">商社</a></li>
-        <li><a href="#industryRank" class="industry_rank" data-value="食品">食品</a></li>
-        <li><a href="#industryRank" class="industry_rank" data-value="不動産">不動産</a></li>
+        <li><a href="#industryRank" id="finance" data-value="金融">金融</a></li>
+        <li><a href="#industryRank" id="it" data-value="IT">IT</a></li>
+        <li><a href="#industryRank" id="ad" data-value="広告">広告</a></li>
+        <li><a href="#industryRank" id="tradingCompany" data-value="商社">商社</a></li>
+        <li><a href="#industryRank" id="food" data-value="食品">食品</a></li>
+        <li><a href="#industryRank" id="realEstate" data-value="不動産">不動産</a></li>
       </ul>
       <h2>求人エリア別ランキング</h2>
       <ul>
@@ -70,7 +71,7 @@
   <div>
   <!-- 業種別ランキングをクリックした時に表示されるモーダル -->
   <div id="industryRank">
-    <h1>金融</h1>
+    <h1 id="industryRankTitle"></h1>
     <!-- 閉じるボタン -->
     <button id="closeButton">✕</button>
     <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
@@ -97,5 +98,6 @@
     </ol>
   </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
+  <script src="student.js"></script>
 </body>
 </html>

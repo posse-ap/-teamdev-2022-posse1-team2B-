@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="student.css">
 <header>
   <div>
     <p>CRAFT</p>
@@ -18,4 +17,3 @@
     サービス等に関するお問い合わせは、xxx@co.jp までご連絡ください。 
   </div>
 </header>
-<script src="student.js"></script>
