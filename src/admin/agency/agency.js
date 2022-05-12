@@ -12,7 +12,7 @@ closeButton.addEventListener("click", function() {
   contactEmailAddress.classList.remove("show_contents");
 })
 studentInformationCloseButton.addEventListener("click", function() {
-  studentInformation.classList.remove("show_contents")
+  studentInformation.classList.remove("show_contents");
 })
 // アカウント登録画面
 

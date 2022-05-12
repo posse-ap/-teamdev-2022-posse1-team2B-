@@ -26,6 +26,7 @@
       // foreach ($hoges as $index => $hoge) : ?>
     <div>
       <!-- <a class="student_detail" href="students.php?id=<?php //echo $hoge["student_id"] ?>"> -->
+        <!-- こんなやり方で良いの、、？？？  -->
       <a class="student_detail" href="students.php?id=1">
         <span>田中花子</span>
         <span>慶應</span>
@@ -38,7 +39,7 @@
     <a href="./index.php">戻る</a>
   </section>
 
-  <section class="student_information">
+  <section id="studentInformation" class="student_information">
 
   <?php 
     $id=$_GET["id"];
