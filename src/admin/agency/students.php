@@ -34,6 +34,7 @@
         <a href="../../thanks.php">いたずらを申請する</a>
       </div>
     </div>
+    <!-- 学生一覧画面 -->
 <?php else: ?>
   <div>
     <h2>学生一覧</h2>
@@ -68,6 +69,7 @@
     <?php //endforeach; ?>
     <a href="./index.php">戻る</a> 
   </div>
+  <!-- 学生詳細 -->
   <?php 
       $id=$_GET["id"];
       $stmt =$db->prepare("SELECT * FROM students WHERE id= :id");
@@ -91,7 +93,6 @@
       <dd>学科</dd><dt><?= $student["college_department"]; ?></dt>
       <dd>卒業年</dd><dt><?= $student["graduation_year"]; ?></dt>
       <dd>お問い合わせ内容</dd><dt><?php //お問い合わせ内容ってテーブルになくない？？？？？？？？？？？？？？ ?></dt>
-      <a href="./students.php">戻る</a>
       <form method="POST">
         <button type="submit" name="mischief_report">いたずらをboozerに報告</button>
       </form>
