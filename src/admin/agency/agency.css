@@ -4,14 +4,16 @@
 .contact_email_address {
   display: none;
 }
-.show_contents {
-  display: block;
-}
-/* .student_information {
+
+/* .student_detail {
   display: none;
 } */
-
-.student_detail {
+.student_information {
   text-decoration: none;  /* 寡占を失くす */
   color: black;  /* 文字の色が青くならないようにする */
 }
+
+.show_contents {
+  display: block;
+}
+

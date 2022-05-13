@@ -1,8 +1,6 @@
   <!-- 
     ・入力画面→確認画面の遷移
     →https://gray-code.com/php/make-the-form-vol2/
-    ・メール自動送信
-      エージェンシー企業、Boozer→できない。すぺもくでききたい
   -->
 
 <?php

@@ -12,7 +12,30 @@
 </head>
 <body>
 <?php include (dirname(__FILE__) . "/agency_header.php");?>
-  <section>
+<?php
+    //変数の初期化
+    // 学生の詳細情報画面や確認画面の表示をスイッチするフラグ
+    // 0→詳細画面 1→確認画面
+    $page_flag = 0;
+    // もしいたずら報告ボタンがおされたら
+    // ＝フォームデータの中に$_POST["mischief_report"]が含まれていたら
+    // →page_flag変数の値を1にする＝確認画面に表示を変える
+    if(isset($_POST["mischief_report"])) {
+      $page_flag = 1;
+    }
+    if ($page_flag === 1):
+    ?>
+    <!-- 確認画面 -->
+    <div>
+        <p>本当に取り消し申請を行いますか？</p>
+        <p>いたずら・迷惑行為とみなされたお問い合わせのみ取り消されます。</p>
+      <!-- 入力した値を受け渡す -->
+        <a href="./students.php">戻る</a>
+        <a href="../../thanks.php">いたずらを申請する</a>
+      </div>
+    </div>
+<?php else: ?>
+  <div>
     <h2>学生一覧</h2>
     <?php
       // 指定したエージェンシー企業の学生の情報をDBから取得
@@ -25,9 +48,16 @@
 
       // foreach ($hoges as $index => $hoge) : ?>
     <div>
-      <!-- <a class="student_detail" href="students.php?id=<?php //echo $hoge["student_id"] ?>"> -->
-        <!-- こんなやり方で良いの、、？？？  -->
-      <a class="student_detail" href="students.php?id=1">
+      <!-- <a class="student_information" href="students.php?id=<?php //echo $hoge["student_id"] ?>"> -->
+      <a  class="student_information" href="students.php?id=1">
+        <form></form>
+        <span>田中花子</span>
+        <span>慶應</span>
+        <span>経済学部</span>
+        <span>3月12日12時</span>
+        <dd>申込みエージェント</dd><dt><?php //echo $hoge ?></dt>
+      </a>
+      <a  class="student_information" href="students.php?id=2">
         <span>田中花子</span>
         <span>慶應</span>
         <span>経済学部</span>
@@ -36,37 +66,40 @@
       </a>
     </div>
     <?php //endforeach; ?>
-    <a href="./index.php">戻る</a>
-  </section>
-
-  <section id="studentInformation" class="student_information">
-
+    <a href="./index.php">戻る</a> 
+  </div>
   <?php 
-    $id=$_GET["id"];
-    $stmt =$db->prepare("SELECT * FROM students WHERE id= :id");
-    $stmt->bindValue(":id", $id);
-    $stmt->execute();
-    $student = $stmt->fetch();
-    $college_id = $student["coledge_id"];
-    $stmt = $db->prepare("SELECT * FROM colleges WHERE id =:college_id");
-    $stmt->bindValue(":college_id", $id);
-    $stmt->execute();
-    $college = $stmt->fetch();
-  ?>
-    <button id="studentInformationCloseButton">☓</button>
-    <dd>名前</dd><dt><?= $student["student_name"]; ?></dt>
-    <dd>カナ</dd><dt></dt>
-    <dd>電話番号</dd><dt><?= $student["tel_number"]; ?></dt>
-    <dd>メールアドレス</dd><dt><?= $student["email"]; ?></dt>
-    <dd>出身大学</dd><dt><?= $college["college_name"]; ?></dt>
-    <dd>学部</dd><dt><?= $student["undergraduate"]; ?></dt>
-    <dd>学科</dd><dt><?= $student["college_department"]; ?></dt>
-    <dd>卒業年</dd><dt><?= $student["graduation_year"]; ?></dt>
-    <dd>お問い合わせ内容</dd><dt><?php //お問い合わせ内容ってテーブルになくない？？？？？？？？？？？？？？ ?></dt>
-    <a href="./students.php">戻る</a>
-    <button>いたずらをboozerに報告</button>
-  </section>
+      $id=$_GET["id"];
+      $stmt =$db->prepare("SELECT * FROM students WHERE id= :id");
+      $stmt->bindValue(":id", $id);
+      $stmt->execute();
+      $student = $stmt->fetch();
+      $college_id = $student["coledge_id"];
+      $stmt = $db->prepare("SELECT * FROM colleges WHERE id =:college_id");
+      $stmt->bindValue(":college_id", $id);
+      $stmt->execute();
+      $college = $stmt->fetch();
+    ?>
+    <div id="studentDetail" class="student_detail">
+      <button id="studentInformationCloseButton">☓</button>
+      <dd>名前</dd><dt><?= $student["student_name"]; ?></dt>
+      <dd>カナ</dd><dt></dt>
+      <dd>電話番号</dd><dt><?= $student["tel_number"]; ?></dt>
+      <dd>メールアドレス</dd><dt><?= $student["email"]; ?></dt>
+      <dd>出身大学</dd><dt><?= $college["college_name"]; ?></dt>
+      <dd>学部</dd><dt><?= $student["undergraduate"]; ?></dt>
+      <dd>学科</dd><dt><?= $student["college_department"]; ?></dt>
+      <dd>卒業年</dd><dt><?= $student["graduation_year"]; ?></dt>
+      <dd>お問い合わせ内容</dd><dt><?php //お問い合わせ内容ってテーブルになくない？？？？？？？？？？？？？？ ?></dt>
+      <a href="./students.php">戻る</a>
+      <form method="POST">
+        <button type="submit" name="mischief_report">いたずらをboozerに報告</button>
+      </form>
+    </div>
+
   <?php include (dirname(__FILE__) . "/agency_footer.php");?>
+  <?php endif; ?>
+
   <script src="./agency.js"></script>
 </body>
 </html>
