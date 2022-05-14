@@ -67,25 +67,33 @@ $agents = $stmt->fetchAll();
     </div>
     <div>
       <h2>業種別ランキング</h2>
-      <ul>
-                <!--選択したaタグによって、金融かITかとかどうやって分ける？
-          data-valueでvalue値を設定しておいてJSで取得する？
-        https://teratail.com/questions/111346
-        -->
-        <li><a href="#industryRank" id="finance" data-value="金融">金融</a></li>
-        <li><a href="#industryRank" id="it" data-value="IT">IT</a></li>
-        <li><a href="#industryRank" id="ad" data-value="広告">広告</a></li>
-        <li><a href="#industryRank" id="tradingCompany" data-value="商社">商社</a></li>
-        <li><a href="#industryRank" id="food" data-value="食品">食品</a></li>
-        <li><a href="#industryRank" id="realEstate" data-value="不動産">不動産</a></li>
-      </ul>
-      <h2>求人エリア別ランキング</h2>
-      <ul>
-        <li><a href="#areaRank" class="area_rank" data-value="関東">関東</a></li>
-        <li><a href="#areaRank" class="area_rank" data-value="関西">関西</a></li>
-        <li><a href="#areaRank" class="area_rank" data-value="東海">東海</a></li>
-        <li><a href="#areaRank" class="area_rank" data-value="九州">九州</a></li>
-      </ul>
+      <form action="./agency_list.php" method="POST">
+        <ul>
+                  <!--選択したaタグによって、金融かITかとかどうやって分ける？
+            data-valueでvalue値を設定しておいてJSで取得する？
+          https://teratail.com/questions/111346
+          -->
+          <li><input type="submit" name="finance" value="金融"></li>
+          <li><input type="submit" name="it" value="IT"></li>
+          <li><input type="submit" name="ad" value="広告"></li>
+          <li><input type="submit" name="tradingCompany" value="商社"></li>
+          <li><input type="submit" name="food" value="食品"></li>
+          <li><input type="submit" name="realEstate" value="不動産"></li>
+          <!-- <li><a href="agency_list.php#industryRank" id="finance" data-value="金融">金融</a></li>
+          <li><a href="agency_list.php#industryRank" id="it" data-value="IT">IT</a></li>
+          <li><a href="agency_list.php#industryRank" id="ad" data-value="広告">広告</a></li>
+          <li><a href="agency_list.php#industryRank" id="tradingCompany" data-value="商社">商社</a></li>
+          <li><a href="agency_list.php#industryRank" id="food" data-value="食品">食品</a></li>
+          <li><a href="agency_list.php#industryRank" id="realEstate" data-value="不動産">不動産</a></li> -->
+        </ul>
+        <h2>求人エリア別ランキング</h2>
+        <ul>
+          <li><a href="agency_list.php#areaRank" class="area_rank" data-value="関東">関東</a></li>
+          <li><a href="agency_list.php#areaRank" class="area_rank" data-value="関西">関西</a></li>
+          <li><a href="agency_list.php#areaRank" class="area_rank" data-value="東海">東海</a></li>
+          <li><a href="agency_list.php#areaRank" class="area_rank" data-value="九州">九州</a></li>
+        </ul>
+      </form>
     </div>
   </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>

@@ -5,12 +5,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="student.css">
 </head>
 <body>
+<?php include (dirname(__FILE__) . "/student_header.php");?>
   <div>
   <!-- 業種別ランキングをクリックした時に表示されるモーダル -->
   <div id="industryRank">
-    <h1>金融</h1>
+    <h1>
+      <?php 
+      if(isset($_POST["finance"])) {
+        echo $_POST["finance"];
+      } elseif(isset($_POST["it"])){
+        echo $_POST["it"];
+      } elseif(isset($_POST["ad"])){
+        echo $_POST["ad"];
+      } elseif(isset($_POST["tradingCompany"])){
+        echo $_POST["tradingCompany"];
+      } elseif(isset($_POST["food"])){
+        echo $_POST["food"];
+      } elseif(isset($_POST["rearEstate"])){
+        echo $_POST["realEstate"];
+      }
+    ?></h1>
     <!-- 閉じるボタン -->
     <button id="closeButton">✕</button>
     <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
@@ -64,5 +81,7 @@
     </li>
     </ol>
   </div>
+  <?php include (dirname(__FILE__) . "/student_footer.php");?>
+  <script src="./student.js"></script>
 </body>
 </html>
