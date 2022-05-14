@@ -80,10 +80,6 @@
       $stmt->execute();
       $student = $stmt->fetch();
       $college_id = $student["coledge_id"];
-      $stmt = $db->prepare("SELECT * FROM colleges WHERE id =:college_id");
-      $stmt->bindValue(":college_id", $id);
-      $stmt->execute();
-      $college = $stmt->fetch();
     ?>
     <div id="studentDetail" class="student_detail">
       <button id="studentInformationCloseButton">☓</button>
