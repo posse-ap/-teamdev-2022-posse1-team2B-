@@ -35,7 +35,7 @@
       }
     ?>企業のエージェンシー企業一覧</h1>
     <!-- 閉じるボタン -->
-    <button id="closeButton">✕</button>
+    <a href="./index.php">✕</a>
     <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
     <a href="./keep.php">キープ中の企業</a>
     <ol>
@@ -75,7 +75,7 @@
       }
       ?>エリアのエージェンシー企業一覧</h1>
     <!-- 閉じるボタン -->
-    <button id="closeButton">✕</button>
+    <a href="./index.php">✕</a>
     <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
     <a href="./keep.php">キープ中の企業</a>
     <ol>
