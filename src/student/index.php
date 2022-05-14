@@ -79,19 +79,13 @@ $agents = $stmt->fetchAll();
           <li><input type="submit" name="tradingCompany" value="商社"></li>
           <li><input type="submit" name="food" value="食品"></li>
           <li><input type="submit" name="realEstate" value="不動産"></li>
-          <!-- <li><a href="agency_list.php#industryRank" id="finance" data-value="金融">金融</a></li>
-          <li><a href="agency_list.php#industryRank" id="it" data-value="IT">IT</a></li>
-          <li><a href="agency_list.php#industryRank" id="ad" data-value="広告">広告</a></li>
-          <li><a href="agency_list.php#industryRank" id="tradingCompany" data-value="商社">商社</a></li>
-          <li><a href="agency_list.php#industryRank" id="food" data-value="食品">食品</a></li>
-          <li><a href="agency_list.php#industryRank" id="realEstate" data-value="不動産">不動産</a></li> -->
         </ul>
         <h2>求人エリア別ランキング</h2>
         <ul>
-          <li><a href="agency_list.php#areaRank" class="area_rank" data-value="関東">関東</a></li>
-          <li><a href="agency_list.php#areaRank" class="area_rank" data-value="関西">関西</a></li>
-          <li><a href="agency_list.php#areaRank" class="area_rank" data-value="東海">東海</a></li>
-          <li><a href="agency_list.php#areaRank" class="area_rank" data-value="九州">九州</a></li>
+          <li><input type="submit" name="kanto" value="関東"></li>
+          <li><input type="submit" name="kansai" value="関西"></li>
+          <li><input type="submit" name="tokai" value="東海"></li>
+          <li><input type="submit" name="kyushu" value="九州"></li>
         </ul>
       </form>
     </div>

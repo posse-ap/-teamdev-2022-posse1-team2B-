@@ -1,3 +1,9 @@
+<?php
+  $page_flag = 0;
+  if(isset($_POST["finance"]) || isset($_POST["it"]) || isset($_POST["ad"]) || isset($_POST["tradingCompany"]) || isset($_POST["food"]) || isset($_POST["realEstate"])) {
+    $page_flag = 1;
+  } 
+  ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,9 +15,9 @@
 </head>
 <body>
 <?php include (dirname(__FILE__) . "/student_header.php");?>
-  <div>
   <!-- 業種別ランキングをクリックした時に表示されるモーダル -->
-  <div id="industryRank">
+<?php if($page_flag === 1): ?>
+  <div>
     <h1>
       <?php 
       if(isset($_POST["finance"])) {
@@ -27,7 +33,7 @@
       } elseif(isset($_POST["rearEstate"])){
         echo $_POST["realEstate"];
       }
-    ?></h1>
+    ?>企業のエージェンシー企業一覧</h1>
     <!-- 閉じるボタン -->
     <button id="closeButton">✕</button>
     <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
@@ -54,8 +60,20 @@
     </ol>
   </div>
   <!-- 対応エリア別ランキングをクリックしたときに表示されるモーダル -->
+  <?php else: ?>
   <div id="areaRank">
-    <h1>関東エリアのエージェンシー企業ランキング</h1>
+    <h1>
+    <?php 
+      if(isset($_POST["kanto"])) {
+        echo $_POST["kanto"];
+      } elseif(isset($_POST["kansai"])){
+        echo $_POST["kansai"];
+      } elseif(isset($_POST["tokai"])){
+        echo $_POST["tokai"];
+      } elseif(isset($_POST["kyushu"])){
+        echo $_POST["kyushu"];
+      }
+      ?>エリアのエージェンシー企業一覧</h1>
     <!-- 閉じるボタン -->
     <button id="closeButton">✕</button>
     <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
@@ -81,6 +99,7 @@
     </li>
     </ol>
   </div>
+  <? endif; ?>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
   <script src="./student.js"></script>
 </body>
