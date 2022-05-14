@@ -16,13 +16,6 @@ closeButton.addEventListener("click", function() {
 
 
 // アカウント登録画面
-//一瞬表示されてすぐ消える、、、なんで？？？？？？？？？？？？？？
-for(let i = 0; i < studentInformation.length; i++) {
-  console.log(studentInformation[i]);
-  studentInformation[i].addEventListener("click", function() {
-    studentDetail.style.display = "block";
-  })
-}
-studentInformationCloseButton.addEventListener("click", function() {
-  studentDetail.style.display = "none";
-})
+// studentInformationCloseButton.addEventListener("click", function() {
+//   studentDetail.style.display = "none";
+// })
