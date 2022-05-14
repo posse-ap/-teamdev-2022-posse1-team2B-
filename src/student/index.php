@@ -1,3 +1,34 @@
+<?php
+require("../dbconnect.php");
+
+
+// お聞きしたいこと
+// ・where = ? の?に変数を代入できない？
+// ・カテゴリー中間テーブルのイメージ確認
+
+//全エージェント会社の情報取得
+$stmt = $db->prepare('SELECT * FROM agents');
+$stmt->execute();
+$agents = $stmt->fetchAll();
+
+// 各エージェントへの申込数取得
+// エージェント数ぶん回す
+// foreach($agents as $index => $agent) {
+//   $stmt = $db->prepare('SELECT count(*) FROM intermediate where agent_id = :agent_id');
+//   $stmt->bindValue(':agent_id', $agent['id']);
+//   // bindevalueの１が？の１個めってこと。これがあれば何個でもはてなつけられる！1,2とかだとわかりにくいから、「:agent_id」を設定する
+//   $stmt->execute();
+//   $offers = $stmt->fetchAll();
+//   return $offers;
+// }
+  
+  // エージェント名を回せるか実験
+  // foreach($agents as $index => $agent) {
+  //   print_r($agent['agent_name'] . PHP_EOL);
+  // }
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -14,35 +45,24 @@
       参考サイト https://qiita.com/mayu_schwarz/items/0ab9eb1ec5166c284bcd-->
     <div>
       <h1>月間ランキング</h1>
-      <ol>
+      <ul>
+        <?php
+        $counter = 0;
+        foreach($agents as $index => $agent): ?>
         <li>
-          <p>会社名</p>
-          <p>得意な業種</p>
-          <p>対応エリア</p>
-          <form action="keep.php" method="POST">
+          <p><?= $agent['agent_name']?></p>
+          <p>得意な業種<?= $agent['category']?></p>
+          <p>対応エリア<?= $agent['prefecture']?></p>
+          <form action="index2.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
             <button type="submit">キープする</button>
           </form>
         </li>
-        <li>
-          <p>会社名</p>
-          <p>得意な業種</p>
-          <p>対応エリア</p>
-          <form action="keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
-            <button type="submit">キープする</button>
-          </form>
-        </li>
-        <li>
-          <p>会社名</p>
-          <p>得意な業種</p>
-          <p>対応エリア</p>
-          <form action="keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
-            <button type="submit">キープする</button>
-          </form>
-        </li>
-      </ol>
+        <?php 
+          if ($counter >= 2) {break;}
+          $counter++;
+          endforeach; ?>
+      </ul>
     </div>
     <div>
       <h2>業種別ランキング</h2>
