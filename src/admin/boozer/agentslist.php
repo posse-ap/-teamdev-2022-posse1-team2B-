@@ -1,3 +1,14 @@
+<?php
+require("../../dbconnect.php");
+
+$stmt = $db->prepare('select * from agents');
+// $stmt->bindValue(':agent_id', $agent['id']);
+  // bindevalueの１が？の１個めってこと。これがあれば何個でもはてなつけられる！1,2とかだとわかりにくいから、「:agent_id」を設定する
+  $stmt->execute();
+  $agents = $stmt->fetchAll();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +19,26 @@
 </head>
 <body>
   <h2>掲載企業一覧</h2>
-  <?php foreach ($hoges as $hoge) : ?>
+  <?php foreach ($agents as $agent) : ?>
   <div>
     <img src="" alt="">
-    <h3>エージェントA</h3>
+    <h3><?=$agent['agent_name'] ?></h3>
     <a href="edit.php">編集</a>
+    <!-- これを押したらedit.phpのこのモーダルってやり方がわかりません。。。。。
+    edit.phpの一覧からならボタンのIDから出せるんですけど、別ファイルからってなるとイメージつかないです。。。。 -->
     <button>削除</button>
   </div>
   <?php endforeach; ?>
 </body>
 </html>
+
+<!-- Ajax
+編集をクリックしたらモーダルを出す
+編集というボタンにIDをもたせて、非同期処理でエージェント情報を引っ張ってくる
+＜もって着方＞
+phpをhtmlで出すってことを今まではしていた
+代わりに、phpでジェイソン(編集にあるIDに紐づくエージェント情報を整形して、ジェイソン形式で返す)を返すようにしてあげる
+
+それをAPIで呼び出せるようにしておいて、それに対してクリックしたらFetchを使って呼び出して、モーダルで表示してみる
+
+Slackでも！！！！！！！！！！！！ -->
