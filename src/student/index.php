@@ -19,7 +19,7 @@
           <p>会社名</p>
           <p>得意な業種</p>
           <p>対応エリア</p>
-          <form action="index2.php" method="POST">
+          <form action="keep.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
             <button type="submit">キープする</button>
           </form>
@@ -28,7 +28,7 @@
           <p>会社名</p>
           <p>得意な業種</p>
           <p>対応エリア</p>
-          <form action="index2.php" method="POST">
+          <form action="keep.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
             <button type="submit">キープする</button>
           </form>
@@ -37,7 +37,7 @@
           <p>会社名</p>
           <p>得意な業種</p>
           <p>対応エリア</p>
-          <form action="index2.php" method="POST">
+          <form action="keep.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
             <button type="submit">キープする</button>
           </form>
@@ -60,10 +60,10 @@
       </ul>
       <h2>求人エリア別ランキング</h2>
       <ul>
-        <li><a href="#areaRank">関東</a></li>
-        <li><a href="#areaRank">関西</a></li>
-        <li><a href="#areaRank">東海</a></li>
-        <li><a href="#areaRank">九州</a></li>
+        <li><a href="#areaRank" class="area_rank" data-value="関東">関東</a></li>
+        <li><a href="#areaRank" class="area_rank" data-value="関西">関西</a></li>
+        <li><a href="#areaRank" class="area_rank" data-value="東海">東海</a></li>
+        <li><a href="#areaRank" class="area_rank" data-value="九州">九州</a></li>
       </ul>
     </div>
   </div>
@@ -94,6 +94,34 @@
           <button type="submit">キープする</button>
         </form>
       </li>
+    </ol>
+  </div>
+  <!-- 対応エリア別ランキングをクリックしたときに表示されるモーダル -->
+  <div id="areaRank">
+    <h1>関東エリアのエージェンシー企業ランキング</h1>
+    <!-- 閉じるボタン -->
+    <button id="closeButton">✕</button>
+    <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
+    <a href="./keep.php">キープ中の企業</a>
+    <ol>
+    <li>        
+        <p>会社名</p>
+        <p>得意な業種</p>
+        <p>対応エリア</p>
+        <form action="keep.php" method="POST">
+          <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"])?>">
+          <button type="submit">キープする</button>
+        </form>
+    </li>
+    <li>        
+        <p>会社名</p>
+        <p>得意な業種</p>
+        <p>対応エリア</p>
+        <form action="keep.php" method="POST">
+          <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"])?>">
+          <button type="submit">キープする</button>
+        </form>
+    </li>
     </ol>
   </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
