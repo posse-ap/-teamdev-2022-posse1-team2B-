@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>キープ中のエージェンシー企業</title>
+  <link rel="stylesheet" href="student.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
@@ -27,11 +28,14 @@
         
       </div>
       <form action="./contact.php" method="POST">
-        <button type="button">戻る</button>
         <input type="hidden" name="agent_id" value="<?php print($agent['agent_id']);?>">
         <button type="submit">エージェンシー企業に問い合わせる</button>
       </form>
+      <?php 
+      echo('<a href=' . '"javascript:history.back()"' . '>戻る</a>');
+      ?>
     </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
+  <script src="./student.js"></script>
 </body>
 </html>
