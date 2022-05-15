@@ -1,3 +1,110 @@
+<?php 
+
+require('../dbconnect.php');
+
+
+
+if(isset(
+  // これらが入力されていたら
+  $_POST['student_last_name'], 
+  $_POST['student_first_name'], 
+  $_POST['student_last_name_kana'], 
+  $_POST['student_first_name_kana'], 
+  $_POST['post_number'], 
+  $_POST['prefecture'], 
+  $_POST['municipality'], 
+  $_POST['adress_number'],
+  $_POST['tel_number'], 
+  $_POST['email'], 
+  $_POST['college_name'], 
+  $_POST['undergraduate'], 
+  $_POST['college_department'],
+  $_POST['graduation_year']
+  )){
+  // $student_last_name = $db->exec('INSERT INTO students SET student_last_name = '. $_POST['student_last_name']);
+
+  // データの保存
+  // sql文書きます
+  $stmt = $db->prepare('insert into students 
+  (
+    student_last_name, 
+    student_first_name, 
+    student_last_name_kana, 
+    student_first_name_kana, 
+    post_number,
+    prefecture,
+    municipality,
+    adress_number,
+    tel_number,
+    email,
+    college_name,
+    undergraduate,
+    college_department,
+    graduation_year
+  ) 
+  values
+  (
+    :student_last_name,
+    :student_first_name,
+    :student_last_name_kana,
+    :student_first_name_kana,
+    :post_number,
+    :prefecture,
+    :municipality,
+    :adress_number,
+    :tel_number,
+    :email,
+    :college_name,
+    :undergraduate,
+    :college_department,
+    :graduation_year
+  )');
+  
+// ポストを定数に置いて
+  $student_last_name = $_POST['student_last_name']; 
+  $student_first_name = $_POST['student_first_name'];
+  $student_last_name_kana = $_POST['student_last_name_kana'];
+  $student_first_name_kana = $_POST['student_first_name_kana']; 
+  $post_number = $_POST['post_number']; 
+  $prefecture = $_POST['prefecture']; 
+  $municipality = $_POST['municipality']; 
+  $adress_number = $_POST['adress_number']; 
+  $tel_number = $_POST['tel_number']; 
+  $email = $_POST['email']; 
+  $college_name = $_POST['college_name']; 
+  $undergraduate = $_POST['undergraduate']; 
+  $college_department = $_POST['college_department']; 
+  $graduation_year = $_POST['graduation_year'];
+
+// ：〇〇と上の変数をつなげる＄param = array()で配列を作る
+  $param = array(
+    ':student_last_name'=>$student_last_name,
+    ':student_first_name'=>$student_first_name,
+    ':student_last_name_kana'=>$student_last_name_kana,
+    ':student_first_name_kana'=>$student_first_name_kana,
+    ':post_number'=>$post_number,
+    ':prefecture'=>$prefecture,
+    ':municipality'=>$municipality,
+    ':adress_number'=>$adress_number,
+    ':tel_number'=>$tel_number,
+    ':email'=>$email,
+    ':college_name'=>$college_name,
+    ':undergraduate'=>$undergraduate,
+    ':college_department'=>$college_department,
+    ':graduation_year'=>$graduation_year
+  );
+
+  // その配列をexecute
+  $stmt->execute($param);
+
+  }
+
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -7,124 +114,85 @@
   <title>お問い合わせ入力</title>
 </head>
 <body>
-  <?php include (dirname(__FILE__) . "/student_header.php");?>
-  <!-- 確認画面 -->
-  <div>
-    <h1>お問い合わせ内容を確認</h1>
-    <form method="POST" action="../thanks.php">
-      <div>
-        <label>氏</label>
-        <p><?php echo $_POST["family_name"];?></p>
-      </div>
-      <div>
-        <label>名</label>
-        <p><?php echo $_POST["student_name"];?></p>
-      </div>
-      <div>
-        <label>氏(カナルビ)</label>
-        <p><?php echo $_POST["family_name_kana"];?></p>
-      </div>
-      <div>
-        <label>名(カナルビ)</label>
-        <p><?php echo $_POST["student_name_kana"];?></p>
-      </div>
-      <div>
-        <label>電話番号</label>
-        <p><?php echo $_POST["telephone_number"];?></p>
-      </div>
-      <div>
-        <label>メールアドレス</label>
-        <p><?php echo $_POST["email_address"];?></p>
-      </div>
-      <div>
-        <label>出身大学</label>
-        <p><?php echo $_POST["alma_mater"];?></p>
-      </div>
-      <div>
-        <label>学部</label>
-        <p><?php echo $_POST["faculty"];?></p>
-      </div>
-      <div>
-        <label>学科</label>
-        <p><?php echo $_POST["department"];?></p>
-      </div>
-    <!-- 入力した値を受け渡す -->
-      <button type="submit" name="btn_back" formaction="./contact.php">戻る</button>
-      <button type="submit" name="contact">登録完了</button>
-      <input type="hidden" name="family_name" value="<?php echo $_POST['family_name']; ?>">
-      <input type="hidden" name="student_name" value="<?php echo $_POST['student_name']; ?>">
-      <input type="hidden" name="family_name_kana" value="<?php echo $_POST['family_name_kana']; ?>">
-      <input type="hidden" name="student_name_kana" value="<?php echo $_POST['student_name']; ?>">
-      <input type="hidden" name="telephone_number" value="<?php echo $_POST['telephone_number']; ?>">
-      <input type="hidden" name="email_address" value="<?php echo $_POST['email_address']; ?>">
-      <input type="hidden" name="alma_mater" value="<?php echo $_POST['alma_mater']; ?>">
-      <input type="hidden" name="faculty" value="<?php echo $_POST['faculty']; ?>">
-      <input type="hidden" name="department" value="<?php echo $_POST['department']; ?>">
-    </form>
-  </div>
-  
+  <!-- <?php include (dirname(__FILE__) . "/student_header.php");?> -->
   
   <!-- 問い合わせ入力画面 -->
   <div>
     <h1>企業に問い合わせる</h1>
     <div>申し込み先企業：<?php $agency?></div>
-    <form action="./thanks.php" method="POST">
+    <form action="contact.php" method="POST">
 
       <div>
         <label for="familyName">氏</label>
-        <input type="text" name="family_name" id="familyName" required>
+        <input type="text" name="student_last_name" id="familyName" required>
       </div>
       <div>
         <label for="studentName">名</label>
-        <input type="text" name="student_name" id="studentName" required>
+        <input type="text" name="student_first_name" id="studentName" required>
       </div>
       <div>
         <label for="familyNameKana">氏(カナルビ)</label>
-        <input type="text" name="family_name_kana" id="familyNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
+        <input type="text" name="student_first_name_kana" id="familyNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
       </div>
       <div>
         <label for="studentNameKana">名(カナルビ)</label>
-        <input type="text" name="student_name_kana" id="studentNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
+        <input type="text" name="student_last_name_kana" id="studentNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
+      </div>
+      <div>
+        <label for="postNumber">郵便番号</label>
+        <input type="text" name="post_number" id="postNumber" maxlength="7" required>
+      </div>
+      <div>
+        <label for="prefecture">都道府県</label>
+        <input type="text" name="prefecture" id="prefecture" required>
+      </div>
+      <div>
+        <label for="prefecture">市区町村</label>
+        <input type="text" name="municipality" id="municipality" required>
+      </div>
+      <div>
+        <label for="adressNumber">番地</label>
+        <input type="text" name="adress_number" id="adress_number" required>
       </div>
       <div>
         <label for="telephoneNumber">電話番号</label>
-        <input type="tel" name="telephone_number" id="telephoneNumber" pattern="\d{2,4}-?\d{2,4}-?\d{3,4}" maxlength="11" required>
+        <input type="tel" name="tel_number" id="telephoneNumber" pattern="\d{2,4}-?\d{2,4}-?\d{3,4}" maxlength="11" required>
       </div>
       <div>
         <label for="emailAddress">メールアドレス</label>
-        <input type="email" name="email_address" id="emailAddress" required>
+        <input type="email" name="email" id="emailAddress" required>
       </div>
       <div>
         <label for="almaMater">出身大学</label>
-        <input type="text" name="alma_mater" id="almaMater" required>
+        <input type="text" name="college_name" id="almaMater" required>
       </div>
       <div>
         <label for="faculty">学部</label>
-        <input type="text" name="faculty" id="faculty" required>
+        <input type="text" name="undergraduate" id="faculty" required>
       </div>
       <div>
         <label for="department">学科</label>
-        <input type="text" name="department" id="department" required>
+        <input type="text" name="college_department" id="department" required>
       </div>
       <div>
         <p>卒業年を選択</p>
-        <select>
+        <input type="text" name="graduation_year" id="graduationYear" maxlength="4"required>
+        <!-- <select>
           <option value="2024">2024年</option>
           <option value="2025">2025年</option>
-        </select>
+        </select> -->
       </div>
-      <div>
+      <!-- <div>
         <label for="inquiry">エージェンシー企業へのお問い合わせ内容</label>
         <span>※複数企業にお問い合わせする場合、全ての企業に同一の記入したお問い合わせ内容が送信されます</span>
         <input type="text" name="inquiry" id="inquiry" required>
-      </div>
+      </div> -->
       <div>
         <button>戻る</button>
-        <button type="submit">エージェンシー企業に問い合わせる</button>
+        <input type="submit" value="エージェントに問い合わせる">
       </div>
     </form>
-    <button type="button">戻る</button>
   </div>
-  <?php include (dirname(__FILE__) . "/student_footer.php");?>
+  <!-- <?php include (dirname(__FILE__) . "/student_footer.php");?> -->
 </body>
 </html>
