@@ -14,7 +14,7 @@ if(isset($_POST["search"])) {
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
   <?php 
-  if($page_flag === 1):?>
+  if($page_flag === 1 || isset($_GET["back"])):?>
   <div>
     <h1>絞り込み結果</h1>
     <a href="./condition_selection.php">✕</a>

@@ -1,6 +1,6 @@
-<?php $page_flag = 0;
+<?php $page = 0;
 if(isset($_POST["contact"])) {
-  $page_flag=1;
+  $page=1;
 }
 ?>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ if(isset($_POST["contact"])) {
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");
-  if($page_flag ===1 ):
+  if($page ===1 ):
     ?>
   <!-- 確認画面 -->
   <div>
@@ -129,7 +129,15 @@ if(isset($_POST["contact"])) {
         <input type="submit" name="contact" value="エージェンシー企業に問い合わせる">
       </div>
     </form>
-    <a href="javascript:history.back()">戻る</a>
+    <?php 
+    if(isset($_POST["btn_back"])) {
+      echo('<form action="condition_selection.php" method="get">
+      <button type="submit" name="back">戻る</button>
+  </form>');
+    } else {
+        echo('<a href=' . '"javascript:history.back()"' . '>戻る</a>');
+    }
+    ?>
   </div>
   <?php endif; 
   include (dirname(__FILE__) . "/student_footer.php");
