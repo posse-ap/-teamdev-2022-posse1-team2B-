@@ -131,7 +131,7 @@ if(isset($_POST["search"])) {
           <label from="2025Graduation">25卒</label>
         </div>
       </div>
-      <input type="submit" name="search">検索</input>
+      <input type="submit" name="search" value = "検索">
     </form>
   </div>
   <?php endif; ?>

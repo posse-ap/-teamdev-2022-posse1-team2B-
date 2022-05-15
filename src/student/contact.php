@@ -129,12 +129,11 @@ if(isset($_POST["contact"])) {
         <input type="submit" name="contact" value="エージェンシー企業に問い合わせる">
       </div>
     </form>
-    <?php
-      // echo '<a href="' . $_SERVER['HTTP_REFERER'] . '">前に戻る</a>';
-    ?>
+    <a href="javascript:history.back()">戻る</a>
   </div>
-  <?php endif; ?>
-  <?php include (dirname(__FILE__) . "/student_footer.php");?>
-  <script src="./student.php"></script>
+  <?php endif; 
+  include (dirname(__FILE__) . "/student_footer.php");
+  ?>
+  <script src="./student.js"></script>
 </body>
 </html>
