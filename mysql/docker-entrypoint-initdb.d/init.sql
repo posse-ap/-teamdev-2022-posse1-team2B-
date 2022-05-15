@@ -1,14 +1,3 @@
--- 学生画面
--- 閲覧
---   月間ランキング
---     使用するテーブル : agents,access
---     抽出条件 : select name, area, category from agents innerjoin access where count(agent_id )= 上から10個 create_date = ?;
---   業種別ランキング
---     使用するテーブル : agents, access
---     抽出条件 : select name, area from agents innerjoin access where count(agent_id )= 上から10個 category = ?;
---   対応エリア別ランキング
---     使用するテーブル : agents, access
---     抽出条件 : select name, category from agents innerjoin access where count(agent_id )= 上から10個 category = ?;
 --   こだわり条件別結果
 --     使用するテーブル : agents
 --     抽出条件 : select name, area, category from agents innerjoin access;
@@ -18,43 +7,15 @@
 -- feature,tagみたいなテーブルを作って、そこに「大企業紹介」「体育会系」などをマスターデータでおいておく。そのタグとエージェントがn:nで用意する感じ
 -- それが存在してる分だけ、取ってくるみたいにできる
 
-
--- 使用
---   自分のデータ
---     使用するテーブル : students, coledge
---     登録カラム : id, name, dates, post_num, prefectures, municipalities, adress-numbers, mails, tell_num, coledge_id, graduation_year, error
---              : id, name, undergraduates, departments
-
-
--- エージェント管理画面
--- 閲覧
---   学生情報
---     使用するテーブル : students
---     抽出条件 : select * from students innerjoin access innnerjoin agents student_id = student.id, agent_id = agents.id where date = ?;
---     抽出カラム : id以外のすべてのデータ
 -- 使用
 --   ログイン
 --     使用するテーブル : managers
---     使用条件 : id, passwordが等しい
---   自分のデータ
---     使用するテーブル : agents, manage
---     登録カラム : id, name, urls, notification_mail, tel_num, post_num, prefectures, municipalities, adress-numbers
---     エラーがtrueになったら、そのIDを持ってるエージェントのerror_numがカウントされるとかしたい!!!!!!!!!!!!!!!!!
---              : id, user_id, passwords, agent_id, names, departments, mails, roll
-   
+--     使用条件 : id, passwordが等しい   
 
 
 -- boozer管理画面
 -- 閲覧
---   掲載企業一覧
---     使用するテーブル : agents
---     抽出条件 : select * from agents
---     抽出カラム : name, access_num
---   学生情報
---     使用するテーブル : students, coledges
---     抽出条件 : where date = 今月
---     抽出カラム : name, coledges:name, undergraduates, departments
---   明細
+-- -   明細
 --     使用するテーブル : agents, 中間, students
 --     抽出条件 : SUM(access_num) where date = 今月
 --     抽出カラム : name, mails
@@ -92,10 +53,13 @@ SET
 DROP TABLE IF EXISTS students;
 CREATE TABLE students (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  student_name VARCHAR(255) NOT NULL,
+  student_last_name VARCHAR(255) NOT NULL,
+  student_first_name VARCHAR(255) NOT NULL,
+  student_last_name_kana VARCHAR(255) NOT NULL,
+  student_first_name_kana VARCHAR(255) NOT NULL,
   post_number VARCHAR(255) UNIQUE NOT NULL,
   prefecture VARCHAR(255) NOT NULL,
-  municipalitie VARCHAR(255) NOT NULL,
+  municipality VARCHAR(255) NOT NULL,
   adress_number VARCHAR(255) UNIQUE NOT NULL,
   tel_number VARCHAR(255) UNIQUE NOT NULL,
   email VARCHAR(255) UNIQUE NOT NULL,
@@ -133,7 +97,10 @@ CREATE TABLE managers (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   agent_id INT NOT NULL,
   user_id INT NOT NULL,
-  manager_name VARCHAR(255) NOT NULL,
+  manager_last_name VARCHAR(255) NOT NULL,
+  manager_first_name VARCHAR(255) NOT NULL,
+  manager_last_name_kana VARCHAR(255) NOT NULL,
+  manager_first_name_kana VARCHAR(255) NOT NULL,
   agent_department VARCHAR(255) NOT NULL,
   roll INT NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -151,30 +118,30 @@ CREATE TABLE intermediate (
 
 
 INSERT INTO students
-  (student_name, post_number, prefecture, municipalitie, adress_number, tel_number, email, college_name, undergraduate, college_department, graduation_year)
+  (student_last_name, student_first_name, student_last_name_kana, student_first_name_kana, post_number, prefecture, municipality, adress_number, tel_number, email, college_name, undergraduate, college_department, graduation_year)
 VALUES
-  ('葛西志保', '222-2222', '神奈川県', '横浜市', '日吉1234-56', '08033464823', 'shiho.ks.keio.jp', '慶應義塾大学', '医学部', '医学科', 26),
-  ('千羽まりあ', '111-1111', '東京都', '渋谷区', '広尾2345-67', '08099590435', 'moliaquu.co.jp', '慶應義塾大学', '経済学部', 'ミクロ落単', 24),
-  ('渡辺瑛貴', '444-4444', '神奈川県', '横浜市', '日吉2222-67', '08032178456', 'eikigenieikichan.co.jp', '慶應義塾大学', '経済学部', '線形代数落単', 24),
-  ('石川朝香', '333-3333', '神奈川県', '藤沢市', '亀井野1850-17', '08091865315', 'asaka.ishikawa@posse-ap.com', '慶應義塾大学', '理工学部', 'システムデザイン工学科', 25),
-  ('佐藤ゆうき', '333-4444', '神奈川県', '妖精の里村', '夢の国コレクション12', '08011111111', 'satochan@posse-ap.com', '慶應義塾大学', '理工学部', 'システムデザイン工学科', 25),
-  ('葛島将大', '333-5555', '山形県', '天国の丘町', '夢の国コレクション13', '08022222222', 'masamasa@posse-ap.com', '慶應義塾大学', '理工学部', 'システムデザイン工学科', 25),
-  ('加藤水生', '333-6666', '北海道', '藤沢市', '夢の国コレクション14', '08033333333', 'miuparu@posse-ap.com', '北海道大学', '理工学部', 'システムデザイン工学科', 25),
-  ('辻ららん', '333-7777', '広島県', '妖精の里村', '夢の国コレクション15', '08044444444', 'raran_juna@posse-ap.com', '早稲田大学', '理工学部', 'システムデザイン工学科', 25),
-  ('小野里美晴', '333-8888', '神奈川県', '藤沢市', '夢の国コレクション16', '08055555555', 'hakumiharu@posse-ap.com', '慶應義塾大学', '理工学部', 'システムデザイン工学科', 25),
-  ('西山愛乃', '333-9999', '香川県', '天国の丘町', '夢の国コレクション17', '08066666666', 'micoaino@posse-ap.com', '早稲田大学', '理工学部', 'システムデザイン工学科', 25),
-  ('戸川笑花', '333-1111', '神奈川県', '妖精の里村', '夢の国コレクション18', '08077777777', 'piaaaa@posse-ap.com', '早稲田大学', '理工学部', 'システムデザイン工学科', 25),
-  ('坂田和哉', '333-2222', '神奈川県', '藤沢市', '夢の国コレクション19', '08088888888', 'sabuya@posse-ap.com', '東京大学', '理工学部', 'システムデザイン工学科', 25),
-  ('吉田晴', '333-3334', '神奈川県', '藤沢市', '夢の国コレクション20', '08099999999', 'seiyoshida@posse-ap.com', '東京大学', '理工学部', 'システムデザイン工学科', 25),
-  ('知念啓人', '333-4445', '神奈川県', '妖精の里村', '夢の国コレクション21', '08000000000', 'keito.c@posse-ap.com', '北海道大学', '理工学部', 'システムデザイン工学科', 25),
-  ('斎藤偲恩', '333-5556', '神奈川県', '天国の丘町', '夢の国コレクション22', '08012222222', 'shionol@posse-ap.com', '筑波大学', '理工学部', 'システムデザイン工学科', 25),
-  ('平野隆二', '333-6667', '東京都', '妖精の里村', '夢の国コレクション23', '08013333333', 'ryujiperu@posse-ap.com', '京都大学', '理工学部', 'システムデザイン工学科', 25),
-  ('山田涼介', '333-7778', '沖縄県', '藤沢市', '夢の国コレクション34', '080144444444', 'ryousukechan@posse-ap.com', '京都大学', '理工学部', 'システムデザイン工学科', 25),
-  ('坂本侑斗', '333-8889', '神奈川県', '藤沢市', '夢の国コレクション25', '08015555555', 'yutosakamoto@posse-ap.com', '慶應義塾大学', '理工学部', 'システムデザイン工学科', 25),
-  ('鈴木理沙', '333-9990', '鹿児島県', '妖精の里村', '夢の国コレクション43', '08016666666', 'risaaaaaa@posse-ap.com', '東京大学', '理工学部', 'システムデザイン工学科', 25),
-  ('加藤尊', '333-0000', '鳥取県', '藤沢市', '夢の国コレクション89', '08017777777', 'sontakeru@posse-ap.com', '慶應義塾大学', '理工学部', 'システムデザイン工学科', 25),
-  ('石川究', '333-1112', '神奈川県', '天国の丘町', '夢の国コレクション78', '08018888888', 'kyu@posse-ap.com', '北海道大学', '理工学部', 'システムデザイン工学科', 25),
-  ('小野寛太', '333-3324', '東京都', '藤沢市', '夢の国コレクション03', '08019999999', 'kanchanonoonigiriman@posse-ap.com', '東京大学', '理工学部', 'システムデザイン工学科', 25);
+  ('葛西', '志保', 'カサイ', 'シホ', '222-2222', '神奈川県', '横浜市', '日吉1234-56', '08033464823', 'shiho.ks.keio.jp', '慶應義塾大学', '医学部', '医学科', 26),
+  ('千羽', 'まりあ', 'センバ', 'マリア', '111-1111', '東京都', '渋谷区', '広尾2345-67', '08099590435', 'moliaquu.co.jp', '慶應義塾大学', '経済学部', 'ミクロ落単', 24),
+  ('渡辺', '瑛貴', 'ワタナベ', 'エイキ', '444-4444', '神奈川県', '横浜市', '日吉2222-67', '08032178456', 'eikigenieikichan.co.jp', '慶應義塾大学', '経済学部', '線形代数落単', 24),
+  ('石川', '朝香', 'イシカワ', 'アサカ', '333-3333', '神奈川県', '藤沢市', '亀井野1850-17', '08091865315', 'asaka.ishikawa@posse-ap.com', '慶應義塾大学', '理工学部', 'システムデザイン工学科', 25),
+  ('佐藤', 'ゆうき', 'サトウ', 'ユウキ', '333-4444', '神奈川県', '妖精の里村', '夢の国コレクション12', '08011111111', 'satochan@posse-ap.com', '慶應義塾大学', '理工学部', 'システムデザイン工学科', 25),
+  ('葛島', '将大', 'クズシマ', 'ショウタ', '333-5555', '山形県', '天国の丘町', '夢の国コレクション13', '08022222222', 'masamasa@posse-ap.com', '慶應義塾大学', '理工学部', 'システムデザイン工学科', 25),
+  ('加藤', '水生', 'カトウ', 'ミウ', '333-6666', '北海道', '藤沢市', '夢の国コレクション14', '08033333333', 'miuparu@posse-ap.com', '北海道大学', '理工学部', 'システムデザイン工学科', 25),
+  ('辻', 'ららん', 'ツジ', 'ララン', '333-7777', '広島県', '妖精の里村', '夢の国コレクション15', '08044444444', 'raran_juna@posse-ap.com', '早稲田大学', '理工学部', 'システムデザイン工学科', 25),
+  ('小野里', '美晴', 'オノザト', 'ミハル', '333-8888', '神奈川県', '藤沢市', '夢の国コレクション16', '08055555555', 'hakumiharu@posse-ap.com', '慶應義塾大学', '理工学部', 'システムデザイン工学科', 25),
+  ('西山', '愛乃', 'ニシヤマ', 'アイノ', '333-9999', '香川県', '天国の丘町', '夢の国コレクション17', '08066666666', 'micoaino@posse-ap.com', '早稲田大学', '理工学部', 'システムデザイン工学科', 25),
+  ('戸川', '笑花', 'トガワ', 'エミカ', '333-1111', '神奈川県', '妖精の里村', '夢の国コレクション18', '08077777777', 'piaaaa@posse-ap.com', '早稲田大学', '理工学部', 'システムデザイン工学科', 25),
+  ('坂田', '和哉', 'サカタ', 'カズヤ', '333-2222', '神奈川県', '藤沢市', '夢の国コレクション19', '08088888888', 'sabuya@posse-ap.com', '東京大学', '理工学部', 'システムデザイン工学科', 25),
+  ('吉田', '晴', 'ヨシダ', 'セイ', '333-3334', '神奈川県', '藤沢市', '夢の国コレクション20', '08099999999', 'seiyoshida@posse-ap.com', '東京大学', '理工学部', 'システムデザイン工学科', 25),
+  ('知念', '啓人', 'チネン', 'ケイト', '333-4445', '神奈川県', '妖精の里村', '夢の国コレクション21', '08000000000', 'keito.c@posse-ap.com', '北海道大学', '理工学部', 'システムデザイン工学科', 25),
+  ('斎藤', '偲恩', 'サイトウ', 'シオン', '333-5556', '神奈川県', '天国の丘町', '夢の国コレクション22', '08012222222', 'shionol@posse-ap.com', '筑波大学', '理工学部', 'システムデザイン工学科', 25),
+  ('平野', '隆二', 'ヒラノ', 'リュウジ', '333-6667', '東京都', '妖精の里村', '夢の国コレクション23', '08013333333', 'ryujiperu@posse-ap.com', '京都大学', '理工学部', 'システムデザイン工学科', 25),
+  ('山田', '涼介', 'ヤマダ', 'リョウスケ', '333-7778', '沖縄県', '藤沢市', '夢の国コレクション34', '080144444444', 'ryousukechan@posse-ap.com', '京都大学', '理工学部', 'システムデザイン工学科', 25),
+  ('坂本', '侑斗', 'サカモト', 'ユウト', '333-8889', '神奈川県', '藤沢市', '夢の国コレクション25', '08015555555', 'yutosakamoto@posse-ap.com', '慶應義塾大学', '理工学部', 'システムデザイン工学科', 25),
+  ('鈴木', '理沙', 'スズキ', 'リサ', '333-9990', '鹿児島県', '妖精の里村', '夢の国コレクション43', '08016666666', 'risaaaaaa@posse-ap.com', '東京大学', '理工学部', 'システムデザイン工学科', 25),
+  ('加藤', '尊', 'カトウ', 'タケル', '333-0000', '鳥取県', '藤沢市', '夢の国コレクション89', '08017777777', 'sontakeru@posse-ap.com', '慶應義塾大学', '理工学部', 'システムデザイン工学科', 25),
+  ('石川', '究', 'イシカワ', 'キュウ', '333-1112', '神奈川県', '天国の丘町', '夢の国コレクション78', '08018888888', 'kyu@posse-ap.com', '北海道大学', '理工学部', 'システムデザイン工学科', 25),
+  ('小野', '寛太', 'オノ', 'カンタ', '333-3324', '東京都', '藤沢市', '夢の国コレクション03', '08019999999', 'kanchanonoonigiriman@posse-ap.com', '東京大学', '理工学部', 'システムデザイン工学科', 25);
 
 INSERT INTO agents
    (agent_name, url, notification_email, tel_number, post_number, prefecture, municipalitie, adress_number, category)
@@ -292,31 +259,31 @@ VALUES
   
 
   INSERT INTO managers
-   (agent_id, user_id, manager_name, agent_department, roll)
+   (agent_id, user_id, manager_last_name, manager_first_name, manager_last_name_kana, manager_first_name_kana, agent_department, roll)
 VALUES
-  (1, 2, '佐藤大暉', '人事部', 1),
-  (1, 3, '高橋日菜', '営業部', 2),
-  (2, 4, '吉沢亮', '人事部', 1),
-  (2, 5, '横浜流星', '営業部', 2),
-  (2, 6, 'beckhyon', '営業部', 2),
-  (3, 7, '藤間裕史', '営業部', 2),
-  (3, 8, '東穂', '営業部', 2),
-  (4, 9, '松坂桃李', '営業部', 2),
-  (4, 10, '小松菜奈', '営業部', 2),
-  (5, 11, 'xiumin', '営業部', 2),
-  (5, 12, 'Leonardo', '営業部', 2),
-  (6, 13, '佐藤健', '営業部', 2),
-  (6, 14, '西川航平', '営業部', 2),
-  (7, 15, '金子花蓮', '営業部', 2),
-  (7, 16, '田上黎', '営業部', 2),
-  (8, 17, '西山直輝', '営業部', 2),
-  (8, 18, '国本たいき', '営業部', 2),
-  (9, 19, 'Vaundy', '営業部', 2),
-  (9, 20, '多田かずき', '営業部', 2),
-  (10, 21, 'Aespa', '営業部', 2),
-  (10, 22, 'ナタリー・ポートマン', '営業部', 2),
-  (11, 23, '横浜流星', '営業部', 2),
-  (11, 24, '坂本龍馬', '営業部', 2);
+  (1, 2, '佐藤','大暉', 'サトウ', 'ダイキ', '人事部', 1),
+  (1, 3, '高橋','日菜', 'タカハシ', 'ヒナ', '営業部', 2),
+  (2, 4, '吉沢','亮', 'ヨシザワ', 'リョウ', '人事部', 1),
+  (2, 5, '横浜','流星', 'ヨコハマ', 'リュウセイ', '営業部', 2),
+  (2, 6, 'beckhyon','backchan', 'ベッキョン', 'ベクチャン', '営業部', 2),
+  (3, 7, '藤間','裕史', 'フジマ', 'ユウジ', '営業部', 2),
+  (3, 8, '東','穂', 'ヒガシ', 'ミノリ', '営業部', 2),
+  (4, 9, '松坂','桃李', 'マツサカ', 'トウリ', '営業部', 2),
+  (4, 10, '小松','菜奈', 'コマツ', 'ナナ', '営業部', 2),
+  (5, 11, 'xiumin', 'min', 'シウミン', 'ミン', '営業部', 2),
+  (5, 12, 'Dicaplio', 'Leonardo', 'ディカプリオ', 'レオナルド', '営業部', 2),
+  (6, 13, '佐藤','健', 'サトウ', 'タケル', '営業部', 2),
+  (6, 14, '西川','航平', 'ニシカワ', 'コウヘイ', '営業部', 2),
+  (7, 15, '金子','花蓮', 'カネコ', 'カレン', '営業部', 2),
+  (7, 16, '田上','黎', 'タノウエ', 'レイ', '営業部', 2),
+  (8, 17, '西山','直輝', 'ニシヤマ', 'ナオキ', '営業部', 2),
+  (8, 18, '国本','たいき', 'クニモト', 'タイキ', '営業部', 2),
+  (9, 19, 'Vaundy', 'さん', 'バウンディー', 'サン', '営業部', 2),
+  (9, 20, '多田','かずき', 'ダダ', 'カズキ', '営業部', 2),
+  (10, 21, 'Aespa', 'ちゃん', 'エスパ', 'チャン', '営業部', 2),
+  (10, 22, 'ナタリー','ポートマン', 'ナタリー', 'ポートマン', '営業部', 2),
+  (11, 23, '横浜','流星', 'ヨコハマ', 'リュウセイ', '営業部', 2),
+  (11, 24, '坂本','龍馬', 'サカモト', 'リョウマ', '営業部', 2);
 
 INSERT INTO intermediate
   (student_id, agent_id)

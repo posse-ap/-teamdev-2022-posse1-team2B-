@@ -12,7 +12,7 @@
   <!--確認画面 -->
   <div>
     <h1>登録内容確認</h1>
-    <form method="POST" action="../../thanks.php">
+    <form action="../../thanks.php" method="POST">
       <div>
         <label>会社名</label>
         <p><?php echo $_POST["company_name"];?></p>

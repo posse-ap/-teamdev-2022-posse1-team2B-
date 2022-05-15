@@ -16,7 +16,7 @@
     <span>発行日 </span>
     <span>集計期間 </span>
     <div>
-      <span>エージェント名</span>
+      <span></span>
       <span><?= $payment ?></span>
     </div>
     <div>
