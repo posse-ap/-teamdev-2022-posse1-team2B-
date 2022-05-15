@@ -10,6 +10,7 @@ if(isset($_POST["contact"])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>お問い合わせ入力</title>
+  <link rel="stylesheet" href="student.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");
@@ -128,9 +129,12 @@ if(isset($_POST["contact"])) {
         <input type="submit" name="contact" value="エージェンシー企業に問い合わせる">
       </div>
     </form>
-    <a href="./">戻る</a>
+    <?php
+      // echo '<a href="' . $_SERVER['HTTP_REFERER'] . '">前に戻る</a>';
+    ?>
   </div>
   <?php endif; ?>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
+  <script src="./student.php"></script>
 </body>
 </html>
