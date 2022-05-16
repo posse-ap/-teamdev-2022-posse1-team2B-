@@ -20,6 +20,9 @@ if (!empty($_POST)) {
     $error = 'fail';
   }
 }
+
+$stmt = $db->query('SELECT id FROM students');
+$students = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>

@@ -47,6 +47,7 @@ if(isset($_POST['new_entry'])){
   <title>Document</title>
 </head>
 <body>
+  <?php if(isset($_POST[""]))
   <?php include (dirname(__FILE__) . "/" . $user_name . "/" . $user_name . "_header.php");?>
   <span><?php print_r($action);?>完了</span>
   <div>
