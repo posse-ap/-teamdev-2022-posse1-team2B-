@@ -55,13 +55,15 @@ $agents = $stmt->fetchAll();
         $counter = 0;
         foreach($agents as $index => $agent): ?>
         <li>
+        <a href="./agent_detail.php?id=<?php echo$index; ?>">
           <p><?= $agent['agent_name']?></p>
           <p>得意な業種<?= $agent['category']?></p>
           <p>対応エリア<?= $agent['prefecture']?></p>
-          <form action="index2.php" method="POST">
+          <form action="keep.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
             <button type="submit">キープする</button>
           </form>
+        </a>
         </li>
         <?php 
           if ($counter >= 2) {break;}
