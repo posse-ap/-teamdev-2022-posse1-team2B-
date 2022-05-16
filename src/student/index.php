@@ -44,10 +44,8 @@ $agents = $stmt->fetchAll();
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
-  <div> <!-- TOP画面 -->
+  <div> 
     <a href="condition_selection.php">こだわり条件から探す</a>
-        <!-- お問い合わせ数のランキング
-      参考サイト https://qiita.com/mayu_schwarz/items/0ab9eb1ec5166c284bcd-->
     <div>
       <h1>月間ランキング</h1>
       <ul>
@@ -75,10 +73,6 @@ $agents = $stmt->fetchAll();
       <h2>業種別ランキング</h2>
       <form action="./agency_list.php" method="POST">
         <ul>
-                  <!--選択したaタグによって、金融かITかとかどうやって分ける？
-            data-valueでvalue値を設定しておいてJSで取得する？
-          https://teratail.com/questions/111346
-          -->
           <li><input type="submit" name="finance" value="金融"></li>
           <li><input type="submit" name="it" value="IT"></li>
           <li><input type="submit" name="ad" value="広告"></li>

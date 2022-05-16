@@ -12,7 +12,6 @@
     </ul>
   </nav>
   <div id="contactEmailAddress" class="contact_email_address">
-    <!-- 閉じるボタン-->
     <button id="closeButton">✕</button>
     サービス等に関するお問い合わせは、xxx@co.jp までご連絡ください。 
   </div>
