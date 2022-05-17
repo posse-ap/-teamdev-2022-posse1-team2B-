@@ -1,0 +1,9 @@
+#contact {
+  cursor: default;
+}
+.contact_email_address {
+  display: none;
+}
+.show_contact {
+  display: block;
+}
