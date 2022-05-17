@@ -1,7 +1,13 @@
 let studentInformation = document.getElementById("studentInformation");
-let studentList = document.getElementsByClassName("studentList");
-for(let i = 0; i < studentList.length; i++) {
-  studentList[i].addEventListener('click', function() {
+let student_list = document.getElementsByClassName("student_list");
+for(let i = 0; i < student_list.length; i++) {
+  student_list[i].addEventListener('click', function() {
     studentInformation.style.display = "block";
-    studentList[i].style.display = "none";
 })}  
+for(let i = 0; i < studentList.length; i++) {
+let closeButton = document.getElementById("closeButton");
+closeButton.addEventListener("click", function() {
+  studentInformation.style.display = "none";
+})
+}
+

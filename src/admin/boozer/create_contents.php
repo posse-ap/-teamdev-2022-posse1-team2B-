@@ -11,7 +11,9 @@
   <form action="./thanks.php">
     <dd>会社名</dd><dt><input type="text"></dt>
     <dd>郵便番号</dd><dt><input type="text"></dt>
-    <dd>住所</dd><dt><input type="text"></dt>
+    <dd>都道府県</dd><dt><input type="text"></dt>
+    <dd>市区町村</dd><dt><input type="text"></dt>
+    <dd>町域・番地</dd><dt><input type="text"></dt>
     <dd>掲載期間</dd><dt><input type="number"></dt>
     <dd>アイコン画像</dd><dt><input type="file"></dt>
     <dd>備考</dd><dt><textarea name="" id="" cols="30" rows="10"></textarea></dt>
