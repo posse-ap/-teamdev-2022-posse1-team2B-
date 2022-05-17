@@ -15,7 +15,7 @@
     <dd>掲載期間</dd><dt><input type="number"></dt>
     <dd>アイコン画像</dd><dt><input type="file"></dt>
     <dd>備考</dd><dt><textarea name="" id="" cols="30" rows="10"></textarea></dt>
-    <button>修正完了</button>
+    <button type="submit">修正完了</button>
   </form>
   
 </body>

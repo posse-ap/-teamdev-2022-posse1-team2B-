@@ -1,3 +1,6 @@
+<!-- 
+・「登録開始」ってなに？
+-->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
