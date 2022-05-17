@@ -1,3 +1,8 @@
+<?php $page = 0;
+if(isset($_POST["contact"])) {
+  $page=1;
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -5,9 +10,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>お問い合わせ入力</title>
+  <link rel="stylesheet" href="student.css">
 </head>
 <body>
-  <?php include (dirname(__FILE__) . "/student_header.php");?>
+  <?php include (dirname(__FILE__) . "/student_header.php");
+  if($page ===1 ):
+    ?>
   <!-- 確認画面 -->
   <div>
     <h1>お問い合わせ内容を確認</h1>
@@ -62,13 +70,12 @@
       <input type="hidden" name="department" value="<?php echo $_POST['department']; ?>">
     </form>
   </div>
-  
-  
+  <?PHP else: ?> 
   <!-- 問い合わせ入力画面 -->
   <div>
     <h1>企業に問い合わせる</h1>
     <div>申し込み先企業：<?php $agency?></div>
-    <form action="./thanks.php" method="POST">
+    <form action="./contact.php" method="POST">
 
       <div>
         <label for="familyName">氏</label>
@@ -116,15 +123,25 @@
       <div>
         <label for="inquiry">エージェンシー企業へのお問い合わせ内容</label>
         <span>※複数企業にお問い合わせする場合、全ての企業に同一の記入したお問い合わせ内容が送信されます</span>
-        <input type="text" name="inquiry" id="inquiry" required>
+        <input type="text" name="inquiry" id="inquiry">
       </div>
       <div>
-        <button>戻る</button>
-        <button type="submit">エージェンシー企業に問い合わせる</button>
+        <input type="submit" name="contact" value="エージェンシー企業に問い合わせる">
       </div>
     </form>
-    <button type="button">戻る</button>
+    <?php 
+    if(isset($_POST["btn_back"])) {
+      echo('<form action="condition_selection.php" method="get">
+      <button type="submit" name="back">戻る</button>
+  </form>');
+    } else {
+        echo('<a href=' . '"javascript:history.back()"' . '>戻る</a>');
+    }
+    ?>
   </div>
-  <?php include (dirname(__FILE__) . "/student_footer.php");?>
+  <?php endif; 
+  include (dirname(__FILE__) . "/student_footer.php");
+  ?>
+  <script src="./student.js"></script>
 </body>
 </html>
