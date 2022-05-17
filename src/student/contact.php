@@ -2,8 +2,6 @@
 
 require('../dbconnect.php');
 
-
-
 if(isset(
   // これらが入力されていたら
   $_POST['student_last_name'], 

@@ -1,20 +1,20 @@
 <?php
-require('../dbconnect.php');
+require('../../dbconnect.php');
 
-if(isset(
+if (isset(
   // これらが入力されていたら
-  $_POST['agency_name'], 
-  $_POST['manager_last_name'], 
-  $_POST['manager_first_name'], 
-  $_POST['manager_last_name_kana'], 
-  $_POST['manager_first_name_kana'], 
-  $_POST['agent_department'], 
-  $_POST['login_email'], 
+  $_POST['agent_name'],
+  $_POST['manager_last_name'],
+  $_POST['manager_first_name'],
+  $_POST['manager_last_name_kana'],
+  $_POST['manager_first_name_kana'],
+  $_POST['agent_department'],
+  $_POST['login_email'],
   $_POST['password']
-  )) {
-
+)) {
   // ログイン情報の登録
-  $stmt = $db->prepare(
+  // echo $_POST['password'];
+  $user_stmt = $db->prepare(
     'insert into users
     (
       login_email,
@@ -25,22 +25,20 @@ if(isset(
       :login_email,
       :password
     )'
-    );
-
-  $login_email = $POST_['login_email'];
-  $password = $POST_['password'];
-
-  $param = array(
-    ':login_email'=>$login_email,
-    ':password'=>$password
   );
 
-  $stmt->execute($param);
+  $login_email = $_POST['login_email'];
+  $password = $_POST['password'];
 
-
+  $param = array(
+    ':login_email' => $login_email,
+    ':password' => sha1($password)
+  );
+  
+  $user_stmt->execute($param);
 
   // その他の情報の登録
-  $stmt = $db->prepare(
+  $manager_stmt = $db->prepare(
     'insert into managers
     (
       agent_id,
@@ -61,10 +59,30 @@ if(isset(
       :manager_first_name_kana,
       :agent_department
     )'
-    );
+  );
+
+  $agent_id_parameter = $_POST['agent_name'];
+  // エージェント名を取得
+  // echo $agent_id_parameter;
+  // 取得できた
+  $agent_id_stmt = $db->prepare('SELECT id FROM agents where agent_name = :agent_id_parameter');
+  // agentsテーブルからIDをとりたい
+  $agent_id_stmt->bindValue(':agent_id_parameter', $agent_id_parameter);
+  // 条件は、登録されている名前と、取得したエージェント名が等しいこと
+  $agent_id_stmt->execute();
+  // 実行
+  $agent_id = $agent_id_stmt->fetchAll();
+  // 持ってきたものをエージェントIDという名前にする
+
+  echo $agent_id[0]['id'];
+
   
-  // $agent_id = agentsテーブルのIDを取得。条件は、ポストされたagent_nameと、agent_nameカラムのレコードが等しい
-  // $user_id = userテーブルのIDを取得。条件は、ポストされたlogin_emailとlogin_emailカラムのレコードが等しい
+  $user_id_stmt = $db->prepare('SELECT id FROM users where login_email = :login_email');
+  $user_id_stmt->bindValue(':login_email', $login_email);
+  $user_id_stmt->execute();
+  $user_id = $user_id_stmt->fetchAll();
+  echo $user_id[0]['id'];
+
   $manager_last_name = $_POST['manager_last_name'];
   $manager_first_name = $_POST['manager_first_name'];
   $manager_last_name_kana = $_POST['manager_last_name'];
@@ -72,7 +90,22 @@ if(isset(
   $agent_department = $_POST['agent_department'];
 
 
-  }
+
+  $parameter = array(
+    ':agent_id' => $agent_id[0]['id'],
+    ':user_id' => $user_id[0]['id'],
+    ':manager_last_name' => $manager_last_name,
+    ':manager_first_name' => $manager_first_name,
+    ':manager_last_name_kana' => $manager_last_name_kana,
+    ':manager_first_name_kana' => $manager_first_name_kana,
+    ':agent_department' => $agent_department
+  );
+
+  $manager_stmt->execute($parameter);
+//   echo $manager_last_name;
+}
+
+
 
 
 ?>
@@ -94,10 +127,10 @@ if(isset(
   <div>
     <h1>新規登録</h1>
     <div>
-      <form action="" method="POST">
+      <form action="account.php" method="POST">
         <div>
           <label for="companyName">会社名<span>必須</span></label>
-          <input type="text" name="agency_name" id="companyName" required>
+          <input type="text" name="agent_name" id="companyName" required>
         </div>
         <div>
           <label for="familyName">氏</label>
@@ -109,11 +142,11 @@ if(isset(
         </div>
         <div>
           <label for="familyNameKana">氏(カナルビ)</label>
-          <input type="text" name="manager_first_name_kana" id="familyNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
+          <input type="text" name="manager_last_name_kana" id="familyNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
         </div>
         <div>
           <label for="managerNameKana">名(カナルビ)</label>
-          <input type="text" name="manager_last_name_kana" id="managerNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
+          <input type="text" name="manager_first_name_kana" id="managerNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
         </div>
         <div>
           <label for="agent_department">部署</label>
@@ -121,7 +154,7 @@ if(isset(
         </div>
         <div>
           <label for="loginMailAddress">ログイン用メールアドレス<span>必須</span></label>
-          <input type="email" name="login_mail" id="loginMailAddress" required>
+          <input type="email" name="login_email" id="loginMailAddress" required>
         </div>
         <div>
           <label for="loginPassWord">ログイン用パスワード<span>必須</span></label>
