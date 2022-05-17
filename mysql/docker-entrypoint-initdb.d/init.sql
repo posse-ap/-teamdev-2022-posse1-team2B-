@@ -6,27 +6,6 @@
 -- 1つずつのカラムを作る必要がない
 -- feature,tagみたいなテーブルを作って、そこに「大企業紹介」「体育会系」などをマスターデータでおいておく。そのタグとエージェントがn:nで用意する感じ
 -- それが存在してる分だけ、取ってくるみたいにできる
-
--- 使用
---   ログイン
---     使用するテーブル : managers
---     使用条件 : id, passwordが等しい   
-
-
--- boozer管理画面
--- 閲覧
--- -   明細
---     使用するテーブル : agents, 中間, students
---     抽出条件 : SUM(access_num) where date = 今月
---     抽出カラム : name, mails
--- 使用
---   ログイン
---     使用するテーブル : admin
---     使用条件 : id, passwordが等しい
---   掲載作成・編集
---     使用するテーブル : agents
---     登録カラム : 上で登録していいけど、認証済みかどうかというカラムで、trueのものだけ学生画面に表示
-
 DROP SCHEMA IF EXISTS shukatsu;
 
 CREATE SCHEMA shukatsu;
@@ -57,12 +36,12 @@ CREATE TABLE students (
   student_first_name VARCHAR(255) NOT NULL,
   student_last_name_kana VARCHAR(255) NOT NULL,
   student_first_name_kana VARCHAR(255) NOT NULL,
-  post_number VARCHAR(255) UNIQUE NOT NULL,
+  post_number VARCHAR(255) NOT NULL,
   prefecture VARCHAR(255) NOT NULL,
   municipality VARCHAR(255) NOT NULL,
-  adress_number VARCHAR(255) UNIQUE NOT NULL,
-  tel_number VARCHAR(255) UNIQUE NOT NULL,
-  email VARCHAR(255) UNIQUE NOT NULL,
+  adress_number VARCHAR(255) NOT NULL,
+  tel_number VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
   college_name VARCHAR(255),
   undergraduate VARCHAR(255) NOT NULL,
   college_department VARCHAR(255) NOT NULL,

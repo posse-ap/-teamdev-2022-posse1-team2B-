@@ -182,8 +182,8 @@ if (isset($_POST["contact"])) {
         <p><?php echo $_POST["graduation_year"]; ?></p>
       </div>
     <!-- 入力した値を受け渡す -->
-    <button type="submit" name="btn_back" formaction="./contact.php">戻る</button>
-    <button type="submit" name="final_contact">登録完了</button>
+    <button type="submit" name="btn_back" formaction="./contact.php">登録し直す</button>
+    <button type="submit" name="final_contact">完了</button>
     </form>
 
 
