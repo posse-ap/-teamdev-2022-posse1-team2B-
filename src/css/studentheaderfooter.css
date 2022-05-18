@@ -1,0 +1,56 @@
+header, footer {
+  background-color: #66a29a;
+  display: flex;
+}
+
+/* craftby就活.com */
+.headertitle {
+  display: flex;
+  /* justify-content: flex-end;
+  padding-right: 28%; */
+  justify-content: center;
+  /* text-align: center; */
+  height: 115px;
+}
+
+.craft {
+  font-size: 100px;
+  font-weight: 550;
+  color: white;
+  margin: 0;
+}
+
+.craftby {
+  color: white;
+  font-size: 20px;
+  margin-top: 90px;
+  margin-bottom: 0;
+}
+
+.headertitle img {
+  height: 30px;
+  margin-top: 90px;
+  margin-bottom: 0;
+}
+
+/* ナビゲーション */
+.headernav ul {
+  display: flex;
+  list-style: none;
+}
+
+.headernav ul li {
+  width: 33%;
+  color: white;
+  text-align: center;
+  font-size: 15px;
+}
+
+/* FOOTERでーす！ */
+footer img {
+  text-align: center;
+  align-items: center;
+  height: 40px;
+  margin: 10px auto;
+  justify-content: center;
+}

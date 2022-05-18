@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/index.css">
   <title>こだわり条件で絞り込む</title>
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
   <!-- こだわり条件から探すをクリックした場合に表示されるモーダル -->
   <div>
-    <button>✕</button>
+    <button class="exitbtn">✕</button>
     <form action="condition_selection.php" method="POST">
       <h1>エージェンシー企業をこだわり条件で絞り込む</h1>
       <div>
@@ -59,13 +60,13 @@
           <label from="2025Graduation">25卒</label>
         </div>
       </div>
-      <button type="submit">検索</button>
+      <button type="submit" class="searchbtn">検索</button>
     </form>
   </div>
   <div>
     <h1>絞り込み結果</h1>
-    <button>✕</button>
-    <a href="./keep.php">キープ中の企業</a>
+    <button class="exitbtn">✕</button>
+    <a href="./keep.php" class="keepbtn">キープ中の企業</a>
     <ul>
       <li>
         <p><?php print_r($recommend_agent_name);?></p>
@@ -82,8 +83,8 @@
         </dl>
         <form action="./keep.php" method="POST">
           <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-          <button type="submit">キープする</button>
-          <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
+          <button type="submit" class="keepbtn">キープする</button>
+          <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
         </form>
       </li>
       <li>
@@ -101,8 +102,8 @@
         </dl>
         <form action="./keep.php" method="POST">
           <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-          <button type="submit">キープする</button>
-          <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
+          <button type="submit" class="keepbtn">キープする</button>
+          <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
         </form>
       </li>
       <li>
@@ -120,8 +121,8 @@
         </dl>
         <form action="./keep.php" method="POST">
           <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-          <button type="submit">キープする</button>
-          <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
+          <button type="submit" class="keepbtn">キープする</button>
+          <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
         </form>
       </li>
     </ul>

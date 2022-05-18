@@ -1,0 +1,33 @@
+/* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
+.detailsbtn, .keepbtn, .searchbtn {
+  background-color: #EFB448;
+  border: none;
+  padding: 3px 15px;
+}
+
+/* キープするボタン */
+
+/* お問い合わせボタン（オレンジ背景白文字 */
+.inquirybtn {
+  background-color: #EFB448;
+  color: white;
+  border: none;
+  padding: 3px 15px
+}
+
+/* 戻るボタン（緑背景白文字） */
+.returnbtn {
+  background-color: #96D2C4;
+  color: white;
+  border: none;
+  padding: 3px 15px
+}
+
+/* 閉じるボタン（バッテン！） */
+.exitbtn {
+  background-color: white;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: white;
+}

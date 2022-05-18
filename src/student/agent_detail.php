@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/index.css">
   <title>Document</title>
 </head>
 <body>
@@ -17,7 +18,7 @@
     </div>
     <div>
       <!-- 閉じるボタン。前のページに戻る -->
-      <button>✕</button>
+      <button class="exitbtn">✕</button>
       <p><?php print_r($agent_name);?></p>
       <dl>
         <dt>得意な業種</dt>
@@ -33,8 +34,8 @@
       </dl>
       <form action="./keep.php" method="POST">
         <input type="hidden" name="agent_id" value="<?php print($item['agent_id']);?>">
-        <button type="submit">キープする</button>
-        <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
+        <button type="submit" class="keepbtn">キープする</button>
+        <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
       </form>
     </div>
   </div>

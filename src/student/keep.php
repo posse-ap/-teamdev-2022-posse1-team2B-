@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/index.css">
   <title>キープ中のエージェンシー企業</title>
 </head>
 <body>
@@ -27,9 +28,9 @@
         
       </div>
       <form action="./contact.php" method="POST">
-        <button type="button">戻る</button>
+        <button type="button" class="returnbtn">戻る</button>
         <input type="hidden" name="agent_id" value="<?php print($agent['agent_id']);?>">
-        <button type="submit">エージェンシー企業に問い合わせる</button>
+        <button type="submit" class="inquirybtn">エージェンシー企業に問い合わせる</button>
       </form>
     </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/index.css">
   <title>お問い合わせ入力</title>
 </head>
 <body>
@@ -49,8 +50,8 @@
         <p><?php echo $_POST["department"];?></p>
       </div>
     <!-- 入力した値を受け渡す -->
-      <button type="submit" name="btn_back" formaction="./contact.php">戻る</button>
-      <button type="submit" name="contact">登録完了</button>
+      <button type="submit" name="btn_back" formaction="./contact.php" class="returnbtn">戻る</button>
+      <button type="submit" name="contact" class="inquirybtn">登録完了</button>
       <input type="hidden" name="family_name" value="<?php echo $_POST['family_name']; ?>">
       <input type="hidden" name="student_name" value="<?php echo $_POST['student_name']; ?>">
       <input type="hidden" name="family_name_kana" value="<?php echo $_POST['family_name_kana']; ?>">
@@ -119,11 +120,11 @@
         <input type="text" name="inquiry" id="inquiry" required>
       </div>
       <div>
-        <button>戻る</button>
-        <button type="submit">エージェンシー企業に問い合わせる</button>
+        <button class="returnbtn">戻る</button>
+        <button type="submit" class="inquirybtn">エージェンシー企業に問い合わせる</button>
       </div>
     </form>
-    <button type="button">戻る</button>
+    <button type="button" class="returnbtn">戻る</button>
   </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
 </body>

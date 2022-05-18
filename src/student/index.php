@@ -35,6 +35,7 @@ $agents = $stmt->fetchAll();
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/index.css">
   <title>Top画面</title>
 </head>
 <body>
@@ -55,7 +56,7 @@ $agents = $stmt->fetchAll();
           <p>対応エリア<?= $agent['prefecture']?></p>
           <form action="index2.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
-            <button type="submit">キープする</button>
+            <button type="submit" class="keepbtn">キープする</button>
           </form>
         </li>
         <?php 
@@ -92,7 +93,7 @@ $agents = $stmt->fetchAll();
   <div id="industryRank">
     <h1>金融</h1>
     <!-- 閉じるボタン -->
-    <button id="closeButton">✕</button>
+    <button id="closeButton" class="exitbtn">✕</button>
     <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
     <a href="./keep.php">キープ中の企業</a>
     <ol>
@@ -102,7 +103,7 @@ $agents = $stmt->fetchAll();
         <p>対応エリア</p>
         <form action="keep.php" method="POST">
           <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
-          <button type="submit">キープする</button>
+          <button type="submit" class="keepbtn">キープする</button>
         </form>
       </li>
       <li>        
@@ -111,7 +112,7 @@ $agents = $stmt->fetchAll();
         <p>対応エリア</p>
         <form action="keep.php" method="POST">
           <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
-          <button type="submit">キープする</button>
+          <button type="submit"  class="keepbtn">キープする</button>
         </form>
       </li>
     </ol>
@@ -120,7 +121,7 @@ $agents = $stmt->fetchAll();
   <div id="areaRank">
     <h1>関東エリアのエージェンシー企業ランキング</h1>
     <!-- 閉じるボタン -->
-    <button id="closeButton">✕</button>
+    <button id="closeButton" class="exitbtn">✕</button>
     <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
     <a href="./keep.php">キープ中の企業</a>
     <ol>
@@ -130,7 +131,7 @@ $agents = $stmt->fetchAll();
         <p>対応エリア</p>
         <form action="keep.php" method="POST">
           <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"])?>">
-          <button type="submit">キープする</button>
+          <button type="submit" class="keepbtn">キープする</button>
         </form>
     </li>
     <li>        
@@ -139,7 +140,7 @@ $agents = $stmt->fetchAll();
         <p>対応エリア</p>
         <form action="keep.php" method="POST">
           <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"])?>">
-          <button type="submit">キープする</button>
+          <button type="submit" class="keepbtn">キープする</button>
         </form>
     </li>
     </ol>
