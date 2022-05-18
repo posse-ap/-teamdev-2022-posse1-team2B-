@@ -16,7 +16,14 @@
   } elseif(isset($_GET["id"])) {
     $page_flag = 2;
   }
+  
+$stmt = $db->prepare('select * from intermediate left join students on intermediate.student_id = students.id right join agents on intermediate.agent_id = agents.id where agent_id = 1');
+// $stmt->bindValue(':agent_id', $agent['id']);
+  // bindevalueの１が？の１個めってこと。これがあれば何個でもはてなつけられる！1,2とかだとわかりにくいから、「:agent_id」を設定する
+  $stmt->execute();
+  $matched_students = $stmt->fetchAll();
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -43,8 +50,10 @@
     <!-- 学生詳細 -->
   <?php 
   elseif($page_flag === 2):
-    $id=$_GET["id"];
-    $stmt =$db->prepare("SELECT * FROM students WHERE id= :id");
+    $agent_name=$_POST['report'];
+    // idだとただ学生を順番に取ってくるだけになってしまう
+    // →エージェンシ企業に問い合わせててかつ、n番目の生徒ってしないと！！
+    $stmt =$db->prepare("SELECT * FROM students WHERE = :id");
     $stmt->bindValue(":id", $id);
     $stmt->execute();
     $student = $stmt->fetch();
@@ -68,43 +77,33 @@
     <!-- 学生一覧画面 -->
   <?php else: ?>
   <div>
-    <h2>学生一覧</h2>
-    <?php
-      // 指定したエージェンシー企業の学生の情報をDBから取得
-      // →中間テーブルからデータを持ってくるやり方が分からない、、、
-      // select * from agentsテーブル名 inner join 中間テーブル名 on agentテーブル名.id = 中間テーブル名.agent_id inner join studentsテーブル名 on 中間テーブル名_id = studentsテーブル名.id;
-      // select * from agents inner join intermediate on agents.id = intermediate. agent_id inner join students on intermediate.student_id = students.id;
-      // →これじゃないの？？？？？？？？？？？？
-
-      // 日本語文字化けする、、、、、、どうすれば良いか分かる？調べて出てきたのは、dbconnect.phpでutfを設定しろ。もうやってるよね
-
-      // foreach ($hoges as $index => $hoge) : 
-    ?>
-    <div>
-      <!-- <a class="student_information" href="students.php?id=<?php //echo $hoge["student_id"] ?>"> -->
-      <a class="student_information" href="students.php?id=1">
-        <form></form>
-        <span>田中花子</span>
-        <span>慶應</span>
-        <span>経済学部</span>
-        <span>3月12日12時</span>
-        <dd>申込みエージェント</dd><dt><?php //echo $hoge ?></dt>
-      </a>
-      <a class="student_information" href="students.php?id=2">
-        <span>田中花子</span>
-        <span>慶應</span>
-        <span>経済学部</span>
-        <span>3月12日12時</span>
-        <dd>申込みエージェント</dd><dt><?php //echo $hoge ?></dt>
-      </a>
-    </div>
-    <?php //endforeach; ?>
-    <a href="./index.php">戻る</a> 
-  </div>
+    <section>
+      <h2>学生一覧</h2>
+      <?php foreach ($matched_students as $matched_student) : ?>
+      <div>
+        <span><?= $matched_student['student_name'] ?></span>
+        <span><?= $matched_student['student_name'] ?></span>
+        <span>お問い合わせ日時：<?= $matched_student['updated_at'] ?></span>
+      </div>
+  </section>
+  <section>
+    <!-- <button>☓</button> -->
+    <dd>名前</dd><dt><?= $matched_student['student_name'] ?></dt>
+    <dd>カナ</dd><dt><?= $matched_student['student_name'] ?></dt>
+    <dd>電話番号</dd><dt><?= $matched_student['tel_number'] ?></dt>
+    <dd>メールアドレス</dd><dt><?= $matched_student['email'] ?></dt>
+    <dd>出身大学</dd><dt><?= $matched_student['college_name'] ?></dt>
+    <dd>学部</dd><dt><?= $matched_student['undergraduate'] ?></dt>
+    <dd>学科</dd><dt><?= $matched_student['college_department'] ?></dt>
+    <dd>卒業年</dd><dt><?= $matched_student['graduation_year'] ?></dt>
+    <dd>お問い合わせ内容</dd><dt></dt>
+    <input type='submit' name='report' value='いたずらをBoozerに報告'>
+  </section>
+  <?php endforeach; ?>
+  <a href="">戻る</a>
   <?php endif; 
   include (dirname(__FILE__) . "/agency_footer.php");
   ?>
-
-  <script src="./agency.js"></scr>
+  <script src="./agency.js"></script>
 </body>
 </html>
