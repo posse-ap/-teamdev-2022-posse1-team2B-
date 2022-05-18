@@ -1,7 +1,3 @@
-<!-- 
-・サンクスページ完成させる
-・掲載修正入力画面を作る  
--->
 <?php
   require('../../dbconnect.php');
   //変数の初期化
@@ -43,7 +39,6 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
         <p>本当に取り消し申請を行いますか？</p>
         <p>いたずら・迷惑行為とみなされたお問い合わせのみ取り消されます。</p>
       <!-- 入力した値を受け渡す -->
-        <!-- <a href="./students.php">戻る</a> -->
         <a href='javascript:history.back()'>戻る</a>
         <a href="../../thanks.php">いたずらを申請する</a>
       </div>
@@ -58,14 +53,6 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
     $undergraduate=$_POST['undergraduate'];
     $college_department=$_POST['college_department'];
     $graduation_year=$_POST['graduation_year'];
-    
-    // idだとただ学生を順番に取ってくるだけになってしまう
-    // →エージェンシ企業に問い合わせててかつ、n番目の生徒ってしないと！！
-    // $stmt =$db->prepare("SELECT * FROM students WHERE = :id");
-    // $stmt->bindValue(":id", $id);
-    // $stmt->execute();
-    // $student = $stmt->fetch();
-    // $college_id = $student["coledge_id"];
   ?>
   <h2>学生の詳細情報</h2>
 
@@ -97,7 +84,6 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
       </div>
   </section>
   <section>
-    <!-- <button>☓</button> -->
     <dd>名前</dd><dt><?= $matched_student['student_name'] ?></dt>
     <!-- テーブルにカナない？ -->
     <dd>カナ</dd><dt><?= $matched_student['student_name_kana'] ?></dt>
