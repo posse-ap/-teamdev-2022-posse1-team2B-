@@ -13,7 +13,7 @@
   // →page_flag変数の値を1にする＝確認画面に表示を変える
   if(isset($_POST["mischief_report"])) {
     $page_flag = 1;
-  } elseif(isset($_GET["id"])) {
+  } elseif(isset($_POST["report"])) {
     $page_flag = 2;
   }
   
@@ -43,32 +43,42 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
         <p>本当に取り消し申請を行いますか？</p>
         <p>いたずら・迷惑行為とみなされたお問い合わせのみ取り消されます。</p>
       <!-- 入力した値を受け渡す -->
-        <a href="./students.php">戻る</a>
+        <!-- <a href="./students.php">戻る</a> -->
+        <a href='javascript:history.back()'>戻る</a>
         <a href="../../thanks.php">いたずらを申請する</a>
       </div>
     </div>
     <!-- 学生詳細 -->
   <?php 
   elseif($page_flag === 2):
-    $agent_name=$_POST['report'];
+    $student_name=$_POST['name'];
+    $tel_number=$_POST['tel_number'];
+    $email=$_POST['email'];
+    $college_name=$_POST['college_name'];
+    $undergraduate=$_POST['undergraduate'];
+    $college_department=$_POST['college_department'];
+    $graduation_year=$_POST['graduation_year'];
+    
     // idだとただ学生を順番に取ってくるだけになってしまう
     // →エージェンシ企業に問い合わせててかつ、n番目の生徒ってしないと！！
-    $stmt =$db->prepare("SELECT * FROM students WHERE = :id");
-    $stmt->bindValue(":id", $id);
-    $stmt->execute();
-    $student = $stmt->fetch();
-    $college_id = $student["coledge_id"];
+    // $stmt =$db->prepare("SELECT * FROM students WHERE = :id");
+    // $stmt->bindValue(":id", $id);
+    // $stmt->execute();
+    // $student = $stmt->fetch();
+    // $college_id = $student["coledge_id"];
   ?>
+  <h2>学生の詳細情報</h2>
+
     <div id="studentDetail" class="student_detail">
       <a href="./students.php">☓</a>
-      <dd>名前</dd><dt><?= $student["student_name"]; ?></dt>
-      <dd>カナ</dd><dt></dt>
-      <dd>電話番号</dd><dt><?= $student["tel_number"]; ?></dt>
-      <dd>メールアドレス</dd><dt><?= $student["email"]; ?></dt>
-      <dd>出身大学</dd><dt><?= $college["college_name"]; ?></dt>
-      <dd>学部</dd><dt><?= $student["undergraduate"]; ?></dt>
-      <dd>学科</dd><dt><?= $student["college_department"]; ?></dt>
-      <dd>卒業年</dd><dt><?= $student["graduation_year"]; ?></dt>
+      <dd>名前</dd><dt><?= $student_name ?></dt>
+      <!-- <dd>カナ</dd><dt></dt> -->
+      <dd>電話番号</dd><dt><?= $tel_number?></dt>
+      <dd>メールアドレス</dd><dt><?= $email ?></dt>
+      <dd>出身大学</dd><dt><?= $college_name ?></dt>
+      <dd>学部</dd><dt><?= $undergraduate ?></dt>
+      <dd>学科</dd><dt><?= $college_department ?></dt>
+      <dd>卒業年</dd><dt><?= $graduation_year ?></dt>
       <dd>お問い合わせ内容</dd><dt><?php //お問い合わせ内容ってテーブルになくない？？？？？？？？？？？？？？ ?></dt>
       <form method="POST">
         <button type="submit" name="mischief_report">いたずらをboozerに報告</button>
@@ -89,7 +99,8 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
   <section>
     <!-- <button>☓</button> -->
     <dd>名前</dd><dt><?= $matched_student['student_name'] ?></dt>
-    <dd>カナ</dd><dt><?= $matched_student['student_name'] ?></dt>
+    <!-- テーブルにカナない？ -->
+    <dd>カナ</dd><dt><?= $matched_student['student_name_kana'] ?></dt>
     <dd>電話番号</dd><dt><?= $matched_student['tel_number'] ?></dt>
     <dd>メールアドレス</dd><dt><?= $matched_student['email'] ?></dt>
     <dd>出身大学</dd><dt><?= $matched_student['college_name'] ?></dt>
@@ -97,10 +108,19 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
     <dd>学科</dd><dt><?= $matched_student['college_department'] ?></dt>
     <dd>卒業年</dd><dt><?= $matched_student['graduation_year'] ?></dt>
     <dd>お問い合わせ内容</dd><dt></dt>
-    <input type='submit' name='report' value='いたずらをBoozerに報告'>
+    <form action="" method="POST">
+        <input type="hidden" name="name" value="<?php echo $matched_student['student_name']; ?>">
+        <input type="hidden" name="tel_number" value="<?php echo $matched_student["tel_number"]; ?>">
+        <input type="hidden" name="email" value="<?php echo $matched_student["email"]; ?>">
+        <input type="hidden" name="college_name" value="<?php echo $matched_student["college_name"]; ?>">
+        <input type="hidden" name="undergraduate" value="<?php echo $matched_student["undergraduate"]; ?>">
+        <input type="hidden" name="college_department" value="<?php echo $matched_student["college_department"]; ?>">
+        <input type="hidden" name="graduation_year" value="<?php echo $matched_student["graduation_year"]; ?>">
+      <input type='submit' name='report' value='詳細'>
+    </form>
   </section>
   <?php endforeach; ?>
-  <a href="">戻る</a>
+  <a href='./index.php'>戻る</a>
   <?php endif; 
   include (dirname(__FILE__) . "/agency_footer.php");
   ?>
