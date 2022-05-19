@@ -36,7 +36,7 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
   </section>
 
   <section>
-    <button>☓</button>
+    <!-- <button>☓</button> -->
     <dd>名前</dd><dt><?= $agent_student_match['student_name'] ?></dt>
     <dd>カナ</dd><dt><?= mb_convert_kana($agent_student_match['student_name']); ?></dt>
     <!-- カタカナにならないです！！！！！！！！！！！！！！！！ -->
