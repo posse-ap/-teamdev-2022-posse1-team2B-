@@ -85,8 +85,8 @@ if (isset(
 
   $manager_last_name = $_POST['manager_last_name'];
   $manager_first_name = $_POST['manager_first_name'];
-  $manager_last_name_kana = $_POST['manager_last_name'];
-  $manager_first_name_kana = $_POST['manager_first_name'];
+  $manager_last_name_kana = $_POST['manager_last_name_kana'];
+  $manager_first_name_kana = $_POST['manager_first_name_kana'];
   $agent_department = $_POST['agent_department'];
 
 
@@ -105,6 +105,7 @@ if (isset(
 //   echo $manager_last_name;
 }
 
+// データを削除して再起動すると、登録したデータが消えてしまう
 
 
 
