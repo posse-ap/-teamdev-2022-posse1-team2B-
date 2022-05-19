@@ -1,3 +1,7 @@
+<?php $page_flag = 0;
+if(isset($_POST["search"])) {
+  $page_flag = 1;
+} ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,12 +10,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/index.css">
   <title>こだわり条件で絞り込む</title>
+  <link rel="stylesheet" href="student.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
-  <!-- こだわり条件から探すをクリックした場合に表示されるモーダル -->
+  <?php 
+  if($page_flag === 1 || isset($_GET["back"])):?>
   <div>
-    <button class="exitbtn">✕</button>
+    <h1>絞り込み結果</h1>
+    <a href="./condition_selection.php">✕</a>
+    <a href="./keep.php">キープ中の企業</a>
+    <ul>
+      <li>
+        <a href="./agent_detail.php">
+          <p><?php print_r($recommend_agent_name);?></p>
+          <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
+          <dl>
+            <dt>得意な業種</dt>
+            <dd><?php print_r($specialty_industry);?></dd>
+            <dt>対応エリア</dt>
+            <dd><?php print_r($supported_area);?></dd>
+            <dt>対象学生</dt>
+            <dd><?php print_r($target_student);?></dd>
+            <dt>対応企業の規模</dt>
+            <dd><?php print_r($supported_corporate_scale);?></dd>
+          </dl>
+          <form action="./keep.php" method="POST">
+            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+            <button type="submit">キープする</button>
+            <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
+          </form>
+        </a>
+      </li>
+      <li>
+        <a href="./agent_detail.php">
+          <p><?php print_r($recommend_agent_name);?></p>
+          <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
+          <dl>
+            <dt>得意な業種</dt>
+            <dd><?php print_r($specialty_industry);?></dd>
+            <dt>対応エリア</dt>
+            <dd><?php print_r($supported_area);?></dd>
+            <dt>対象学生</dt>
+            <dd><?php print_r($target_student);?></dd>
+            <dt>対応企業の規模</dt>
+            <dd><?php print_r($supported_corporate_scale);?></dd>
+          </dl>
+          <form action="./keep.php" method="POST">
+            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+            <button type="submit">キープする</button>
+            <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
+          </form>
+        </a>
+      </li>
+      <li>
+        <a href="./agent_detail.php">
+          <p><?php print_r($recommend_agent_name);?></p>
+          <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
+          <dl>
+            <dt>得意な業種</dt>
+            <dd><?php print_r($specialty_industry);?></dd>
+            <dt>対応エリア</dt>
+            <dd><?php print_r($supported_area);?></dd>
+            <dt>対象学生</dt>
+            <dd><?php print_r($target_student);?></dd>
+            <dt>対応企業の規模</dt>
+            <dd><?php print_r($supported_corporate_scale);?></dd>
+          </dl>
+          <form action="./keep.php" method="POST">
+            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+            <button type="submit">キープする</button>
+            <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
+          </form>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- こだわり条件から探すをクリックした場合に表示されるモーダル -->
+  <?php else:?>
+  <div>
+    <a href="./index.php" class="exitbtn">✕</a>
     <form action="condition_selection.php" method="POST">
       <h1>エージェンシー企業をこだわり条件で絞り込む</h1>
       <div>
@@ -60,6 +138,7 @@
           <label from="2025Graduation">25卒</label>
         </div>
       </div>
+<<<<<<< HEAD
       <button type="submit" class="searchbtn">検索</button>
     </form>
   </div>
@@ -127,6 +206,13 @@
       </li>
     </ul>
   </div>
+=======
+      <input type="submit" name="search" value = "検索">
+    </form>
+  </div>
+  <?php endif; ?>
+>>>>>>> 6911d71313e63132dcc6cd1b5e7f72ea6dd876ed
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
+  <script src="./sudent.js"></script>
 </body>
 </html>

@@ -1,3 +1,7 @@
+<!-- 
+  ・ランキング詳細→学生一覧からの詳細への遷移を参考にする
+-->
+
 <?php
 require("../dbconnect.php");
 
@@ -39,13 +43,12 @@ $agents = $stmt->fetchAll();
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/studentheaderfooter.css">
   <title>Top画面</title>
+  <link rel="stylesheet" href="student.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
-  <div> <!-- TOP画面 -->
+  <div> 
     <a href="condition_selection.php">こだわり条件から探す</a>
-        <!-- お問い合わせ数のランキング
-      参考サイト https://qiita.com/mayu_schwarz/items/0ab9eb1ec5166c284bcd-->
     <div>
       <h1>月間ランキング</h1>
       <ul>
@@ -53,13 +56,15 @@ $agents = $stmt->fetchAll();
         $counter = 0;
         foreach($agents as $index => $agent): ?>
         <li>
+        <a href="./agent_detail.php?id=<?php echo$index; ?>">
           <p><?= $agent['agent_name']?></p>
           <p>得意な業種<?= $agent['category']?></p>
           <p>対応エリア<?= $agent['prefecture']?></p>
-          <form action="index2.php" method="POST">
+          <form action="keep.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
             <button type="submit" class="keepbtn">キープする</button>
           </form>
+        </a>
         </li>
         <?php 
           if ($counter >= 2) {break;}
@@ -69,25 +74,23 @@ $agents = $stmt->fetchAll();
     </div>
     <div>
       <h2>業種別ランキング</h2>
-      <ul>
-        <li><a href="#industryRank" class="industry_rank" data-value="金融">金融</a></li>
-        <!--選択したaタグによって、金融かITかとかどうやって分ける？
-          data-valueでvalue値を設定しておいてJSで取得する？
-        https://teratail.com/questions/111346
-        -->
-        <li><a href="#industryRank" class="industry_rank" data-value="IT">IT</a></li>
-        <li><a href="#industryRank" class="industry_rank" data-value="広告">広告</a></li>
-        <li><a href="#industryRank" class="industry_rank" data-value="商社">商社</a></li>
-        <li><a href="#industryRank" class="industry_rank" data-value="食品">食品</a></li>
-        <li><a href="#industryRank" class="industry_rank" data-value="不動産">不動産</a></li>
-      </ul>
-      <h2>求人エリア別ランキング</h2>
-      <ul>
-        <li><a href="#areaRank" class="area_rank" data-value="関東">関東</a></li>
-        <li><a href="#areaRank" class="area_rank" data-value="関西">関西</a></li>
-        <li><a href="#areaRank" class="area_rank" data-value="東海">東海</a></li>
-        <li><a href="#areaRank" class="area_rank" data-value="九州">九州</a></li>
-      </ul>
+      <form action="./agency_list.php" method="POST">
+        <ul>
+          <li><input type="submit" name="finance" value="金融"></li>
+          <li><input type="submit" name="it" value="IT"></li>
+          <li><input type="submit" name="ad" value="広告"></li>
+          <li><input type="submit" name="tradingCompany" value="商社"></li>
+          <li><input type="submit" name="food" value="食品"></li>
+          <li><input type="submit" name="realEstate" value="不動産"></li>
+        </ul>
+        <h2>求人エリア別ランキング</h2>
+        <ul>
+          <li><input type="submit" name="kanto" value="関東"></li>
+          <li><input type="submit" name="kansai" value="関西"></li>
+          <li><input type="submit" name="tokai" value="東海"></li>
+          <li><input type="submit" name="kyushu" value="九州"></li>
+        </ul>
+      </form>
     </div>
   </div>
   <div>
@@ -148,5 +151,6 @@ $agents = $stmt->fetchAll();
     </ol>
   </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
+  <script src="student.js"></script>
 </body>
 </html>

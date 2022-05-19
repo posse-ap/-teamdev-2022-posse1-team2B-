@@ -1,3 +1,11 @@
+<!--
+TODO
+リーディング
+複製
+それぞれ対応させる 
+-->
+
+
 <?php
 session_start();
 require('../dbconnect.php');

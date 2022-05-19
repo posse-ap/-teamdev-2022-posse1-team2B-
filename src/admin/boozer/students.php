@@ -17,6 +17,7 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
   <title>Document</title>
 </head>
 <body>
+  <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <section>
     <h2>学生一覧</h2>
     <?php 
@@ -36,19 +37,19 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
   </section>
 
   <section>
-    <button>☓</button>
+    <!-- <button>☓</button> -->
     <dd>名前</dd><dt><?= $agent_student_match['student_name'] ?></dt>
     <dd>カナ</dd><dt><?= mb_convert_kana($agent_student_match['student_name']); ?></dt>
-    <!-- カタカナにならないです！！！！！！！！！！！！！！！！ -->
     <dd>電話番号</dd><dt><?= $agent_student_match['tel_number'] ?></dt>
     <dd>メールアドレス</dd><dt><?= $agent_student_match['email'] ?></dt>
     <dd>出身大学</dd><dt><?= $agent_student_match['college_name'] ?></dt>
     <dd>学部</dd><dt><?= $agent_student_match['undergraduate'] ?></dt>
     <dd>学科</dd><dt><?= $agent_student_match['college_department'] ?></dt>
     <dd>卒業年</dd><dt><?= $agent_student_match['graduation_year']?></dt>
+    <dd>申込みエージェント</dd><dt><?= $agent_student_match['agent_name'] ?></dt>
   </section>
 
   <?php endforeach; ?>
-
+  <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>
 </html>
