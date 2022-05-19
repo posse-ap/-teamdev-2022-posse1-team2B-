@@ -17,6 +17,7 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
   <title>Document</title>
 </head>
 <body>
+  <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <section>
     <h2>学生一覧</h2>
     <?php 
@@ -49,6 +50,6 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
   </section>
 
   <?php endforeach; ?>
-
+  <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>
 </html>

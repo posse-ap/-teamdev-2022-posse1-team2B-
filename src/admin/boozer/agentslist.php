@@ -18,6 +18,7 @@ $stmt = $db->prepare('select * from agents');
   <title>agentslist</title>
 </head>
 <body>
+  <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <h2>掲載企業一覧</h2>
   <?php foreach ($agents as $agent) : ?>
   <div>
@@ -29,6 +30,7 @@ $stmt = $db->prepare('select * from agents');
     <button>削除</button>
   </div>
   <?php endforeach; ?>
+  <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>
 </html>
 

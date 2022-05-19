@@ -7,6 +7,7 @@
   <title>edit</title>
 </head>
 <body>
+  <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <h2>掲載内容修正</h2>
   <form action="./thanks.php">
     <dd>会社名</dd><dt><input type="text"></dt>
@@ -17,6 +18,6 @@
     <dd>備考</dd><dt><textarea name="" id="" cols="30" rows="10"></textarea></dt>
     <button>修正完了</button>
   </form>
-  
+  <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>
 </html>

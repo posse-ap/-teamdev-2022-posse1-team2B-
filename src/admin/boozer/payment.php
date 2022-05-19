@@ -7,12 +7,14 @@
   <title>Document</title>
 </head>
 <body>
-  <?php foreach ($hoges as $hoge) : ?>
+  <?php include (dirname(__FILE__) . "/boozer_header.php");
+  foreach ($hoges as $hoge) : ?>
   <div>
     <h3>エージェントA</h3>
     <a href="./payment_detail.php">詳細</a>
     <span>未払い</span>
   </div>
   <?php endforeach; ?>
+  <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>
 </html>
