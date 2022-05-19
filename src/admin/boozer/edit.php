@@ -53,7 +53,7 @@ if( $res ) {
 <?php
 	exit;
 }
-}
+// }
 ?>
 <!DOCTYPE html>
 <html lang="ja">
