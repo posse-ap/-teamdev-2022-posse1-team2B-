@@ -38,7 +38,7 @@ $stmt = $db->prepare('select * from agents');
       <!-- <a href="edit.php">編集</a> -->
       <input type="hidden" name="id" value="<?php Echo $index+1; ?>">
       <input type="submit" name="edit" value="編集">
-      <button>削除</button>
+      <input type='submit' formaction='delete.php' name='delete' value ='削除'>
     <!-- </a> -->
     </form>
   </div>

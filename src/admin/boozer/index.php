@@ -1,14 +1,12 @@
 <!-- 
 ・「登録開始」ってなに？
 -->
-<?php 
-$page_flag=0;
-if(isset($_POST['delete'])){
-  $page_flag = 1;
-}
-
+<?php
+require('../../dbconnect.php');
+$stmt = $db->prepare('SELECT * FROM agents');
+$stmt->execute();
+$agents = $stmt->fetchAll();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -21,47 +19,23 @@ if(isset($_POST['delete'])){
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/boozer_header.php");?>
-  <?php if($page_flag === 1): ?>
   <h2>掲載企業一覧</h2>
+  <?php foreach($agents as $agent): ?>
   <div>
-    <p>本当にエージェンシー企業を削除しますか？</p>
-    <dd>会社名</dd><dt><?= $matched_student['student_name'] ?></dt>
-    <dd>カナ</dd><dt><?= $matched_student['student_name'] ?></dt>
-    <dd>電話番号</dd><dt><?= $matched_student['tel_number'] ?></dt>
-    <dd>メールアドレス</dd><dt><?= $matched_student['email'] ?></dt>
-    <dd>出身大学</dd><dt><?= $matched_student['college_name'] ?></dt>
-    <dd>学部</dd><dt><?= $matched_student['undergraduate'] ?></dt>
-    <dd>学科</dd><dt><?= $matched_student['college_department'] ?></dt>
-    <dd>卒業年</dd><dt><?= $matched_student['graduation_year'] ?></dt>
-  </div>
-  <?php else: ?>
-  <h2>掲載企業一覧</h2>
-  <div>
-    <form action="" method="POST">
+    <form action="delete.php" method="POST">
       <img src="" alt="">
-      <h3><?php echo $agency['agent_name']; ?></h3>
-      <a href="edit.php?id=<?php echo$agency['id'];?>">編集</a>
-      <input name="delete" value="エージェンシ―企業を削除">
+      <h3><?php echo $agent['agent_name']; ?></h3>
+      <a href="edit.php?id=<?php echo$agent['id']; ?>">編集</a>
+      <!-- <a href="edit.php?id=1">編集</a> -->
+      <input type="hidden" name="agent_id" value="<?php echo $agent['id'];?>">
+      <input type="submit" name="delete" value="エージェンシ―企業の掲載を削除">
       <!-- この削除は、データベースから削除って意味？それとも単に掲載を削除？ -->
     </form>
   </div>
-  <!-- <div>
-    <img src="" alt="">
-    <h3>エージェントB</h3>
-    <a href="edit.php">編集</a>
-    <button>削除</button>
-  </div>
-  <div>
-    <img src="" alt="">
-    <h3>エージェントC</h3>
-    <a href="edit.php">編集</a>
-    <button>削除</button>
-  </div> -->
+  <?php endforeach;?>
   <a href="./agentslist.php">企業一覧をもっと見る</a>
-
   <a href="./payment.php">明細確認</a>
   <a href="./students.php">学生情報</a>
-  <?php endif; ?>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
   <script src="boozer.js"></script>
 </body>
