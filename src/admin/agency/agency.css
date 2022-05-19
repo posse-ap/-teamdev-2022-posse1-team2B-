@@ -1,0 +1,19 @@
+#contact {
+  cursor: default;
+}
+.contact_email_address {
+  display: none;
+}
+
+/* .student_detail {
+  display: none;
+} */
+.student_information {
+  text-decoration: none;  /* 寡占を失くす */
+  color: black;  /* 文字の色が青くならないようにする */
+}
+
+.show_contents {
+  display: block;
+}
+
