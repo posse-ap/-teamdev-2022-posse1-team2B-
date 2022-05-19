@@ -20,8 +20,7 @@ $stmt = $db->prepare('select * from agents');
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-  <?php
-  ?>
+  <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <h2>掲載企業一覧</h2>
   <?php foreach ($agents as $index => $agent) : ?>
   <div>
@@ -43,13 +42,8 @@ $stmt = $db->prepare('select * from agents');
     <!-- </a> -->
     </form>
   </div>
-<?php endforeach; ?>
-
-  <?php 
-  
-
-  ?>
-
+  <?php endforeach; ?>
+  <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>
 </html>
 

@@ -1,28 +1,18 @@
-<?php
-require('../dbconnect.php');
-?>
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-  <header>
-    <div>
-      <p>CRAFT</p>
-      <p>by</p>
-      <img src="../img/syukatudotcom_logo.png" alt="就活.com">
-    </div>
-    <nav>
-      <ul>
-        <li>お問い合わせ</li>
-        <li>エージェンシー企業向け掲載依頼はこちら</li>
-        <li><a href="./keep.php">keepしてるエージェンシー企業</a></li>
-      </ul>
-    </nav>
-  </header>
-</body>
-</html>
+<header>
+  <div>
+    <p>CRAFT</p>
+    <p>by</p>
+    <img src="../img/syukatudotcom_logo.png" alt="就活.com">
+  </div>
+  <nav>
+    <ul>
+      <li id="contact">お問い合わせ</li>
+      <li id="request">エージェンシー企業向け掲載依頼はこちら</li>
+      <li><a href="./keep.php">keepしてるエージェンシー企業</a></li>
+    </ul>
+  </nav>
+  <div id="contactEmailAddress" class="contact_email_address">
+    <button id="closeButton">✕</button>
+    サービス等に関するお問い合わせは、xxx@co.jp までご連絡ください。 
+  </div>
+</header>

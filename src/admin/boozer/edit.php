@@ -64,6 +64,7 @@ if( $res ) {
   <title>edit</title>
 </head>
 <body>
+  <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <h2>掲載内容修正</h2>
   <form action="./edit.php" method="POST">
     <dd>会社名</dd><dt><input type="text" name="new_agent_name"></dt>
@@ -77,6 +78,10 @@ if( $res ) {
     <dd>備考</dd><dt><textarea name="new_remarks" id="" cols="30" rows="10"></textarea></dt>
     <input name="edit" type="submit">修正完了</input>
   </form>
+<<<<<<< HEAD
+=======
+  <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
+>>>>>>> 6911d71313e63132dcc6cd1b5e7f72ea6dd876ed
 </body>
 </html>
 

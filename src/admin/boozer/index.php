@@ -20,7 +20,9 @@ if(isset($_POST['delete'])){
   <link rel="stylesheet" href="boozer.css">
 </head>
 <body>
+  <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <?php if($page_flag === 1): ?>
+  <h2>掲載企業一覧</h2>
   <div>
     <p>本当にエージェンシー企業を削除しますか？</p>
     <dd>会社名</dd><dt><?= $matched_student['student_name'] ?></dt>
@@ -60,6 +62,7 @@ if(isset($_POST['delete'])){
   <a href="./payment.php">明細確認</a>
   <a href="./students.php">学生情報</a>
   <?php endif; ?>
+  <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
   <script src="boozer.js"></script>
 </body>
 </html>
