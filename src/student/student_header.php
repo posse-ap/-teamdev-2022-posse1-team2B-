@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 require('../dbconnect.php');
 ?>
 
@@ -10,7 +10,7 @@ require('../dbconnect.php');
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/studentheaderfooter.css">
 </head>
-<body>
+<body> -->
   <header>
     <div class="headertitle">
       <p class="craft">CRAFT</p>
@@ -22,10 +22,10 @@ require('../dbconnect.php');
     <nav class="headernav">
       <ul>
         <li>お問い合わせ</li>
-        <li>エージェンシー企業向け掲載依頼はこちら</li>
-        <li><a href="./keep.php">keepしてるエージェンシー企業</a></li>
+        <li>企業向け</li>
+        <li><a href="./keep.php">keep中</a></li>
       </ul>
     </nav>
   </header>
-</body>
-</html>
+<!-- </body>
+</html> -->
