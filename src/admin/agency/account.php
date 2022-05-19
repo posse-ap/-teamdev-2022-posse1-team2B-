@@ -1,3 +1,4 @@
+
 <?php
 require('../../dbconnect.php');
 
@@ -110,8 +111,22 @@ if (isset(
 
 
 ?>
+  <!-- 
+    ・入力画面→確認画面の遷移
+    →https://gray-code.com/php/make-the-form-vol2/
+  -->
 
-
+<?php
+require(dirname(__FILE__, 3) . '/dbconnect.php');
+  //変数の初期化
+  // 入力画面や確認画面の表示をスイッチするフラグ
+  // 0→入力画面 1→確認画面
+  $page_flag = 0;
+  // もし会員登録ボタンがおされたら＝フォームデータの中に$_POST[""membership registration"]が含まれていたら→page_flag変数の値を1にする＝確認画面に表示を変える
+  if(isset($_POST["membership_registration"])) {
+    $page_flag = 1;
+  } 
+  ?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -120,6 +135,7 @@ if (isset(
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>エージェンシー企業アカウント登録画面</title>
+  <link rel="stylesheet" href="agency.css">
 </head>
 
 <body>
@@ -130,7 +146,7 @@ if (isset(
     <div>
       <form action="account.php" method="POST">
         <div>
-          <label for="companyName">会社名<span>必須</span></label>
+          <label for="companyName">会社名</label>
           <input type="text" name="agent_name" id="companyName" required>
         </div>
         <div>
@@ -142,11 +158,11 @@ if (isset(
           <input type="text" name="manager_first_name" id="managerName" required>
         </div>
         <div>
-          <label for="familyNameKana">氏(カナルビ)</label>
+          <label for="familyNameKana">氏(カナ)</label>
           <input type="text" name="manager_last_name_kana" id="familyNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
         </div>
         <div>
-          <label for="managerNameKana">名(カナルビ)</label>
+          <label for="managerNameKana">名(カナ)</label>
           <input type="text" name="manager_first_name_kana" id="managerNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
         </div>
         <div>

@@ -8,6 +8,21 @@
   <link rel="stylesheet" href="student.css">
 </head>
 <body>
+  <!-- 
+    ・キープを押した時点でエージェントさんのIDをセッションとかに保存する
+→IDを元に企業の情報をデータベースから持ってくる
+    ・セッションストレージ→ブラウザにデータを保存
+  →Aさんがキープしたっていう情報は個々のブラウザに保存される
+→キャッシュみたいなもの
+・ブラウザ側に情報を持ってもらって、その人が何の情報を保存したかを種痘できる
+→セッションで保存されたエージェントのIDを利用してエージェントの情報を出力する
+・クッキーとかもある
+
+・セッションについての記事
+→https://developer.mozilla.org/ja/docs/Web/API/Window/sessionStorage
+→情報を取得SET,GET,REMOVE
+
+-->
   <?php include (dirname(__FILE__) . "/student_header.php");?>
   <h1>キープ中のエージェンシー企業</h1>
     <div>

@@ -13,11 +13,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="agency.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/agency_header.php");?>
   <h1>掲載内容修正申し込み</h1>
-  <form action="./thanks.php">
+  <form action="../../thanks.php" method="POST">
     <div>
       <label for="companyName">会社名</label>
       <input type="text" id="companyName">
@@ -37,5 +38,6 @@
     <button type="submit">修正を申し込む</button>
   </form>
   <?php include (dirname(__FILE__) . "/agency_footer.php");?>
+  <script src="agency.js"></script>
 </body>
 </html>
