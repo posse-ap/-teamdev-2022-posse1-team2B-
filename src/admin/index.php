@@ -11,6 +11,9 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
     exit();
 }
 // 1日以上間隔が空いた時にログインをさせる仕組み
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">

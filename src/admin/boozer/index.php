@@ -7,6 +7,7 @@
   <title>menu</title>
 </head>
 <body>
+  <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <h2>掲載企業一覧</h2>
   <div>
     <img src="" alt="">
@@ -30,6 +31,6 @@
 
   <a href="./payment.php">明細確認</a>
   <a href="./students.php">学生情報</a>
-  
+  <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>
 </html>

@@ -7,6 +7,7 @@
   <title>Document</title>
 </head>
 <body>
+  <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <?php 
     $months = [1,2,3,4,5,6,7,8,9,10,11,12];
     foreach ($months as $key => $month) : ?>
@@ -41,5 +42,6 @@
       <span>お支払い期日: </span>
     </div>
   </div>
+  <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>
 </html>
