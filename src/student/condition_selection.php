@@ -10,7 +10,8 @@ if(isset($_POST["search"])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/index.css">
   <title>こだわり条件で絞り込む</title>
-  <link rel="stylesheet" href="student.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
@@ -37,8 +38,8 @@ if(isset($_POST["search"])) {
           </dl>
           <form action="./keep.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-            <button type="submit">キープする</button>
-            <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
+            <button type="submit" class="keepbtn">キープする</button>
+            <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
           </form>
         </a>
       </li>
@@ -58,8 +59,8 @@ if(isset($_POST["search"])) {
           </dl>
           <form action="./keep.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-            <button type="submit">キープする</button>
-            <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
+            <button type="submit" class="keepbtn">キープする</button>
+            <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
           </form>
         </a>
       </li>
@@ -79,8 +80,8 @@ if(isset($_POST["search"])) {
           </dl>
           <form action="./keep.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-            <button type="submit">キープする</button>
-            <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
+            <button type="submit" class="keepbtn">キープする</button>
+            <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
           </form>
         </a>
       </li>
@@ -138,80 +139,10 @@ if(isset($_POST["search"])) {
           <label from="2025Graduation">25卒</label>
         </div>
       </div>
-<<<<<<< HEAD
-      <button type="submit" class="searchbtn">検索</button>
-    </form>
-  </div>
-  <div>
-    <h1>絞り込み結果</h1>
-    <button class="exitbtn">✕</button>
-    <a href="./keep.php" class="keepbtn">キープ中の企業</a>
-    <ul>
-      <li>
-        <p><?php print_r($recommend_agent_name);?></p>
-        <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
-        <dl>
-          <dt>得意な業種</dt>
-          <dd><?php print_r($specialty_industry);?></dd>
-          <dt>対応エリア</dt>
-          <dd><?php print_r($supported_area);?></dd>
-          <dt>対象学生</dt>
-          <dd><?php print_r($target_student);?></dd>
-          <dt>対応企業の規模</dt>
-          <dd><?php print_r($supported_corporate_scale);?></dd>
-        </dl>
-        <form action="./keep.php" method="POST">
-          <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-          <button type="submit" class="keepbtn">キープする</button>
-          <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
-        </form>
-      </li>
-      <li>
-        <p><?php print_r($recommend_agent_name);?></p>
-        <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
-        <dl>
-          <dt>得意な業種</dt>
-          <dd><?php print_r($specialty_industry);?></dd>
-          <dt>対応エリア</dt>
-          <dd><?php print_r($supported_area);?></dd>
-          <dt>対象学生</dt>
-          <dd><?php print_r($target_student);?></dd>
-          <dt>対応企業の規模</dt>
-          <dd><?php print_r($supported_corporate_scale);?></dd>
-        </dl>
-        <form action="./keep.php" method="POST">
-          <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-          <button type="submit" class="keepbtn">キープする</button>
-          <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
-        </form>
-      </li>
-      <li>
-        <p><?php print_r($recommend_agent_name);?></p>
-        <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
-        <dl>
-          <dt>得意な業種</dt>
-          <dd><?php print_r($specialty_industry);?></dd>
-          <dt>対応エリア</dt>
-          <dd><?php print_r($supported_area);?></dd>
-          <dt>対象学生</dt>
-          <dd><?php print_r($target_student);?></dd>
-          <dt>対応企業の規模</dt>
-          <dd><?php print_r($supported_corporate_scale);?></dd>
-        </dl>
-        <form action="./keep.php" method="POST">
-          <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-          <button type="submit" class="keepbtn">キープする</button>
-          <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
-        </form>
-      </li>
-    </ul>
-  </div>
-=======
       <input type="submit" name="search" value = "検索">
     </form>
   </div>
   <?php endif; ?>
->>>>>>> 6911d71313e63132dcc6cd1b5e7f72ea6dd876ed
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
   <script src="./sudent.js"></script>
 </body>

@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/index.css">
   <title>キープ中のエージェンシー企業</title>
-  <link rel="stylesheet" href="student.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
   <!-- 

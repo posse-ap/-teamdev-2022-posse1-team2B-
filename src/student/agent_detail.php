@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/index.css">
   <title>Document</title>
-  <link rel="stylesheet" href="student.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
@@ -34,8 +35,9 @@
     </dl>
     <form action="./keep.php" method="POST">
       <!-- <input type="hidden" name="agent_id" value="<?php print($item['agent_id']);?>"> -->
-      <button type="submit">キープする</button>
-      <button type="submit" formaction="./contact.php">エージェンシー企業に問い合わせる</button>
+      <button type="submit" class="keepbtn"
+      >キープする</button>
+      <button type="submit" formaction="./contact.php" class="submitbtn">エージェンシー企業に問い合わせる</button>
     </form>  
   </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>

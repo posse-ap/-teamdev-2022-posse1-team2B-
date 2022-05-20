@@ -1,11 +1,24 @@
+/* マリア描いてくれたとこ */
+#contact {
+  cursor: default;
+}
+
+.contact_email_address {
+  display: none;
+}
+
+.show_contact {
+  display: block;
+}
+
 /* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
-.detailsbtn, .keepbtn, .searchbtn {
+.detailsbtn,
+.keepbtn,
+.searchbtn {
   background-color: #EFB448;
   border: none;
   padding: 3px 15px;
 }
-
-/* キープするボタン */
 
 /* お問い合わせボタン（オレンジ背景白文字 */
 .inquirybtn {
@@ -30,4 +43,112 @@
   width: 35px;
   border-radius: 50%;
   border: white;
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+/* HEADERFOOTERCSS!!! */
+header {
+  background-color: #66a29a;
+}
+
+/* craftby就活.com */
+.headertitle {
+  display: flex;
+  /* padding-right: 28%; */
+  justify-content: center;
+  padding: 10px;
+}
+
+.craft {
+  font-size: 50px;
+  font-weight: 550;
+  color: white;
+  margin-bottom: 0;
+}
+
+.craftby {
+  color: white;
+  font-size: 15px;
+  margin-top: 25px;
+  margin-bottom: 0;
+}
+
+.headertitle img {
+  height: 20px;
+  margin-top: 25px;
+  margin-bottom: 0;
+}
+
+/* ナビゲーション */
+.headernav ul {
+  display: flex;
+  list-style: none;
+}
+
+.headernav ul li {
+  width: 33%;
+  color: white;
+  text-align: center;
+  font-size: 15px;
+  padding: 3px
+}
+
+/* FOOTERでーす！ */
+footer {
+  background-color: #66a29a;
+  text-align: center;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+footer img {
+  height: 40px;
+  margin: 10px auto;
+}
+
+@media screen and (min-width:1024px) {
+  .headertitle {
+    height: 115px;
+  }
+
+  .craft {
+    font-size: 100px;
+    font-weight: 550;
+    color: white;
+    margin: 0;
+  }
+
+  .craftby {
+    color: white;
+    font-size: 20px;
+    margin-top: 70px;
+    margin-bottom: 0;
+  }
+
+  .headertitle img {
+    height: 30px;
+    margin-top: 70px;
+    margin-bottom: 0;
+  }
+
+  /* ナビゲーション */
+  .headernav ul {
+    display: flex;
+    list-style: none;
+  }
+
+  .headernav ul li {
+    width: 33%;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    padding: 8px;
+  }
+
+  /* パソコンFOOTERでーす！ */
+  footer img {
+    height: 40px;
+    margin: 10px auto;
+  }
 }

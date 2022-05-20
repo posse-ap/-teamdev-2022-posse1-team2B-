@@ -114,7 +114,8 @@ if (isset($_POST["contact"])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/index.css">
   <title>お問い合わせ入力</title>
-  <link rel="stylesheet" href="student.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/index.css">
 </head>
 
 <body>
@@ -183,8 +184,8 @@ if (isset($_POST["contact"])) {
         <p><?php echo $_POST["graduation_year"]; ?></p>
       </div>
     <!-- 入力した値を受け渡す -->
-    <button type="submit" name="btn_back" formaction="./contact.php">登録し直す</button>
-    <button type="submit" name="final_contact">完了</button>
+    <button type="submit" name="btn_back" formaction="./contact.php" class="returnbtn">登録し直す</button>
+    <button type="submit" name="final_contact" class="inquirybtn">完了</button>
     </form>
 
 
@@ -253,7 +254,7 @@ if (isset($_POST["contact"])) {
           <input type="text" name="graduation_year" id="graduationYear" maxlength="4" required>
         </div>
         <div>
-          <button>戻る</button>
+          <button class="returnbtn">戻る</button>
           <!-- ここの遷移がない -->
           <input type="submit" name="contact" value="エージェンシー企業に問い合わせる">
         </div>

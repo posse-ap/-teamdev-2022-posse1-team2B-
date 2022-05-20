@@ -11,7 +11,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="student.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
 <?php include (dirname(__FILE__) . "/student_header.php");?>
@@ -44,7 +45,7 @@
         <p>対応エリア</p>
         <form action="keep.php" method="POST">
           <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
-          <button type="submit">キープする</button>
+          <button type="submit" class="keepbtn">キープする</button>
         </form>
       </li>
       <li>        
@@ -53,7 +54,7 @@
         <p>対応エリア</p>
         <form action="keep.php" method="POST">
           <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
-          <button type="submit">キープする</button>
+          <button type="submit" class="keepbtn">キープする</button>
         </form>
       </li>
     </ol>
@@ -73,7 +74,7 @@
         echo $_POST["kyushu"];
       }
       ?>エリアのエージェンシー企業一覧</h1>
-    <a href="./index.php">✕</a>
+    <a href="./index.php" class="exitbtn">✕</a>
     <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
     <a href="./keep.php">キープ中の企業</a>
     <ol>
@@ -83,7 +84,7 @@
         <p>対応エリア</p>
         <form action="keep.php" method="POST">
           <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"])?>">
-          <button type="submit">キープする</button>
+          <button type="submit" class="keepbtn">キープする</button>
         </form>
     </li>
     <li>        
@@ -92,7 +93,7 @@
         <p>対応エリア</p>
         <form action="keep.php" method="POST">
           <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"])?>">
-          <button type="submit">キープする</button>
+          <button type="submit" class="keepbtn">キープする</button>
         </form>
     </li>
     </ol>
