@@ -252,7 +252,7 @@ if (isset($_POST["contact"])) {
           <input type="text" name="graduation_year" id="graduationYear" maxlength="4" required>
         </div>
         <div>
-          <button>戻る</button>
+          <!-- <button>戻る</button> -->
           <!-- ここの遷移がない -->
           <input type="submit" name="contact" value="エージェンシー企業に問い合わせる">
         </div>
