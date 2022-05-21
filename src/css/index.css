@@ -1,4 +1,3 @@
-
 /* マリア描いてくれたとこ */
 .contact {
   cursor: default;
@@ -25,10 +24,25 @@
   display: block;
 }
 
+/* ＜pagetitleのcss＞ */
 .pagetitle {
   text-align: center;
-  font-size: 25px;
+  font-size: 20px;
   margin: 15px auto;
+  display: flex;
+  align-items: center; /* 垂直中心 */
+  justify-content: center; /* 水平中心 */
+}
+.pagetitle:before, .pagetitle:after {
+  border-top: 1px solid;
+  content: "";
+  width: 3em; /* 線の長さ */
+}
+.pagetitle:before {
+  margin-right: 1em; /* 文字の右隣 */
+}
+.pagetitle:after {
+  margin-left: 1em; /* 文字の左隣 */
 }
 
 /* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
@@ -56,6 +70,12 @@
   padding: 3px 15px
 }
 
+/* ログイン（緑背景白文字） */
+.loginbtn, .agencybtn {
+  background-color: #66a29a;
+  color: white;
+}
+
 /* 閉じるボタン（バッテン！） */
 .exitbtn {
   background-color: white;
@@ -70,6 +90,19 @@
   background-color: #d21404;
   color: white;
   padding: 3px 5px;
+}
+
+.inputform div input, .inputbox { /*白い背景のテキストボックス*/
+  background-color: white;
+  margin: 10px 30px;
+}
+
+.half {
+  display: flex;
+}
+
+.half div input {
+  width: 120px;
 }
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
@@ -93,6 +126,7 @@ header {
   justify-content: center;
   padding: 10px;
   height: 80px;
+  align-items: baseline;
 }
 
 .craft {
@@ -105,14 +139,14 @@ header {
 .craftby {
   color: white;
   font-size: 15px;
-  margin-top: 25px;
-  margin-bottom: 0;
+  /* margin-top: 25px;
+  margin-bottom: 0; */
 }
 
 .headertitle img {
   height: 20px;
-  margin-top: 25px;
-  margin-bottom: 0;
+  /* margin-top: 25px;
+  margin-bottom: 0; */
 }
 
 /* ナビゲーション */
@@ -137,7 +171,6 @@ footer {
   position: fixed;
   width: 100%;
 }
-
 footer img {
   height: 20px;
   margin: 10px auto;
@@ -176,4 +209,11 @@ footer img {
     height: 40px;
     margin: 10px auto;
   }
+
+  /* ＜pagetitleのcss＞ */
+.pagetitle {
+  text-align: center;
+  font-size: 25px;
+  margin: 15px auto;
+}
 }

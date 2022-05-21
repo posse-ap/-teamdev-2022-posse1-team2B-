@@ -218,69 +218,79 @@ if (isset($_POST["contact"])) {
   <?PHP else : ?>
   <!-- 問い合わせ入力画面 -->
   <div class="main">
-    <h1>企業に問い合わせる</h1>
-    <div>申し込み先企業：
+    <h1 class="pagetitle">企業にお問い合わせ</h1>
+    <div class="agencybtn">申し込み先企業：
       <?php $agency ?>
     </div>
     <form action="contact.php" method="POST">
-      <div>
-        <label for="familyName">氏</label>
-        <input type="text" name="student_last_name" id="familyName" required>
-      </div>
-      <div>
-        <label for="studentName">名</label>
-        <input type="text" name="student_first_name" id="studentName" required>
-      </div>
-      <div>
-        <label for="familyNameKana">氏(カナルビ)</label>
-        <input type="text" name="student_last_name_kana" id="familyNameKana"
-          pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
-      </div>
-      <div>
-        <label for="studentNameKana">名(カナルビ)</label>
-        <input type="text" name="student_first_name_kana" id="studentNameKana"
-          pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
-      </div>
-      <div>
-        <label for="postNumber">郵便番号</label>
-        <input type="text" name="post_number" id="postNumber" maxlength="7" required>
-      </div>
-      <div>
-        <label for="prefecture">都道府県</label>
-        <input type="text" name="prefecture" id="prefecture" required>
-      </div>
-      <div>
-        <label for="prefecture">市区町村</label>
-        <input type="text" name="municipality" id="municipality" required>
-      </div>
-      <div>
-        <label for="adressNumber">番地</label>
-        <input type="text" name="adress_number" id="adress_number" required>
-      </div>
-      <div>
-        <label for="telephoneNumber">電話番号</label>
-        <input type="tel" name="tel_number" id="telephoneNumber" pattern="\d{2,4}-?\d{2,4}-?\d{3,4}" maxlength="11"
-          required>
-      </div>
-      <div>
-        <label for="emailAddress">メールアドレス</label>
-        <input type="email" name="email" id="emailAddress" required>
-      </div>
-      <div>
-        <label for="almaMater">出身大学</label>
-        <input type="text" name="college_name" id="almaMater" required>
-      </div>
-      <div>
-        <label for="faculty">学部</label>
-        <input type="text" name="undergraduate" id="faculty" required>
-      </div>
-      <div>
-        <label for="department">学科</label>
-        <input type="text" name="college_department" id="department" required>
-      </div>
-      <div>
-        <p>卒業年を選択</p>
-        <input type="text" name="graduation_year" id="graduationYear" maxlength="4" required>
+      <div class="inputform">
+        <div class="half">
+          <div>
+           <label for="familyName">氏</label>
+           <input type="text" name="student_last_name" id="familyName" required>
+          </div>
+          <div>
+            <label for="studentName">名</label>
+            <input type="text" name="student_first_name" id="studentName" required>
+          </div>
+        </div>
+        <div class="half">
+          <div>
+            <label for="familyNameKana">氏(カナルビ)</label>
+            <input type="text" name="student_last_name_kana" id="familyNameKana"
+            pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
+          </div>
+          <div>
+            <label for="studentNameKana">名(カナルビ)</label>
+            <input type="text" name="student_first_name_kana" id="studentNameKana"
+            pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
+          </div>
+        </div>
+        <div class="full">
+          <label for="postNumber">郵便番号</label>
+          <input type="text" name="post_number" id="postNumber" maxlength="7" required>
+        </div>
+        <div>
+          <label for="prefecture">都道府県</label>
+          <input type="text" name="prefecture" id="prefecture" required>
+        </div>
+        <div>
+          <label for="prefecture">市区町村</label>
+          <input type="text" name="municipality" id="municipality" required>
+        </div>
+        <div>
+          <label for="adressNumber">番地</label>
+          <input type="text" name="adress_number" id="adress_number" required>
+        </div>
+        <div>
+          <label for="telephoneNumber">電話番号</label>
+          <input type="tel" name="tel_number" id="telephoneNumber" pattern="\d{2,4}-?\d{2,4}-?\d{3,4}" maxlength="11"
+            required>
+        </div>
+        <div>
+          <label for="emailAddress">メールアドレス</label>
+          <input type="email" name="email" id="emailAddress" required>
+        </div>
+        <div class="half">
+          <div>
+            <label for="almaMater">出身大学</label>
+            <input type="text" name="college_name" id="almaMater" required>
+          </div>
+          <div>
+            <label for="faculty">学部</label>
+            <input type="text" name="undergraduate" id="faculty" required>
+          </div>
+        </div>
+        <div class="half">
+          <div>
+            <label for="department">学科</label>
+            <input type="text" name="college_department" id="department" required>
+          </div>
+          <div>
+            <p>卒業年を選択</p>
+            <input type="text" name="graduation_year" id="graduationYear" maxlength="4" required>
+          </div>
+        </div>
       </div>
       <div>
         <button class="returnbtn">戻る</button>
