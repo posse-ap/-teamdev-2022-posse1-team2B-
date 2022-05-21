@@ -6,7 +6,7 @@
   </div>
   <nav class="headernav">
     <ul>
-      <li id="contact">お問い合わせ</li>
+      <li id="contact" class="contact">お問い合わせ</li>
       <!-- <li id="request">エージェンシー企業向け</li> -->
       <li><a href="./keep.php">keep中の企業</a></li>
     </ul>
