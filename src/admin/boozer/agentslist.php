@@ -69,19 +69,13 @@ if(isset($_GET['agent_id'])){
           <input type="hidden" name="agent_id" value="<?php echo $agent['id']; ?>">
           <input type="submit" name="edit" value="編集">
           <input type='submit' formaction='delete.php' name='delete' value ='削除'>
-        </form><form method="POST" action="edit.php">
-          <img src="" alt="">
-          <h3><?=$agent['agent_name'] ?></h3>
-          <input type="hidden" name="agent_id" value="<?php echo $agent['id']; ?>">
-          <input type="submit" name="edit" value="編集">
-          <input type='submit' formaction='delete.php' name='delete' value ='削除'>
         </form>
       </a>
     </div>
+    <?php endforeach;?>
     <a href='javascript:history.back()'>戻る</a>
   </div>
   <?php 
-  endforeach;
   endif; 
   include (dirname(__FILE__) . "/boozer_footer.php");
   ?>
