@@ -1,17 +1,24 @@
 <?php
 require("../../dbconnect.php");
-// if(isset($_GET['id'])) {
-  if(isset($_POST['edit_completion'])){
+if(isset($_POST['edit_completion'])){
     $id = $_POST['agent_id'];
     echo $id;
     // トランザクション開始
     $db->beginTransaction();
     try {
       $new_agent_name = $_POST["new_agent_name"];
-      $stmt = $db->prepare('UPDATE agents SET agent_name = :new_agent_name WHERE id = :id');
+      $new_post_number = $_POST["new_post_number"];
+      $new_prefecture = $_POST["new_prefecture"];
+      $new_municipalitie = $_POST["new_municipalitie"];
+      $new_address_number = $_POST["new_address_number"];
+      $stmt = $db->prepare('UPDATE agents SET agent_name = :new_agent_name, post_number = :new_post_number, prefecture = :new_prefecture, municipalitie = :new_municipalitie, adress_number = :new_address_number WHERE id = :id');
       // $stmt = $db->prepare('UPDATE agents SET agent_name = :new_agent_name WHERE id = 1');
       $stmt->bindValue(':id', $id);
       $stmt->bindParam(':new_agent_name', $new_agent_name);
+      $stmt->bindParam(':new_post_number', $new_post_number);
+      $stmt->bindParam(':new_prefecture', $new_prefecture);
+      $stmt->bindParam(':new_municipalitie', $new_municipalitie);
+      $stmt->bindParam(':new_address_number', $new_address_number);
       $stmt->execute();
       $res = $db->commit();
       } catch(PDOException $e) {
@@ -28,7 +35,7 @@ require("../../dbconnect.php");
         <?php
         exit;
     }
-  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
