@@ -24,6 +24,11 @@
   display: block;
 }
 
+.pagetitle {
+  text-align: center;
+  font-size: 25px;
+  margin: 15px auto;
+}
 
 /* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
 .detailsbtn,
@@ -35,7 +40,7 @@
 }
 
 /* お問い合わせボタン（オレンジ背景白文字 */
-.inquirybtn, .submitbtn {
+.inquirybtn, .submitbtn, .editbtn {
   background-color: #EFB448;
   color: white;
   border: none;
@@ -60,6 +65,12 @@
   text-align: center;
 }
 
+.deletebtn { /*赤背景白文字*/
+  background-color: #d21404;
+  color: white;
+  padding: 3px 5px;
+}
+
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 body {
   background-color: #E5E5E5;
@@ -67,6 +78,7 @@ body {
 
 .main {
   padding: 15px 15px;
+  padding-bottom: 15px;
 }
 
 /* HEADERFOOTERCSS!!! */
@@ -108,7 +120,7 @@ header {
   list-style: none;
 }
 
-.headernav ul li, .headernav p {
+.headernav ul li, .headernav p, .headernav ul li a {
   width: 50%;
   color: white;
   text-align: center;

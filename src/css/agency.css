@@ -73,3 +73,8 @@
 .register {
   text-align: center;
 }
+
+/* ////BOOZER/// */
+.boozerindexinner {
+  display: flex;
+}
