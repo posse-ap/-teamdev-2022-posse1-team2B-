@@ -21,6 +21,7 @@ $agents = $stmt->fetchAll();
   <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <h2>掲載企業一覧</h2>
   <?php 
+  $counter = 0;
   foreach($agents as $agent): ?>
   <div>
     <form action="delete.php" method="POST">
@@ -36,6 +37,8 @@ $agents = $stmt->fetchAll();
     </form>
   </div>
   <?php 
+    if ($counter >= 2) {break;}
+    $counter++;
     endforeach;
   ?>
   <a href="./agentslist.php">企業一覧をもっと見る</a>
