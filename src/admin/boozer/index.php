@@ -25,11 +25,14 @@ $agents = $stmt->fetchAll();
     <form action="delete.php" method="POST">
       <img src="" alt="">
       <h3><?php echo $agent['agent_name']; ?></h3>
-      <a href="edit.php?id=<?php echo$agent['id']; ?>">編集</a>
+      <!-- <a href="edit.php?id=<?php echo$agent['id']; ?>">編集</a> -->
       <!-- <a href="edit.php?id=1">編集</a> -->
       <input type="hidden" name="agent_id" value="<?php echo $agent['id'];?>">
+      <input type="submit" name="edit" formaction="edit.php" value="エージェンシ―企業の掲載を編集">
       <input type="submit" name="delete" value="エージェンシ―企業の掲載を削除">
-      <!-- この削除は、データベースから削除って意味？それとも単に掲載を削除？ -->
+      <!-- この削除は、データベースから削除って意味？それとも単に掲載を削除？
+      →掲載を削除
+      -->
     </form>
   </div>
   <?php endforeach;?>
