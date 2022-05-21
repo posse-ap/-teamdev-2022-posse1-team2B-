@@ -92,17 +92,28 @@
   padding: 3px 5px;
 }
 
-.inputform div input, .inputbox { /*白い背景のテキストボックス*/
+/* inputの白い箱？のcss群です:) */
+.inputform {
+  /* text-align: center; */
+}
+.inputform label {
+  font-size: 20px;
+  margin: 10px 0px 0px 0px;
+  /* margin-top: 20px;
+  margin-bottom: 0px; */
+}
+.inputform div input, .inputbox { 
   background-color: white;
-  margin: 10px 30px;
+  height: 35px;
+  margin: 10px 20px;
+  text-align: center;
 }
 
-.half {
+.half { /*一行を半分に分けた場合のテキストボックス*/
   display: flex;
 }
-
 .half div input {
-  width: 120px;
+  width: 50%;
 }
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
