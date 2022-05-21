@@ -40,6 +40,7 @@ $agents = $stmt->fetchAll();
   <a href="./agentslist.php">企業一覧をもっと見る</a>
   <a href="./payment.php">明細確認</a>
   <a href="./students.php">学生情報</a>
+  <a href="./create_contents.php">エージェンシー企業の掲載内容を登録する</a>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
   <script src="boozer.js"></script>
 </body>
