@@ -44,23 +44,28 @@ if(isset($_POST['edit_completion'])){
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>edit</title>
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/index.css">
+  <link rel="stylesheet" href="../../css/agency.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/boozer_header.php");?>
-  <h2>掲載内容修正</h2>
-  <form action="" method="POST">
-    <dd>会社名</dd><dt><input type="text" name="new_agent_name"></dt>
-    <dd>郵便番号</dd><dt><input type="text" name="new_post_number" pattern="\d{3}-?\d{4}"></dt>
-    <dd>都道府県</dd><dt><input type="text" name="new_prefecture"></dt>
-    <dd>市区町村</dd><dt><input type="text" name="new_municipalitie"></dt>
-    <dd>町域・番地</dd><dt><input type="text" name="new_address_number"></dt>
-    <!-- <dd>掲載期間</dd><dt><input type="number" name=""></dt>
-          掲載期間、アイコン画像、備考→agentsテーブルに入ってないけど、どうする？-->
-    <!-- <dd>アイコン画像</dd><dt><input type="file" name="new_image"></dt> -->
-    <dd>備考</dd><dt><textarea name="new_remarks" id="" cols="30" rows="10"></textarea></dt>
-    <input type="hidden" name="agent_id" value= "<?php echo $_POST['agent_id']; ?>">
-    <input name="edit_completion" type="submit" value="修正完了">
-  </form>
+  <div class="main">
+    <h2 class="pagetitle">掲載内容修正</h2>
+    <form action="" method="POST">
+      <dd>会社名</dd><dt><input type="text" name="new_agent_name"></dt>
+      <dd>郵便番号</dd><dt><input type="text" name="new_post_number" pattern="\d{3}-?\d{4}"></dt>
+      <dd>都道府県</dd><dt><input type="text" name="new_prefecture"></dt>
+      <dd>市区町村</dd><dt><input type="text" name="new_municipalitie"></dt>
+      <dd>町域・番地</dd><dt><input type="text" name="new_address_number"></dt>
+      <!-- <dd>掲載期間</dd><dt><input type="number" name=""></dt>
+            掲載期間、アイコン画像、備考→agentsテーブルに入ってないけど、どうする？-->
+      <!-- <dd>アイコン画像</dd><dt><input type="file" name="new_image"></dt> -->
+      <dd>備考</dd><dt><textarea name="new_remarks" id="" cols="30" rows="10"></textarea></dt>
+      <input type="hidden" name="agent_id" value= "<?php echo $_POST['agent_id']; ?>">
+      <input class="submitbtn" name="edit_completion" type="submit" value="修正完了">
+    </form>
+  </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>
 </html>

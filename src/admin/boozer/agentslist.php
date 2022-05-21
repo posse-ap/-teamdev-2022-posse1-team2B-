@@ -26,6 +26,8 @@ if(isset($_GET['agent_id'])){
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>agentslist</title>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/index.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/boozer_header.php");
@@ -52,8 +54,8 @@ if(isset($_GET['agent_id'])){
           <?php endforeach;?>
         </dl>
         <input type="hidden" name="agent_id" value="<?php echo $agency[0]['id'];?>">
-        <input type="submit" name="edit" value="エージェンシ―企業の掲載を編集">
-        <input type="submit" name="delete" formaction="delete.php"  value="エージェンシ―企業の掲載を削除">
+        <input class="editbtn" type="submit" name="edit" value="エージェンシ―企業の掲載を編集">
+        <input  class="deletebtn" type="submit" name="delete" formaction="delete.php"  value="エージェンシ―企業の掲載を削除">
       </form>
       <a href='javascript:history.back()'>戻る</a>
   </div>

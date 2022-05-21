@@ -27,7 +27,8 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="./agency.css">
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/index.css">
 </head>
 <body>
 <?php 
@@ -35,7 +36,7 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
   if ($page_flag === 1):
 ?>
     <!-- 確認画面 -->
-    <div>
+    <div class="main">
         <p>本当に取り消し申請を行いますか？</p>
         <p>いたずら・迷惑行為とみなされたお問い合わせのみ取り消されます。</p>
       <!-- 入力した値を受け渡す -->

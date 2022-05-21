@@ -113,7 +113,8 @@ if (isset($_POST["contact"])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>お問い合わせ入力</title>
-  <link rel="stylesheet" href="student.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/index.css">
 </head>
 
 <body>
@@ -122,79 +123,104 @@ if (isset($_POST["contact"])) {
   if ($page === 1) :
   ?>
     <!-- 確認画面 -->
-    <div>
-      <h1>こちらの内容で登録いたしました！</h1>
-      <form method="POST" action="../thanks.php">
+  <div class="main">
+    <h1>こちらの内容で登録いたしました！</h1>
+    <form method="POST" action="../thanks.php">
       <div>
         <label>氏</label>
-        <p> <?php echo $_POST["student_last_name"]; ?></p>
+        <p>
+          <?php echo $_POST["student_last_name"]; ?>
+        </p>
       </div>
       <div>
         <label>名</label>
-        <p><?php echo $_POST["student_first_name"]; ?></p>
+        <p>
+          <?php echo $_POST["student_first_name"]; ?>
+        </p>
       </div>
       <div>
         <label>氏(カナルビ)</label>
-        <p><?php echo $_POST["student_last_name_kana"]; ?></p>
+        <p>
+          <?php echo $_POST["student_last_name_kana"]; ?>
+        </p>
       </div>
       <div>
         <label>名(カナルビ)</label>
-        <p><?php echo $_POST["student_first_name_kana"]; ?></p>
+        <p>
+          <?php echo $_POST["student_first_name_kana"]; ?>
+        </p>
       </div>
       <div>
         <label>郵便番号</label>
-        <p><?php echo $_POST["post_number"]; ?></p>
+        <p>
+          <?php echo $_POST["post_number"]; ?>
+        </p>
       </div>
       <div>
         <label>都道府県</label>
-        <p><?php echo $_POST["prefecture"]; ?></p>
+        <p>
+          <?php echo $_POST["prefecture"]; ?>
+        </p>
       </div>
       <div>
         <label>市区町村</label>
-        <p><?php echo $_POST["municipality"]; ?></p>
+        <p>
+          <?php echo $_POST["municipality"]; ?>
+        </p>
       </div>
       <div>
         <label>番地</label>
-        <p><?php echo $_POST["adress_number"]; ?></p>
+        <p>
+          <?php echo $_POST["adress_number"]; ?>
+        </p>
       </div>
       <div>
         <label>電話番号</label>
-        <p><?php echo $_POST["tel_number"]; ?></p>
+        <p>
+          <?php echo $_POST["tel_number"]; ?>
+        </p>
       </div>
       <div>
         <label>メールアドレス</label>
-        <p><?php echo $_POST["email"]; ?></p>
+        <p>
+          <?php echo $_POST["email"]; ?>
+        </p>
       </div>
       <div>
         <label>出身大学</label>
-        <p><?php echo $_POST["college_name"]; ?></p>
+        <p>
+          <?php echo $_POST["college_name"]; ?>
+        </p>
       </div>
       <div>
         <label>学部</label>
-        <p><?php echo $_POST["undergraduate"]; ?></p>
+        <p>
+          <?php echo $_POST["undergraduate"]; ?>
+        </p>
       </div>
       <div>
         <label>学科</label>
-        <p><?php echo $_POST["college_department"]; ?></p>
+        <p>
+          <?php echo $_POST["college_department"]; ?>
+        </p>
       </div>
       <div>
         <label>卒業年</label>
-        <p><?php echo $_POST["graduation_year"]; ?></p>
+        <p>
+          <?php echo $_POST["graduation_year"]; ?>
+        </p>
       </div>
-    <!-- 入力した値を受け渡す -->
-    <button type="submit" name="btn_back" formaction="./contact.php">登録し直す</button>
-    <button type="submit" name="final_contact">完了</button>
+      <!-- 入力した値を受け渡す -->
+      <button type="submit" name="btn_back" formaction="./contact.php" class="returnbtn">登録し直す</button>
+      <button type="submit" name="final_contact" class="inquirybtn">完了</button>
     </form>
-
-
-    </div>
+  </div>
   <?PHP else : ?>
     <!-- 問い合わせ入力画面 -->
-    <div>
+    <div class="main">
       <h1>企業に問い合わせる</h1>
       <div>申し込み先企業：<?php $agency ?></div>
       <form action="contact.php" method="POST">
-
         <div>
           <label for="familyName">氏</label>
           <input type="text" name="student_last_name" id="familyName" required>
@@ -254,21 +280,21 @@ if (isset($_POST["contact"])) {
         <div>
           <!-- <button>戻る</button> -->
           <!-- ここの遷移がない -->
-          <input type="submit" name="contact" value="エージェンシー企業に問い合わせる">
+          <input class="inquirybtn" type="submit" name="contact" value="エージェンシー企業に問い合わせる">
         </div>
       </form>
       <?php
       if (isset($_POST["btn_back"])) {
         // 戻るが押されたとき
         echo ('<form action="condition_selection.php" method="get">
-      <button type="submit" name="back">戻る</button>
-  </form>');
+      <button type="submit" name="back" class="returnbtn">戻る</button>
+      </form>');
       } else {
-        echo ('<a href=' . '"javascript:history.back()"' . '>戻る</a>');
+        echo ('<a class="returnbtn" href=' . '"javascript:history.back()"' . '>戻る</a>');
       }
       ?>
       <!-- これがデフォで表示されている
-    何用だ！！！！！！！！！！！！！！！！！！！！！！！！！！ -->
+      何用だ！！！！！！！！！！！！！！！！！！！！！！！！！！ -->
     </div>
   <?php endif;
   include(dirname(__FILE__) . "/student_footer.php");

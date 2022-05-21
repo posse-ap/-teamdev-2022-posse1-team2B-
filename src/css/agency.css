@@ -1,0 +1,80 @@
+#contact {
+  cursor: default;
+}
+.contact_email_address {
+  display: none;
+}
+
+/* .student_detail {
+  display: none;
+} */
+.student_information {
+  text-decoration: none;  /* 寡占を失くす */
+  color: black;  /* 文字の色が青くならないようにする */
+}
+
+.show_contents {
+  display: block;
+}
+
+/* しほ加えたとこ */
+
+.pagetitle {
+  text-align: center;
+  font-size: 25px;
+  margin: 15px auto;
+}
+
+/* top画面 */
+.topbuttons {
+  display: flex;
+  margin-top: 150px;
+}
+
+/* 新規会員登録（オレンジ背景白文字 */
+.newaccountbtn, .loginbtn{
+  background-color: #EFB448;
+  color: white;
+  font-size: 20px;
+  border: none;
+  padding: 20px 35px;
+  margin: 20px auto;
+  position: center;
+}
+
+/* ログイン（緑背景白文字） */
+.loginbtn {
+  background-color: #66a29a;
+}
+
+/* account画面 */
+.inputbox { /*白い背景のテキストボックス*/
+  background-color: white;
+  margin: 10px 30px;
+}
+
+.full { /*テキストボックスが横長*/
+  width: 1200px;
+
+}
+
+.must {
+  background-color: #d21404;
+  color: white;
+  padding: 3px 5px;
+}
+
+.accountlabels div label { /*account記入項目の記載*/
+  font-size: 20px;
+  margin: 10px 30px;
+  margin-top: 20px;
+}
+
+.register {
+  text-align: center;
+}
+
+/* ////BOOZER/// */
+.boozerindexinner {
+  display: flex;
+}

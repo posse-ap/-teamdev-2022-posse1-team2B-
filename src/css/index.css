@@ -1,0 +1,179 @@
+
+/* マリア描いてくれたとこ */
+.contact {
+  cursor: default;
+}
+
+.contact_email_address {
+  display: none;
+}
+
+.show_contact {
+  display: block;
+}
+
+/* まりあが描いてくれたもとagency.css */
+/* .student_detail {
+  display: none;
+} */
+.student_information {
+  text-decoration: none;  /* 寡占を失くす */
+  color: black;  /* 文字の色が青くならないようにする */
+}
+
+.show_contents {
+  display: block;
+}
+
+.pagetitle {
+  text-align: center;
+  font-size: 25px;
+  margin: 15px auto;
+}
+
+/* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
+.detailsbtn,
+.keepbtn,
+.searchbtn {
+  background-color: #EFB448;
+  border: none;
+  padding: 3px 15px;
+}
+
+/* お問い合わせボタン（オレンジ背景白文字 */
+.inquirybtn, .submitbtn, .editbtn {
+  background-color: #EFB448;
+  color: white;
+  border: none;
+  padding: 3px 15px
+}
+
+/* 戻るボタン（緑背景白文字） */
+.returnbtn {
+  background-color: #96D2C4;
+  color: white;
+  border: none;
+  padding: 3px 15px
+}
+
+/* 閉じるボタン（バッテン！） */
+.exitbtn {
+  background-color: white;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: white;
+  text-align: center;
+}
+
+.deletebtn { /*赤背景白文字*/
+  background-color: #d21404;
+  color: white;
+  padding: 3px 5px;
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+body {
+  background-color: #E5E5E5;
+}
+
+.main {
+  padding: 15px 15px;
+  padding-bottom: 15px;
+}
+
+/* HEADERFOOTERCSS!!! */
+header {
+  background-color: #66a29a;
+}
+
+/* craftby就活.com */
+.headertitle {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  height: 80px;
+}
+
+.craft {
+  font-size: 50px;
+  font-weight: 550;
+  color: white;
+  margin-bottom: 0;
+}
+
+.craftby {
+  color: white;
+  font-size: 15px;
+  margin-top: 25px;
+  margin-bottom: 0;
+}
+
+.headertitle img {
+  height: 20px;
+  margin-top: 25px;
+  margin-bottom: 0;
+}
+
+/* ナビゲーション */
+.headernav ul {
+  display: flex;
+  list-style: none;
+}
+
+.headernav ul li, .headernav p, .headernav ul li a {
+  width: 50%;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  padding: 3px
+}
+
+/* FOOTERでーす！ */
+footer {
+  background-color: #66a29a;
+  text-align: center;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+footer img {
+  height: 20px;
+  margin: 10px auto;
+}
+
+@media screen and (min-width:1024px) {
+  .headertitle {
+    height: 115px;
+  }
+
+  .craft {
+    font-size: 100px;
+    font-weight: 550;
+    margin: 0;
+  }
+
+  .craftby {
+    font-size: 20px;
+    margin-top: 70px;
+  }
+
+  .headertitle img {
+    height: 30px;
+    margin-top: 70px;
+    margin-bottom: 0;
+  }
+
+  /* ナビゲーション */
+  .headernav ul li {
+    font-size: 20px;
+    padding: 8px;
+  }
+
+  /* パソコンFOOTERでーす！ */
+  footer img {
+    height: 40px;
+    margin: 10px auto;
+  }
+}

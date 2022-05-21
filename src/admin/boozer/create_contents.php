@@ -44,28 +44,32 @@ if(isset($_POST['create'])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>新規作成</title>
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/index.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/boozer_header.php");?>
-  <h2>エージェンシー企業の掲載情報を登録をする</h2>
-  <p>※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
-  <form action="" method="POST">
-    <dl>
-      <dd>会社名</dd><dt><input name='name' type="text" required></dt>
-      <dd>企業サイトのURL</dd><dt><input name='url' type="text" required></dt>
-      <dd>通知先メールアドレス</dd><dt><input name='notification_email' type='email' required></dt>
-      <dd>電話番号</dd><dt><input name='tel_number' type='tel' required></dt>
-      <dd>郵便番号</dd><dt><input name='post_number' type="text" required></dt>
-      <dd>都道府県</dd><dt><input name='prefecture' type="text" required></dt>
-      <dd>市区町村</dd><dt><input name='municipalitie' type="text" required></dt>
-      <dd>町域・番地</dd><dt><input name='address_number' type="text" required></dt>
-      <dd>特異な業種</dd><dt><input name='category' type='text' required></dt>
-      <!-- <dd>掲載期間</dd><dt><input name='post_period' type="number"></dt> -->
-      <!-- <dd>アイコン画像</dd><dt><input name='image' type="file"></dt> -->
-      <!-- <dd>備考</dd><dt><textarea name="" id="" cols="30" rows="10"></textarea></dt> -->
-    </dl>
-    <input type='submit' name='create' value ='新規作成'>
-  </form>
+  <div class="main">
+    <h2 class="pagetitle">エージェンシー企業の掲載情報を登録をする</h2>
+    <p>※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
+    <form action="" method="POST">
+      <dl>
+        <dd>会社名</dd><dt><input name='name' type="text" required></dt>
+        <dd>企業サイトのURL</dd><dt><input name='url' type="text" required></dt>
+        <dd>通知先メールアドレス</dd><dt><input name='notification_email' type='email' required></dt>
+        <dd>電話番号</dd><dt><input name='tel_number' type='tel' required></dt>
+        <dd>郵便番号</dd><dt><input name='post_number' type="text" required></dt>
+        <dd>都道府県</dd><dt><input name='prefecture' type="text" required></dt>
+        <dd>市区町村</dd><dt><input name='municipalitie' type="text" required></dt>
+        <dd>町域・番地</dd><dt><input name='address_number' type="text" required></dt>
+        <dd>特異な業種</dd><dt><input name='category' type='text' required></dt>
+        <!-- <dd>掲載期間</dd><dt><input name='post_period' type="number"></dt> -->
+        <!-- <dd>アイコン画像</dd><dt><input name='image' type="file"></dt> -->
+        <!-- <dd>備考</dd><dt><textarea name="" id="" cols="30" rows="10"></textarea></dt> -->
+      </dl>
+      <input class="submitbtn" type='submit' name='create' value ='新規作成'>
+    </form>
+  </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>
 </html>
