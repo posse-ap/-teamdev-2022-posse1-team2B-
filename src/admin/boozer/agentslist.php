@@ -24,19 +24,11 @@ $stmt = $db->prepare('select * from agents');
   <h2>掲載企業一覧</h2>
   <?php foreach ($agents as $index => $agent) : ?>
   <div>
-    <?php
-      $stmt = $db->prepare('SELECT agent_name FROM agents WHERE id = :id');
-      $stmt->bindValue(':id', $index+1);
-      $stmt->execute();
-      $agent_id = $stmt->fetchAll();
-      var_dump($agent_id[0]["agent_name"]);
-    ?>
     <!-- <a href="./edit.php?agent_name=<?php //echo $index + 1; ?>"> -->
-    <form method="GET" action="edit.php">
+    <form method="POST" action="edit.php">
       <img src="" alt="">
       <h3><?=$agent['agent_name'] ?></h3>
-      <!-- <a href="edit.php">編集</a> -->
-      <input type="hidden" name="id" value="<?php Echo $index+1; ?>">
+      <input type="hidden" name="agent_id" value="<?php Echo $index+1; ?>">
       <input type="submit" name="edit" value="編集">
       <input type='submit' formaction='delete.php' name='delete' value ='削除'>
     <!-- </a> -->
