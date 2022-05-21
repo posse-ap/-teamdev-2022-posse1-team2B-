@@ -43,9 +43,18 @@
   width: 35px;
   border-radius: 50%;
   border: white;
+  text-align: center;
 }
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+body {
+  background-color: #E5E5E5;
+}
+
+.main {
+  padding: 10px 10px;
+}
+
 /* HEADERFOOTERCSS!!! */
 header {
   background-color: #66a29a;
@@ -54,9 +63,9 @@ header {
 /* craftby就活.com */
 .headertitle {
   display: flex;
-  /* padding-right: 28%; */
   justify-content: center;
   padding: 10px;
+  height: 80px;
 }
 
 .craft {
@@ -86,10 +95,10 @@ header {
 }
 
 .headernav ul li {
-  width: 33%;
+  width: 50%;
   color: white;
   text-align: center;
-  font-size: 15px;
+  font-size: 18px;
   padding: 3px
 }
 
@@ -103,7 +112,7 @@ footer {
 }
 
 footer img {
-  height: 40px;
+  height: 20px;
   margin: 10px auto;
 }
 
@@ -115,15 +124,12 @@ footer img {
   .craft {
     font-size: 100px;
     font-weight: 550;
-    color: white;
     margin: 0;
   }
 
   .craftby {
-    color: white;
     font-size: 20px;
     margin-top: 70px;
-    margin-bottom: 0;
   }
 
   .headertitle img {
@@ -133,16 +139,8 @@ footer img {
   }
 
   /* ナビゲーション */
-  .headernav ul {
-    display: flex;
-    list-style: none;
-  }
-
   .headernav ul li {
-    width: 33%;
-    color: white;
-    text-align: center;
-    font-size: 15px;
+    font-size: 20px;
     padding: 8px;
   }
 
