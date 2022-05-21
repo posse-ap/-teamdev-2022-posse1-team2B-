@@ -1,4 +1,4 @@
-/* マリア描いてくれたとこ */
+/* マリア描いてくれたとこ元student.css */
 #contact {
   cursor: default;
 }
@@ -11,6 +11,20 @@
   display: block;
 }
 
+/* まりあが描いてくれたもとagency.css */
+/* .student_detail {
+  display: none;
+} */
+.student_information {
+  text-decoration: none;  /* 寡占を失くす */
+  color: black;  /* 文字の色が青くならないようにする */
+}
+
+.show_contents {
+  display: block;
+}
+
+
 /* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
 .detailsbtn,
 .keepbtn,
@@ -21,7 +35,7 @@
 }
 
 /* お問い合わせボタン（オレンジ背景白文字 */
-.inquirybtn {
+.inquirybtn, .submitbtn {
   background-color: #EFB448;
   color: white;
   border: none;
@@ -52,7 +66,7 @@ body {
 }
 
 .main {
-  padding: 10px 10px;
+  padding: 15px 15px;
 }
 
 /* HEADERFOOTERCSS!!! */
@@ -94,7 +108,7 @@ header {
   list-style: none;
 }
 
-.headernav ul li {
+.headernav ul li, .headernav p {
   width: 50%;
   color: white;
   text-align: center;
