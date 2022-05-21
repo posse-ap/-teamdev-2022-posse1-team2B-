@@ -3,7 +3,7 @@
 let contact = document.getElementById("contact");
 let contactEmailAddress = document.getElementById("contactEmailAddress");
 let closeButton = document.getElementById("closeButton");
-let request = document.getElementById("request");
+// let request = document.getElementById("request");
 let it = document.getElementById("it");
 
 
@@ -11,10 +11,10 @@ let it = document.getElementById("it");
 contact.addEventListener("click", function() {
   contactEmailAddress.classList.add("show_contact");
 });
-// ヘッダーのエージェンシー企業向け掲載依頼をクリックした時の処理
-request.addEventListener("click", function(){
-  contactEmailAddress.classList.add("show_contact");
-})
+// // ヘッダーのエージェンシー企業向け掲載依頼をクリックした時の処理
+// request.addEventListener("click", function(){
+//   contactEmailAddress.classList.add("show_contact");
+// })
 // ✕ボタンをクリックした時の処理
 closeButton.addEventListener("click", function() {
   contactEmailAddress.classList.remove("show_contact");
