@@ -4,7 +4,7 @@ for(let i = 0; i < student_list.length; i++) {
   student_list[i].addEventListener('click', function() {
     studentInformation.style.display = "block";
 })}  
-for(let i = 0; i < studentList.length; i++) {
+for(let i = 0; i < student_list.length; i++) {
 let closeButton = document.getElementById("closeButton");
 closeButton.addEventListener("click", function() {
   studentInformation.style.display = "none";

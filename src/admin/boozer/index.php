@@ -20,13 +20,13 @@ $agents = $stmt->fetchAll();
 <body>
   <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <h2>掲載企業一覧</h2>
-  <?php foreach($agents as $agent): ?>
+  <?php 
+  foreach($agents as $agent): ?>
   <div>
     <form action="delete.php" method="POST">
       <img src="" alt="">
       <h3><?php echo $agent['agent_name']; ?></h3>
       <!-- <a href="edit.php?id=<?php echo$agent['id']; ?>">編集</a> -->
-      <!-- <a href="edit.php?id=1">編集</a> -->
       <input type="hidden" name="agent_id" value="<?php echo $agent['id'];?>">
       <input type="submit" name="edit" formaction="edit.php" value="エージェンシ―企業の掲載を編集">
       <input type="submit" name="delete" value="エージェンシ―企業の掲載を削除">
@@ -35,7 +35,9 @@ $agents = $stmt->fetchAll();
       -->
     </form>
   </div>
-  <?php endforeach;?>
+  <?php 
+    endforeach;
+  ?>
   <a href="./agentslist.php">企業一覧をもっと見る</a>
   <a href="./payment.php">明細確認</a>
   <a href="./students.php">学生情報</a>

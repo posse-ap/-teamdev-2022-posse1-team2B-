@@ -3,11 +3,22 @@ require("../../dbconnect.php");
 
 
 $stmt = $db->prepare('select * from agents');
-// $stmt->bindValue(':agent_id', $agent['id']);
-  // bindevalueの１が？の１個めってこと。これがあれば何個でもはてなつけられる！1,2とかだとわかりにくいから、「:agent_id」を設定する
-  $stmt->execute();
-  $agents = $stmt->fetchAll();
+$stmt->execute();
+$agents = $stmt->fetchAll();
 
+$page_flag = 0;
+if(isset($_GET['agent_id'])){
+  $page_flag = 1;
+  $id = $_GET['agent_id'];
+  $stmt = $db->prepare('SELECT * FROM agents WHERE id = :agent_id');
+  $stmt->bindValue(':agent_id', $id);
+  $stmt->execute();
+  $agency = $stmt->fetchAll();
+  $stmt = $db->prepare('SELECT * FROM managers WHERE agent_id = :agent_id');
+  $stmt->bindValue(':agent_id', $id);
+  $stmt->execute();
+  $managers = $stmt->fetchAll();
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,33 +31,57 @@ $stmt = $db->prepare('select * from agents');
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-  <?php include (dirname(__FILE__) . "/boozer_header.php");?>
+  <?php include (dirname(__FILE__) . "/boozer_header.php");
+    if($page_flag === 1): ?>
+  <h2>エージェンシー企業の詳細情報</h2>
+  <div>
+    <form method="POST" action="edit.php">
+      <img src="" alt="">
+      <h3><?=$agency[0]['agent_name'] ?></h3>
+      <dt>会社住所</dt>
+      <dd><?= $agency[0]['post_number'], $agency[0]['prefecture'], $agency[0]['municipalitie'], $agency[0]['adress_number']?></dd>
+      <dt>電話番号</dt></dt>
+      <dd><?= $agency[0]['tel_number']?></dd>
+      <dt>得意な業界</dt>
+      <dd><?= $agency[0]['category'] ?></dd>
+      <dt>登録日次</dt>
+      <dd><?= $agency[0]['created_at'] ?></dd>
+      <dt>更新日次</dt>
+      <dd><?= $agency[0]['updated_at'] ?></dd>
+      <dt>登録エージェント</dt>
+      <?php foreach($managers as $index => $manager): ?>
+        <dd><?= $manager['manager_last_name'], $manager['manager_first_name']?></dd>
+      <?php endforeach;?>
+      <input type="hidden" name="agent_id" value="<?php echo $agency[0]['id'];?>">
+      <input type="submit" name="edit" value="エージェンシ―企業の掲載を編集">
+      <input type="submit" name="delete" formaction="delete.php"  value="エージェンシ―企業の掲載を削除">
+    </form>
+    <a href='javascript:history.back()'>戻る</a>
+  </div>
+  <?php
+  else:?>
   <h2>掲載企業一覧</h2>
   <?php foreach ($agents as $index => $agent) : ?>
   <div>
-    <!-- <a href="./edit.php?agent_name=<?php //echo $index + 1; ?>"> -->
-    <form method="POST" action="edit.php">
-      <img src="" alt="">
-      <h3><?=$agent['agent_name'] ?></h3>
-      <input type="hidden" name="agent_id" value="<?php Echo $index+1; ?>">
-      <input type="submit" name="edit" value="編集">
-      <input type='submit' formaction='delete.php' name='delete' value ='削除'>
-    <!-- </a> -->
-    </form>
+    <a href='./agentslist.php?agent_id=<?php echo $agent['id'];?>'>
+      <form method="POST" action="edit.php">
+        <img src="" alt="">
+        <h3><?=$agent['agent_name'] ?></h3>
+        <input type="hidden" name="agent_id" value="<?php echo $agent[$index]['agent_id']; ?>">
+        <input type="submit" name="edit" value="編集">
+        <input type='submit' formaction='delete.php' name='delete' value ='削除'>
+      </form><form method="POST" action="edit.php">
+        <img src="" alt="">
+        <h3><?=$agent['agent_name'] ?></h3>
+        <input type="hidden" name="agent_id" value="<?php echo $agent[$index]['agent_id']; ?>">
+        <input type="submit" name="edit" value="編集">
+        <input type='submit' formaction='delete.php' name='delete' value ='削除'>
+      </form>
+    </a>
   </div>
-  <?php endforeach; ?>
+  <?php endforeach;
+  endif;
+  ?>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>
 </html>
-
-<!-- Ajax
-編集をクリックしたらモーダルを出す
-編集というボタンにIDをもたせて、非同期処理でエージェント情報を引っ張ってくる
-＜もって着方＞
-phpをhtmlで出すってことを今まではしていた
-代わりに、phpでジェイソン(編集にあるIDに紐づくエージェント情報を整形して、ジェイソン形式で返す)を返すようにしてあげる
-
-それをAPIで呼び出せるようにしておいて、それに対してクリックしたらFetchを使って呼び出して、モーダルで表示してみる
-
-Slackでも！！！！！！！！！！！！ -->
-
