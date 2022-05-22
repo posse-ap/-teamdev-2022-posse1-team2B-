@@ -46,7 +46,7 @@
           <p>対応エリア</p>
           <form action="keep.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
-            <button type="submit" class="keepbtn">キープする</button>
+            <button type="submit" name="keep" class="keepbtn">キープする</button>
           </form>
         </li>
         <li>        
@@ -55,7 +55,7 @@
           <p>対応エリア</p>
           <form action="keep.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
-            <button type="submit" class="keepbtn">キープする</button>
+            <button type="submit" name="keep" class="keepbtn">キープする</button>
           </form>
         </li>
       </ol>
@@ -85,7 +85,7 @@
           <p>対応エリア</p>
           <form action="keep.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"])?>">
-            <button type="submit" class="keepbtn">キープする</button>
+            <button type="submit" name ="keep" class="keepbtn">キープする</button>
           </form>
       </li>
       <li>        
@@ -94,7 +94,7 @@
           <p>対応エリア</p>
           <form action="keep.php" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"])?>">
-            <button type="submit" class="keepbtn">キープする</button>
+            <button type="submit" name="keep" class="keepbtn">キープする</button>
           </form>
       </li>
       </ol>

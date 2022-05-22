@@ -1,17 +1,17 @@
 <?php 
 require("../dbconnect.php");
 session_start();
-$cart = array();
-if(isset($_POST['keep'])) {
+//POSTデータをカート用のセッションに保存
+if($_SERVER['REQUEST_METHOD']==='POST'){
   $agent_id = $_POST['agent_id'];
-  $stmt = $db->prepare('SELECT * FROM agents WHERE id = :agent_id');
-  
-  $stmt->execute();
-  $agents = $stmt->fetchAll();
+  $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
 }
+$keeps=array();
+if(isset($_SESSION['keep'])){
+$keeps=$_SESSION['keep'];
+}
+var_dump($keeps);
 ?>
-
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -23,49 +23,62 @@ if(isset($_POST['keep'])) {
   <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-  <!-- 
-    ・キープを押した時点でエージェントさんのIDをセッションとかに保存する
-→IDを元に企業の情報をデータベースから持ってくる
-    ・セッションストレージ→ブラウザにデータを保存
-  →Aさんがキープしたっていう情報は個々のブラウザに保存される
-→キャッシュみたいなもの
-・ブラウザ側に情報を持ってもらって、その人が何の情報を保存したかを種痘できる
-→セッションで保存されたエージェントのIDを利用してエージェントの情報を出力する
-・クッキーとかもある
-
-・セッションについての記事
-→https://developer.mozilla.org/ja/docs/Web/API/Window/sessionStorage
-→情報を取得SET,GET,REMOVE
-
--->
   <?php include (dirname(__FILE__) . "/student_header.php");
-  if(count($carts) > 0): ?>
+  ?>
   <div class="main">
     <h1>キープ中のエージェンシー企業</h1>
-      <div>
-        <li>
-          <a href="./agent_detail.php">
-            <p><?php print_r($keep_agent["name"]);?></p>
-            <dl>
-              <dt>得意な業種</dt>
-              <dd><?php print_r($keep_agent["industry"]);?></dd>
-              <dt>対応エリア</dt>
-              <dd><?php print_r($keep_agent["supported_area"]);?></dd>
-              <dt>対象学生</dt>
-              <dd><?php print_r($keep_agent["target_student"]);?></dd>
-              <dt>対応企業の規模</dt>
-              <dd><?php print_r($keep_agent["corporate_scale"]);?></dd>
-              <dt>備考</dt>
-              <dd><?php print_r($keep_agent["remarks"]);?></dd>
-            </dl>
-          </a>
-        </li>
-        <form action="./contact.php" method="POST">
-          <input type="hidden" name="agent_id" value="<?php print($agent['agent_id']);?>">
-          <button type="submit" class="inquirybtn">エージェンシー企業に問い合わせる</button>
-        </form>
-      </div> 
-        <a href='javascript:history.back()' class="returnbtn">戻る</a>
+    <?php if(count($keeps) > 0): ?>
+      <table>
+        <a href="./agent_detail.php">
+          <thead>
+            <tr>
+              <th>エージェンシー企業名</th>
+              <th>得意な業種</th>
+              <th>対応エリア</th>
+              <th>対象学生</th>
+              <th>対応企業の規模</th>
+              <!-- <th>備考</th> -->
+            </tr>
+          </thead>  
+          <tbody>
+            <?php foreach($keeps as $keep){
+              $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
+              bindValue(':id', $keep);
+              $stmt->execute();
+              $agent = $stmt->fetch();
+            ?>
+            <tr>
+              <td><?php print($agent['agent_name']); ?></td>
+              <td><?php print($agent['industry']); ?></td>
+              <td><?php print($agent['supported_area']); ?></td>
+              <td><?php print($agent['target_student']); ?></td>
+              <td><?php print($agent['corporate_scale']); ?></td>
+              <td><?php //print($agent['remarks']); ?></td>
+              <td>
+                <form method="POST" action="">
+                  <input type="submit" value="削除">
+                  <input type="hidden" name="keep_id" value="<?php print($keep['agent_id']); ?>">
+                </form>
+              </td>
+            </tr>
+            <?php } ?>
+          </tbody>
+        </a>
+    </table>
+    <form action="./contact.php" method="POST">
+      <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+      <button type="submit" class="inquirybtn">エージェンシー企業に問い合わせる</button>
+    </form>
+    <form action="" method="POST">
+      <input type="hidden" name="kind" value="delete">
+      <input type="hidden" name="product" value="<?php echo $key;?>">
+      <input type="submit" value="削除">
+      </input>
+    </form>
+    <?php else: ?>
+      <p>キープしてるエージェンシー企業はありません。</p>
+    <?php endif;?>
+    <a href='javascript:history.back()' class="returnbtn">戻る</a>
   </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
   <script src="./student.js"></script>

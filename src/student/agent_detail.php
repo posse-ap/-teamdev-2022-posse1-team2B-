@@ -47,7 +47,7 @@
         </dl>
         <form action="./keep.php" method="POST">
           <!-- <input type="hidden" name="agent_id" value="<?php print($item['agent_id']);?>"> -->
-          <button type="submit" class="keepbtn">キープする</button>
+          <button type="submit" name="keep" class="keepbtn">キープする</button>
           <button type="submit" formaction="./contact.php" class="submitbtn">エージェンシー企業に問い合わせる</button>
         </form>
       </div>

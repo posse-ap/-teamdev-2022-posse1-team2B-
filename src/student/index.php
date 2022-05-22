@@ -4,7 +4,7 @@ require("../dbconnect.php");
 $stmt = $db->prepare('SELECT * FROM agents');
 $stmt->execute();
 $agents = $stmt->fetchAll();
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ $agents = $stmt->fetchAll();
             <p>対応エリア<?= $agent['prefecture']?></p>
             <form action="keep.php" method="POST">
               <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
-              <button type="submit" class="keepbtn">キープする</button>
+              <button type="submit" name='keep' class="keepbtn">キープする</button>
             </form>
           </a>
           </li>
