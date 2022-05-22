@@ -49,7 +49,7 @@ $agents = $stmt->fetchAll();
     <div> 
       <a href="condition_selection.php">こだわり条件から探す</a>
       <div>
-        <h1>月間ランキング</h1>
+        <h1 class="pagetitle">月間ランキング</h1>
         <ul>
           <?php
           $counter = 0;
