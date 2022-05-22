@@ -90,6 +90,7 @@ if(isset($_POST["search"])) {
  <!-- こだわり条件から探すをクリックした場合に表示 -->
  <?php else:?>
  <div class="main">
+   <div class=">
    <a href="./index.php" class="exitbtn">✕</a>
    <form action="condition_selection.php" method="POST">
      <h1>エージェンシー企業をこだわり条件で絞り込む</h1>

@@ -225,7 +225,7 @@ footer img {
 .pageendbuttons {
   display: flex;  
   justify-content: center;
-  flex-direction: ;
+  flex-direction: row-reverse;
 }
 
 .inquirybtn {
