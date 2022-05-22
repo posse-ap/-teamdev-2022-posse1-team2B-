@@ -1,3 +1,8 @@
+<!-- エージェンシーリスト
+国家らのキープはagency_list.phpが未実装のため実装できてない
+→agency_list.php誰もやってないならやります
+-->
+
 <?php
   $page_flag = 0;
   if(isset($_POST["finance"]) || isset($_POST["it"]) || isset($_POST["ad"]) || isset($_POST["tradingCompany"]) || isset($_POST["food"]) || isset($_POST["realEstate"])) {
