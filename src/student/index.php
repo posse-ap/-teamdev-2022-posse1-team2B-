@@ -5,6 +5,19 @@ $stmt = $db->prepare('SELECT * FROM agents');
 $stmt->execute();
 $agents = $stmt->fetchAll();
 session_start();
+// if($_SERVER['REQUEST_METHOD']==='POST'){
+//   if(isset($_POST['agent_id'])){
+//     $agent_id = $_POST['agent_id'];
+//     $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
+//     if(isset($_POST['cancel'])) {
+//       unset($_SESSION['keep'][$agent_id]);
+//     }
+//   }
+// }
+$keeps=array();
+// if(isset($_SESSION['keep'])){
+//   $keeps=$_SESSION['keep'];
+// }
 ?>
 
 <!DOCTYPE html>

@@ -1,7 +1,14 @@
-<?php $page_flag = 0;
-if(isset($_POST["search"])) {
+<?php 
+require("../dbconnect.php");
+$page_flag = 0;
+if(isset($_GET["search"])) {
   $page_flag = 1;
-} ?>
+} 
+session_start();
+$stmt = $db->prepare('SELECT * FROM agents');
+$stmt->execute();
+$agents = $stmt->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -37,7 +44,7 @@ if(isset($_POST["search"])) {
             <dd><?php print_r($supported_corporate_scale);?></dd>
           </dl>
           <form action="./keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['id']);?>">
             <button type="submit" class="keepbtn">キープする</button>
             <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
           </form>
@@ -58,7 +65,7 @@ if(isset($_POST["search"])) {
             <dd><?php print_r($supported_corporate_scale);?></dd>
           </dl>
           <form action="./keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['agent_id']);?>">
             <button type="submit" class="keepbtn">キープする</button>
             <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
           </form>
@@ -79,9 +86,9 @@ if(isset($_POST["search"])) {
             <dd><?php print_r($supported_corporate_scale);?></dd>
           </dl>
           <form action="./keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-            <button type="submit" class="keepbtn">キープする</button>
-            <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
+            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['agent_id']);?>">
+            <button type="submit" name="keep" class="keepbtn">キープする</button>
+            <button type="submit" name="contact_agency" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
           </form>
         </a>
       </li>
@@ -91,7 +98,7 @@ if(isset($_POST["search"])) {
   <?php else:?>
   <div class="main">
     <a href="./index.php" class="exitbtn">✕</a>
-    <form action="condition_selection.php" method="POST">
+    <form action="condition_selection.php" method="GET">
       <h1>エージェンシー企業をこだわり条件で絞り込む</h1>
       <div>
         <div>
@@ -144,6 +151,6 @@ if(isset($_POST["search"])) {
   </div>
   <?php endif; ?>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
-  <script src="./sudent.js"></script>
+  <script src="./student.js"></script>
 </body>
 </html>

@@ -1,19 +1,19 @@
 <?php 
 require("../dbconnect.php");
 session_start();
-$keeps=array();
-//POSTデータをカート用のセッションに保存
 if($_SERVER['REQUEST_METHOD']==='POST'){
-  $agent_id = $_POST['agent_id'];
-  $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
-  if(isset($_POST['cancel'])) {
-    unset($_SESSION['keep'][$agent_id]);
+  if(isset($_POST['agent_id'])){
+      $agent_id = $_POST['agent_id'];
+      $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
+    if(isset($_POST['cancel_agency'])) {
+      unset($_SESSION['keep'][$agent_id]);
+    }
+  }
 }
-}
+$keeps=array();
 if(isset($_SESSION['keep'])){
   $keeps=$_SESSION['keep'];
-  }
-var_dump($keeps);
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -54,15 +54,18 @@ var_dump($keeps);
             </tr>
           </thead>  
           <tbody>
-            <?php foreach($keeps as $keep):
+            <?php 
+            var_dump($keeps);
+            print_r($keeps);
+            foreach($keeps as $keep):
               $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
               $stmt->bindValue(':id', $keep);
               $stmt->execute();
               $agent = $stmt->fetch();
             ?>
             <tr>
-              <td><?php print($agent['agent_name']); ?></td>
-              <td><?php print($agent['category']); ?></td>
+              <td><?php print_r($agent['agent_name']); ?></td>
+              <td><?php print_r($agent['category']); ?></td>
               <!-- <td><?php //print($agent['supported_area']); ?></td>
               <td><?php //print($agent['target_student']); ?></td>
               <td><?php //print($agent['corporate_scale']); ?></td>
@@ -70,7 +73,7 @@ var_dump($keeps);
               <td>
                 <form action="" method="POST">
                   <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
-                  <button type="submit" name="cancel">キープを取り消す</button>
+                  <button type="submit" name="cancel_agency">キープを取り消す</button>
                 </form>
               </td>
             </tr>
@@ -87,8 +90,22 @@ var_dump($keeps);
     </form>
     <?php else: ?>
       <p>キープしてるエージェンシー企業はありません。</p>
-    <?php endif;?>
-    <a href='javascript:history.back()' class="returnbtn">戻る</a>
+    <?php endif;
+      if (isset($_POST["contact_agency"])) {
+        // 戻るが押されたとき
+        echo ('<form action="condition_selection.php" GET="POST">
+      <button type="submit" name="back" class="returnbtn">戻る</button>
+      </form>');      
+    } elseif (isset($_POST["cancel_agency"])){
+      echo ('<form action="index.php" GET="POST">
+      <button type="submit" name="back" class="returnbtn">戻る</button>
+      </form>');    
+    } else{
+      echo ('<a href=' . '"javascript:history.back()"' . ' class="returnbtn">戻る</a>');
+    }
+    ?>
+
+    <!-- <a href='javascript:history.back()' class="returnbtn">戻る</a> -->
   </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
   <script src="./student.js"></script>
