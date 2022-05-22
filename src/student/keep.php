@@ -32,49 +32,55 @@ var_dump($keeps);
         <a href="./agent_detail.php">
           <thead>
             <tr>
+            <p>※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
+        <!-- <dd>会社名</dd><dt><input name='name' type="text" required></dt>
+        <dd>企業サイトのURL</dd><dt><input name='url' type="text" required></dt>
+        <dd>通知先メールアドレス</dd><dt><input name='notification_email' type='email' required></dt>
+        <dd>電話番号</dd><dt><input name='tel_number' type='tel' required></dt>
+        <dd>郵便番号</dd><dt><input name='post_number' type="text" required></dt>
+        <dd>都道府県</dd><dt><input name='prefecture' type="text" required></dt>
+        <dd>市区町村</dd><dt><input name='municipalitie' type="text" required></dt>
+        <dd>町域・番地</dd><dt><input name='address_number' type="text" required></dt>
+        <dd>特異な業種</dd><dt><input name='category' type='text' required></dt> -->
               <th>エージェンシー企業名</th>
               <th>得意な業種</th>
-              <th>対応エリア</th>
+              <!-- <th>対応エリア</th>
               <th>対象学生</th>
-              <th>対応企業の規模</th>
+              <th>対応企業の規模</th> -->
               <!-- <th>備考</th> -->
             </tr>
           </thead>  
           <tbody>
             <?php foreach($keeps as $keep){
               $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
-              bindValue(':id', $keep);
+              $stmt->bindValue(':id', $keep);
               $stmt->execute();
               $agent = $stmt->fetch();
             ?>
             <tr>
               <td><?php print($agent['agent_name']); ?></td>
-              <td><?php print($agent['industry']); ?></td>
-              <td><?php print($agent['supported_area']); ?></td>
-              <td><?php print($agent['target_student']); ?></td>
-              <td><?php print($agent['corporate_scale']); ?></td>
-              <td><?php //print($agent['remarks']); ?></td>
+              <td><?php print($agent['category']); ?></td>
+              <!-- <td><?php //print($agent['supported_area']); ?></td>
+              <td><?php //print($agent['target_student']); ?></td>
+              <td><?php //print($agent['corporate_scale']); ?></td>
+              <td><?php //print($agent['remarks']); ?></td> -->
               <td>
-                <form method="POST" action="">
-                  <input type="submit" value="削除">
-                  <input type="hidden" name="keep_id" value="<?php print($keep['agent_id']); ?>">
+                <form action="" method="POST">
+                  <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
+                  <button type="submit" name="cancel">キープを取り消す</button>
                 </form>
               </td>
             </tr>
-            <?php } ?>
           </tbody>
         </a>
     </table>
     <form action="./contact.php" method="POST">
-      <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+      <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
       <button type="submit" class="inquirybtn">エージェンシー企業に問い合わせる</button>
     </form>
-    <form action="" method="POST">
-      <input type="hidden" name="kind" value="delete">
-      <input type="hidden" name="product" value="<?php echo $key;?>">
-      <input type="submit" value="削除">
-      </input>
-    </form>
+
+    <?php } ?>
+
     <?php else: ?>
       <p>キープしてるエージェンシー企業はありません。</p>
     <?php endif;?>
