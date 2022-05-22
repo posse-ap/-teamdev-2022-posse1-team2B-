@@ -64,6 +64,7 @@ if(isset($_POST['edit_completion'])){
       <dd>備考</dd><dt><textarea name="new_remarks" id="" cols="30" rows="10"></textarea></dt>
       <input type="hidden" name="agent_id" value= "<?php echo $_POST['agent_id']; ?>">
       <input class="submitbtn" name="edit_completion" type="submit" value="修正完了">
+      <a href='javascript:history.back()'>戻る</a>
     </form>
   </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>

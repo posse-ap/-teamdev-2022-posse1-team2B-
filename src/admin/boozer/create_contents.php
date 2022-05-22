@@ -12,65 +12,66 @@ if(isset($_POST['create'])) {
     $category = $_POST['category'];
    // トランザクション開始
     $db->beginTransaction();
-  try {
-    // $stmt = $db->prepare('insert into agents (agent_name, url, notification_email, tel_number, post_number, prefecture, municipalitie, adress_number, category) values ("a", "b", "c", "d", "e", "f", "g", "h", "i")');
-    $stmt = $db->prepare('INSERT INTO agents 
-    (
-    agent_name, 
-    url, 
-    notification_email, 
-    tel_number, 
-    post_number, 
-    prefecture, 
-    municipalitie, 
-    adress_number, 
-    category
-    ) 
-    values 
-    (
-      :agent_name, 
-      :url, 
-      :notification_email, 
-      :tel_number, 
-      :post_number, 
-      :prefecture, 
-      :municipalitie, 
-      :address_number, 
-      :category
-    )');
-  // $created_at = date("Y-m-d H:i:s");
-  // $updated_at = date("Y-m-d H:i:s");
-  $param = array(
-    ':agent_name' => $name,
-    ':url' => $url,
-    ':notification_email' => $notification_email,
-    ':tel_number' => $tel_number,
-    ':post_number' => $post_number,
-    ':prefecture' => $prefecture,
-    ':municipalitie' => $municipalitie,
-    ':adress_number' => $address_number,
-    ':category' => $category
-    // ':created_at' => $created_at,
-    // ':updated_at' => $updated_at
-  );
+    try {
+      // $stmt = $db->prepare('insert into agents (agent_name, url, notification_email, tel_number, post_number, prefecture, municipalitie, adress_number, category) values ("a", "b", "c", "d", "e", "f", "g", "h", "i")');
+      $stmt = $db->prepare('INSERT INTO agents 
+        (
+          agent_name, 
+          url, 
+          notification_email, 
+          tel_number, 
+          post_number, 
+          prefecture, 
+          municipalitie, 
+          adress_number, 
+          category
+        ) 
+        values 
+        (
+          :agent_name, 
+          :url, 
+          :notification_email, 
+          :tel_number, 
+          :post_number, 
+          :prefecture, 
+          :municipalitie, 
+          :address_number, 
+          :category
+        )'
+      );
+  //   $created_at = date("Y-m-d H:i:s");
+  //   $updated_at = date("Y-m-d H:i:s");
+    $param = array(
+      ':agent_name' => $name,
+      ':url' => $url,
+      ':notification_email' => $notification_email,
+      ':tel_number' => $tel_number,
+      ':post_number' => $post_number,
+      ':prefecture' => $prefecture,
+      ':municipalitie' => $municipalitie,
+      ':adress_number' => $address_number,
+      ':category' => $category
+      // ':created_at' => $created_at,
+      // ':updated_at' => $updated_at
+    );
   // その配列をexecute
-  $stmt->execute($param);
-  $res = $db->commit();
-  }catch(PDOException $e) {
-    // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
-      $db->rollBack();
-      echo "エラーが発生しました";
-  }
-  if ($res){
-    ?>
-    <script language="javascript" type="text/javascript">
-      window.location = './thanks.php';
-    </script>
-    <?php
-    exit;
-  }else{
-    print('データの追加に失敗しました<br>');
-  }
+    $stmt->execute($param);
+    $res = $db->commit();
+    }catch(PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+        $db->rollBack();
+        echo "エラーが発生しました";
+    }
+    if ($res){
+      ?>
+      <script language="javascript" type="text/javascript">
+        window.location = './thanks.php';
+      </script>
+      <?php
+      exit;
+    }else{
+      print('データの追加に失敗しました<br>');
+    }
 }
   // $stmt->bindValue(':agent_name', $name);
   // $stmt->bindValue(':url', $url);
