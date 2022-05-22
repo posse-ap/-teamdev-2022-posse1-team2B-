@@ -95,7 +95,7 @@ if(isset($_POST["search"])) {
     <form action="condition_selection.php" method="POST">
       <h1>エージェンシー企業をこだわり条件で絞り込む</h1>
       <div>
-        <div>
+        <div class="conditiongroup">
           <h2>エージェンシー企業の得意業界</h2>
           <input type="checkbox" name="food" id="food">
           <label from="food">食品</label>
@@ -112,7 +112,7 @@ if(isset($_POST["search"])) {
           <input type="checkbox" name="trading_company" id="tradingCompany">
           <label from="tradingCompany">商社</label>
         </div>
-        <div>
+        <div class="conditiongroup">
           <h2>登録企業の規模</h2>
           <input type="checkbox" name="smaller_businesses" id="smallerBusinesses">
           <label from="smallerBusinesses">中小企業</label>
@@ -121,7 +121,7 @@ if(isset($_POST["search"])) {
           <input type="checkbox" name="venture_corporation" id="ventureCorporation">
           <label from="ventureCorporation">ベンチャー企業</label>
         </div>
-        <div>
+        <div class="conditiongroup">
           <h2>求人エリア</h2>
           <input type="checkbox" name="kanto_region" id="kantoRegion">
           <label from="kantoRegion">関東地方</label>
@@ -132,7 +132,7 @@ if(isset($_POST["search"])) {
           <input type="checkbox" name="kyushu_region" id="kyushuRegion">
           <label from="kyushuRegion">九州地方</label>
         </div>
-        <div>
+        <div class="conditiongroup">
           <h2>対象学生</h2>
           <input type="checkbox" name="2024_graduation" id="2024Graduation">
           <label from="2024Graduation">24卒</label>
