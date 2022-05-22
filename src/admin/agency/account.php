@@ -1,68 +1,190 @@
 
+<?php
+require('../../dbconnect.php');
+
+if (isset(
+  // これらが入力されていたら
+  $_POST['agent_name'],
+  $_POST['manager_last_name'],
+  $_POST['manager_first_name'],
+  $_POST['manager_last_name_kana'],
+  $_POST['manager_first_name_kana'],
+  $_POST['agent_department'],
+  $_POST['login_email'],
+  $_POST['password']
+)) {
+  // ログイン情報の登録
+  // echo $_POST['password'];
+  $user_stmt = $db->prepare(
+    'insert into users
+    (
+      login_email,
+      password
+    )
+    values
+    (
+      :login_email,
+      :password
+    )'
+  );
+
+  $login_email = $_POST['login_email'];
+  $password = $_POST['password'];
+
+  $param = array(
+    ':login_email' => $login_email,
+    ':password' => sha1($password)
+  );
+  
+  $user_stmt->execute($param);
+
+  // その他の情報の登録
+  $manager_stmt = $db->prepare(
+    'insert into managers
+    (
+      agent_id,
+      user_id,
+      manager_last_name,
+      manager_first_name,
+      manager_last_name_kana,
+      manager_first_name_kana,
+      agent_department
+    )
+    values
+    (
+      :agent_id,
+      :user_id,
+      :manager_last_name,
+      :manager_first_name,
+      :manager_last_name_kana,
+      :manager_first_name_kana,
+      :agent_department
+    )'
+  );
+
+  $agent_id_parameter = $_POST['agent_name'];
+  // エージェント名を取得
+  // echo $agent_id_parameter;
+  // 取得できた
+  $agent_id_stmt = $db->prepare('SELECT id FROM agents where agent_name = :agent_id_parameter');
+  // agentsテーブルからIDをとりたい
+  $agent_id_stmt->bindValue(':agent_id_parameter', $agent_id_parameter);
+  // 条件は、登録されている名前と、取得したエージェント名が等しいこと
+  $agent_id_stmt->execute();
+  // 実行
+  $agent_id = $agent_id_stmt->fetchAll();
+  // 持ってきたものをエージェントIDという名前にする
+
+  echo $agent_id[0]['id'];
+
+  
+  $user_id_stmt = $db->prepare('SELECT id FROM users where login_email = :login_email');
+  $user_id_stmt->bindValue(':login_email', $login_email);
+  $user_id_stmt->execute();
+  $user_id = $user_id_stmt->fetchAll();
+  echo $user_id[0]['id'];
+
+  $manager_last_name = $_POST['manager_last_name'];
+  $manager_first_name = $_POST['manager_first_name'];
+  $manager_last_name_kana = $_POST['manager_last_name_kana'];
+  $manager_first_name_kana = $_POST['manager_first_name_kana'];
+  $agent_department = $_POST['agent_department'];
+
+
+
+  $parameter = array(
+    ':agent_id' => $agent_id[0]['id'],
+    ':user_id' => $user_id[0]['id'],
+    ':manager_last_name' => $manager_last_name,
+    ':manager_first_name' => $manager_first_name,
+    ':manager_last_name_kana' => $manager_last_name_kana,
+    ':manager_first_name_kana' => $manager_first_name_kana,
+    ':agent_department' => $agent_department
+  );
+
+  $manager_stmt->execute($parameter);
+//   echo $manager_last_name;
+}
+
+// データを削除して再起動すると、登録したデータが消えてしまう
+
+
+
+?>
+  <!-- 
+    ・入力画面→確認画面の遷移
+    →https://gray-code.com/php/make-the-form-vol2/
+  -->
+
+<?php
+require(dirname(__FILE__, 3) . '/dbconnect.php');
+  //変数の初期化
+  // 入力画面や確認画面の表示をスイッチするフラグ
+  // 0→入力画面 1→確認画面
+  $page_flag = 0;
+  // もし会員登録ボタンがおされたら＝フォームデータの中に$_POST[""membership registration"]が含まれていたら→page_flag変数の値を1にする＝確認画面に表示を変える
+  if(isset($_POST["membership_registration"])) {
+    $page_flag = 1;
+  } 
+  ?>
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>エージェンシー企業アカウント登録画面</title>
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/index.css">
+  <link rel="stylesheet" href="../../css/agency.css">
 </head>
+
 <body>
-  <?php include (dirname(__FILE__) . "/agency_header.php");?>
-  <!--確認画面 -->
-  <div>
-    <h1>登録内容確認</h1>
-    <form method="POST" action="../../thanks.php">
-      <div>
-        <label>会社名</label>
-        <p><?php echo $_POST["company_name"];?></p>
-      </div>
-      <div>
-        <label>お問い合わせ通知先メールアドレス</label>
-        <p><?php echo $_POST["inquiry_mail_address"];?></p>
-      </div>
-      <div>
-        <label>ログイン用メールアドレス</label>
-        <p><?php echo $_POST["login_mail_address"];?></p>
-      </div>
-      <div>
-        <label>ログイン用パスワード</label>
-        <p><?php echo $_POST["login_password"];?></p>
-      </div>
-      <!-- 入力した値を受け渡す -->
-      <button type="submit" name="btn_back" formaction="./account.php">戻る</button>
-      <button type="submit" name="btn_submit">登録完了</button>
-      <input type="hidden" name="company_name" value="<?php echo $_POST['company_name']; ?>">
-      <input type="hidden" name="inquiry_mail_address" value="<?php echo $_POST['inquiry_mail_address']; ?>">
-      <input type="hidden" name="login_mail_address" value="<?php echo $_POST['login_mail_address']; ?>">
-      <input type="hidden" name="login_password" value="<?php echo $_POST['login_password']; ?>">
-    </form>
-  </div>
-  <div>
-    <h1>新規登録</h1>
+  <?php include(dirname(__FILE__) . "/agency_header.php"); ?>
+  <div class="main">
+    <h1 class="pagetitle">新規登録</h1>
     <div>
-      <form action="" method="POST">
-          <div>
-              <label for="companyName">会社名<span>必須</span></label>
-              <input type="text" name="company_name" id="companyName" value="<?php if(isset($_POST["company_name"])){echo $_POST["company_name"];}?>" required>
-          </div>
-          <div>
-              <label for="inquiryMailAddress">お問い合わせ通知先メールアドレス<span>必須</span></label>
-              <p>※学生からのお問い合わせの通知先となります</p>
-              <input type="email" name="inquiry_mail_address" id="inquiryMailAddress" value="<?php if(isset($_POST["inquiry_mail_address"])){echo $_POST["inquiry_mail_address"];}?>" required>
-          </div>
-          <div>
-              <label for="loginMailAddress">ログイン用メールアドレス<span>必須</span></label>
-              <input type="email" name="login_mail_address" id="loginMailAddress" value="<?php if(isset($_POST["login_mail_address"])){echo $_POST["login_mail_address"];}?>" required>
-          </div>
-          <div>
-              <label for="loginPassWord">ログイン用パスワード<span>必須</span></label>
-              <input type="password" name="login_password" id="loginPassword" value="<?php if(isset($_POST["login_password"])){echo $_POST["login_password"];}?>" required>
-          </div>
-        <button type="submit" name="btn_confirm">会員登録</button>
+      <form action="account.php" method="POST" class="accountlabels">
+        <div>
+          <label for="companyName">会社名</label><br>
+          <input type="text" name="agent_name" id="companyName" class="full inputbox" required>
+        </div>
+        <div>
+          <label for="familyName">氏</label><br>
+          <input type="text" name="manager_last_name" id="familyName" class="full inputbox" required>
+        </div>
+        <div>
+          <label for="managerName">名</label><br>
+          <input type="text" name="manager_first_name" id="managerName" class="full inputbox" required>
+        </div>
+        <div>
+          <label for="familyNameKana">氏(カナ)</label><br>
+          <input type="text" name="manager_last_name_kana" id="familyNameKana" class="full inputbox" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
+        </div>
+        <div>
+          <label for="managerNameKana">名(カナ)</label><br>
+          <input type="text" name="manager_first_name_kana" id="managerNameKana" class="full inputbox" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
+        </div>
+        <div>
+          <label for="agent_department">部署</label><br>
+          <input type="text" name="agent_department" id="agentDepartment" class="full inputbox" required>
+        </div>
+        <div>
+          <label for="loginMailAddress">ログイン用メールアドレス<span class="must">必須</span></label><br>
+          <input type="email" name="login_email" id="loginMailAddress" class="full inputbox" required>
+        </div>
+        <div>
+          <label for="loginPassWord">ログイン用パスワード<span class="must">必須</span></label><br>
+          <input type="password" name="password" id="loginPassword" class="full inputbox" required>
+        </div>
+        <div class="register">
+          <input type="submit" name="btn_confirm" class="newaccountbtn">会員登録</input>
+        </div>
       </form>
     </div>
   </div>
-  <?php include (dirname(__FILE__) . "/agency_footer.php");?>
+  <!-- <?php include(dirname(__FILE__) . "/agency_footer.php"); ?> -->
 </body>
+
 </html>

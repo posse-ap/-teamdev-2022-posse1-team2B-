@@ -16,19 +16,25 @@ $stmt = $db->prepare('select * from agents');
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>agentslist</title>
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/index.css">
 </head>
 <body>
-  <h2>掲載企業一覧</h2>
-  <?php foreach ($agents as $agent) : ?>
-  <div>
-    <img src="" alt="">
-    <h3><?=$agent['agent_name'] ?></h3>
-    <a href="edit.php">編集</a>
-    <!-- これを押したらedit.phpのこのモーダルってやり方がわかりません。。。。。
-    edit.phpの一覧からならボタンのIDから出せるんですけど、別ファイルからってなるとイメージつかないです。。。。 -->
-    <button>削除</button>
+  <?php include (dirname(__FILE__) . "/boozer_header.php");?>
+  <div class="main">
+   <h2 class="pagetitle">掲載企業一覧</h2>
+   <?php foreach ($agents as $agent) : ?>
+   <div>
+     <img src="" alt="">
+     <h3><?=$agent['agent_name'] ?></h3>
+     <a href="edit.php" class="editbtn">編集</a>
+     <!-- これを押したらedit.phpのこのモーダルってやり方がわかりません。。。。。
+     edit.phpの一覧からならボタンのIDから出せるんですけど、別ファイルからってなるとイメージつかないです。。。。 -->
+     <button class="deletebtn">削除</button>
+   </div>
+   <?php endforeach; ?>
   </div>
-  <?php endforeach; ?>
+  <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>
 </html>
 
