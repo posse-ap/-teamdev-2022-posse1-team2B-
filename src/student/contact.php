@@ -1,6 +1,13 @@
 <?php
 require('../dbconnect.php');
 
+// キープされていた企業にお問い合わせする
+session_start();
+$keeps=array();
+if(isset($_SESSION['keep'])){
+  $keeps=$_SESSION['keep'];
+  }
+
 if (isset(
   // これらが入力されていたら
   $_POST['student_last_name'],
@@ -212,6 +219,20 @@ if (isset($_POST["contact"])) {
       </div>
       <!-- 入力した値を受け渡す -->
       <button type="submit" name="btn_back" formaction="./contact.php" class="returnbtn">登録し直す</button>
+      <!-- <input type="hidden" value="<?php //echo $_POST["student_last_name"]; ?>">
+      <input type="hidden" value="<?php //echo $_POST["student_last_name_kana"]; ?>">
+      <input type="hidden" value="<?php //echo $_POST["student_first_name"]; ?>">
+      <input type="hidden" value="<?php //echo $_POST["student_first_name_kana"]; ?>">
+      <input type="hidden" value="<?php //echo $_POST["post_number"]; ?>">
+      <input type="hidden" value="<?php //echo $_POST["prefecture"]; ?>">
+      <input type="hidden" value="<?php //echo $_POST["municipality"]; ?>">
+      <input type="hidden" value="<?php //echo $_POST["adress_number"]; ?>">
+      <input type="hidden" value="<?php //echo $_POST["tel_number"]; ?>">
+      <input type="hidden" value="<?php //echo $_POST["email"]; ?>">
+      <input type="hidden" value="<?php //echo $_POST["college_name"]; ?>">
+      <input type="hidden" value="<?php //echo $_POST["undergraduate"]; ?>">
+      <input type="hidden" value="<?php //echo $_POST["college_department"]; ?>">
+      <input type="hidden" value="<?php //echo $_POST["graduation_year"]; ?>"> -->
       <button type="submit" name="final_contact" class="inquirybtn">完了</button>
     </form>
   </div>
@@ -220,14 +241,23 @@ if (isset($_POST["contact"])) {
   <div class="main">
     <h1 class="pagetitle">企業にお問い合わせ</h1>
     <div class="agencybtn">申し込み先企業：
-      <?php $agency ?>
+      <?php 
+      if(isset($_POST['keep_agency_contact'])){
+        foreach($keeps as $keep){
+          $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
+          $stmt->bindValue(':id', $keep);
+          $stmt->execute();
+          $agent = $stmt->fetch();
+          echo '[' . $keep . ']' . $agent['agent_name'];
+        }};
+      ?>
     </div>
     <form action="contact.php" method="POST">
       <div class="inputform">
         <div class="half">
           <div>
-           <label for="familyName">氏</label><br>
-           <input type="text" name="student_last_name" id="familyName" required>
+            <label for="familyName">氏</label><br>
+            <input type="text" name="student_last_name" id="familyName" required>
           </div>
           <div>
             <label for="studentName">名</label><br>

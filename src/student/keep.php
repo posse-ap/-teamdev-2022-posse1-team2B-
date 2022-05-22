@@ -81,9 +81,9 @@ var_dump($keeps);
     endforeach; ?>
     <form action="./contact.php" method="POST">
       <?php foreach($keeps as $keep): ?>
-      <input type="hidden" name="agent_id" value="<?php print_r($keep);?>">
+      <input type="hidden" value="<?php print_r($keep);?>">
       <?php endforeach; ?>
-      <button type="submit" class="inquirybtn">エージェンシー企業に問い合わせる</button>
+      <button type="submit" name='keep_agency_contact' class="inquirybtn">エージェンシー企業に問い合わせる</button>
     </form>
     <?php else: ?>
       <p>キープしてるエージェンシー企業はありません。</p>
