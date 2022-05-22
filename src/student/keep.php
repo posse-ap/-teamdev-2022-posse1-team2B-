@@ -1,3 +1,17 @@
+<?php 
+require("../dbconnect.php");
+session_start();
+$cart = array();
+if(isset($_POST['keep'])) {
+  $agent_id = $_POST['agent_id'];
+  $stmt = $db->prepare('SELECT * FROM agents WHERE id = :agent_id');
+  
+  $stmt->execute();
+  $agents = $stmt->fetchAll();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -24,7 +38,8 @@
 →情報を取得SET,GET,REMOVE
 
 -->
-  <?php include (dirname(__FILE__) . "/student_header.php");?>
+  <?php include (dirname(__FILE__) . "/student_header.php");
+  if(count($carts) > 0): ?>
   <div class="main">
     <h1>キープ中のエージェンシー企業</h1>
       <div>

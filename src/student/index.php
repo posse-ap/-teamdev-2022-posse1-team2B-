@@ -1,35 +1,9 @@
-<!-- 
-  ・ランキング詳細→学生一覧からの詳細への遷移を参考にする
--->
-
 <?php
 require("../dbconnect.php");
-
-
-// お聞きしたいこと
-// ・where = ? の?に変数を代入できない？
-// ・カテゴリー中間テーブルのイメージ確認
-
 //全エージェント会社の情報取得
 $stmt = $db->prepare('SELECT * FROM agents');
 $stmt->execute();
 $agents = $stmt->fetchAll();
-
-// 各エージェントへの申込数取得
-// エージェント数ぶん回す
-// foreach($agents as $index => $agent) {
-//   $stmt = $db->prepare('SELECT count(*) FROM intermediate where agent_id = :agent_id');
-//   $stmt->bindValue(':agent_id', $agent['id']);
-//   // bindevalueの１が？の１個めってこと。これがあれば何個でもはてなつけられる！1,2とかだとわかりにくいから、「:agent_id」を設定する
-//   $stmt->execute();
-//   $offers = $stmt->fetchAll();
-//   return $offers;
-// }
-  
-  // エージェント名を回せるか実験
-  // foreach($agents as $index => $agent) {
-  //   print_r($agent['agent_name'] . PHP_EOL);
-  // }
 
 ?>
 
