@@ -1,15 +1,18 @@
 <?php 
 require("../dbconnect.php");
 session_start();
+$keeps=array();
 //POSTデータをカート用のセッションに保存
 if($_SERVER['REQUEST_METHOD']==='POST'){
   $agent_id = $_POST['agent_id'];
   $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
+  if(isset($_POST['cancel'])) {
+    unset($_SESSION['keep'][$agent_id]);
 }
-$keeps=array();
+}
 if(isset($_SESSION['keep'])){
-$keeps=$_SESSION['keep'];
-}
+  $keeps=$_SESSION['keep'];
+  }
 var_dump($keeps);
 ?>
 <!DOCTYPE html>
@@ -51,7 +54,7 @@ var_dump($keeps);
             </tr>
           </thead>  
           <tbody>
-            <?php foreach($keeps as $keep){
+            <?php foreach($keeps as $keep):
               $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
               $stmt->bindValue(':id', $keep);
               $stmt->execute();
@@ -74,13 +77,14 @@ var_dump($keeps);
           </tbody>
         </a>
     </table>
+    <?php 
+    endforeach; ?>
     <form action="./contact.php" method="POST">
-      <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
+      <?php foreach($keeps as $keep): ?>
+      <input type="hidden" name="agent_id" value="<?php print_r($keep);?>">
+      <?php endforeach; ?>
       <button type="submit" class="inquirybtn">エージェンシー企業に問い合わせる</button>
     </form>
-
-    <?php } ?>
-
     <?php else: ?>
       <p>キープしてるエージェンシー企業はありません。</p>
     <?php endif;?>
