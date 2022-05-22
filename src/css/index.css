@@ -45,6 +45,12 @@
   margin-left: 1em; /* 文字の左隣 */
 }
 
+/*ページの終わりにボタンを置くとき！*/
+.pageendbuttons {
+  text-align: center;
+}
+
+/*メジャーボタンと背景色*/
 /* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
 .detailsbtn,
 .keepbtn,
@@ -54,26 +60,32 @@
   padding: 3px 15px;
 }
 
-/* お問い合わせボタン（オレンジ背景白文字 */
+/* メジャー：お問い合わせボタン（オレンジ背景白文字 */
 .inquirybtn, .submitbtn, .editbtn {
   background-color: #EFB448;
   color: white;
   border: none;
-  padding: 3px 15px
+  height: 35px;
+  width: 300px;
+  /* padding: 7px 10px; */
+  margin-top: 20px;
 }
 
-/* 戻るボタン（緑背景白文字） */
-.returnbtn {
+/* メジャー：戻るボタン（パステル緑背景白文字） */
+.returnbtn, .agencybtn {
   background-color: #96D2C4;
   color: white;
   border: none;
-  padding: 3px 15px
+  height: 35px;
+  padding: 7px 15px;
+  width: 70px;
 }
 
-/* ログイン（緑背景白文字） */
-.loginbtn, .agencybtn {
+/* メジャー：ログイン（緑背景白文字） */
+.loginbtn {
   background-color: #66a29a;
   color: white;
+  padding: 5px 5px
 }
 
 /* 閉じるボタン（バッテン！） */
@@ -92,28 +104,34 @@
   padding: 3px 5px;
 }
 
-/* inputの白い箱？のcss群です:) */
+
+/* inputの白い箱？のcss群です:)form全てを囲う箱 */
 .inputform {
-  /* text-align: center; */
+  width: 85%;
+  display: block; /*maringで中央寄せさせるために必須*/
+  margin: 0 auto;
 }
-.inputform label {
+.inputform div label, .inputform div div label { /*inputformのラベル系*/
   font-size: 20px;
-  margin: 10px 0px 0px 0px;
-  /* margin-top: 20px;
-  margin-bottom: 0px; */
+  text-align: left;
 }
 .inputform div input, .inputbox { 
   background-color: white;
   height: 35px;
-  margin: 10px 20px;
-  text-align: center;
+  display: block;
+  margin: 10px auto;
+  margin-bottom: 20px;
+  width: 100%; /*横幅に合わせて白い箱が伸びたり縮んだり*/
 }
-
+/* .full {
+  display: block;
+  margin: 10px auto;
+  width: 100%;
+} */
 .half { /*一行を半分に分けた場合のテキストボックス*/
   display: flex;
-}
-.half div input {
-  width: 50%;
+  justify-content: space-between;
+  gap: 10px
 }
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
@@ -123,7 +141,7 @@ body {
 
 .main {
   padding: 15px 15px;
-  padding-bottom: 15px;
+  padding-bottom: 80px;
 }
 
 /* HEADERFOOTERCSS!!! */
@@ -135,41 +153,29 @@ header {
 .headertitle {
   display: flex;
   justify-content: center;
-  padding: 10px;
+  padding-top: 10px;
   height: 80px;
   align-items: baseline;
-}
-
-.craft {
-  font-size: 50px;
-  font-weight: 550;
   color: white;
+}
+.craft {
+  font-size: 55px;
+  font-weight: 550;
   margin-bottom: 0;
 }
-
 .craftby {
-  color: white;
   font-size: 15px;
-  /* margin-top: 25px;
-  margin-bottom: 0; */
 }
-
 .headertitle img {
   height: 20px;
-  /* margin-top: 25px;
-  margin-bottom: 0; */
 }
-
-/* ナビゲーション */
-.headernav ul {
+.headernav ul { /* ナビゲーション */
   display: flex;
   list-style: none;
+  justify-content: space-around;
 }
-
-.headernav ul li, .headernav p, .headernav ul li a {
-  width: 50%;
+.headernav ul li, .headernav p /*.headernav ul li a */ {
   color: white;
-  text-align: center;
   font-size: 18px;
   padding: 3px
 }
@@ -187,30 +193,52 @@ footer img {
   margin: 10px auto;
 }
 
+/* //一度きりボタン等// */
+.agencybtn {
+  width: 70%;
+  font-size: 18px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  padding: 3px 5px;
+  height: 50px;
+  /* line-height: 50px; */
+ 
+}
+
 @media screen and (min-width:1024px) {
-  .headertitle {
-    height: 115px;
+
+
+
+
+  .half div input {
+    width: 400px;
   }
 
-  .craft {
-    font-size: 100px;
-    font-weight: 550;
-    margin: 0;
-  }
+/*ページの終わりにボタンを置くとき！*/
+.pageendbuttons {
+  display: flex;  
+  justify-content: center;
+}
 
-  .craftby {
-    font-size: 20px;
-    margin-top: 70px;
-  }
+.inquirybtn {
+  margin-top: 0px;
+}
 
-  .headertitle img {
-    height: 30px;
-    margin-top: 70px;
-    margin-bottom: 0;
-  }
+/*HEADERFOOTER群*/
+.headertitle {
+  height: 115px;
+}
+.craft {
+  font-size: 100px;
+}
+.craftby {
+  font-size: 20px;
+}
+.headertitle img {
+  height: 30px;
+}
 
-  /* ナビゲーション */
-  .headernav ul li {
+  .headernav ul li {  /* ナビゲーション */
     font-size: 20px;
     padding: 8px;
   }

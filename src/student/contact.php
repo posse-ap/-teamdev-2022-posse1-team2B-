@@ -236,12 +236,12 @@ if (isset($_POST["contact"])) {
         </div>
         <div class="half">
           <div>
-            <label for="familyNameKana">氏(カナルビ)</label>
+            <label for="familyNameKana">氏（カナ）</label><br>
             <input type="text" name="student_last_name_kana" id="familyNameKana"
             pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
           </div>
           <div>
-            <label for="studentNameKana">名(カナルビ)</label>
+            <label for="studentNameKana">名（カナ）</label><br>
             <input type="text" name="student_first_name_kana" id="studentNameKana"
             pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
           </div>
@@ -250,24 +250,24 @@ if (isset($_POST["contact"])) {
           <label for="postNumber">郵便番号</label><br>
           <input type="text" name="post_number" id="postNumber" maxlength="7" required>
         </div>
-        <div>
+        <div class="full">
           <label for="prefecture">都道府県</label><br>
           <input type="text" name="prefecture" id="prefecture" required>
         </div>
-        <div>
+        <div class="full">
           <label for="prefecture">市区町村</label><br>
           <input type="text" name="municipality" id="municipality" required>
         </div>
-        <div>
+        <div class="full">
           <label for="adressNumber">番地</label><br>
           <input type="text" name="adress_number" id="adress_number" required>
         </div>
-        <div>
+        <div class="full">
           <label for="telephoneNumber">電話番号</label><br>
           <input type="tel" name="tel_number" id="telephoneNumber" pattern="\d{2,4}-?\d{2,4}-?\d{3,4}" maxlength="11"
             required>
         </div>
-        <div>
+        <div class="full">
           <label for="emailAddress">メールアドレス</label><br>
           <input type="email" name="email" id="emailAddress" required>
         </div>
@@ -292,22 +292,23 @@ if (isset($_POST["contact"])) {
           </div>
         </div>
       </div>
-      <div>
-        <button class="returnbtn">戻る</button>
+      <div class="pageendbuttons">
         <!-- ここの遷移がない -->
+        <?php
+        if (isset($_POST["btn_back"])) {
+          // 戻るが押されたとき
+          echo ('<form action="condition_selection.php" method="get">
+        <button type="submit" name="back" class="returnbtn">戻る</button>
+        </form>');
+        } else {
+          echo ('<a href=' . '"javascript:history.back()"' . ' class="returnbtn">戻る</a>');
+        }
+        ?><br>
         <input type="submit" name="contact" value="エージェンシー企業に問い合わせる" class="inquirybtn">
+
       </div>
     </form>
-    <?php
-    if (isset($_POST["btn_back"])) {
-      // 戻るが押されたとき
-      echo ('<form action="condition_selection.php" method="get">
-    <button type="submit" name="back">戻る</button>
-    </form>');
-    } else {
-      echo ('<a href=' . '"javascript:history.back()"' . '>戻る</a>');
-    }
-    ?>
+   
     <!-- これがデフォで表示されている
     何用だ！！！！！！！！！！！！！！！！！！！！！！！！！！ -->
   </div>
