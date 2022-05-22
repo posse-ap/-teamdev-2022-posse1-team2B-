@@ -29,6 +29,7 @@
   text-align: center;
   font-size: 20px;
   margin: 15px auto;
+  margin-top: 30px;
   display: flex;
   align-items: center; /* 垂直中心 */
   justify-content: center; /* 水平中心 */
@@ -138,7 +139,7 @@
 
 /* bodyとmainの BASICCSS!!!!!!!!!!!!!!!!!!!! */
 body {
-  background-color: #E5E5E5;
+  background-color: #ebedf1;
 }
 .main {
   padding: 15px 15px;
@@ -208,33 +209,54 @@ footer img {
   vertical-align: middle;
 }
 
+/*STUDENTS/INDEX.PHP*/
+.conditionsearch {/*studentsのindexのこだわり条件から探すのところのcss*/
+  background-color: white;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 10px;
+  width: 280px;
+}
+.rankingboxes ul {/*studentsのindexの業種別、エリア別ランキングの箱を囲うまとめ*/
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.rankingboxes ul li {/*studentsのindexのランキングの各箱*/
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  /* width: 150px; */
+  width: 45%;
+}
+
+.monthlyrankingbox ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.monthlyrankingbox ul li {
+  background-color: white;
+  width: 80%;
+  height: 120px;
+}
+
+
 @media screen and (min-width:1024px) {
 
-.returnbtn, .agencybtn { /*contactページのbuttons*/
-  width: 350px;
-  height: 35px;
-  margin: 0;
-}
 
-
-  .half div input {
-    width: 400px;
-  }
-
-/*ページの終わりにボタンを置くとき！*/
-.pageendbuttons {
-  display: flex;  
-  justify-content: center;
-  flex-direction: ;
-}
-
-.inquirybtn {
-  margin-top: 0px;
-}
 
 /*パソコン版MAINHEADERFOOTER群*/
 .main {
-  padding-top: 155px;
+  padding-top: 160px;
 }
 header {
   height: 155px;
@@ -266,5 +288,44 @@ footer img { /*パソコンのfooter*/
   margin: 15px auto;
 }
 
+.conditionsearch {/*パソコン版studentsのindexのこだわり条件から探すのところのcss*/
+  width: 480px;
+  font-size: 19px;
+}
+
+.returnbtn, .agencybtn { /*contactページのbuttons*/
+  width: 350px;
+  height: 35px;
+  margin: 0;
+}
+
+
+  .half div input {
+    width: 400px;
+  }
+
+/*ページの終わりにボタンを置くとき！*/
+.pageendbuttons {
+  display: flex;  
+  justify-content: center;
+  flex-direction: row-reverse;
+}
+
+.inquirybtn {
+  margin-top: 0px;
+}
+
+/*(パソコン版)STUDENTS/INDEX.PHP*/
+.horizontalrankingboxes {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+.rankingboxes {
+  width: 50%;
+}
+.rankingboxes ul li {
+  width: 200px;
+}
 
 }
