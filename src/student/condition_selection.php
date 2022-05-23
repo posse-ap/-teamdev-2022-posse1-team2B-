@@ -65,7 +65,7 @@ $agents = $stmt->fetchAll();
             <dd><?php print_r($supported_corporate_scale);?></dd>
           </dl>
           <form action="./keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['agent_id']);?>">
+            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['id']);?>">
             <button type="submit" class="keepbtn">キープする</button>
             <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
           </form>
@@ -86,7 +86,7 @@ $agents = $stmt->fetchAll();
             <dd><?php print_r($supported_corporate_scale);?></dd>
           </dl>
           <form action="./keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['agent_id']);?>">
+            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['id']);?>">
             <button type="submit" name="keep" class="keepbtn">キープする</button>
             <button type="submit" name="contact_agency" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
           </form>

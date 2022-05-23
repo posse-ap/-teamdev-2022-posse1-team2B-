@@ -88,14 +88,15 @@ if(isset($_SESSION['keep']) && $_SESSION['time'] + 30 > time()){
       <p>キープしてるエージェンシー企業はありません。</p>
     <?php endif;
       if (isset($_POST["contact_agency"])) {
-        // 戻るが押されたとき
         echo ('<form action="condition_selection.php" GET="POST">
       <button type="submit" name="back" class="returnbtn">戻る</button>
       </form>');      
-    } elseif (isset($_POST["cancel_agency"])){
+    
+      }elseif (isset($_POST["cancel_agency"])){
       echo ('<form action="index.php" GET="POST">
       <button type="submit" name="back" class="returnbtn">戻る</button>
-      </form>');    
+      </form>');   
+      //  キープするのをやめた時に、javascript.history.back()だとずっとkeepをループすることになる
     } else{
       echo ('<a href=' . '"javascript:history.back()"' . ' class="returnbtn">戻る</a>');
     }

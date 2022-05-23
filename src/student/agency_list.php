@@ -4,10 +4,16 @@
 -->
 
 <?php
+require("../dbconnect.php");
   $page_flag = 0;
   if(isset($_POST["finance"]) || isset($_POST["it"]) || isset($_POST["ad"]) || isset($_POST["tradingCompany"]) || isset($_POST["food"]) || isset($_POST["realEstate"])) {
     $page_flag = 1;
   } 
+session_start();
+$stmt = $db->prepare('SELECT * FROM agents');
+$stmt->execute();
+$agents = $stmt->fetchAll();
+
   ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -50,7 +56,7 @@
           <p>得意な業種</p>
           <p>対応エリア</p>
           <form action="keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
+            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]["id"]);?>">
             <button type="submit" name="keep" class="keepbtn">キープする</button>
           </form>
         </li>
@@ -59,7 +65,7 @@
           <p>得意な業種</p>
           <p>対応エリア</p>
           <form action="keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agent["agent_id"]);?>">
+            <input type="hidden" name="agent_id" value="<?php print_r($agent["id"]);?>">
             <button type="submit" name="keep" class="keepbtn">キープする</button>
           </form>
         </li>
