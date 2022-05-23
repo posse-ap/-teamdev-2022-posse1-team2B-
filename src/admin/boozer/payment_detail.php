@@ -2,8 +2,7 @@
 require("../../dbconnect.php");
 $agent_id = $_GET['agent_id'];
 ?>
-<!-- 朝香ちゃんがBoozerがエージェンシー企業の掲載情報の編集・削除実装済みだったら該当箇所のコード消してプルリク
--->
+
 
 
 <!DOCTYPE html>
