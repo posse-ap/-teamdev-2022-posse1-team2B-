@@ -91,7 +91,6 @@ if(isset($_POST["search"])) {
   <?php else:?>
   <div class="main conditionselectionouter">
    <div class="conditionselectioninner">
-    <div class="main">
     <a href="./index.php" class="exitbtn">✕</a>
     <form action="condition_selection.php" method="POST">
       <h1>エージェンシー企業をこだわり条件で絞り込む</h1>
