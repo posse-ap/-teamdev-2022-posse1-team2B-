@@ -107,7 +107,7 @@
   text-align: center;
 }
 
-.deletebtn { /*赤背景白文字*/
+.deletebtn, .must { /*赤背景白文字*/
   background-color: #d21404;
   color: white;
   padding: 3px 5px;
@@ -269,19 +269,16 @@ footer img {
 .conditionselectioninner form h1 {/*モーダルもどきのタイトル: 条件で絞り込む*/
   margin-top: 5px;
 }
-
 .conditiongroup {/*種別の条件選択の箱*/
   margin: 30px 30px 20px 30px;
 }
 .conditiongroup h2 {/*条件選択のタイトル*/
   margin-bottom: 7px;
 }
-
 .conditiongroup input {
   /* display: none; */
   background: #d9dddc;
 }
-
 .conditiongroup label {
   /* position: relative;
   padding-left: 15px; */
@@ -289,7 +286,6 @@ footer img {
   margin-bottom: 5px;
   line-height: 25px;
 }
-
 /* .conditiongroup label::before {
   content: "";
   display: block;
@@ -299,91 +295,87 @@ footer img {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  /* border: 1px solid black; */
-  /* border-radius: 0%; */
-  /* cursor: pointer;
-  background-color: #d9dddc;
-}
-
-.conditiongroup :checked label::before {
+  border: 1px solid;
+  border-radius: 0%;
+  cursor: pointer;
+  background-color:;
+}*/
+/* .conditiongroup :checked label::before {
   background-color: #66a29a;
-} */ 
+} */
 
 
 @media screen and (min-width:1024px) {
 
-
-
-/*パソコン版MAINHEADERFOOTER群*/
-.main {
-  padding-top: 160px;
-}
-header {
-  height: 155px;
-}
-.headertitle {
-  height: 115px;
-}
-.craft {
-  font-size: 100px;
-}
-.craftby {
-  font-size: 20px;
-}
-.headertitle img {
-  height: 30px;
-}
-.headernav ul li {  /* ナビゲーション */
-  font-size: 20px;
-  padding: 8px;
-}
-footer img { /*パソコンのfooter*/
-  height: 40px;
-}
-
-  /* ＜pagetitleのcss＞ */
-.pagetitle {
-  text-align: center;
-  font-size: 25px;
-  margin: 15px auto;
-}
-
-
-
-.conditionsearch {/*パソコン版studentsのindexのこだわり条件から探すのところのcss*/
-  width: 480px;
-  font-size: 19px;
-}
-
-/* .returnbtn, .agencybtn { /*contactページのbuttons*/
-  /* width: 350px;
-  height: 35px;
-  margin: 0 auto; */
-/* }  */
-
-
-  .half div input {
-    width: 400px;
+  /*パソコン版MAINHEADERFOOTER群*/
+  .main {
+    padding-top: 160px;
+  }
+  header {
+    height: 155px;
+  }
+  .headertitle {
+    height: 115px;
+  }
+  .craft {
+    font-size: 100px;
+  }
+  .craftby {
+    font-size: 20px;
+  }
+  .headertitle img {
+    height: 30px;
+  }
+  .headernav ul li {  /* ナビゲーション */
+    font-size: 20px;
+    padding: 8px;
+  }
+  footer img { /*パソコンのfooter*/
+    height: 40px;
   }
 
-/*ページの終わりにボタンを置くとき！*/
+    /* ＜pagetitleのcss＞ */
+  .pagetitle {
+    text-align: center;
+    font-size: 25px;
+    margin: 15px auto;
+  }
 
 
-.inquirybtn {
-  margin-top: 0px;
-}
 
-/*(パソコン版)STUDENTS/INDEX.PHP*/
-.horizontalrankingboxes {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-}
-.rankingboxes {
-  width: 50%;
-}
-.rankingboxes ul li {
-  width: 200px;
-}
+  .conditionsearch {/*パソコン版studentsのindexのこだわり条件から探すのところのcss*/
+    width: 480px;
+    font-size: 19px;
+  }
 
-}
+  /* .returnbtn, .agencybtn { /*contactページのbuttons*/
+    /* width: 350px;
+    height: 35px;
+    margin: 0 auto; */
+  /* }  */
+
+
+    .half div input {
+      width: 400px;
+    }
+
+  /*ページの終わりにボタンを置くとき！*/
+
+
+  .inquirybtn {
+    margin-top: 0px;
+  }
+
+  /*(パソコン版)STUDENTS/INDEX.PHP*/
+  .horizontalrankingboxes {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  }
+  .rankingboxes {
+    width: 50%;
+  }
+  .rankingboxes ul li {
+    width: 200px;
+  }
+};

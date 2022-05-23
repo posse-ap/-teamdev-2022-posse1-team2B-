@@ -11,15 +11,15 @@
 <body>
   <?php include (dirname(__FILE__) . "/agency_header.php");?>
   <div class="main">
-    <h1>掲載内容新規作成</h1>
+    <h1 class="pagetitle">掲載内容新規作成</h1>
       <div>
-        <form action="../../thanks.php" method="POST">
+        <form action="../../thanks.php" method="POST" class="inputform">
             <div>
-                <label for="companyName">会社名<span>必須</span></label>
+                <label for="companyName">会社名<span class="must">必須</span></label>
                 <input type="text" name="company_name" id="companyName" required>
             </div>
             <div>
-                <label for="companyAddress">会社住所<span>必須</span></label>
+                <label for="companyAddress">会社住所<span class="must">必須</span></label>
                 <input type="text" name="company_address" id="companyAddress" required>
             </div>
             <div>

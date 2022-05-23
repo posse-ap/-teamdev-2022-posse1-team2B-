@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>エージェンシー企業メニュー画面</title>
   <link rel="stylesheet" href="../../css/reset.css">
-  <link rel="stylesheet" href="../../css/agency.css">
   <link rel="stylesheet" href=”../../css/index.css”>
+  <link rel="stylesheet" href="../../css/agency.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/agency_header.php");?>
