@@ -30,13 +30,14 @@ if(isset($_SESSION['keep'])){
   <title>Top画面</title>
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/index.css">
+  <script src="https://kit.fontawesome.com/36c0fb6822.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/student_header.php");?>
   <div class="main">
     <div> 
-      <a href="condition_selection.php">こだわり条件から探す</a>
-      <div>
+      <a href="condition_selection.php" class="conditionsearch">こだわり条件から探す <i class="fa-solid fa-magnifying-glass"></i></a>
+      <div class="monthlyrankingbox">
         <h1 class="pagetitle">月間ランキング</h1>
         <ul>
           <?php
@@ -61,23 +62,29 @@ if(isset($_SESSION['keep'])){
         </ul>
       </div>
       <div>
-        <h2>業種別ランキング</h2>
         <form action="./agency_list.php" method="POST">
-          <ul>
-            <li><input type="submit" name="finance" value="金融"></li>
-            <li><input type="submit" name="it" value="IT"></li>
-            <li><input type="submit" name="ad" value="広告"></li>
-            <li><input type="submit" name="tradingCompany" value="商社"></li>
-            <li><input type="submit" name="food" value="食品"></li>
-            <li><input type="submit" name="realEstate" value="不動産"></li>
-          </ul>
-          <h2>求人エリア別ランキング</h2>
-          <ul>
-            <li><input type="submit" name="kanto" value="関東"></li>
-            <li><input type="submit" name="kansai" value="関西"></li>
-            <li><input type="submit" name="tokai" value="東海"></li>
-            <li><input type="submit" name="kyushu" value="九州"></li>
-          </ul>
+          <div class="horizontalrankingboxes">
+            <div class="rankingboxes">
+              <h2 class="pagetitle">業種別ランキング</h2>
+              <ul class>
+                <li><input type="submit" name="finance" value="金融"></li>
+                <li><input type="submit" name="it" value="IT"></li>
+                <li><input type="submit" name="ad" value="広告"></li>
+                <li><input type="submit" name="tradingCompany" value="商社"></li>
+                <li><input type="submit" name="food" value="食品"></li>
+                <li><input type="submit" name="realEstate" value="不動産"></li>
+              </ul>
+            </div>
+            <div class="rankingboxes">
+              <h2 class="pagetitle">求人エリア別ランキング</h2>
+              <ul class>
+                <li><input type="submit" name="kanto" value="関東"></li>
+                <li><input type="submit" name="kansai" value="関西"></li>
+                <li><input type="submit" name="tokai" value="東海"></li>
+                <li><input type="submit" name="kyushu" value="九州"></li>
+              </ul>
+            </div>
+          </div>
         </form>
       </div>
     </div>

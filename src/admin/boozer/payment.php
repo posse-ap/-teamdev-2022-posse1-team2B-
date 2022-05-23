@@ -1,3 +1,10 @@
+<?php
+require("../../dbconnect.php");
+$stmt = $db->prepare('SELECT * FROM agents');
+$stmt->execute();
+$agents = $stmt->fetchAll();
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -11,13 +18,14 @@
 <body>
   <div class="main">
     <?php include (dirname(__FILE__) . "/boozer_header.php");
-    foreach ($hoges as $hoge) : ?>
+    foreach ($agents as $agent) : ?>
     <div>
-      <h3>エージェントA</h3>
-      <a href="./payment_detail.php">詳細</a>
+      <h3><?php echo $agent['agent_name'];?></h3>
+      <a href="./payment_detail.php?agent_id=<?php echo $agent['id'];?>">明細情報の詳細</a>
       <span>未払い</span>
     </div>
     <?php endforeach; ?>
+    <a href='javascript:history.back()'>戻る</a>
   </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>

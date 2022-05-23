@@ -321,14 +321,13 @@ if (isset($_POST['contact'])) {
           </div>
         </div>
       </div>
-      <div class="pageendbuttons">
+      <!-- <div class="pageendbuttons"> -->
         <!-- ここの遷移がない -->
         <input type="submit" name="contact" value="エージェンシー企業に問い合わせる" class="inquirybtn"><br>
-      </div>
+      <!-- </div> -->
     </form>
-    <!-- formの外に出さないと前の画面に戻れない。CSSの修正。ごめんなさいせっかくCSS描いてくれたのに。 -->
       <?php
-        if (isset($_POST["contact_agency"])) {
+        if (isset($_POST["btn_back"])) {
           // 戻るが押されたとき
           echo ('<form action="condition_selection.php" method="GET">
           <button type="submit" name="back" class="returnbtn">戻る</button>
@@ -336,7 +335,7 @@ if (isset($_POST['contact'])) {
         } else {
           echo ('<a href=' . '"javascript:history.back()"' . ' class="returnbtn">戻る</a>');
         }
-        ?>
+      ?>
     <!-- これがデフォで表示されている
     何用だ！！！！！！！！！！！！！！！！！！！！！！！！！！ -->
   </div>
