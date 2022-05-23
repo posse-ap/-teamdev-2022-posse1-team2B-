@@ -1,3 +1,10 @@
+<?php
+require("../../dbconnect.php");
+$agent_id = $_GET['agent_id'];
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -13,9 +20,11 @@
   <div class="main">
     <?php 
       $months = [1,2,3,4,5,6,7,8,9,10,11,12];
-      foreach ($months as $key => $month) : ?>
-      <button><?= $month;?> </button>
+      foreach ($months as $key => $month) : 
+      ?>
+      <button><?= $month;?></button>
     <?php endforeach;?>
+
     <div>
       <span>発行日 </span>
       <span>集計期間 </span>
@@ -45,7 +54,9 @@
         <span>お支払い期日: </span>
       </div>
     </div>
+    <a href='javascript:history.back()'>戻る</a>
   </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
+  <script src="./boozer.js"></script>
 </body>
 </html>
