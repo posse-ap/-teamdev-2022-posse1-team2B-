@@ -27,10 +27,9 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
         $months = [1,2,3,4,5,6,7,8,9,10,11,12];
         foreach ($months as $key => $month) : ?>
         <button><?= $month;?> </button>
-      <?php endforeach;?>
-        
+      <?php endforeach;?> 
       <?php
-        foreach ($agents_students_match as $agent_student_match) : ?>
+        foreach ($agents_students_match as $index => $agent_student_match) : ?>
         <!-- 学生のデータを問い合わせぶん回す -->
       <div>
         <span><?= $agent_student_match['student_name'] ?></span>
@@ -51,9 +50,9 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
       <dd>卒業年</dd><dt><?= $agent_student_match['graduation_year']?></dt>
       <dd>申込みエージェント</dd><dt><?= $agent_student_match['agent_name'] ?></dt>
     </section>
-
     <?php endforeach; ?>
   </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
+  <script src="./boozer.js"></script>
 </body>
 </html>
