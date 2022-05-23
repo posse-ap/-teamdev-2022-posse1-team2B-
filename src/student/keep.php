@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   }
 }
 $keeps=array();
-if(isset($_SESSION['keep']) && $_SESSION['time'] + 30 > time()){
+if(isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()){
   $keeps=$_SESSION['keep'];
   $_SESSION['time'] = time();
 } else {
