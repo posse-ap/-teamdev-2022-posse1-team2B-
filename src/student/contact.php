@@ -216,86 +216,100 @@ if (isset($_POST["contact"])) {
     </form>
   </div>
   <?PHP else : ?>
-    <!-- 問い合わせ入力画面 -->
-    <div class="main">
-      <h1>企業に問い合わせる</h1>
-      <div>申し込み先企業：<?php $agency ?></div>
-      <form action="contact.php" method="POST">
-        <div>
-          <label for="familyName">氏</label>
-          <input type="text" name="student_last_name" id="familyName" required>
+  <!-- 問い合わせ入力画面 -->
+  <div class="main">
+    <h1 class="pagetitle">企業にお問い合わせ</h1>
+    <div class="agencybtn">申し込み先企業：
+      <?php $agency ?>
+    </div>
+    <form action="contact.php" method="POST">
+      <div class="inputform">
+        <div class="half">
+          <div>
+           <label for="familyName">氏</label><br>
+           <input type="text" name="student_last_name" id="familyName" required>
+          </div>
+          <div>
+            <label for="studentName">名</label><br>
+            <input type="text" name="student_first_name" id="studentName" required>
+          </div>
         </div>
-        <div>
-          <label for="studentName">名</label>
-          <input type="text" name="student_first_name" id="studentName" required>
+        <div class="half">
+          <div>
+            <label for="familyNameKana">氏（カナ）</label><br>
+            <input type="text" name="student_last_name_kana" id="familyNameKana"
+            pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
+          </div>
+          <div>
+            <label for="studentNameKana">名（カナ）</label><br>
+            <input type="text" name="student_first_name_kana" id="studentNameKana"
+            pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
+          </div>
         </div>
-        <div>
-          <label for="familyNameKana">氏(カナルビ)</label>
-          <input type="text" name="student_last_name_kana" id="familyNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
-        </div>
-        <div>
-          <label for="studentNameKana">名(カナルビ)</label>
-          <input type="text" name="student_first_name_kana" id="studentNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
-        </div>
-        <div>
-          <label for="postNumber">郵便番号</label>
+        <div class="full">
+          <label for="postNumber">郵便番号</label><br>
           <input type="text" name="post_number" id="postNumber" maxlength="7" required>
         </div>
-        <div>
-          <label for="prefecture">都道府県</label>
+        <div class="full">
+          <label for="prefecture">都道府県</label><br>
           <input type="text" name="prefecture" id="prefecture" required>
         </div>
-        <div>
-          <label for="prefecture">市区町村</label>
+        <div class="full">
+          <label for="prefecture">市区町村</label><br>
           <input type="text" name="municipality" id="municipality" required>
         </div>
-        <div>
-          <label for="adressNumber">番地</label>
+        <div class="full">
+          <label for="adressNumber">番地</label><br>
           <input type="text" name="adress_number" id="adress_number" required>
         </div>
-        <div>
-          <label for="telephoneNumber">電話番号</label>
-          <input type="tel" name="tel_number" id="telephoneNumber" pattern="\d{2,4}-?\d{2,4}-?\d{3,4}" maxlength="11" required>
+        <div class="full">
+          <label for="telephoneNumber">電話番号</label><br>
+          <input type="tel" name="tel_number" id="telephoneNumber" pattern="\d{2,4}-?\d{2,4}-?\d{3,4}" maxlength="11"
+            required>
         </div>
-        <div>
-          <label for="emailAddress">メールアドレス</label>
+        <div class="full">
+          <label for="emailAddress">メールアドレス</label><br>
           <input type="email" name="email" id="emailAddress" required>
         </div>
-        <div>
-          <label for="almaMater">出身大学</label>
-          <input type="text" name="college_name" id="almaMater" required>
+        <div class="half">
+          <div>
+            <label for="almaMater">出身大学</label><br>
+            <input type="text" name="college_name" id="almaMater" required>
+          </div>
+          <div>
+            <label for="faculty">学部</label><br>
+            <input type="text" name="undergraduate" id="faculty" required>
+          </div>
         </div>
-        <div>
-          <label for="faculty">学部</label>
-          <input type="text" name="undergraduate" id="faculty" required>
+        <div class="half">
+          <div>
+            <label for="department">学科</label><br>
+            <input type="text" name="college_department" id="department" required>
+          </div>
+          <div>
+            <label for="graduationYear">卒業年を選択</label><br>
+            <input type="text" name="graduation_year" id="graduationYear" maxlength="4" required>
+          </div>
         </div>
-        <div>
-          <label for="department">学科</label>
-          <input type="text" name="college_department" id="department" required>
-        </div>
-        <div>
-          <p>卒業年を選択</p>
-          <input type="text" name="graduation_year" id="graduationYear" maxlength="4" required>
-        </div>
-        <div>
-          <!-- <button>戻る</button> -->
-          <!-- ここの遷移がない -->
-          <input class="inquirybtn" type="submit" name="contact" value="エージェンシー企業に問い合わせる">
-        </div>
-      </form>
+      </div>
+      <div class="pageendbuttons">
+        <!-- ここの遷移がない -->
+        <input type="submit" name="contact" value="エージェンシー企業に問い合わせる" class="inquirybtn"><br>
+      </div>
+    </form>
       <?php
-      if (isset($_POST["btn_back"])) {
-        // 戻るが押されたとき
-        echo ('<form action="condition_selection.php" method="get">
-      <button type="submit" name="back" class="returnbtn">戻る</button>
-      </form>');
-      } else {
-        echo ('<a class="returnbtn" href=' . '"javascript:history.back()"' . '>戻る</a>');
-      }
+        if (isset($_POST["btn_back"])) {
+          // 戻るが押されたとき
+          echo ('<form action="condition_selection.php" method="get">
+        <button type="submit" name="back" class="returnbtn">戻る</button>
+        </form>');
+        } else {
+          echo ('<a href=' . '"javascript:history.back()"' . ' class="returnbtn">戻る</a>');
+        }
       ?>
-      <!-- これがデフォで表示されている
-      何用だ！！！！！！！！！！！！！！！！！！！！！！！！！！ -->
-    </div>
+    <!-- これがデフォで表示されている
+    何用だ！！！！！！！！！！！！！！！！！！！！！！！！！！ -->
+  </div>
   <?php endif;
   include(dirname(__FILE__) . "/student_footer.php");
   ?>

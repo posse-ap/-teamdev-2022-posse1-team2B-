@@ -11,8 +11,8 @@
       <li><a href="./keep.php">keep中の企業</a></li>
     </ul>
   </nav>
-  <div id="contactEmailAddress" class="contact_email_address">
-    <button id="closeButton" class="exitbtn">✕</button>
+  <div id="contactEmailAddress" class="contact_email_address navdropdown">
+    <button id="closeButton" class="exitbtn">✕</button><br>
     サービス等に関するお問い合わせは、xxx@co.jp までご連絡ください。 
     エージェンシー企業向け掲載依頼のお問い合わせは、yyy@co.jpまでご連絡ください。
   </div>

@@ -1,4 +1,3 @@
-
 /* マリア描いてくれたとこ */
 .contact {
   cursor: default;
@@ -25,12 +24,34 @@
   display: block;
 }
 
+/* ＜pagetitleのcss＞ */
 .pagetitle {
   text-align: center;
-  font-size: 25px;
+  font-size: 20px;
   margin: 15px auto;
+  margin-top: 30px;
+  display: flex;
+  align-items: center; /* 垂直中心 */
+  justify-content: center; /* 水平中心 */
+}
+.pagetitle:before, .pagetitle:after {
+  border-top: 1px solid;
+  content: "";
+  width: 3em; /* 線の長さ */
+}
+.pagetitle:before {
+  margin-right: 1em; /* 文字の右隣 */
+}
+.pagetitle:after {
+  margin-left: 1em; /* 文字の左隣 */
 }
 
+/*ページの終わりにボタンを置くとき！*/
+.pageendbuttons {
+  text-align: center;
+}
+
+/*メジャーボタンと背景色*/
 /* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
 .detailsbtn,
 .keepbtn,
@@ -40,20 +61,34 @@
   padding: 3px 15px;
 }
 
-/* お問い合わせボタン（オレンジ背景白文字 */
+/* メジャー：お問い合わせボタン（オレンジ背景白文字 */
 .inquirybtn, .submitbtn, .editbtn {
   background-color: #EFB448;
   color: white;
   border: none;
-  padding: 3px 15px
+  font-size: 18px;
+  width: 350px;
+  padding: 7px 15px;
+  margin-bottom: 20px;
 }
 
-/* 戻るボタン（緑背景白文字） */
-.returnbtn {
+/* メジャー：戻るボタン（パステル緑背景白文字） */
+.returnbtn, .agencybtn {
   background-color: #96D2C4;
   color: white;
+  display: block;
+  margin: 0 auto;
   border: none;
-  padding: 3px 15px
+  font-size: 18px;
+  padding: 7px 15px;
+  width: 100px;
+}
+
+/* メジャー：ログイン（緑背景白文字） */
+.loginbtn {
+  background-color: #66a29a;
+  color: white;
+  padding: 5px 5px
 }
 
 /* 閉じるボタン（バッテン！） */
@@ -72,108 +107,225 @@
   padding: 3px 5px;
 }
 
-/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-body {
-  background-color: #E5E5E5;
+
+/* inputの白い箱？のcss群です:)form全てを囲う箱 */
+.inputform {
+  width: 85%;
+  display: block; /*maringで中央寄せさせるために必須*/
+  margin: 0 auto;
+}
+.inputform div label, .inputform div div label { /*inputformのラベル系*/
+  font-size: 20px;
+  text-align: left;
+}
+.inputform div input, .inputbox { 
+  background-color: white;
+  height: 35px;
+  display: block;
+  margin: 10px auto;
+  margin-bottom: 20px;
+  width: 100%; /*横幅に合わせて白い箱が伸びたり縮んだり*/
+}
+/* .full {
+  display: block;
+  margin: 10px auto;
+  width: 100%;
+} */
+.half { /*一行を半分に分けた場合のテキストボックス*/
+  display: flex;
+  justify-content: space-between;
+  gap: 10px
 }
 
+/* bodyとmainの BASICCSS!!!!!!!!!!!!!!!!!!!! */
+body {
+  background-color: #ebedf1;
+}
 .main {
   padding: 15px 15px;
-  padding-bottom: 15px;
+  padding-top: 120px;
+  padding-bottom: 80px;
 }
 
 /* HEADERFOOTERCSS!!! */
 header {
   background-color: #66a29a;
+  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  height: 110px;
 }
-
-/* craftby就活.com */
-.headertitle {
+.headertitle { /* craftby就活.com */
   display: flex;
   justify-content: center;
-  padding: 10px;
+  padding-top: 10px;
   height: 80px;
+  align-items: baseline;
+  color: white;
 }
-
 .craft {
-  font-size: 50px;
+  font-size: 55px;
   font-weight: 550;
-  color: white;
   margin-bottom: 0;
 }
-
 .craftby {
-  color: white;
   font-size: 15px;
-  margin-top: 25px;
-  margin-bottom: 0;
 }
-
 .headertitle img {
   height: 20px;
-  margin-top: 25px;
-  margin-bottom: 0;
 }
-
-/* ナビゲーション */
-.headernav ul {
+.headernav ul { /* ナビゲーション */
   display: flex;
   list-style: none;
+  justify-content: space-around;
 }
-
-.headernav ul li, .headernav p, .headernav ul li a {
-  width: 50%;
+.headernav ul li, .headernav p /*.headernav ul li a */ {
   color: white;
-  text-align: center;
   font-size: 18px;
   padding: 3px
 }
-
-/* FOOTERでーす！ */
-footer {
+.navdropdown {
+  background-color: #d9dddc;
+  z-index: 100;
+}
+footer { 
   background-color: #66a29a;
-  text-align: center;
+  text-align: center; /*ロゴの中央よせ*/
   bottom: 0;
   position: fixed;
   width: 100%;
 }
-
 footer img {
   height: 20px;
   margin: 10px auto;
 }
 
+/* //一度きりボタン等// */
+.agencybtn {
+  width: 70%;
+  font-size: 18px;
+  margin-bottom: 15px;
+  vertical-align: middle;
+}
+
+/*STUDENTS/INDEX.PHP*/
+.conditionsearch {/*studentsのindexのこだわり条件から探すのところのcss*/
+  background-color: white;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 10px;
+  width: 280px;
+}
+.rankingboxes ul {/*studentsのindexの業種別、エリア別ランキングの箱を囲うまとめ*/
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.rankingboxes ul li {/*studentsのindexのランキングの各箱*/
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  /* width: 150px; */
+  width: 45%;
+}
+
+.monthlyrankingbox ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.monthlyrankingbox ul li {
+  background-color: white;
+  width: 80%;
+  height: 120px;
+}
+
+
 @media screen and (min-width:1024px) {
-  .headertitle {
-    height: 115px;
+
+
+
+/*パソコン版MAINHEADERFOOTER群*/
+.main {
+  padding-top: 160px;
+}
+header {
+  height: 155px;
+}
+.headertitle {
+  height: 115px;
+}
+.craft {
+  font-size: 100px;
+}
+.craftby {
+  font-size: 20px;
+}
+.headertitle img {
+  height: 30px;
+}
+.headernav ul li {  /* ナビゲーション */
+  font-size: 20px;
+  padding: 8px;
+}
+footer img { /*パソコンのfooter*/
+  height: 40px;
+}
+
+  /* ＜pagetitleのcss＞ */
+.pagetitle {
+  text-align: center;
+  font-size: 25px;
+  margin: 15px auto;
+}
+
+.conditionsearch {/*パソコン版studentsのindexのこだわり条件から探すのところのcss*/
+  width: 480px;
+  font-size: 19px;
+}
+
+.returnbtn, .agencybtn { /*contactページのbuttons*/
+  width: 350px;
+  height: 35px;
+  margin: 0;
+}
+
+
+  .half div input {
+    width: 400px;
   }
 
-  .craft {
-    font-size: 100px;
-    font-weight: 550;
-    margin: 0;
-  }
+/*ページの終わりにボタンを置くとき！*/
+.pageendbuttons {
+  display: flex;  
+  justify-content: center;
+  flex-direction: row-reverse;
+}
 
-  .craftby {
-    font-size: 20px;
-    margin-top: 70px;
-  }
+.inquirybtn {
+  margin-top: 0px;
+}
 
-  .headertitle img {
-    height: 30px;
-    margin-top: 70px;
-    margin-bottom: 0;
-  }
+/*(パソコン版)STUDENTS/INDEX.PHP*/
+.horizontalrankingboxes {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+.rankingboxes {
+  width: 50%;
+}
+.rankingboxes ul li {
+  width: 200px;
+}
 
-  /* ナビゲーション */
-  .headernav ul li {
-    font-size: 20px;
-    padding: 8px;
-  }
-
-  /* パソコンFOOTERでーす！ */
-  footer img {
-    height: 40px;
-    margin: 10px auto;
-  }
 }

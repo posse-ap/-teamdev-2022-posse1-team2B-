@@ -42,16 +42,7 @@
   position: center;
 }
 
-/* ログイン（緑背景白文字） */
-.loginbtn {
-  background-color: #66a29a;
-}
-
 /* account画面 */
-.inputbox { /*白い背景のテキストボックス*/
-  background-color: white;
-  margin: 10px 30px;
-}
 
 .full { /*テキストボックスが横長*/
   width: 1200px;

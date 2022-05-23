@@ -18,7 +18,7 @@
 <?php include (dirname(__FILE__) . "/student_header.php");?>
   <!-- 業種別ランキングをクリックした時 -->
   <div class="main">
-   <?php if($page_flag === 1): ?>
+    <?php if($page_flag === 1): ?>
     <div>
       <h1>
         <?php 
