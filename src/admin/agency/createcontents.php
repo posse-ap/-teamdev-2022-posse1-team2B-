@@ -27,8 +27,8 @@
                 <input type="text" name="company_remarks" id="companyRemarks">
             </div>
             <div>
-                <label for="iconImage">アイコン画像</label>
-                <input type="file" name="icon_image" id="iconImage"  accept="image/*">
+                <label for="iconImage" class="uploadicon">アイコン画像</label>
+                <input type="file" name="icon_image" id="iconImage" accept="image/*" class="iconimage">
             </div>
             <a href="./index.php" class="returnbtn">戻る</a>
             <!-- 入力した値を受け渡す -->
