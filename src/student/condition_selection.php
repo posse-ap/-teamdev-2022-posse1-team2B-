@@ -89,14 +89,14 @@ if(isset($_POST["search"])) {
   </div>
   <!-- こだわり条件から探すをクリックした場合に表示 -->
   <?php else:?>
-  <div class="main conditionselectionouter">
+  <div class="main">
    <div class="conditionselectioninner">
     <a href="./index.php" class="exitbtn">✕</a>
     <form action="condition_selection.php" method="POST">
-      <h1>エージェンシー企業をこだわり条件で絞り込む</h1>
+      <h1 class="pagetitle">条件で絞り込む</h1>
       <div>
         <div class="conditiongroup">
-          <h2>エージェンシー企業の得意業界</h2>
+          <h2>得意業界</h2>
           <input type="checkbox" name="food" id="food">
           <label from="food">食品</label>
           <input type="checkbox" name="apparel" id="apparel">
