@@ -37,7 +37,7 @@
         <label for="companyImage">アイコン画像</label>
         <input type="text" id="companyimage">
       </div>
-      <button type="submit" class="submitbtn">修正を申し込む</button>
+      <button type="submit" name="fix" class="submitbtn">修正を申し込む</button>
     </form>
   </div>
   <?php include (dirname(__FILE__) . "/agency_footer.php");?>

@@ -1,42 +1,50 @@
 <?php
-// もしname属性がformの送信ボタンを押したら、この文言を出力する
+require("./dbconnect.php");
+
+// もしname属性~の送信ボタンを押したら、この文言を出力する
+// サンクスページに遷移する画面
+// agency
+  //1 アカウント作成完了：top account thanks////btn_confirm
+  // 2  掲載情報新規作成：createcontents thanks/////create
+  // 3 掲載情報修正依頼：fixcontents thanks///fix
+  // 4 学生からのお問い合わせ取り消し依頼：students thanks////mischief_report
+// boozer
+  // 5  掲載情報編集：edit thanks///edit
+  //6 掲載情報新規作成：create_contents thanks////new_entry
+// student
+ // 7 お問い合わせ：contact thanks////final_contact
+
 $action = "";
 $user_name ="";
-if(isset($_POST['new_entry'])){
-  $action = "エージェンシー企業の掲載";
-  $user_name = "admin";
-  // create_contents.php
-} else if (isset($_POST['edit'])) {
-  $action = "登録情報の修正";
-  $user_name = "admin";
-  // edit.php
-} else if (isset($_POST['registration'])) {
-      $action = "会員登録";
-      $user_name = "agency";
-  // account.php 
-} else if (isset($_POST['create'])) {
-    $action = "掲載の申請";
+if(isset($_POST['btn_confirm'])){ // agency
+    //1 アカウント作成完了：top account thanks////btn_confirm
+  $action = "アカウントの作成";
+  $user_name = "agency";
+}  else if (isset($_POST['create'])) {
+    // 2  掲載情報新規作成：createcontents thanks/////create
+    $action = "掲載の新規作成";
     $user_name = "agency";
-    // createcontents.php
-} else if (isset($_POST['fix'])) {
-    $action = "掲載情報の修正依頼";
+}   else if (isset($_POST['fix'])) {
+    // 3 掲載情報修正依頼：fixcontents thanks///fix
+    $action = "掲載情報の修正依頼が";
     $user_name = "agency";
-    // fixcontents.php
-} else if (isset($_POST['contact_reset'])) {
-    $action = "学生によるお問い合わせの取り消し申請";
+}  else if (isset($_POST['mischief_report'])) {
+    // 4 学生からのお問い合わせ取り消し依頼：students thanks////mischief_report
+    $action = " 学生からのお問い合わせ取り消し依頼";
     $user_name = "agency";
-    // student.php
-}  else if (isset($_POST['contact'])) {
-    $action = "お問い合わせフォームの送信";
+}  else if (isset($_POST['edit'])) { //boozer
+    // 5  掲載情報編集：edit thanks///edit
+    $action = "掲載情報の編集";
+    $user_name = "boozer";
+}  else if (isset($_POST['new_entry'])) {
+    //6 掲載情報新規作成：create_contents thanks////new_entry
+    $action = "掲載の新規作成";
+    $user_name = "boozer";
+}  else if (isset($_POST['final_contact'])) { //student
+   // 7 お問い合わせ：contact thanks////final_contact
+    $action = "エージェンシー企業へのお問い合わせ";
     $user_name = "student";
-};
-
-// 見た目が一緒→見た目の部分だけファイル作って、includeで出力。
-// 共通部分だけ同じファイル。→urlが違うなら、別ファイルにする
-// コンタクトページ→サンクスページの場合はcontact/thanksみたいになるはず
-// どこのページから送ったかが定かな方がいい→エージェントと学生両方のアカウントを持っていて、両方から送って平きっぱにしてた場合、どっちで何送ったっけ？になる
-// リロードしても～が完了しました、の～の部分が変わらなければ大丈夫
-// 余裕があれば別ファイルにする
+} 
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -45,16 +53,44 @@ if(isset($_POST['new_entry'])){
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-  <?php if(isset($_POST[""]))
-  <?php include (dirname(__FILE__) . "/" . $user_name . "/" . $user_name . "_header.php");?>
-  <span><?php print_r($action);?>完了</span>
-  <div>
-  <p><?php print_r($action);?>が完了しました</p>
-  <a href="./index.php">Top画面に戻る</a>
+<?php 
+    if($user_name === "boozer" || $user_name === "agency") {
+      include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_header.php");
+    }else{
+      include (dirname(__FILE__) . "/" . $user_name . "/" . $user_name . "_header.php");
+    }
+    ?>
+  <div class="main">
+    <h2><?php print_r($action);?>完了</h2>
+    <div>
+      <p><?php print_r($action);?>が完了しました</p>
+      <a href="
+        <?php if($user_name === "boozer"):?>
+        ../admin/boozer/index.php
+        <?php elseif($user_name === "agency"): ?>
+        ../admin/agency/index.php 
+        <?php else : ?>
+          ../student/index.php
+        <?php endif;?>
+      ">Top画面に戻る</a>
+    </div>
   </div>
-  <?php include (dirname(__FILE__) . "/" . $user_name . "/" . $user_name . "_footer.php");?>
+  <?php 
+  if($user_name === "boozer") {
+    include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_footer.php");
+    echo('<script src="./admin/boozer/boozer.js"></script>');
+  } elseif($user_name === "agency") {
+    include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_footer.php");
+    echo('<script src="../admin/agency/agency.js"></script>');
+  } else {
+    include (dirname(__FILE__) . "/" . $user_name . "/" . $user_name . "_footer.php");
+    echo('<script src="../student/student.js"></script>');
+  }
+  ?>
 </body>
 </html>
 
