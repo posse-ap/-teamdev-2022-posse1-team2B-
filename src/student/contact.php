@@ -292,10 +292,10 @@ if (isset($_POST["contact"])) {
           </div>
         </div>
       </div>
-      <div class="pageendbuttons">
+      <!-- <div class="pageendbuttons"> -->
         <!-- ここの遷移がない -->
         <input type="submit" name="contact" value="エージェンシー企業に問い合わせる" class="inquirybtn"><br>
-      </div>
+      <!-- </div> -->
     </form>
       <?php
         if (isset($_POST["btn_back"])) {

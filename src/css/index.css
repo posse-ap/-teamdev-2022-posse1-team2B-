@@ -37,19 +37,19 @@
 .pagetitle:before, .pagetitle:after {
   border-top: 1px solid;
   content: "";
-  width: 3em; /* 線の長さ */
+  width: 2.8em; /* 線の長さ */
 }
 .pagetitle:before {
-  margin-right: 1em; /* 文字の右隣 */
+  margin-right: 0.8em; /* 文字の右隣 */
 }
 .pagetitle:after {
-  margin-left: 1em; /* 文字の左隣 */
+  margin-left: 0.8em; /* 文字の左隣 */
 }
 
-/*ページの終わりにボタンを置くとき！*/
+/* ページの終わりにボタンを置くとき！
 .pageendbuttons {
   text-align: center;
-}
+} */
 
 /*メジャーボタンと背景色*/
 /* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
@@ -61,15 +61,20 @@
   padding: 3px 15px;
 }
 
-/* メジャー：お問い合わせボタン（オレンジ背景白文字 */
-.inquirybtn, .submitbtn, .editbtn {
+/* メジャー：検索ボタン（オレンジ背景白文字） */
+.searchbtn, .submitbtn, .editbtn, .inquirybtn {
   background-color: #EFB448;
   color: white;
   border: none;
   font-size: 18px;
-  width: 350px;
+  width: 80px;
   padding: 7px 15px;
-  margin-bottom: 20px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+.inquirybtn { /*お問い合わせボタン*/
+  width: 350px;
 }
 
 /* メジャー：戻るボタン（パステル緑背景白文字） */
@@ -81,6 +86,7 @@
   border: none;
   font-size: 18px;
   padding: 7px 15px;
+  text-align: center;
   width: 100px;
 }
 
@@ -207,6 +213,7 @@ footer img {
   font-size: 18px;
   margin-bottom: 15px;
   vertical-align: middle;
+  text-align: left;
 }
 
 /*STUDENTS/INDEX.PHP*/
@@ -234,20 +241,73 @@ footer img {
   /* width: 150px; */
   width: 45%;
 }
-
-.monthlyrankingbox ul {
+.monthlyrankingbox ul {/*月刊ランキングの大枠の箱*/
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
-
-.monthlyrankingbox ul li {
+.monthlyrankingbox ul li {/*月刊ランキング内の各エージェンシー別の詳細*/
   background-color: white;
   width: 80%;
   height: 120px;
 }
+
+/*STUDENTS/CONDITION_SELECTION.PHP*/
+.conditionselectioninner { /*conditionselectionのモーダルもどきの白い部分*/
+  background-color: white;
+  margin: 25px 18px 25px 18px;
+  padding: 20px 17px 20px 17px;
+}
+.conditionselectioninner a { /*モーダルもどき右上のバッテン*/
+  display: block;
+  margin: 0 0 0 auto;
+  padding-top: 5px;
+  font-size: 20px;
+}
+.conditionselectioninner form h1 {/*モーダルもどきのタイトル: 条件で絞り込む*/
+  margin-top: 5px;
+}
+
+.conditiongroup {/*種別の条件選択の箱*/
+  margin: 30px 30px 20px 30px;
+}
+.conditiongroup h2 {/*条件選択のタイトル*/
+  margin-bottom: 7px;
+}
+
+.conditiongroup input {
+  /* display: none; */
+  background: #d9dddc;
+}
+
+.conditiongroup label {
+  /* position: relative;
+  padding-left: 15px; */
+  margin-right: 3px;
+  margin-bottom: 5px;
+  line-height: 25px;
+}
+
+/* .conditiongroup label::before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  /* border: 1px solid black; */
+  /* border-radius: 0%; */
+  /* cursor: pointer;
+  background-color: #d9dddc;
+}
+
+.conditiongroup :checked label::before {
+  background-color: #66a29a;
+} */ 
 
 
 @media screen and (min-width:1024px) {
@@ -288,16 +348,18 @@ footer img { /*パソコンのfooter*/
   margin: 15px auto;
 }
 
+
+
 .conditionsearch {/*パソコン版studentsのindexのこだわり条件から探すのところのcss*/
   width: 480px;
   font-size: 19px;
 }
 
-.returnbtn, .agencybtn { /*contactページのbuttons*/
-  width: 350px;
+/* .returnbtn, .agencybtn { /*contactページのbuttons*/
+  /* width: 350px;
   height: 35px;
-  margin: 0;
-}
+  margin: 0 auto; */
+/* }  */
 
 
   .half div input {
@@ -305,11 +367,7 @@ footer img { /*パソコンのfooter*/
   }
 
 /*ページの終わりにボタンを置くとき！*/
-.pageendbuttons {
-  display: flex;  
-  justify-content: center;
-  flex-direction: row-reverse;
-}
+
 
 .inquirybtn {
   margin-top: 0px;
