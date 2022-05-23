@@ -295,7 +295,9 @@ if (isset($_POST["contact"])) {
       <div class="pageendbuttons">
         <!-- ここの遷移がない -->
         <input type="submit" name="contact" value="エージェンシー企業に問い合わせる" class="inquirybtn"><br>
-        <?php
+      </div>
+    </form>
+      <?php
         if (isset($_POST["btn_back"])) {
           // 戻るが押されたとき
           echo ('<form action="condition_selection.php" method="get">
@@ -304,10 +306,7 @@ if (isset($_POST["contact"])) {
         } else {
           echo ('<a href=' . '"javascript:history.back()"' . ' class="returnbtn">戻る</a>');
         }
-        ?>
-      </div>
-    </form>
-   
+      ?>
     <!-- これがデフォで表示されている
     何用だ！！！！！！！！！！！！！！！！！！！！！！！！！！ -->
   </div>

@@ -17,80 +17,81 @@ if(isset($_POST["search"])) {
   <?php 
   if($page_flag === 1 || isset($_GET["back"])):?>
     <!-- 絞り込み結果 -->
- <div class="main">
-   <h1>絞り込み結果</h1>
-   <a href="./condition_selection.php">✕</a>
-   <a href="./keep.php">キープ中の企業</a>
-   <ul>
-     <li>
-       <a href="./agent_detail.php">
-         <p><?php print_r($recommend_agent_name);?></p>
-         <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
-         <dl>
-           <dt>得意な業種</dt>
-           <dd><?php print_r($specialty_industry);?></dd>
-           <dt>対応エリア</dt>
-           <dd><?php print_r($supported_area);?></dd>
-           <dt>対象学生</dt>
-           <dd><?php print_r($target_student);?></dd>
-           <dt>対応企業の規模</dt>
-           <dd><?php print_r($supported_corporate_scale);?></dd>
-         </dl>
-         <form action="./keep.php" method="POST">
-           <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-           <button type="submit" class="keepbtn">キープする</button>
-           <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
-         </form>
-       </a>
-     </li>
-     <li>
-       <a href="./agent_detail.php">
-         <p><?php print_r($recommend_agent_name);?></p>
-         <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
-         <dl>
-           <dt>得意な業種</dt>
-           <dd><?php print_r($specialty_industry);?></dd>
-           <dt>対応エリア</dt>
-           <dd><?php print_r($supported_area);?></dd>
-           <dt>対象学生</dt>
-           <dd><?php print_r($target_student);?></dd>
-           <dt>対応企業の規模</dt>
-           <dd><?php print_r($supported_corporate_scale);?></dd>
-         </dl>
-         <form action="./keep.php" method="POST">
-           <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-           <button type="submit" class="keepbtn">キープする</button>
-           <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
-         </form>
-       </a>
-     </li>
-     <li>
-       <a href="./agent_detail.php">
-         <p><?php print_r($recommend_agent_name);?></p>
-         <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
-         <dl>
-           <dt>得意な業種</dt>
-           <dd><?php print_r($specialty_industry);?></dd>
-           <dt>対応エリア</dt>
-           <dd><?php print_r($supported_area);?></dd>
-           <dt>対象学生</dt>
-           <dd><?php print_r($target_student);?></dd>
-           <dt>対応企業の規模</dt>
-           <dd><?php print_r($supported_corporate_scale);?></dd>
-         </dl>
-         <form action="./keep.php" method="POST">
-           <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-           <button type="submit" class="keepbtn">キープする</button>
-           <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
-         </form>
-       </a>
-     </li>
-   </ul>
- </div>
- <!-- こだわり条件から探すをクリックした場合に表示 -->
- <?php else:?>
- <div class="main conditionselectionouter">
+  <div class="main">
+    <h1>絞り込み結果</h1>
+    <a href="./condition_selection.php">✕</a>
+    <a href="./keep.php">キープ中の企業</a>
+    <ul>
+      <li>
+        <a href="./agent_detail.php">
+          <p><?php print_r($recommend_agent_name);?></p>
+          <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
+          <dl>
+            <dt>得意な業種</dt>
+            <dd><?php print_r($specialty_industry);?></dd>
+            <dt>対応エリア</dt>
+            <dd><?php print_r($supported_area);?></dd>
+            <dt>対象学生</dt>
+            <dd><?php print_r($target_student);?></dd>
+            <dt>対応企業の規模</dt>
+            <dd><?php print_r($supported_corporate_scale);?></dd>
+          </dl>
+          <form action="./keep.php" method="POST">
+            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+            <button type="submit" class="keepbtn">キープする</button>
+            <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
+          </form>
+        </a>
+      </li>
+      <li>
+        <a href="./agent_detail.php">
+          <p><?php print_r($recommend_agent_name);?></p>
+          <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
+          <dl>
+            <dt>得意な業種</dt>
+            <dd><?php print_r($specialty_industry);?></dd>
+            <dt>対応エリア</dt>
+            <dd><?php print_r($supported_area);?></dd>
+            <dt>対象学生</dt>
+            <dd><?php print_r($target_student);?></dd>
+            <dt>対応企業の規模</dt>
+            <dd><?php print_r($supported_corporate_scale);?></dd>
+          </dl>
+          <form action="./keep.php" method="POST">
+            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+            <button type="submit" class="keepbtn">キープする</button>
+            <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
+          </form>
+        </a>
+      </li>
+      <li>
+        <a href="./agent_detail.php">
+          <p><?php print_r($recommend_agent_name);?></p>
+          <img src="../img/<?php print_r("agent_id");?>.png" alt="エージェンシー企業">
+          <dl>
+            <dt>得意な業種</dt>
+            <dd><?php print_r($specialty_industry);?></dd>
+            <dt>対応エリア</dt>
+            <dd><?php print_r($supported_area);?></dd>
+            <dt>対象学生</dt>
+            <dd><?php print_r($target_student);?></dd>
+            <dt>対応企業の規模</dt>
+            <dd><?php print_r($supported_corporate_scale);?></dd>
+          </dl>
+          <form action="./keep.php" method="POST">
+            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+            <button type="submit" class="keepbtn">キープする</button>
+            <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
+          </form>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- こだわり条件から探すをクリックした場合に表示 -->
+  <?php else:?>
+  <div class="main conditionselectionouter">
    <div class="conditionselectioninner">
+    <div class="main">
     <a href="./index.php" class="exitbtn">✕</a>
     <form action="condition_selection.php" method="POST">
       <h1>エージェンシー企業をこだわり条件で絞り込む</h1>
@@ -146,6 +147,6 @@ if(isset($_POST["search"])) {
  </div>
   <?php endif; ?>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
-  <script src="./sudent.js"></script>
+  <script src="./student.js"></script>
 </body>
 </html>
