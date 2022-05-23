@@ -15,9 +15,10 @@ session_start();
 //   }
 // }
 $keeps=array();
-// if(isset($_SESSION['keep'])){
-//   $keeps=$_SESSION['keep'];
-// }
+if(isset($_SESSION['keep'])){
+  $keeps=$_SESSION['keep'];
+  $_SESSION['time'] = time();
+}
 ?>
 
 <!DOCTYPE html>

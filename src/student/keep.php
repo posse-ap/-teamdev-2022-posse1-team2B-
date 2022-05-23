@@ -4,15 +4,20 @@ session_start();
 if($_SERVER['REQUEST_METHOD']==='POST'){
   if(isset($_POST['agent_id'])){
       $agent_id = $_POST['agent_id'];
+      $_SESSION['time'] = time();
       $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
     if(isset($_POST['cancel_agency'])) {
       unset($_SESSION['keep'][$agent_id]);
+      $_SESSION['time'] = time();
     }
   }
 }
 $keeps=array();
-if(isset($_SESSION['keep'])){
+if(isset($_SESSION['keep']) && $_SESSION['time'] + 30 > time()){
   $keeps=$_SESSION['keep'];
+  $_SESSION['time'] = time();
+} else {
+  session_destroy();
 }
 ?>
 <!DOCTYPE html>
@@ -36,15 +41,6 @@ if(isset($_SESSION['keep'])){
           <thead>
             <tr>
             <p>※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
-        <!-- <dd>会社名</dd><dt><input name='name' type="text" required></dt>
-        <dd>企業サイトのURL</dd><dt><input name='url' type="text" required></dt>
-        <dd>通知先メールアドレス</dd><dt><input name='notification_email' type='email' required></dt>
-        <dd>電話番号</dd><dt><input name='tel_number' type='tel' required></dt>
-        <dd>郵便番号</dd><dt><input name='post_number' type="text" required></dt>
-        <dd>都道府県</dd><dt><input name='prefecture' type="text" required></dt>
-        <dd>市区町村</dd><dt><input name='municipalitie' type="text" required></dt>
-        <dd>町域・番地</dd><dt><input name='address_number' type="text" required></dt>
-        <dd>特異な業種</dd><dt><input name='category' type='text' required></dt> -->
               <th>エージェンシー企業名</th>
               <th>得意な業種</th>
               <!-- <th>対応エリア</th>
@@ -55,8 +51,8 @@ if(isset($_SESSION['keep'])){
           </thead>  
           <tbody>
             <?php 
-            var_dump($keeps);
-            print_r($keeps);
+            // var_dump($keeps);
+            // print_r($keeps);
             foreach($keeps as $keep):
               $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
               $stmt->bindValue(':id', $keep);

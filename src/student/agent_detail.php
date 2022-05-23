@@ -1,3 +1,13 @@
+<?php
+session_start();
+$keeps=array();
+
+if(isset($_SESSION['keep'])){
+  $keeps=$_SESSION['keep'];
+  $_SESSION['time'] = time();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -46,7 +56,8 @@
           </dd>
         </dl>
         <form action="./keep.php" method="POST">
-          <!-- <input type="hidden" name="agent_id" value="<?php print($item['agent_id']);?>"> -->
+          <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
+          <!-- <input type="hidden" name="agent_id" value="1"> -->
           <button type="submit" name="keep" class="keepbtn">キープする</button>
           <button type="submit" formaction="./contact.php" class="submitbtn">エージェンシー企業に問い合わせる</button>
         </form>
