@@ -19,6 +19,33 @@ if(isset($_SESSION['keep'])){
   $keeps=$_SESSION['keep'];
   $_SESSION['time'] = time();
 }
+
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  if(isset($_POST["finance"])) {
+    $page_flag = 1;
+    $finance = $_POST['finance'];
+    $_SESSION['category']=$finance;
+  } elseif(isset($_POST["it"])) {
+    $page_flag = 1;
+    $it = $_POST['it'];
+    $_SESSION['category']=$it;
+  } elseif(isset($_POST["ad"])) {
+    $page_flag = 1;
+    $ad = $_POST['ad'];
+    $_SESSION['category']=$ad;} elseif (isset($_POST["tradingCompany"])){
+    $page_flag = 1;
+    $tradingCompany = $_POST['tradingCompany'];
+    $_SESSION['category']=$tradingCompany;
+  } elseif (isset($_POST["food"])) {
+    $page_flag = 1;
+    $food = $_POST['food'];
+    $_SESSION['category']=$food;
+  } elseif (isset($_POST["realEstate"])){
+    $page_flag = 1;
+    $realEstate = $_POST['realEstate'];
+    $_SESSION['category']=$realEstate;
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +79,7 @@ if(isset($_SESSION['keep'])){
                 <!-- <form action="keep.php" method="POST"> -->
                 <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
                 <?php
-                // echo $keeps[$agent['id']];
+                // echo $agent['id'];
                 if(isset($keeps[$agent['id']]) === true):
                 ?>
                 <p>キープ済み</p>

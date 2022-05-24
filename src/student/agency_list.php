@@ -1,21 +1,41 @@
-<!-- エージェンシーリスト
-国家らのキープはagency_list.phpが未実装のため実装できてない
-→agency_list.php誰もやってないならやります
--->
-
 <?php
-require("../dbconnect.php");
-  $page_flag = 0;
-  if(isset($_POST["finance"]) || isset($_POST["it"]) || isset($_POST["ad"]) || isset($_POST["tradingCompany"]) || isset($_POST["food"]) || isset($_POST["realEstate"])) {
-    $page_flag = 1;
-  } 
 session_start();
+require("../dbconnect.php");
+$page_flag = 0;
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  if(isset($_POST["finance"])) {
+    $page_flag = 1;
+    $finance = $_POST['finance'];
+    $_SESSION['category']=$finance;
+  } elseif(isset($_POST["it"])) {
+    $page_flag = 1;
+    $it = $_POST['it'];
+    $_SESSION['category']=$it;
+  } elseif(isset($_POST["ad"])) {
+    $page_flag = 1;
+    $ad = $_POST['ad'];
+    $_SESSION['category']=$ad;} elseif (isset($_POST["tradingCompany"])){
+    $page_flag = 1;
+    $tradingCompany = $_POST['tradingCompany'];
+    $_SESSION['category']=$tradingCompany;
+  } elseif (isset($_POST["food"])) {
+    $page_flag = 1;
+    $food = $_POST['food'];
+    $_SESSION['category']=$food;
+  } elseif (isset($_POST["realEstate"])){
+    $page_flag = 1;
+    $realEstate = $_POST['realEstate'];
+    $_SESSION['category']=$realEstate;
+  }
+  $category = array();
+  if(isset($_SESSION['category'])){
+    $category = $_SESSION['category'];
+  }
+}
 $stmt = $db->prepare('SELECT * FROM agents');
 $stmt->execute();
 $agents = $stmt->fetchAll();
-$stmt = $db->prepare('SELECT * FROM agents');
-$stmt->execute();
-$agents = $stmt->fetchAll();
+
 // session_start();
 if($_SERVER['REQUEST_METHOD']==='POST'){
   if(isset($_POST['agent_id'])){
@@ -30,6 +50,7 @@ $keeps=array();
 if(isset($_SESSION['keep'])){
   $keeps=$_SESSION['keep'];
   $_SESSION['time'] = time();
+
 }
 
   ?>
@@ -51,42 +72,45 @@ if(isset($_SESSION['keep'])){
     <div>
       <h1>
         <?php 
-        if(isset($_POST["finance"])) {
-          echo $_POST["finance"];
-        } elseif(isset($_POST["it"])){
-          echo $_POST["it"];
-        } elseif(isset($_POST["ad"])){
-          echo $_POST["ad"];
-        } elseif(isset($_POST["tradingCompany"])){
-          echo $_POST["tradingCompany"];
-        } elseif(isset($_POST["food"])){
-          echo $_POST["food"];
-        } elseif(isset($_POST["rearEstate"])){
-          echo $_POST["realEstate"];
-        }
-      ?>企業のエージェンシー企業一覧</h1>
+        // if(isset($_POST["finance"])) {
+        //   echo $_POST["finance"];
+        // } elseif(isset($_POST["it"])){
+        //   echo $_POST["it"];
+        // } elseif(isset($_POST["ad"])){
+        //   echo $_POST["ad"];
+        // } elseif(isset($_POST["tradingCompany"])){
+        //   echo $_POST["tradingCompany"];
+        // } elseif(isset($_POST["food"])){
+        //   echo $_POST["food"];
+        // } elseif(isset($_POST["rearEstate"])){
+        //   echo $_POST["realEstate"];
+        // }
+        print_r($category);
+      ?>が得意なエージェンシー企業一覧</h1>
       <a href="./index.php">✕</a>
       <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
       <a href="./keep.php">キープ中の企業</a>
       <ol>
+        <?php
+          foreach($agents as $index => $agent):
+        ?>
         <li>        
-          <p>会社名</p>
+          <p>会社名:<?php echo $agent['agent_name'];?></p>
           <p>得意な業種</p>
           <p>対応エリア</p>
-          <form action="keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]["id"]);?>">
-            <button type="submit" name="keep" class="keepbtn">キープする</button>
-          </form>
-        </li>
-        <li>        
-          <p>会社名</p>
-          <p>得意な業種</p>
-          <p>対応エリア</p>
-          <form action="keep.php" method="POST">
+          <form action="" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agent["id"]);?>">
-            <button type="submit" name="keep" class="keepbtn">キープする</button>
+            <!-- <button type="submit" name="keep" class="keepbtn">キープする</button> -->
+            <?php
+                if(isset($keeps[$agent['id']]) === true):
+                ?>
+                <p>キープ済み</p>
+                <?php else: ?>
+                <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn">キープする</button>
+                <?php endif;?>
           </form>
         </li>
+        <?php endforeach; ?>
       </ol>
     </div>
     <!-- 対応エリア別ランキングをクリックしたとき -->
