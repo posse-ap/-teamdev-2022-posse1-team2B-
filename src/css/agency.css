@@ -21,26 +21,6 @@
 
 /* account画面 */
 
-.full { /*テキストボックスが横長*/
-  width: 1200px;
-
-}
-
-.must {
-  background-color: #d21404;
-  color: white;
-  padding: 3px 5px;
-}
-
-.accountlabels div label { /*account記入項目の記載*/
-  font-size: 20px;
-  margin: 10px 30px;
-  margin-top: 20px;
-}
-
-.register {
-  text-align: center;
-}
 
 /* ////BOOZER/// */
 .boozerindexinner {

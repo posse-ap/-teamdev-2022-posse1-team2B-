@@ -111,12 +111,15 @@
   text-align: center;
 }
 
-.deletebtn { /*赤背景白文字*/
+/*メジャー：消去ボタン（赤背景白文字）*/
+.deletebtn, .must {
   background-color: #d21404;
   color: white;
   padding: 3px 5px;
 }
-
+.must  {
+  margin-left: 10px;
+}
 
 /* inputの白い箱？のcss群です:)form全てを囲う箱 */
 .inputform {
@@ -219,7 +222,7 @@ footer img {
   vertical-align: middle;
   text-align: left;
 }
-.newaccountbtn {
+.newaccountbtn {/*主にagency/topでちょっといつもよりぶっといボタン勢*/
   background-color: #EFB448;
   color: white;
 }
@@ -230,6 +233,9 @@ footer img {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.backgroundnone {
+  background-color: transparent!important;
 }
 
 /*STUDENTS/INDEX.PHP*/
