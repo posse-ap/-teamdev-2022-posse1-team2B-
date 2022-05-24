@@ -46,74 +46,6 @@
   margin-left: 0.8em; /* 文字の左隣 */
 }
 
-/* ページの終わりにボタンを置くとき！
-.pageendbuttons {
-  text-align: center;
-} */
-
-/*メジャーボタンと背景色*/
-/* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
-.detailsbtn,
-.keepbtn,
-.searchbtn {
-  background-color: #EFB448;
-  border: none;
-  padding: 3px 15px;
-}
-
-/* メジャー：検索ボタン（オレンジ背景白文字） */
-.searchbtn, .submitbtn, .editbtn, .inquirybtn {
-  background-color: #EFB448;
-  color: white;
-  border: none;
-  font-size: 18px;
-  width: 80px;
-  padding: 7px 15px;
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-}
-.inquirybtn { /*お問い合わせボタン*/
-  width: 350px;
-}
-
-/* メジャー：戻るボタン（パステル緑背景白文字） */
-.returnbtn, .agencybtn {
-  background-color: #96D2C4;
-  color: white;
-  display: block;
-  margin: 0 auto;
-  border: none;
-  font-size: 18px;
-  padding: 7px 15px;
-  text-align: center;
-  width: 100px;
-}
-
-/* メジャー：ログイン（緑背景白文字） */
-.loginbtn {
-  background-color: #66a29a;
-  color: white;
-  padding: 5px 5px
-}
-
-/* 閉じるボタン（バッテン！） */
-.exitbtn {
-  background-color: white;
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-  border: white;
-  text-align: center;
-}
-
-.deletebtn, .must { /*赤背景白文字*/
-  background-color: #d21404;
-  color: white;
-  padding: 3px 5px;
-}
-
-
 /* inputの白い箱？のcss群です:)form全てを囲う箱 */
 .inputform {
   width: 85%;
@@ -124,7 +56,7 @@
   font-size: 20px;
   text-align: left;
 }
-.inputform div input, .inputbox { 
+.inputform div input:not(.ignore), .inputbox { 
   background-color: white;
   height: 35px;
   display: block;
@@ -221,6 +153,81 @@ footer img {
   margin: 10px auto;
 }
 
+/* ページの終わりにボタンを置くとき！
+.pageendbuttons {
+  text-align: center;
+} */
+
+/*メジャーボタンと背景色*/
+/* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
+.detailsbtn,
+.keepbtn,
+.searchbtn {
+  background-color: #EFB448;
+  border: none;
+  padding: 3px 15px;
+}
+
+/* メジャー：検索ボタン（オレンジ背景白文字） */
+.searchbtn, .submitbtn, .editbtn, .inquirybtn {
+  background-color: #EFB448;
+  color: white;
+  border: none;
+  font-size: 18px;
+  width: 80px;
+  padding: 7px 15px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+.inquirybtn { /*お問い合わせボタン*/
+  width: 350px;
+  font-weight: 500;
+}
+.submitbtn {/*修正申し込む*/
+  width: 300px;
+}
+
+/* メジャー：戻るボタン（パステル緑背景白文字） */
+.returnbtn, .agencybtn {
+  background-color: #96D2C4;
+  color: white;
+  display: block;
+  margin: 0 auto;
+  border: none;
+  font-size: 18px;
+  padding: 7px 15px;
+  text-align: center;
+  width: 100px;
+}
+
+/* メジャー：ログイン（緑背景白文字） */
+.loginbtn {
+  background-color: #66a29a;
+  color: white;
+  padding: 7px 15px;
+}
+
+/* 閉じるボタン（バッテン！） */
+.exitbtn {
+  background-color: white;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: white;
+  text-align: center;
+}
+
+/*メジャー：消去ボタン（赤背景白文字）*/
+.deletebtn, .must {
+  background-color: #d21404;
+  color: white;
+  padding: 3px 5px;
+}
+.must  {
+  margin-left: 10px;
+}
+
 /* //一度きりボタン等// */
 .agencybtn {
   width: 70%;
@@ -228,6 +235,21 @@ footer img {
   margin-bottom: 15px;
   vertical-align: middle;
   text-align: left;
+}
+.newaccountbtn {/*主にagency/topでちょっといつもよりぶっといボタン勢*/
+  background-color: #EFB448;
+  color: white;
+}
+.newaccountbtn, .loginbtn {
+  width: 350px;
+  height: 100px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.backgroundnone {
+  background-color: transparent!important;
 }
 
 /*STUDENTS/INDEX.PHP*/
@@ -321,6 +343,23 @@ footer img {
 .uploadicon {
   display: inline-block;
   position: relative;
+} */ 
+
+/*AGENCY/TOP.PHP*/
+.topbuttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  gap: 100px;
+}
+
+@media screen and (min-width:1024px) {
+
+/*パソコン版MAINHEADERFOOTER群*/
+.main {
+  padding-top: 160px;
 }
 .uploadicon:before {
   background-color: #004db1;
@@ -399,6 +438,9 @@ input[type="file"] {
     width: 480px;
     font-size: 19px;
   }
+.half div input {
+  width: 400px!important;
+}
 
   /* .returnbtn, .agencybtn { /*contactページのbuttons*/
     /* width: 350px;
@@ -406,10 +448,6 @@ input[type="file"] {
     margin: 0 auto; */
   /* }  */
 
-
-    .half div input {
-      width: 400px;
-    }
 
   /*ページの終わりにボタンを置くとき！*/
 
@@ -431,3 +469,11 @@ input[type="file"] {
     width: 200px;
   }
 };
+
+/*(パソコン版）AGENCY/TOP/PHP*/
+.topbuttons {
+    margin-top: 130px;
+    gap: 100px;
+    flex-direction: row;
+  }  
+}

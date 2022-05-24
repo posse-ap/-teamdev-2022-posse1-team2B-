@@ -10,7 +10,6 @@
   <title>Document</title>
   <link rel="stylesheet" href="../../css/reset.css">
   <link rel="stylesheet" href="../../css/index.css">
-  <link rel="stylesheet" href="../../css/agency.css">
 </head>
 <body>
 <?php include (dirname(__FILE__) . "/agency_header.php");?>
@@ -20,7 +19,7 @@
   </div>
   <div class="topbuttons">
     <a href="./account.php" class="newaccountbtn">新規会員登録</a>
-   <a href="./login.php" class="loginbtn">ログイン</a>
+    <a href="./login.php" class="loginbtn">ログイン</a>
   </div>
 </div>
 <?php include (dirname(__FILE__) . "/agency_footer.php");?>
