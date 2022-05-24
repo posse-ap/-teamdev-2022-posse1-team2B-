@@ -50,7 +50,10 @@ $keeps=array();
 if(isset($_SESSION['keep'])){
   $keeps=$_SESSION['keep'];
   $_SESSION['time'] = time();
+}
 
+if(isset($_POST['category'])) {
+  $page_flag = 1;
 }
 
   ?>
@@ -108,6 +111,9 @@ if(isset($_SESSION['keep'])){
                 <?php else: ?>
                 <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn">キープする</button>
                 <?php endif;?>
+          </form>
+          <form action="keep.php" method="post">
+            <input type="hidden" name="category" value="<?php print_r($category);?>">
           </form>
         </li>
         <?php endforeach; ?>

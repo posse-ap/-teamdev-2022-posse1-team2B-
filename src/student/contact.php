@@ -336,8 +336,6 @@ if (isset($_POST['contact'])) {
           echo ('<a href=' . '"javascript:history.back()"' . ' class="returnbtn">戻る</a>');
         }
       ?>
-    <!-- これがデフォで表示されている
-    何用だ！！！！！！！！！！！！！！！！！！！！！！！！！！ -->
   </div>
   <?php endif;
   include(dirname(__FILE__) . "/student_footer.php");

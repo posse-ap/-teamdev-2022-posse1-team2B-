@@ -87,22 +87,28 @@ if(isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()){
     <?php else: ?>
       <p>キープしてるエージェンシー企業はありません。</p>
     <?php endif;
-      if (isset($_POST["contact_agency"])) {
-        echo ('<form action="condition_selection.php" GET="POST">
-      <button type="submit" name="back" class="returnbtn">戻る</button>
-      </form>');      
-    
-      }elseif (isset($_POST["cancel_agency"])){
-      echo ('<form action="index.php" GET="POST">
-      <button type="submit" name="back" class="returnbtn">戻る</button>
-      </form>');   
-      //  キープするのをやめた時に、javascript.history.back()だとずっとkeepをループすることになる
-    } else{
-      echo ('<a href=' . '"javascript:history.back()"' . ' class="returnbtn">戻る</a>');
-    }
+    // 上手く前のページの戻れない。調べたら、カート機能系は戻るボタンを廃止すべきって出てきた→TOPに戻るボタンにしていいかな、、？
+    //   if (isset($_POST["contact_agency"])) {
+    //     echo ('<form action="condition_selection.php" GET="POST">
+    //   <button type="submit" name="back" class="returnbtn">戻る</button>
+    //   </form>');      
+    //   }elseif (isset($_POST["cancel_agency"])){
+    //   echo ('<form action="index.php" GET="POST">
+    //   <button type="submit" name="back" class="returnbtn">戻る</button>
+    //   </form>');   
+    //   //  キープするのをやめた時に、javascript.history.back()だとずっとkeepをループすることになる
+    // } elseif(isset($_POST['category'])){
+    //   echo ('<form action="index.php" GET="POST">
+    //   <button type="submit" name="back" class="returnbtn">戻る</button>
+    //   </form>');
+    // }
+    // else{
+    //   echo ('<a href=' . '"javascript:history.back()"' . ' class="returnbtn">戻る</a>');
+    // }
+    echo ('<form action="index.php" GET="POST">
+      <button type="submit" name="back" class="returnbtn">TOPに戻る</button>
+      </form>');
     ?>
-
-    <!-- <a href='javascript:history.back()' class="returnbtn">戻る</a> -->
   </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
   <script src="./student.js"></script>

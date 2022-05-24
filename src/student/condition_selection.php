@@ -85,11 +85,7 @@ if(isset($_SESSION['keep'])){
             <dd><?php print_r($supported_corporate_scale);?></dd>
           </dl>
           <form action="./keep.php" method="POST">
-<<<<<<< HEAD
             <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['id']);?>">
-=======
-            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
->>>>>>> 9b0515623ae1e470ba9d568743bcccbed95f8f60
             <button type="submit" class="keepbtn">キープする</button>
             <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
           </form>
@@ -109,16 +105,9 @@ if(isset($_SESSION['keep'])){
             <dt>対応企業の規模</dt>
             <dd><?php print_r($supported_corporate_scale);?></dd>
           </dl>
-          <form action="./keep.php" method="POST">
-<<<<<<< HEAD
+          <form action="" method="POST">
             <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['id']);?>">
             <button type="submit" name="keep" class="keepbtn">キープする</button>
-            <button type="submit" name="contact_agency" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
-=======
-            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-            <button type="submit" class="keepbtn">キープする</button>
-            <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
->>>>>>> 9b0515623ae1e470ba9d568743bcccbed95f8f60
           </form>
         </a>
       </li>
@@ -127,14 +116,6 @@ if(isset($_SESSION['keep'])){
   <!-- こだわり条件から探すをクリックした場合に表示 -->
   <?php else:?>
   <div class="main">
-<<<<<<< HEAD
-    <a href="./index.php" class="exitbtn">✕</a>
-    <form action="condition_selection.php" method="GET">
-      <h1>エージェンシー企業をこだわり条件で絞り込む</h1>
-      <div>
-        <div>
-          <h2>エージェンシー企業の得意業界</h2>
-=======
    <div class="conditionselectioninner">
     <a href="./index.php" class="exitbtn">✕</a>
     <form action="condition_selection.php" method="POST">
@@ -142,7 +123,6 @@ if(isset($_SESSION['keep'])){
       <div>
         <div class="conditiongroup">
           <h2>得意業界</h2>
->>>>>>> 9b0515623ae1e470ba9d568743bcccbed95f8f60
           <input type="checkbox" name="food" id="food">
           <label from="food">食品</label>
           <input type="checkbox" name="apparel" id="apparel">
@@ -158,11 +138,7 @@ if(isset($_SESSION['keep'])){
           <input type="checkbox" name="trading_company" id="tradingCompany">
           <label from="tradingCompany">商社</label>
         </div>
-<<<<<<< HEAD
-        <div>
-=======
         <div class="conditiongroup">
->>>>>>> 9b0515623ae1e470ba9d568743bcccbed95f8f60
           <h2>登録企業の規模</h2>
           <input type="checkbox" name="smaller_businesses" id="smallerBusinesses">
           <label from="smallerBusinesses">中小企業</label>
@@ -171,11 +147,7 @@ if(isset($_SESSION['keep'])){
           <input type="checkbox" name="venture_corporation" id="ventureCorporation">
           <label from="ventureCorporation">ベンチャー企業</label>
         </div>
-<<<<<<< HEAD
-        <div>
-=======
         <div class="conditiongroup">
->>>>>>> 9b0515623ae1e470ba9d568743bcccbed95f8f60
           <h2>求人エリア</h2>
           <input type="checkbox" name="kanto_region" id="kantoRegion">
           <label from="kantoRegion">関東地方</label>
@@ -186,11 +158,7 @@ if(isset($_SESSION['keep'])){
           <input type="checkbox" name="kyushu_region" id="kyushuRegion">
           <label from="kyushuRegion">九州地方</label>
         </div>
-<<<<<<< HEAD
-        <div>
-=======
         <div class="conditiongroup">
->>>>>>> 9b0515623ae1e470ba9d568743bcccbed95f8f60
           <h2>対象学生</h2>
           <input type="checkbox" name="2024_graduation" id="2024Graduation">
           <label from="2024Graduation">24卒</label>
@@ -201,10 +169,7 @@ if(isset($_SESSION['keep'])){
       <input type="submit" name="search" value = "検索" class="searchbtn">
     </form>
   </div>
-<<<<<<< HEAD
-=======
  </div>
->>>>>>> 9b0515623ae1e470ba9d568743bcccbed95f8f60
   <?php endif; ?>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
   <script src="./student.js"></script>
