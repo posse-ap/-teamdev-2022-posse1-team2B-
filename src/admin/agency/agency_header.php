@@ -5,9 +5,12 @@
       <img src="../../img/syukatudotcom_logo_white.png" alt="就活.com">
     </div>
     <nav class="headernav">
-      <p id="contact" class="contact">お問い合わせ</p>
+      <ul>
+        <li id="contact" class="contact">お問い合わせ</li>
+        <li><a href="./students.php">学生一覧</a></li>
+      </ul>
     </nav>
-    <div id="contactEmailAddress" class="contact_email_address">
+    <div id="contactEmailAddress" class="contact_email_address navdropdown">
       <!-- 閉じるボタン-->
       <button id="closeButton" class="exitbtn">✕</button>
       <p>サービス等に関するお問い合わせは、xxxx@co.jp までご連絡ください。 </p>

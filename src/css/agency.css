@@ -19,29 +19,6 @@
 
 /* しほ加えたとこ */
 
-.pagetitle {
-  text-align: center;
-  font-size: 25px;
-  margin: 15px auto;
-}
-
-/* top画面 */
-.topbuttons {
-  display: flex;
-  margin-top: 150px;
-}
-
-/* 新規会員登録（オレンジ背景白文字 */
-.newaccountbtn, .loginbtn{
-  background-color: #EFB448;
-  color: white;
-  font-size: 20px;
-  border: none;
-  padding: 20px 35px;
-  margin: 20px auto;
-  position: center;
-}
-
 /* account画面 */
 
 .full { /*テキストボックスが横長*/
