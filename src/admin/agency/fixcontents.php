@@ -19,8 +19,8 @@
 <body>
   <?php include (dirname(__FILE__) . "/agency_header.php");?>
   <div class="main">
-    <h1>掲載内容修正申し込み</h1>
-    <form action="../../thanks.php" method="POST">
+    <h1 class="pagetitle">掲載内容修正申し込み</h1>
+    <form action="../../thanks.php" method="POST" class="inputform">
       <div>
         <label for="companyName">会社名</label>
         <input type="text" id="companyName">
@@ -37,7 +37,7 @@
         <label for="companyImage">アイコン画像</label>
         <input type="text" id="companyimage">
       </div>
-      <button type="submit" class="submitbtn">修正を申し込む</button>
+      <button type="submit" class="inquirybtn">修正を申し込む</button>
     </form>
   </div>
   <?php include (dirname(__FILE__) . "/agency_footer.php");?>
