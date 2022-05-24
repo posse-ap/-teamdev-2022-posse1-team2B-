@@ -32,8 +32,8 @@ if(isset($_GET['agent_id'])){
 <body>
   <?php include (dirname(__FILE__) . "/boozer_header.php");
     if($page_flag === 1): ?>
-  <div>
-    <h2>エージェンシー企業の詳細情報</h2>
+  <div class="main">
+    <h2 class="pagetitle">エージェンシー企業の詳細情報</h2>
       <form method="POST" action="edit.php">
         <img src="" alt="">
         <h3><?=$agency[0]['agent_name'] ?></h3>
@@ -54,28 +54,34 @@ if(isset($_GET['agent_id'])){
           <?php endforeach;?>
         </dl>
         <input type="hidden" name="agent_id" value="<?php echo $agency[0]['id'];?>">
-        <input class="editbtn" type="submit" name="edit" value="エージェンシ―企業の掲載を編集">
-        <input  class="deletebtn" type="submit" name="delete" formaction="delete.php"  value="エージェンシ―企業の掲載を削除">
+        <div class="pageendbuttons">
+          <input class="submitbtn endbtn" type="submit" name="edit" value="エージェンシ―企業の掲載を編集">
+          <input  class="deletebtn endbtn" type="submit" name="delete" formaction="delete.php"  value="エージェンシ―企業の掲載を削除">
+        </div>
       </form>
-      <a href='javascript:history.back()'>戻る</a>
+      <a href='javascript:history.back()' class="returnbtn">戻る</a>
   </div>
   <?php else: ?>
-  <div>
-    <h2>掲載企業一覧</h2>
+  <div class="main">
+    <h2 class="pagetitle">掲載企業一覧</h2>
     <?php foreach ($agents as $index => $agent) : ?>
     <div>
       <a href='./agentslist.php?agent_id=<?php echo $agent['id'];?>'>
-        <form method="POST" action="edit.php">
-          <img src="" alt="">
-          <h3><?=$agent['agent_name'] ?></h3>
-          <input type="hidden" name="agent_id" value="<?php echo $agent['id']; ?>">
-          <input type="submit" name="edit" value="編集">
-          <input type='submit' formaction='delete.php' name='delete' value ='削除'>
-        </form>
+        <div class="agencybox">
+         <form method="POST" action="edit.php">
+           <img src="" alt="">
+           <h3><?=$agent['agent_name'] ?></h3>
+           <input type="hidden" name="agent_id" value="<?php echo $agent['id']; ?>">
+           <div>
+             <input type="submit" name="edit" value="編集" class="editbtn">
+             <input type='submit' formaction='delete.php' name='delete' value ='削除' class="deletebtn">
+           </div>
+         </form>
+        </div>
       </a>
     </div>
     <?php endforeach;?>
-    <a href='javascript:history.back()'>戻る</a>
+    <a href='javascript:history.back()' class="returnbtn">戻る</a>
   </div>
   <?php 
   endif; 
