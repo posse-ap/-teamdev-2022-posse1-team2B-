@@ -395,8 +395,8 @@ input[type="file"] {
   margin: 20px 10px;
 }
 
-/*BOOZER/AGENTSLIST（PAYMENT）*/ 
-.agencybox {/*それぞれのエージェンシ囲う箱*/
+/*BOOZER/AGENTSLIST（PAYMENT/INDEX）*/ 
+.agencybox, .indexagencybox {/*それぞれのエージェンシ囲う箱*/
   background-color: white;
   margin: 20px 40px;
 }
@@ -404,13 +404,13 @@ input[type="file"] {
   margin-left: 20px;
   font-size: 20px;
 }
-.agencybox div {/*agencybox内の右端のボタン囲うdiv*/
+.agencybox div, .indexagencybox div {/*agencybox内の右端のボタン囲うdiv*/
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-right: 50px;
 }
-.agencybox div input {
+.agencybox div input, .indexagencybox div input {
   margin: 10px 5px 20px 5px;
   height: 30px;
   width: 80px;
@@ -434,9 +434,41 @@ input[type="file"] {
   margin: 10px 5px 20px 5px;
 }
 
-/* ////BOOZER/// */
+/* ////BOOZERINDEX/// */
+.boozerindexouter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+  margin: 20px 30px;
+}
 .boozerindexinner {
   display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.boozerindexinner a {
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: 500;
+  width: 300px;
+}
+.indexagencybox {
+  margin: 18px 0px;
+}
+.indexagencybox div {
+  margin-right: 10px;
+}
+.indexagencybox h3 {
+  font-size: 20px;
+  margin-left: 10px;
+}
+.indexbtn {
+  margin-top: 80px;
+  height: 30px;
 }
 
 @media screen and (min-width:1024px) {
