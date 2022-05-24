@@ -51,7 +51,7 @@ if(isset($_SESSION['keep'])){
   $keeps=$_SESSION['keep'];
   $_SESSION['time'] = time();
 }
-
+// キープするボタンを押しても、金融とか何も選択していない状態のページにさせないため
 if(isset($_POST['category'])) {
   $page_flag = 1;
 }
