@@ -472,6 +472,8 @@ input[type="file"] {
 
 /*(パソコン版）AGENCY/TOP/PHP*/
 .topbuttons {
+    display: flex;
+    justify-content: center;
     margin-top: 130px;
     gap: 100px;
     flex-direction: row;
