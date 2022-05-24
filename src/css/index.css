@@ -75,6 +75,10 @@
 }
 .inquirybtn { /*お問い合わせボタン*/
   width: 350px;
+  font-weight: 500;
+}
+.submitbtn {/*修正申し込む*/
+  width: 300px;
 }
 .submitbtn {/*申し込む、新規作成ボタン等*/
   width: 300px;
@@ -98,7 +102,7 @@
 .loginbtn {
   background-color: #66a29a;
   color: white;
-  padding: 5px 5px
+  padding: 7px 15px;
 }
 
 /* 閉じるボタン（バッテン！） */
@@ -219,6 +223,18 @@ footer img {
   vertical-align: middle;
   text-align: left;
 }
+.newaccountbtn {
+  background-color: #EFB448;
+  color: white;
+}
+.newaccountbtn, .loginbtn {
+  width: 350px;
+  height: 100px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /*STUDENTS/INDEX.PHP*/
 .conditionsearch {/*studentsのindexのこだわり条件から探すのところのcss*/
@@ -313,10 +329,17 @@ footer img {
   background-color: #66a29a;
 } */ 
 
+/*AGENCY/TOP.PHP*/
+.topbuttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  gap: 100px;
+}
 
 @media screen and (min-width:1024px) {
-
-
 
 /*パソコン版MAINHEADERFOOTER群*/
 .main {
@@ -390,4 +413,10 @@ footer img { /*パソコンのfooter*/
   width: 200px;
 }
 
+/*(パソコン版）AGENCY/TOP/PHP*/
+.topbuttons {
+    margin-top: 130px;
+    gap: 100px;
+    flex-direction: row;
+  }  
 }
