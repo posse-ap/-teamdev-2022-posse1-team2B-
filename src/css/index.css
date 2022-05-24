@@ -75,8 +75,11 @@
 }
 .inquirybtn { /*お問い合わせボタン*/
   width: 350px;
+  font-weight: 500;
 }
-
+.submitbtn {
+  width: 300px;
+}
 /* メジャー：戻るボタン（パステル緑背景白文字） */
 .returnbtn, .agencybtn {
   background-color: #96D2C4;
@@ -94,7 +97,7 @@
 .loginbtn {
   background-color: #66a29a;
   color: white;
-  padding: 5px 5px
+  padding: 7px 15px;
 }
 
 /* 閉じるボタン（バッテン！） */
