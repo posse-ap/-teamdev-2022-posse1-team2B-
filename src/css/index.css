@@ -18,6 +18,7 @@
 .student_information {
   text-decoration: none;  /* 寡占を失くす */
   color: black;  /* 文字の色が青くならないようにする */
+  display: none;
 }
 
 .show_contents {
