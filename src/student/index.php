@@ -5,15 +5,15 @@ $stmt = $db->prepare('SELECT * FROM agents');
 $stmt->execute();
 $agents = $stmt->fetchAll();
 session_start();
-// if($_SERVER['REQUEST_METHOD']==='POST'){
-//   if(isset($_POST['agent_id'])){
-//     $agent_id = $_POST['agent_id'];
-//     $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
-//     if(isset($_POST['cancel'])) {
-//       unset($_SESSION['keep'][$agent_id]);
-//     }
-//   }
-// }
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  if(isset($_POST['agent_id'])){
+    $agent_id = $_POST['agent_id'];
+    $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
+    if(isset($_POST['cancel'])) {
+      unset($_SESSION['keep'][$agent_id]);
+    }
+  }
+}
 $keeps=array();
 if(isset($_SESSION['keep'])){
   $keeps=$_SESSION['keep'];
@@ -51,23 +51,15 @@ if(isset($_SESSION['keep'])){
               <form action="" method="POST">
                 <!-- <form action="keep.php" method="POST"> -->
                 <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
-                <!-- <button type="submit" name='keep' class="keepbtn">キープする</button> -->
-                <button id="keep<?php echo $index ?>" type="submit" name='keep' class="keepbtn">キープする</button>
+                <?php
+                // echo $keeps[$agent['id']];
+                if(isset($keeps[$agent['id']]) === true):
+                ?>
+                <p>キープ済み</p>
+                <?php else: ?>
+                <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn">キープする</button>
+                <?php endif;?>
               </form>
-              <div id="keepSuccess" class="keep_success">
-                <p>キープに成功しました</p>
-              </div>
-              <script type="text/javascript">
-                let keep<?php echo $index;?> = document.getElementById('keep<?php echo $index;?>');
-                keep<?php echo $index;?>.addEventListener('click', function () {
-                    keepSuccess.style.display="block";
-                    console.log('aaaa')
-                    setTimeout(function() {
-                      // keepSuccess.style.display="none";
-
-                    }, 30000)
-                })
-              </script>
             </a>
           </li>
           <?php 

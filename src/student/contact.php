@@ -3,10 +3,10 @@ require('../dbconnect.php');
 
 // キープされていた企業にお問い合わせする
 session_start();
-$keeps=array();
-if(isset($_SESSION['keep'])){
-  $keeps=$_SESSION['keep'];
-  }
+// $keeps=array();
+// if(isset($_SESSION['keep'])){
+//   $keeps=$_SESSION['keep'];
+//   }
 if (isset(
   // これらが入力されていたら
   $_POST['student_last_name'],
