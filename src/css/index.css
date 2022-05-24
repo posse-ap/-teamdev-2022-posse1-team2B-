@@ -46,81 +46,6 @@
   margin-left: 0.8em; /* 文字の左隣 */
 }
 
-/* ページの終わりにボタンを置くとき！
-.pageendbuttons {
-  text-align: center;
-} */
-
-/*メジャーボタンと背景色*/
-/* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
-.detailsbtn,
-.keepbtn,
-.searchbtn {
-  background-color: #EFB448;
-  border: none;
-  padding: 3px 15px;
-}
-
-/* メジャー：検索ボタン（オレンジ背景白文字） */
-.searchbtn, .submitbtn, .editbtn, .inquirybtn {
-  background-color: #EFB448;
-  color: white;
-  border: none;
-  font-size: 18px;
-  width: 80px;
-  padding: 7px 15px;
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-}
-.inquirybtn { /*お問い合わせボタン*/
-  width: 350px;
-  font-weight: 500;
-}
-.submitbtn {/*修正申し込む*/
-  width: 300px;
-}
-
-/* メジャー：戻るボタン（パステル緑背景白文字） */
-.returnbtn, .agencybtn {
-  background-color: #96D2C4;
-  color: white;
-  display: block;
-  margin: 0 auto;
-  border: none;
-  font-size: 18px;
-  padding: 7px 15px;
-  text-align: center;
-  width: 100px;
-}
-
-/* メジャー：ログイン（緑背景白文字） */
-.loginbtn {
-  background-color: #66a29a;
-  color: white;
-  padding: 7px 15px;
-}
-
-/* 閉じるボタン（バッテン！） */
-.exitbtn {
-  background-color: white;
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-  border: white;
-  text-align: center;
-}
-
-/*メジャー：消去ボタン（赤背景白文字）*/
-.deletebtn, .must {
-  background-color: #d21404;
-  color: white;
-  padding: 3px 5px;
-}
-.must  {
-  margin-left: 10px;
-}
-
 /* inputの白い箱？のcss群です:)form全てを囲う箱 */
 .inputform {
   width: 85%;
@@ -131,7 +56,7 @@
   font-size: 20px;
   text-align: left;
 }
-.inputform div input, .inputbox { 
+.inputform div input:not(.ignore), .inputbox { 
   background-color: white;
   height: 35px;
   display: block;
@@ -212,6 +137,81 @@ footer {
 footer img {
   height: 20px;
   margin: 10px auto;
+}
+
+/* ページの終わりにボタンを置くとき！
+.pageendbuttons {
+  text-align: center;
+} */
+
+/*メジャーボタンと背景色*/
+/* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
+.detailsbtn,
+.keepbtn,
+.searchbtn {
+  background-color: #EFB448;
+  border: none;
+  padding: 3px 15px;
+}
+
+/* メジャー：検索ボタン（オレンジ背景白文字） */
+.searchbtn, .submitbtn, .editbtn, .inquirybtn {
+  background-color: #EFB448;
+  color: white;
+  border: none;
+  font-size: 18px;
+  width: 80px;
+  padding: 7px 15px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+.inquirybtn { /*お問い合わせボタン*/
+  width: 350px;
+  font-weight: 500;
+}
+.submitbtn {/*修正申し込む*/
+  width: 300px;
+}
+
+/* メジャー：戻るボタン（パステル緑背景白文字） */
+.returnbtn, .agencybtn {
+  background-color: #96D2C4;
+  color: white;
+  display: block;
+  margin: 0 auto;
+  border: none;
+  font-size: 18px;
+  padding: 7px 15px;
+  text-align: center;
+  width: 100px;
+}
+
+/* メジャー：ログイン（緑背景白文字） */
+.loginbtn {
+  background-color: #66a29a;
+  color: white;
+  padding: 7px 15px;
+}
+
+/* 閉じるボタン（バッテン！） */
+.exitbtn {
+  background-color: white;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: white;
+  text-align: center;
+}
+
+/*メジャー：消去ボタン（赤背景白文字）*/
+.deletebtn, .must {
+  background-color: #d21404;
+  color: white;
+  padding: 3px 5px;
+}
+.must  {
+  margin-left: 10px;
 }
 
 /* //一度きりボタン等// */
@@ -390,10 +390,9 @@ footer img { /*パソコンのfooter*/
   margin: 0 auto; */
 /* }  */
 
-
-  .half div input {
-    width: 400px;
-  }
+.half div input {
+  width: 400px!important;
+}
 
 /*ページの終わりにボタンを置くとき！*/
 

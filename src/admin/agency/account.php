@@ -181,8 +181,8 @@ require(dirname(__FILE__, 3) . '/dbconnect.php');
           <label for="loginPassWord">ログイン用パスワード<span class="must">必須</span></label><br>
           <input type="password" name="password" id="loginPassword" required>
         </div>
-        <div>
-          <input type="submit" name="btn_confirm" class="backgroundnone newaccountbtn">会員登録</input>
+        <div class="submitbtn">
+          <input type="submit" name="btn_confirm" class="ignore submitbtn" style="display:none">会員登録</input>
         </div>
       </form>
     </div>
