@@ -153,10 +153,6 @@ footer img {
   margin: 10px auto;
 }
 
-/* ページの終わりにボタンを置くとき！
-.pageendbuttons {
-  text-align: center;
-} */
 
 /*メジャーボタンと背景色*/
 /* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
@@ -194,11 +190,13 @@ footer img {
   color: white;
   display: block;
   margin: 0 auto;
+  margin-bottom: 15px;
   border: none;
   font-size: 18px;
   padding: 7px 15px;
   text-align: center;
-  width: 100px;
+  width: 300px;
+  font-weight: 500;
 }
 
 /* メジャー：ログイン（緑背景白文字） */
@@ -232,7 +230,6 @@ footer img {
 .agencybtn {
   width: 70%;
   font-size: 18px;
-  margin-bottom: 15px;
   vertical-align: middle;
   text-align: left;
 }
@@ -355,14 +352,8 @@ footer img {
   gap: 100px;
 }
 
-@media screen and (min-width:1024px) {
-
-/*パソコン版MAINHEADERFOOTER群*/
-.main {
-  padding-top: 160px;
-}
-.uploadicon:before {
-  background-color: #004db1;
+/* .uploadicon:before {
+  background-color: #66a29a;
   content:"";
   position: absolute;
   color: #fff;
@@ -379,7 +370,7 @@ footer img {
 
 input[type="file"] {
   display: none;
-}
+} */
 
 .uploadicon {
   padding: 5px 20px;
@@ -442,14 +433,24 @@ input[type="file"] {
   width: 400px!important;
 }
 
-  /* .returnbtn, .agencybtn { /*contactページのbuttons*/
-    /* width: 350px;
-    height: 35px;
-    margin: 0 auto; */
-  /* }  */
+ 
 
 
-  /*ページの終わりにボタンを置くとき！*/
+/* ページの終わりにボタンを置くとき！ */
+.pageendbuttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 0;
+}
+.endbtn { /*agency/createcontesページの横並びbuttons */
+  width: 350px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 0 0;
+}
 
 
   .inquirybtn {
@@ -468,7 +469,6 @@ input[type="file"] {
   .rankingboxes ul li {
     width: 200px;
   }
-};
 
 /*(パソコン版）AGENCY/TOP/PHP*/
 .topbuttons {
@@ -476,4 +476,4 @@ input[type="file"] {
     gap: 100px;
     flex-direction: row;
   }  
-}
+};

@@ -27,12 +27,14 @@
                 <input type="text" name="company_remarks" id="companyRemarks">
             </div>
             <div>
-                <label for="iconImage" class="uploadicon">アイコン画像</label>
-                <input type="file" name="icon_image" id="iconImage" accept="image/*" class="iconimage">
+                <label for="iconImage" class="uploadicon">アイコン画像を選択</label>
+                <input type="file" name="icon_image" id="iconImage" accept="image/*" class="ignore iconimage">
             </div>
-            <a href="./index.php" class="returnbtn">戻る</a>
-            <!-- 入力した値を受け渡す -->
-            <button type="submit" class="submitbtn">作成完了</button>
+            <div class="pageendbuttons">
+              <a href="./index.php" class="returnbtn endbtn">戻る</a>
+              <!-- 入力した値を受け渡す -->
+              <button type="submit" class="submitbtn endbtn">作成完了</button>
+            </div>
             <input type="hidden" name="company_name" value="<?php if(isset($_POST["company_name"])){ echo $_POST["company_name"];} ?>">
             <input type="hidden" name="company_address" value="<?php if(isset($_POST["company_address"])){ echo $_POST["company_address"];} ?>">
             <input type="hidden" name="company_remarks" value="<?php if(isset($_POST["company_remarks"])){ echo $_POST["company_remarks"];} ?>">
