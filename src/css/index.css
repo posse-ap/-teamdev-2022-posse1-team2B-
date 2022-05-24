@@ -434,6 +434,11 @@ input[type="file"] {
   margin: 10px 5px 20px 5px;
 }
 
+/* ////BOOZER/// */
+.boozerindexinner {
+  display: flex;
+}
+
 @media screen and (min-width:1024px) {
 .agencybox {
   margin: 30px 60px;

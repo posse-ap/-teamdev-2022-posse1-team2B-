@@ -19,8 +19,8 @@ $agents = $stmt->fetchAll();
 <body>
   <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <div class="main">
+    <h2 class="pagetitle">掲載企業一覧</h2>
     <div class="boozerindexinner">
-      <h2 class="pagetitle">掲載企業一覧</h2>
     <?php 
     $counter = 0;
     foreach($agents as $agent): ?>
