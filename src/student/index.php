@@ -44,16 +44,31 @@ if(isset($_SESSION['keep'])){
           $counter = 0;
           foreach($agents as $index => $agent): ?>
           <li>
-          <a href="./agent_detail.php?id=<?php echo$agent['id']; ?>">
-            <p><?= $agent['agent_name']?></p>
-            <p>得意な業種<?= $agent['category']?></p>
-            <p>対応エリア<?= $agent['prefecture']?></p>
-            <form action="keep.php" method="POST">
-              <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
-              <!-- <button type="submit" name='keep' class="keepbtn">キープする</button> -->
-              <button type="submit" name='keep' class="keepbtn">キープする</button>
-            </form>
-          </a>
+            <a href="./agent_detail.php?id=<?php echo$agent['id']; ?>">
+              <p><?= $agent['agent_name']?></p>
+              <p>得意な業種<?= $agent['category']?></p>
+              <p>対応エリア<?= $agent['prefecture']?></p>
+              <form action="" method="POST">
+                <!-- <form action="keep.php" method="POST"> -->
+                <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
+                <!-- <button type="submit" name='keep' class="keepbtn">キープする</button> -->
+                <button id="keep<?php echo $index ?>" type="submit" name='keep' class="keepbtn">キープする</button>
+              </form>
+              <div id="keepSuccess" class="keep_success">
+                <p>キープに成功しました</p>
+              </div>
+              <script type="text/javascript">
+                let keep<?php echo $index;?> = document.getElementById('keep<?php echo $index;?>');
+                keep<?php echo $index;?>.addEventListener('click', function () {
+                    keepSuccess.style.display="block";
+                    console.log('aaaa')
+                    setTimeout(function() {
+                      // keepSuccess.style.display="none";
+
+                    }, 30000)
+                })
+              </script>
+            </a>
           </li>
           <?php 
             if ($counter >= 2) {break;}

@@ -1,5 +1,5 @@
 "use strict";
-
+let keepSuccess = document.getElementById('keepSuccess');
 let contact = document.getElementById("contact");
 let contactEmailAddress = document.getElementById("contactEmailAddress");
 let closeButton = document.getElementById("closeButton");
@@ -9,7 +9,7 @@ let it = document.getElementById("it");
 
 // ヘッダーのお問い合わせをクリックした時の処理
 contact.addEventListener("click", function() {
-  contactEmailAddress.classList.add("show_contact");
+  contactEmailAddress.classList.add("show_contents");
 });
 // // ヘッダーのエージェンシー企業向け掲載依頼をクリックした時の処理
 // request.addEventListener("click", function(){
@@ -17,10 +17,10 @@ contact.addEventListener("click", function() {
 // })
 // ✕ボタンをクリックした時の処理
 closeButton.addEventListener("click", function() {
-  contactEmailAddress.classList.remove("show_contact");
+  contactEmailAddress.classList.remove("show_contents");
 })
 
-let industryRankTitle = document.getElementById("industryRankTitle");
+// let industryRankTitle = document.getElementById("industryRankTitle");
 // TOP画面の業種別ランキングのボタンを押した時の処理
 // 金融
 // document.getElementById("finance").addEventListener("click", function() {

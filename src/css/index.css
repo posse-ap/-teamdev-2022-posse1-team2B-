@@ -7,12 +7,22 @@
   display: none;
 }
 
-.keep{
+
+.keep_success{
   display: none;
+  z-index: 110;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  width: 60vw;
+  height: 100px;
+  background-color: white;
 }
 
-.show_contact {
-  display: block;
+.keep_success p {
+  line-height: 100px;
+  text-align: center;
 }
 
 /* まりあが描いてくれたもとagency.css */
@@ -389,5 +399,4 @@ footer img { /*パソコンのfooter*/
 .rankingboxes ul li {
   width: 200px;
 }
-
 }
