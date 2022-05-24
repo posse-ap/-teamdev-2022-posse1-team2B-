@@ -3,10 +3,24 @@ require('../dbconnect.php');
 
 // キープされていた企業にお問い合わせする
 session_start();
-// $keeps=array();
-// if(isset($_SESSION['keep'])){
-//   $keeps=$_SESSION['keep'];
-//   }
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  if(isset($_POST['agent_id'])){
+      $agent_id = $_POST['agent_id'];
+      $_SESSION['time'] = time();
+      $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
+    if(isset($_POST['cancel_agency'])) {
+      unset($_SESSION['keep'][$agent_id]);
+      $_SESSION['time'] = time();
+    }
+  }
+}
+$keeps=array();
+if(isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()){
+  $keeps=$_SESSION['keep'];
+  $_SESSION['time'] = time();
+} else {
+  session_destroy();
+}
 if (isset(
   // これらが入力されていたら
   $_POST['student_last_name'],
