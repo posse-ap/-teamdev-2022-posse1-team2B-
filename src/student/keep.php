@@ -59,7 +59,7 @@ if(isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()){
               $stmt->execute();
               $agent = $stmt->fetch();
             ?>
-            <tr>
+            <tr class="table">
               <td><?php print_r($agent['agent_name']); ?></td>
               <td><?php print_r($agent['category']); ?></td>
               <!-- <td><?php //print($agent['supported_area']); ?></td>
@@ -85,7 +85,7 @@ if(isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()){
       <button type="submit" name='keep_agency_contact' class="inquirybtn">エージェンシーにお問い合わせ</button>
     </form>
     <?php else: ?>
-      <p>キープしてるエージェンシーはありません。</p>
+      <p  class="announce">キープしてるエージェンシーはありません。</p>
     <?php endif;
     // 上手く前のページの戻れない。調べたら、カート機能系は戻るボタンを廃止すべきって出てきた→TOPに戻るボタンにしていいかな、、？
     //   if (isset($_POST["contact_agency"])) {

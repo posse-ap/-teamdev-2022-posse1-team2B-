@@ -498,7 +498,7 @@ input[type="file"] {
   border-left: 1px solid black;
   border-right: 1px solid black;
 }
-.table dd {
+.table dd, .table td {
   background: #66a29a;
   text-align: center;
   padding: 7px;
