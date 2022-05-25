@@ -51,13 +51,14 @@
   font-size: 20px;
   text-align: left;
 }
-.inputform div input:not(.ignore), .inputbox, .inputform dl input/*boozer/createcontent*/, .inputform input/*boozer/edit*/{ 
+.inputform div input:not(.ignore), .inputbox, .inputform dl input/*boozer/createcontent*/, .inputform input:not(.ignore)/*boozer/edit*/{ 
   background-color: white;
   height: 35px;
   display: block;
   margin: 10px auto;
   margin-bottom: 20px;
   width: 100%; /*横幅に合わせて白い箱が伸びたり縮んだり*/
+  padding: 5px 5px;
 }
 /* .full {
   display: block;
@@ -193,7 +194,7 @@ footer img {
 }
 
 /* メジャー：ログイン（緑背景白文字） */
-.loginbtn, .accountdetails {
+.loginbtn, .accountdetails, .firstloginbtn {
   background-color: #66a29a;
   color: white;
   padding: 7px 15px;
@@ -541,6 +542,18 @@ input[type="file"] {
 }
 .selectedmonth {
   background-color: #d9dddc;
+}
+
+/*LOGIN*/
+.firstloginbtn {
+  display: block;
+  color: white;
+  background-color: #66a29a;
+  margin: 0 auto;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
 }
 
 @media screen and (min-width:1024px) {
