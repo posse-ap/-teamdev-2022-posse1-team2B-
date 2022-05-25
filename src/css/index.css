@@ -2,15 +2,12 @@
 .contact {
   cursor: default;
 }
-
 .contact_email_address {
   display: none;
 }
-
 .show_contact {
   display: block;
 }
-
 /* まりあが描いてくれたもとagency.css */
 /* .student_detail {
   display: none;
@@ -20,7 +17,6 @@
   color: black;  /* 文字の色が青くならないようにする */
   display: none;
 }
-
 .show_contents {
   display: block;
 }
@@ -154,7 +150,6 @@ footer img {
   margin: 10px auto;
 }
 
-
 /*メジャーボタンと背景色*/
 /* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
 .detailsbtn,
@@ -197,6 +192,7 @@ footer img {
   font-size: 18px;
   padding: 7px 15px;
   text-align: center;
+
   width: 300px;
   font-weight: 500;
 }
@@ -460,6 +456,7 @@ input[type="file"] {
     font-size: 25px;
     margin: 15px auto;
   }
+
 
 
 
