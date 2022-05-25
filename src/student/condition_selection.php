@@ -1,7 +1,34 @@
-<?php $page_flag = 0;
-if(isset($_POST["search"])) {
+<?php 
+require("../dbconnect.php");
+$page_flag = 0;
+if(isset($_GET["search"])) {
   $page_flag = 1;
-} ?>
+} 
+
+session_start();
+$stmt = $db->prepare('SELECT * FROM agents');
+$stmt->execute();
+$agents = $stmt->fetchAll();
+
+$stmt = $db->prepare('SELECT * FROM agents');
+$stmt->execute();
+$agents = $stmt->fetchAll();
+session_start();
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  if(isset($_POST['agent_id'])){
+    $agent_id = $_POST['agent_id'];
+    $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
+    if(isset($_POST['cancel'])) {
+      unset($_SESSION['keep'][$agent_id]);
+    }
+  }
+}
+$keeps=array();
+if(isset($_SESSION['keep'])){
+  $keeps=$_SESSION['keep'];
+  $_SESSION['time'] = time();
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -37,7 +64,7 @@ if(isset($_POST["search"])) {
             <dd><?php print_r($supported_corporate_scale);?></dd>
           </dl>
           <form action="./keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['id']);?>">
             <button type="submit" class="keepbtn">キープする</button>
             <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
           </form>
@@ -58,7 +85,7 @@ if(isset($_POST["search"])) {
             <dd><?php print_r($supported_corporate_scale);?></dd>
           </dl>
           <form action="./keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['id']);?>">
             <button type="submit" class="keepbtn">キープする</button>
             <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
           </form>
@@ -78,10 +105,9 @@ if(isset($_POST["search"])) {
             <dt>対応企業の規模</dt>
             <dd><?php print_r($supported_corporate_scale);?></dd>
           </dl>
-          <form action="./keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-            <button type="submit" class="keepbtn">キープする</button>
-            <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
+          <form action="" method="POST">
+            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['id']);?>">
+            <button type="submit" name="keep" class="keepbtn">キープする</button>
           </form>
         </a>
       </li>
