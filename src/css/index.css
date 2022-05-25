@@ -168,6 +168,7 @@ footer img {
 }
 .submitbtn {/*修正申し込む*/
   width: 300px;
+  font-weight: 600;
 }
 
 /* メジャー：戻るボタン（パステル緑背景白文字） */
