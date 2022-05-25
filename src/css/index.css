@@ -161,7 +161,7 @@ footer img {
 }
 
 /* メジャー：検索ボタン（オレンジ背景白文字） */
-.searchbtn, .submitbtn, .editbtn, .inquirybtn {
+.searchbtn, .submitbtn, .inquirybtn, .editbtn {
   background-color: #EFB448;
   color: white;
   border: none;
@@ -391,9 +391,38 @@ input[type="file"] {
   margin: 20px 10px;
 }
 
+/*BOOZER/AGENTSLIST*/ 
+.agencybox {/*それぞれのエージェンシ囲う箱*/
+  background-color: white;
+  margin: 20px 40px;
+}
+.agencyboxinner {
+  height: 90px;
+}
+.agencybox h3 {
+  text-align: left;
+  margin-left: 20px;
+  font-size: 20px;
+}
+.agencybox div:not(.agencyboxinner) {/*agencybox内の右端のボタン囲うdiv*/
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 50px;
+}
+.agencybox div input {
+  margin: 10px 5px 20px 5px;
+  height: 30px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (min-width:1024px) {
-
-
+.agencybox {
+  margin: 30px 60px;
+}
   /*パソコン版MAINHEADERFOOTER群*/
   .main {
     padding-top: 160px;
@@ -484,4 +513,9 @@ input[type="file"] {
     gap: 100px;
     flex-direction: row;
   }  
+
+  /*パソコン版BOOZER/AGENTSLIST.PHP*/
+  .agencyboxinner {
+    height: 50px;
+  }
 };
