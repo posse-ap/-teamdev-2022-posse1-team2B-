@@ -150,7 +150,7 @@ footer img {
 
 /*メジャーボタンと背景色*/
 /* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
-.keepbtnz {
+.keepbtn {
   background-color: #EFB448;
   border: none;
   padding: 3px 15px;
@@ -481,7 +481,7 @@ input[type="file"] {
   width: 350px;
 }
 
-/*BOOZER/DELETE*/
+/*BOOZER/DELETE&boozer/students*/
 .tableouter{
   width: 80%;
   margin: 0 auto;
@@ -513,7 +513,35 @@ input[type="file"] {
   border-bottom: 1px solid black;
 }
 
-/*BOOZER/PSYMENT*/
+/*BOOZER/STUDENTS*/
+.studentsbox {
+  background-color: white;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.months {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.monthcircle {
+  background-color: white;
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.selectedmonth {
+  background-color: #d9dddc;
+}
 
 @media screen and (min-width:1024px) {
 .agencybox {
