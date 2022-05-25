@@ -16,16 +16,18 @@ $agents = $stmt->fetchAll();
   <link rel="stylesheet" href="../../css/index.css">
 </head>
 <body>
-  <div class="main">
+  <div class="mainpayment">
     <?php include (dirname(__FILE__) . "/boozer_header.php");
     foreach ($agents as $agent) : ?>
-    <div>
+    <div class="agencybox">
       <h3><?php echo $agent['agent_name'];?></h3>
-      <a href="./payment_detail.php?agent_id=<?php echo $agent['id'];?>">明細情報の詳細</a>
-      <span>未払い</span>
+      <div>
+        <a href="./payment_detail.php?agent_id=<?php echo $agent['id'];?>" class="submitbtn">明細情報の詳細</a>
+        <span>未払い</span>
+      </div>
     </div>
     <?php endforeach; ?>
-    <a href='javascript:history.back()'>戻る</a>
+    <a href='javascript:history.back()' class="returnbtn">戻る</a>
   </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>
