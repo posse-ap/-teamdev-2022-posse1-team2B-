@@ -190,7 +190,6 @@ footer img {
   font-size: 18px;
   padding: 7px 15px;
   text-align: center;
-
   width: 300px;
   font-weight: 500;
 }
@@ -217,9 +216,18 @@ footer img {
   background-color: #d21404;
   color: white;
   padding: 3px 5px;
+  text-align: center;
+
 }
 .must  {
   margin-left: 10px;
+}
+.deletebtn {
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+  padding: 7px 15px;
+  font-size: 18px;
 }
 
 /* //一度きりボタン等// */
@@ -477,6 +485,38 @@ input[type="file"] {
   width: 350px;
 }
 
+/*BOOZER/DELETE*/
+.tableouter{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.table {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+.table dd {
+  background: #66a29a;
+  text-align: center;
+  padding: 7px;
+  width: 100%;
+  border-right: none;
+  border-bottom: 1px solid black
+}
+.table dt {
+  background-color: white;
+  text-align: center;
+  padding: 7px;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
 @media screen and (min-width:1024px) {
 .agencybox {
   margin: 30px 60px;
@@ -578,3 +618,13 @@ input[type="file"] {
   .boozerindexouter {
     flex-direction: row
   }
+
+  /*BOOZER/DELETE*/
+  .table dd {
+   width: 150px;
+   border-right: 1px solid black;
+  }
+  .table dt {
+    width: calc(100% - 150px);
+  }
+};
