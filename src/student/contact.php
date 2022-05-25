@@ -291,12 +291,20 @@ if (isset($_POST["contact"])) {
             <input type="text" name="graduation_year" id="graduationYear" maxlength="4" required>
           </div>
         </div>
-      </div>
-      <!-- <div class="pageendbuttons"> -->
-        <!-- ここの遷移がない -->
-        <input type="submit" name="contact" value="エージェンシー企業に問い合わせる" class="inquirybtn"><br>
-      <!-- </div> -->
-    </form>
+        <div>
+          <label for="department">学科</label>
+          <input type="text" name="college_department" id="department" required>
+        </div>
+        <div>
+          <p>卒業年を選択</p>
+          <input type="text" name="graduation_year" id="graduationYear" maxlength="4" required>
+        </div>
+        <div>
+          <!-- <button>戻る</button> -->
+          <!-- ここの遷移がない -->
+          <input type="submit" name="contact" value="エージェンシー企業に問い合わせる">
+        </div>
+      </form>
       <?php
         if (isset($_POST["btn_back"])) {
           // 戻るが押されたとき
