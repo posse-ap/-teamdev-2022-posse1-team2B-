@@ -1,36 +1,51 @@
-<!-- 
-  ・ランキング詳細→学生一覧からの詳細への遷移を参考にする
--->
-
 <?php
 require("../dbconnect.php");
-
-
-// お聞きしたいこと
-// ・where = ? の?に変数を代入できない？
-// ・カテゴリー中間テーブルのイメージ確認
-
 //全エージェント会社の情報取得
 $stmt = $db->prepare('SELECT * FROM agents');
 $stmt->execute();
 $agents = $stmt->fetchAll();
+session_start();
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  if(isset($_POST['agent_id'])){
+    $agent_id = $_POST['agent_id'];
+    $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
+    if(isset($_POST['cancel'])) {
+      unset($_SESSION['keep'][$agent_id]);
+    }
+  }
+}
+$keeps=array();
+if(isset($_SESSION['keep'])){
+  $keeps=$_SESSION['keep'];
+  $_SESSION['time'] = time();
+}
 
-// 各エージェントへの申込数取得
-// エージェント数ぶん回す
-// foreach($agents as $index => $agent) {
-//   $stmt = $db->prepare('SELECT count(*) FROM intermediate where agent_id = :agent_id');
-//   $stmt->bindValue(':agent_id', $agent['id']);
-//   // bindevalueの１が？の１個めってこと。これがあれば何個でもはてなつけられる！1,2とかだとわかりにくいから、「:agent_id」を設定する
-//   $stmt->execute();
-//   $offers = $stmt->fetchAll();
-//   return $offers;
-// }
-  
-  // エージェント名を回せるか実験
-  // foreach($agents as $index => $agent) {
-  //   print_r($agent['agent_name'] . PHP_EOL);
-  // }
-
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  if(isset($_POST["finance"])) {
+    $page_flag = 1;
+    $finance = $_POST['finance'];
+    $_SESSION['category']=$finance;
+  } elseif(isset($_POST["it"])) {
+    $page_flag = 1;
+    $it = $_POST['it'];
+    $_SESSION['category']=$it;
+  } elseif(isset($_POST["ad"])) {
+    $page_flag = 1;
+    $ad = $_POST['ad'];
+    $_SESSION['category']=$ad;} elseif (isset($_POST["tradingCompany"])){
+    $page_flag = 1;
+    $tradingCompany = $_POST['tradingCompany'];
+    $_SESSION['category']=$tradingCompany;
+  } elseif (isset($_POST["food"])) {
+    $page_flag = 1;
+    $food = $_POST['food'];
+    $_SESSION['category']=$food;
+  } elseif (isset($_POST["realEstate"])){
+    $page_flag = 1;
+    $realEstate = $_POST['realEstate'];
+    $_SESSION['category']=$realEstate;
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -56,15 +71,23 @@ $agents = $stmt->fetchAll();
           $counter = 0;
           foreach($agents as $index => $agent): ?>
           <li>
-          <a href="./agent_detail.php?id=<?php echo$agent['id']; ?>">
-            <p><?= $agent['agent_name']?></p>
-            <p>得意な業種<?= $agent['category']?></p>
-            <p>対応エリア<?= $agent['prefecture']?></p>
-            <form action="keep.php" method="POST">
-              <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
-              <button type="submit" class="keepbtn">キープする</button>
-            </form>
-          </a>
+            <a href="./agent_detail.php?id=<?php echo$agent['id']; ?>">
+              <p><?= $agent['agent_name']?></p>
+              <p>得意な業種<?= $agent['category']?></p>
+              <p>対応エリア<?= $agent['prefecture']?></p>
+              <form action="" method="POST">
+                <!-- <form action="keep.php" method="POST"> -->
+                <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
+                <?php
+                // echo $agent['id'];
+                if(isset($keeps[$agent['id']]) === true):
+                ?>
+                <p>キープ済み</p>
+                <?php else: ?>
+                <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn">キープする</button>
+                <?php endif;?>
+              </form>
+            </a>
           </li>
           <?php 
             if ($counter >= 2) {break;}
