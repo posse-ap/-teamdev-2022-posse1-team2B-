@@ -25,8 +25,8 @@ $agents = $stmt->fetchAll();
         <h3><?php echo $agent['agent_name'];?></h3>
       </div>
       <div>
-        <a href="./payment_detail.php?agent_id=<?php echo $agent['id'];?>" class="submitbtn">明細情報の詳細</a>
-        <span>未払い</span>
+        <a href="./payment_detail.php?agent_id=<?php echo $agent['id'];?>" class="accountdetails">明細情報の詳細</a>
+        <span class="unpaid">未払い</span>
       </div>
     </div>
     <?php endforeach; ?>
