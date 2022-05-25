@@ -50,7 +50,7 @@ $agents = $stmt->fetchAll();
         <a class="inquirybtn" href="./students.php">学生情報</a>
       </div>
     </div>
-    <a href="./create_contents.php" class="inquirybtn indexbtn">エージェンシーの掲載内容を登録する</a>
+    <a href="./create_contents.php" class="indexbtn">エージェンシーの掲載内容を登録する</a>
   </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
   <script src="boozer.js"></script>
