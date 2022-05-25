@@ -102,19 +102,19 @@ if(isset($_POST['category'])) {
           <p>得意な業種</p>
           <p>対応エリア</p>
           <form action="" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agent["id"]);?>">
             <!-- <button type="submit" name="keep" class="keepbtn">キープする</button> -->
             <?php
                 if(isset($keeps[$agent['id']]) === true):
                 ?>
                 <p>キープ済み</p>
                 <?php else: ?>
+                <input type="hidden" name="category" value="<?php print_r($category);?>">
+                <input type="hidden" name="agent_id" value="<?php print_r($agent["id"]);?>">
                 <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn">キープする</button>
                 <?php endif;?>
           </form>
-          <form action="keep.php" method="post">
-            <input type="hidden" name="category" value="<?php print_r($category);?>">
-          </form>
+          <!-- <form action="keep.php" method="post">
+          </form> -->
         </li>
         <?php endforeach; ?>
       </ol>
