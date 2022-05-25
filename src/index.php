@@ -11,16 +11,8 @@ require(dirname(__FILE__) . "/dbconnect.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>サンプル</title>
 </head>
-<ul>
-    <?php foreach ($events as $key => $event) : ?>
-        <li>
-            <?= $event["id"]; ?>:<?= $event["title"]; ?>
-        </li>
-    <?php endforeach; ?>
-    <a href="/admin/index.php">管理者ページ</a>
-</ul>
-
 <body>
+  <a href="./admin/login.php">エージェント管理ページにログイン</a>
 </body>
 
 </html>

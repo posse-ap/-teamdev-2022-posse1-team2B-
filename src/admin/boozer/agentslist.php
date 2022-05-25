@@ -70,8 +70,10 @@ if(isset($_GET['agent_id'])){
         <div class="agencybox">
          <form method="POST" action="edit.php">
            <img src="" alt="">
-           <h3><?=$agent['agent_name'] ?></h3>
-           <input type="hidden" name="agent_id" value="<?php echo $agent['id']; ?>">
+           <div class="agencyboxinner">
+              <h3><?=$agent['agent_name'] ?></h3>
+              <input type="hidden" name="agent_id" value="<?php echo $agent['id']; ?>">
+           </div>
            <div>
              <input type="submit" name="edit" value="編集" class="editbtn">
              <input type='submit' formaction='delete.php' name='delete' value ='削除' class="deletebtn">

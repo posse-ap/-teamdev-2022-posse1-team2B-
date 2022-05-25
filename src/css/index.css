@@ -2,15 +2,12 @@
 .contact {
   cursor: default;
 }
-
 .contact_email_address {
   display: none;
 }
-
 .show_contact {
   display: block;
 }
-
 /* まりあが描いてくれたもとagency.css */
 /* .student_detail {
   display: none;
@@ -20,7 +17,6 @@
   color: black;  /* 文字の色が青くならないようにする */
   display: none;
 }
-
 .show_contents {
   display: block;
 }
@@ -154,7 +150,6 @@ footer img {
   margin: 10px auto;
 }
 
-
 /*メジャーボタンと背景色*/
 /* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
 .detailsbtn,
@@ -197,6 +192,7 @@ footer img {
   font-size: 18px;
   padding: 7px 15px;
   text-align: center;
+
   width: 300px;
   font-weight: 500;
 }
@@ -400,11 +396,15 @@ input[type="file"] {
   background-color: white;
   margin: 20px 40px;
 }
+.agencyboxinner {
+  height: 90px;
+}
 .agencybox h3 {
+  text-align: left;
   margin-left: 20px;
   font-size: 20px;
 }
-.agencybox div, .indexagencybox div {/*agencybox内の右端のボタン囲うdiv*/
+.agencybox div:not(.agencyboxinner), .indexagencybox div {/*agencybox内の右端のボタン囲うdiv*/
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -511,6 +511,7 @@ input[type="file"] {
 
 
 
+
   .conditionsearch {/*パソコン版studentsのindexのこだわり条件から探すのところのcss*/
     width: 480px;
     font-size: 19px;
@@ -564,4 +565,9 @@ input[type="file"] {
     gap: 100px;
     flex-direction: row;
   }  
+
+  /*パソコン版BOOZER/AGENTSLIST.PHP*/
+  .agencyboxinner {
+    height: 50px;
+  }
 };
