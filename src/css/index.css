@@ -15,6 +15,7 @@
 .student_information {
   text-decoration: none;  /* 寡占を失くす */
   color: black;  /* 文字の色が青くならないようにする */
+  display: none;
 }
 .show_contents {
   display: block;
@@ -48,11 +49,11 @@
   display: block; /*maringで中央寄せさせるために必須*/
   margin: 0 auto;
 }
-.inputform div label, .inputform div div label { /*inputformのラベル系*/
+.inputform div label, .inputform div div label, .inputform dl dd { /*inputformのラベル系*/
   font-size: 20px;
   text-align: left;
 }
-.inputform div input:not(.ignore), .inputbox { 
+.inputform div input:not(.ignore), .inputbox, .inputform dl input { 
   background-color: white;
   height: 35px;
   display: block;
@@ -186,6 +187,7 @@ footer img {
   display: block;
   margin: 0 auto;
   margin-bottom: 15px;
+  margin-top: 15px;
   border: none;
   font-size: 18px;
   padding: 7px 15px;
@@ -381,6 +383,12 @@ input[type="file"] {
 }
 .iconimage[type="file"] {
   display: none;
+}
+
+/*BOOZER/CREATECONTENTS*/
+.announce {
+  text-align: center;
+  margin: 20px 10px;
 }
 
 @media screen and (min-width:1024px) {
