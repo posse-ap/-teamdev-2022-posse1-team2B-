@@ -4,15 +4,15 @@ require("./dbconnect.php");
 // もしname属性~の送信ボタンを押したら、この文言を出力する
 // サンクスページに遷移する画面
 // agency
-  //1 アカウント作成完了：top account thanks////btn_confirm
-  // 2  掲載情報新規作成：createcontents thanks/////create
-  // 3 掲載情報修正依頼：fixcontents thanks///fix
-  // 4 学生からのお問い合わせ取り消し依頼：students thanks////mischief_report
+  //1 アカウント作成完了：top account thanks////btn_confirm  
+  // 2  掲載情報新規作成：createcontents thanks/////create //!!!!
+  // 3 掲載情報修正依頼：fixcontents thanks///fix//!!!!!!!
+  // 4 学生からのお問い合わせ取り消し依頼：students thanks////mischief_report//!!!!
 // boozer
-  // 5  掲載情報編集：edit thanks///edit
+  // 5  掲載情報編集：edit thanks///edit ///!!!!!!!!
   //6 掲載情報新規作成：create_contents thanks////new_entry
 // student
- // 7 お問い合わせ：contact thanks////final_contact
+ // 7 お問い合わせ：contact thanks////final_contact///!!!!
 
 $action = "";
 $user_name ="";
@@ -30,17 +30,17 @@ if(isset($_POST['btn_confirm'])){ // agency
     $user_name = "agency";
 }  else if (isset($_POST['mischief_report'])) {
     // 4 学生からのお問い合わせ取り消し依頼：students thanks////mischief_report
-    $action = " 学生からのお問い合わせ取り消し依頼";
+    $action = "学生からのお問い合わせ取り消し依頼";
     $user_name = "agency";
-}  else if (isset($_POST['edit'])) { //boozer
+}  else if (isset($_GET['edit'])) { //boozer
     // 5  掲載情報編集：edit thanks///edit
     $action = "掲載情報の編集";
     $user_name = "boozer";
-}  else if (isset($_POST['new_entry'])) {
+}  else if (isset($_GET['new_entry'])) {
     //6 掲載情報新規作成：create_contents thanks////new_entry
     $action = "掲載の新規作成";
     $user_name = "boozer";
-}  else if (isset($_POST['final_contact'])) { //student
+}  else if (isset($_GET['final_contact'])) { //student
    // 7 お問い合わせ：contact thanks////final_contact
     $action = "エージェンシー企業へのお問い合わせ";
     $user_name = "student";
@@ -80,7 +80,7 @@ if(isset($_POST['btn_confirm'])){ // agency
     </div>
   </div>
   <?php 
-  if($user_name === "boozer") {
+  if($user_name === "boozer" || $user_name === "agency") {
     include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_footer.php");
     echo('<script src="./admin/boozer/boozer.js"></script>');
   } elseif($user_name === "agency") {
