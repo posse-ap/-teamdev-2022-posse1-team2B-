@@ -1,9 +1,3 @@
-#contact {
-  cursor: default;
-}
-.contact_email_address {
-  display: none;
-}
 
 /* .student_detail {
   display: none;
@@ -17,3 +11,7 @@
   display: block;
 }
 
+/* ////BOOZER/// */
+.boozerindexinner {
+  display: flex;
+}

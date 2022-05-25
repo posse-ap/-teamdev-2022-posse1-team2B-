@@ -135,49 +135,55 @@ require(dirname(__FILE__, 3) . '/dbconnect.php');
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>エージェンシー企業アカウント登録画面</title>
-  <link rel="stylesheet" href="agency.css">
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/index.css">
 </head>
 
 <body>
-  <!-- <?php include(dirname(__FILE__) . "/agency_header.php"); ?> -->
-
-  <div>
-    <h1>新規登録</h1>
+  <?php include(dirname(__FILE__) . "/agency_header.php"); ?>
+  <div class="main">
+    <h1 class="pagetitle">新規登録</h1>
     <div>
-      <form action="account.php" method="POST">
+      <form action="account.php" method="POST" class="inputform">
         <div>
-          <label for="companyName">会社名</label>
+          <label for="companyName">会社名</label><br>
           <input type="text" name="agent_name" id="companyName" required>
         </div>
-        <div>
-          <label for="familyName">氏</label>
-          <input type="text" name="manager_last_name" id="familyName" required>
+        <div class="half">
+          <div>
+            <label for="familyName">氏</label><br>
+            <input type="text" name="manager_last_name" id="familyName" required>
+          </div>
+          <div>
+            <label for="managerName">名</label><br>
+            <input type="text" name="manager_first_name" id="managerName" required>
+          </div>
+        </div>
+        <div class="half">
+          <div>
+            <label for="familyNameKana">氏（カナ）</label><br>
+            <input type="text" name="manager_last_name_kana" id="familyNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
+          </div>
+          <div>
+            <label for="managerNameKana">名（カナ）</label><br>
+            <input type="text" name="manager_first_name_kana" id="managerNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
+          </div>
         </div>
         <div>
-          <label for="managerName">名</label>
-          <input type="text" name="manager_first_name" id="managerName" required>
-        </div>
-        <div>
-          <label for="familyNameKana">氏(カナ)</label>
-          <input type="text" name="manager_last_name_kana" id="familyNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
-        </div>
-        <div>
-          <label for="managerNameKana">名(カナ)</label>
-          <input type="text" name="manager_first_name_kana" id="managerNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
-        </div>
-        <div>
-          <label for="agent_department">部署</label>
+          <label for="agent_department">部署</label><br>
           <input type="text" name="agent_department" id="agentDepartment" required>
         </div>
         <div>
-          <label for="loginMailAddress">ログイン用メールアドレス<span>必須</span></label>
+          <label for="loginMailAddress">ログイン用メールアドレス<span class="must">必須</span></label><br>
           <input type="email" name="login_email" id="loginMailAddress" required>
         </div>
         <div>
-          <label for="loginPassWord">ログイン用パスワード<span>必須</span></label>
+          <label for="loginPassWord">ログイン用パスワード<span class="must">必須</span></label><br>
           <input type="password" name="password" id="loginPassword" required>
         </div>
-        <input type="submit" name="btn_confirm">会員登録</input>
+        <div class="submitbtn">
+          <input type="submit" name="btn_confirm" class="ignore submitbtn" style="display:none">会員登録</input>
+        </div>
       </form>
     </div>
   </div>
