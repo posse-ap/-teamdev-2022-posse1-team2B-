@@ -23,13 +23,13 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
   <div class="main">
     <section>
       <h2 class="pagetitle">学生一覧</h2>
-      <?php 
+      <div class="months">
+        <?php 
         $months = [1,2,3,4,5,6,7,8,9,10,11,12];
         foreach ($months as $key => $month) : ?>
-        <div class="months">
           <button class="monthcircle"><?= $month;?> </button>
-        </div>
-      <?php endforeach;?> 
+        <?php endforeach;?> 
+      </div>
       <?php
         foreach ($agents_students_match as $index => $agent_student_match) : ?>
         <!-- 学生のデータを問い合わせぶん回す -->

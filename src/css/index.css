@@ -524,14 +524,20 @@ input[type="file"] {
   gap: 30px;
 }
 .months {
-  display: block;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 .monthcircle {
   background-color: white;
   border-radius: 50%;
-  padding: 10px 10px;
-  /* display: flex;
-  justify-content: space-around; */
+  height: 45px;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
