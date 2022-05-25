@@ -1,7 +1,34 @@
-<?php $page_flag = 0;
-if(isset($_POST["search"])) {
+<?php 
+require("../dbconnect.php");
+$page_flag = 0;
+if(isset($_GET["search"])) {
   $page_flag = 1;
-} ?>
+} 
+
+session_start();
+$stmt = $db->prepare('SELECT * FROM agents');
+$stmt->execute();
+$agents = $stmt->fetchAll();
+
+$stmt = $db->prepare('SELECT * FROM agents');
+$stmt->execute();
+$agents = $stmt->fetchAll();
+session_start();
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  if(isset($_POST['agent_id'])){
+    $agent_id = $_POST['agent_id'];
+    $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
+    if(isset($_POST['cancel'])) {
+      unset($_SESSION['keep'][$agent_id]);
+    }
+  }
+}
+$keeps=array();
+if(isset($_SESSION['keep'])){
+  $keeps=$_SESSION['keep'];
+  $_SESSION['time'] = time();
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -37,7 +64,7 @@ if(isset($_POST["search"])) {
             <dd><?php print_r($supported_corporate_scale);?></dd>
           </dl>
           <form action="./keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['id']);?>">
             <button type="submit" class="keepbtn">キープする</button>
             <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
           </form>
@@ -58,7 +85,7 @@ if(isset($_POST["search"])) {
             <dd><?php print_r($supported_corporate_scale);?></dd>
           </dl>
           <form action="./keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
+            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['id']);?>">
             <button type="submit" class="keepbtn">キープする</button>
             <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
           </form>
@@ -78,10 +105,9 @@ if(isset($_POST["search"])) {
             <dt>対応企業の規模</dt>
             <dd><?php print_r($supported_corporate_scale);?></dd>
           </dl>
-          <form action="./keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="<?php print_r($agent['agent_id']);?>">
-            <button type="submit" class="keepbtn">キープする</button>
-            <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
+          <form action="" method="POST">
+            <input type="hidden" name="agent_id" value="<?php print_r($agents[0]['id']);?>">
+            <button type="submit" name="keep" class="keepbtn">キープする</button>
           </form>
         </a>
       </li>
@@ -90,12 +116,13 @@ if(isset($_POST["search"])) {
   <!-- こだわり条件から探すをクリックした場合に表示 -->
   <?php else:?>
   <div class="main">
+   <div class="conditionselectioninner">
     <a href="./index.php" class="exitbtn">✕</a>
     <form action="condition_selection.php" method="POST">
-      <h1>エージェンシー企業をこだわり条件で絞り込む</h1>
+      <h1 class="pagetitle">条件で絞り込む</h1>
       <div>
-        <div>
-          <h2>エージェンシー企業の得意業界</h2>
+        <div class="conditiongroup">
+          <h2>得意業界</h2>
           <input type="checkbox" name="food" id="food">
           <label from="food">食品</label>
           <input type="checkbox" name="apparel" id="apparel">
@@ -111,7 +138,7 @@ if(isset($_POST["search"])) {
           <input type="checkbox" name="trading_company" id="tradingCompany">
           <label from="tradingCompany">商社</label>
         </div>
-        <div>
+        <div class="conditiongroup">
           <h2>登録企業の規模</h2>
           <input type="checkbox" name="smaller_businesses" id="smallerBusinesses">
           <label from="smallerBusinesses">中小企業</label>
@@ -120,7 +147,7 @@ if(isset($_POST["search"])) {
           <input type="checkbox" name="venture_corporation" id="ventureCorporation">
           <label from="ventureCorporation">ベンチャー企業</label>
         </div>
-        <div>
+        <div class="conditiongroup">
           <h2>求人エリア</h2>
           <input type="checkbox" name="kanto_region" id="kantoRegion">
           <label from="kantoRegion">関東地方</label>
@@ -131,7 +158,7 @@ if(isset($_POST["search"])) {
           <input type="checkbox" name="kyushu_region" id="kyushuRegion">
           <label from="kyushuRegion">九州地方</label>
         </div>
-        <div>
+        <div class="conditiongroup">
           <h2>対象学生</h2>
           <input type="checkbox" name="2024_graduation" id="2024Graduation">
           <label from="2024Graduation">24卒</label>
@@ -142,6 +169,7 @@ if(isset($_POST["search"])) {
       <input type="submit" name="search" value = "検索" class="searchbtn">
     </form>
   </div>
+ </div>
   <?php endif; ?>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
   <script src="./student.js"></script>

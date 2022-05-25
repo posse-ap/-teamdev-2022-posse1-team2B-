@@ -1,3 +1,25 @@
+<?php 
+require("../dbconnect.php");
+session_start();
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  if(isset($_POST['agent_id'])){
+      $agent_id = $_POST['agent_id'];
+      $_SESSION['time'] = time();
+      $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
+    if(isset($_POST['cancel_agency'])) {
+      unset($_SESSION['keep'][$agent_id]);
+      $_SESSION['time'] = time();
+    }
+  }
+}
+$keeps=array();
+if(isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()){
+  $keeps=$_SESSION['keep'];
+  $_SESSION['time'] = time();
+} else {
+  session_destroy();
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,48 +31,84 @@
   <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-  <!-- 
-    ・キープを押した時点でエージェントさんのIDをセッションとかに保存する
-→IDを元に企業の情報をデータベースから持ってくる
-    ・セッションストレージ→ブラウザにデータを保存
-  →Aさんがキープしたっていう情報は個々のブラウザに保存される
-→キャッシュみたいなもの
-・ブラウザ側に情報を持ってもらって、その人が何の情報を保存したかを種痘できる
-→セッションで保存されたエージェントのIDを利用してエージェントの情報を出力する
-・クッキーとかもある
-
-・セッションについての記事
-→https://developer.mozilla.org/ja/docs/Web/API/Window/sessionStorage
-→情報を取得SET,GET,REMOVE
-
--->
-  <?php include (dirname(__FILE__) . "/student_header.php");?>
+  <?php include (dirname(__FILE__) . "/student_header.php");
+  ?>
   <div class="main">
     <h1>キープ中のエージェンシー企業</h1>
-      <div>
-        <li>
-          <a href="./agent_detail.php">
-            <p><?php print_r($keep_agent["name"]);?></p>
-            <dl>
-              <dt>得意な業種</dt>
-              <dd><?php print_r($keep_agent["industry"]);?></dd>
-              <dt>対応エリア</dt>
-              <dd><?php print_r($keep_agent["supported_area"]);?></dd>
-              <dt>対象学生</dt>
-              <dd><?php print_r($keep_agent["target_student"]);?></dd>
-              <dt>対応企業の規模</dt>
-              <dd><?php print_r($keep_agent["corporate_scale"]);?></dd>
-              <dt>備考</dt>
-              <dd><?php print_r($keep_agent["remarks"]);?></dd>
-            </dl>
-          </a>
-        </li>
-        <form action="./contact.php" method="POST">
-          <input type="hidden" name="agent_id" value="<?php print($agent['agent_id']);?>">
-          <button type="submit" class="inquirybtn">エージェンシー企業に問い合わせる</button>
-        </form>
-      </div> 
-        <a href='javascript:history.back()' class="returnbtn">戻る</a>
+    <?php if(count($keeps) > 0): ?>
+      <table>
+        <a href="./agent_detail.php">
+          <thead>
+            <tr>
+            <p>※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
+              <th>エージェンシー企業名</th>
+              <th>得意な業種</th>
+              <!-- <th>対応エリア</th>
+              <th>対象学生</th>
+              <th>対応企業の規模</th> -->
+              <!-- <th>備考</th> -->
+            </tr>
+          </thead>  
+          <tbody>
+            <?php 
+            // var_dump($keeps);
+            // print_r($keeps);
+            foreach($keeps as $keep):
+              $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
+              $stmt->bindValue(':id', $keep);
+              $stmt->execute();
+              $agent = $stmt->fetch();
+            ?>
+            <tr>
+              <td><?php print_r($agent['agent_name']); ?></td>
+              <td><?php print_r($agent['category']); ?></td>
+              <!-- <td><?php //print($agent['supported_area']); ?></td>
+              <td><?php //print($agent['target_student']); ?></td>
+              <td><?php //print($agent['corporate_scale']); ?></td>
+              <td><?php //print($agent['remarks']); ?></td> -->
+              <td>
+                <form action="" method="POST">
+                  <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
+                  <button type="submit" name="cancel_agency">キープを取り消す</button>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </a>
+    </table>
+    <?php 
+    endforeach; ?>
+    <form action="./contact.php" method="POST">
+      <?php foreach($keeps as $keep): ?>
+      <input type="hidden" value="<?php print_r($keep);?>">
+      <?php endforeach; ?>
+      <button type="submit" name='keep_agency_contact' class="inquirybtn">エージェンシー企業に問い合わせる</button>
+    </form>
+    <?php else: ?>
+      <p>キープしてるエージェンシー企業はありません。</p>
+    <?php endif;
+    // 上手く前のページの戻れない。調べたら、カート機能系は戻るボタンを廃止すべきって出てきた→TOPに戻るボタンにしていいかな、、？
+    //   if (isset($_POST["contact_agency"])) {
+    //     echo ('<form action="condition_selection.php" GET="POST">
+    //   <button type="submit" name="back" class="returnbtn">戻る</button>
+    //   </form>');      
+    //   }elseif (isset($_POST["cancel_agency"])){
+    //   echo ('<form action="index.php" GET="POST">
+    //   <button type="submit" name="back" class="returnbtn">戻る</button>
+    //   </form>');   
+    //   //  キープするのをやめた時に、javascript.history.back()だとずっとkeepをループすることになる
+    // } elseif(isset($_POST['category'])){
+    //   echo ('<form action="index.php" GET="POST">
+    //   <button type="submit" name="back" class="returnbtn">戻る</button>
+    //   </form>');
+    // }
+    // else{
+    //   echo ('<a href=' . '"javascript:history.back()"' . ' class="returnbtn">戻る</a>');
+    // }
+    echo ('<form action="index.php" GET="POST">
+      <button type="submit" name="back" class="returnbtn">TOPに戻る</button>
+      </form>');
+    ?>
   </div>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
   <script src="./student.js"></script>

@@ -1,3 +1,30 @@
+<?php
+require("../dbconnect.php");
+session_start();
+if(isset($_SESSION['keep'])){
+  $keeps=$_SESSION['keep'];
+  $_SESSION['time'] = time();
+}
+$stmt = $db->prepare('SELECT * FROM agents');
+$stmt->execute();
+$agents = $stmt->fetchAll();
+session_start();
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  if(isset($_POST['agent_id'])){
+    $agent_id = $_POST['agent_id'];
+    $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
+    if(isset($_POST['cancel'])) {
+      unset($_SESSION['keep'][$agent_id]);
+    }
+  }
+}
+$keeps=array();
+if(isset($_SESSION['keep'])){
+  $keeps=$_SESSION['keep'];
+  $_SESSION['time'] = time();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -45,9 +72,16 @@
             <?php print_r($remarks)?>
           </dd>
         </dl>
-        <form action="./keep.php" method="POST">
-          <!-- <input type="hidden" name="agent_id" value="<?php print($item['agent_id']);?>"> -->
-          <button type="submit" class="keepbtn">キープする</button>
+        <form action="" method="POST">
+          <?php
+          if(isset($keeps[$agent['id']]) === true):
+          ?>
+          <p>キープ済み</p>
+          <?php else: ?>
+          <input type="hidden" name="category" value="<?php print_r($category);?>">
+          <input type="hidden" name="agent_id" value="<?php print_r($agent["id"]);?>">
+          <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn">キープする</button>
+          <?php endif;?>
           <button type="submit" formaction="./contact.php" class="submitbtn">エージェンシー企業に問い合わせる</button>
         </form>
       </div>

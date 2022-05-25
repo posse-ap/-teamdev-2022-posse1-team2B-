@@ -46,13 +46,12 @@ if(isset($_POST['edit_completion'])){
   <title>edit</title>
   <link rel="stylesheet" href="../../css/reset.css">
   <link rel="stylesheet" href="../../css/index.css">
-  <link rel="stylesheet" href="../../css/agency.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <div class="main">
     <h2 class="pagetitle">掲載内容修正</h2>
-    <form action="../thanks.php" method="POST">
+    <form action="" method="POST" class="inputform">
       <dd>会社名</dd><dt><input type="text" name="new_agent_name"></dt>
       <dd>郵便番号</dd><dt><input type="text" name="new_post_number" pattern="\d{3}-?\d{4}"></dt>
       <dd>都道府県</dd><dt><input type="text" name="new_prefecture"></dt>
@@ -64,7 +63,7 @@ if(isset($_POST['edit_completion'])){
       <dd>備考</dd><dt><textarea name="new_remarks" id="" cols="30" rows="10"></textarea></dt>
       <input type="hidden" name="agent_id" value= "<?php echo $_POST['agent_id']; ?>">
       <input class="submitbtn" name="edit_completion" type="submit" value="修正完了">
-      <a href='javascript:history.back()'>戻る</a>
+      <a href='javascript:history.back()' class="returnbtn">戻る</a>
     </form>
   </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>

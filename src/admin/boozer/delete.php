@@ -41,20 +41,23 @@ try {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>エージェンシー企業の掲載を削除する</title>
-  <link rel="stylesheet" href="boozer.css">
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/index.css">
 </head>
 <body>
   <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <div?>
-    <p>本当にエージェンシー企業の掲載を削除しますか？</p>
-    <dd>会社名</dd><dt><?php echo $agency[0]['agent_name']; ?></dt>
-    <dd>会社住所</dd><dt><?php echo $agency[0]['prefecture']; echo $agency[0]['municipalitie']; echo $agency[0]['adress_number'];?></dt>
-    <dd>備考</dd><dt></dt>
-    <form action="delete.php" method="post">
-      <input type="hidden" name="id" value="<?php echo$agency[0]['id'];?>">
-      <button type="submit" name="agency_delete">掲載を削除</button>
-      <a href='javascript:history.back()'>戻る</a>
-    </form>
+    <div class="main">
+      <p>本当にエージェンシー企業の掲載を削除しますか？</p>
+      <dd>会社名</dd><dt><?php echo $agency[0]['agent_name']; ?></dt>
+      <dd>会社住所</dd><dt><?php echo $agency[0]['prefecture']; echo $agency[0]['municipalitie']; echo $agency[0]['adress_number'];?></dt>
+      <dd>備考</dd><dt></dt>
+      <form action="delete.php" method="post">
+        <input type="hidden" name="id" value="<?php echo$agency[0]['id'];?>">
+        <button type="submit" name="agency_delete" class="deletebtn">掲載を削除</button>
+        <a href='javascript:history.back()' class="returnbtn">戻る</a>
+      </form>
+    </div>
   </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
   <script src="boozer.js"></script>

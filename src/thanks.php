@@ -26,7 +26,7 @@ if(isset($_POST['btn_confirm'])){ // agency
     $user_name = "agency";
 }   else if (isset($_POST['fix'])) {
     // 3 掲載情報修正依頼：fixcontents thanks///fix
-    $action = "掲載情報の修正依頼が";
+    $action = "掲載情報の修正依頼";
     $user_name = "agency";
 }  else if (isset($_POST['mischief_report'])) {
     // 4 学生からのお問い合わせ取り消し依頼：students thanks////mischief_report
