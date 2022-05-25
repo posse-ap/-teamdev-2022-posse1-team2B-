@@ -1,6 +1,26 @@
 <?php
 require('../dbconnect.php');
 
+// キープされていた企業にお問い合わせする
+session_start();
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  if(isset($_POST['agent_id'])){
+      $agent_id = $_POST['agent_id'];
+      $_SESSION['time'] = time();
+      $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
+    if(isset($_POST['cancel_agency'])) {
+      unset($_SESSION['keep'][$agent_id]);
+      $_SESSION['time'] = time();
+    }
+  }
+}
+$keeps=array();
+if(isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()){
+  $keeps=$_SESSION['keep'];
+  $_SESSION['time'] = time();
+} else {
+  session_destroy();
+}
 if (isset(
   // これらが入力されていたら
   $_POST['student_last_name'],
@@ -96,9 +116,10 @@ if (isset(
   $stmt->execute($param);
 }
 
+
 $page = 0;
 // デフォルトは0
-if (isset($_POST["contact"])) {
+if (isset($_POST['contact'])) {
   // コンタクトされたとき
   $page = 1;
   // ページを1に
@@ -124,8 +145,9 @@ if (isset($_POST["contact"])) {
   ?>
     <!-- 確認画面 -->
   <div class="main">
+    <!-- 登録いたしました！だと完了ボタン押さないでブラウザバックする人いそうだから、登録いたしますか？でよくない？ -->
     <h1>こちらの内容で登録いたしました！</h1>
-    <form method="POST" action="../thanks.php">
+    <form method="POST" action="apply.php">
       <div>
         <label>氏</label>
         <p>
@@ -211,7 +233,21 @@ if (isset($_POST["contact"])) {
         </p>
       </div>
       <!-- 入力した値を受け渡す -->
-      <button type="submit" name="btn_back" formaction="./contact.php" class="returnbtn">登録し直す</button>
+      <button type="submit" name="btn_back" formaction = "contact.php" class="returnbtn">登録し直す</button>
+      <input type="hidden" name="student_last_name" value="<?php echo $_POST["student_last_name"]; ?>">
+      <input type="hidden" name="student_last_name_kana" value="<?php echo $_POST["student_last_name_kana"]; ?>">
+      <input type="hidden" name="student_first_name" value="<?php echo $_POST["student_first_name"]; ?>">
+      <input type="hidden" name="student_first_name_kana" value="<?php echo $_POST["student_first_name_kana"]; ?>">
+      <input type="hidden" name="post_number" value="<?php echo $_POST["post_number"]; ?>">
+      <input type="hidden" name="prefecture" value="<?php echo $_POST["prefecture"]; ?>">
+      <input type="hidden" name="municipality" value="<?php echo $_POST["municipality"]; ?>">
+      <input type="hidden" name="adress_number" value="<?php echo $_POST["adress_number"]; ?>">
+      <input type="hidden" name="tel_number" value="<?php echo $_POST["tel_number"]; ?>">
+      <input type="hidden" name="email" value="<?php echo $_POST["email"]; ?>">
+      <input type="hidden" name="college_name" value="<?php echo $_POST["college_name"]; ?>">
+      <input type="hidden" name="undergraduate" value="<?php echo $_POST["undergraduate"]; ?>">
+      <input type="hidden" name="college_department" value="<?php echo $_POST["college_department"]; ?>">
+      <input type="hidden" name="graduation_year" value="<?php echo $_POST["graduation_year"]; ?>">
       <button type="submit" name="final_contact" class="inquirybtn">完了</button>
     </form>
   </div>
@@ -220,14 +256,23 @@ if (isset($_POST["contact"])) {
   <div class="main">
     <h1 class="pagetitle">企業にお問い合わせ</h1>
     <div class="agencybtn">申し込み先企業：
-      <?php $agency ?>
+      <?php 
+      if(isset($_POST['keep_agency_contact'])){
+        foreach($keeps as $keep){
+          $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
+          $stmt->bindValue(':id', $keep);
+          $stmt->execute();
+          $agent = $stmt->fetch();
+          echo '<br>・' . $agent['agent_name'];
+        }};
+      ?>
     </div>
     <form action="contact.php" method="POST">
       <div class="inputform">
         <div class="half">
           <div>
-           <label for="familyName">氏</label><br>
-           <input type="text" name="student_last_name" id="familyName" required>
+            <label for="familyName">氏</label><br>
+            <input type="text" name="student_last_name" id="familyName" required>
           </div>
           <div>
             <label for="studentName">名</label><br>
@@ -308,15 +353,13 @@ if (isset($_POST["contact"])) {
       <?php
         if (isset($_POST["btn_back"])) {
           // 戻るが押されたとき
-          echo ('<form action="condition_selection.php" method="get">
-        <button type="submit" name="back" class="returnbtn">戻る</button>
-        </form>');
+          echo ('<form action="condition_selection.php" method="GET">
+          <button type="submit" name="back" class="returnbtn">戻る</button>
+          </form>');
         } else {
           echo ('<a href=' . '"javascript:history.back()"' . ' class="returnbtn">戻る</a>');
         }
       ?>
-    <!-- これがデフォで表示されている
-    何用だ！！！！！！！！！！！！！！！！！！！！！！！！！！ -->
   </div>
   <?php endif;
   include(dirname(__FILE__) . "/student_footer.php");

@@ -5,9 +5,7 @@
 .contact_email_address {
   display: none;
 }
-.show_contact {
-  display: block;
-}
+
 /* まりあが描いてくれたもとagency.css */
 /* .student_detail {
   display: none;
@@ -580,4 +578,3 @@ input[type="file"] {
   .boozerindexouter {
     flex-direction: row
   }
-};
