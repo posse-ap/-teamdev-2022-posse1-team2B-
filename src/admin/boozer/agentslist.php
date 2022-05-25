@@ -15,6 +15,8 @@ if(isset($_GET['agent_id'])){
   $stmt->bindValue(':agent_id', $id);
   $stmt->execute();
   $managers = $stmt->fetchAll();
+
+  
 }
 ?>
 
