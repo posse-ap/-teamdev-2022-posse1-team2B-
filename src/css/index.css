@@ -2,15 +2,12 @@
 .contact {
   cursor: default;
 }
-
 .contact_email_address {
   display: none;
 }
-
 .show_contact {
   display: block;
 }
-
 /* まりあが描いてくれたもとagency.css */
 /* .student_detail {
   display: none;
@@ -19,7 +16,6 @@
   text-decoration: none;  /* 寡占を失くす */
   color: black;  /* 文字の色が青くならないようにする */
 }
-
 .show_contents {
   display: block;
 }
