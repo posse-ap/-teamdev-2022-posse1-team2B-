@@ -36,7 +36,7 @@ if(isset($_POST['btn_confirm'])){ // agency
     // 5  掲載情報編集：edit thanks///edit
     $action = "掲載情報の編集";
     $user_name = "boozer";
-}  else if (isset($_GET['new_entry'])) {
+}  else if (issetexit($_GET['new_entry'])) {
     //6 掲載情報新規作成：create_contents thanks////new_entry
     $action = "掲載の新規作成";
     $user_name = "boozer";
