@@ -22,7 +22,7 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
   <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <div class="main">
     <section>
-      <h2>学生一覧</h2>
+      <h2 class="pagetitle">学生一覧</h2>
       <?php 
         $months = [1,2,3,4,5,6,7,8,9,10,11,12];
         foreach ($months as $key => $month) : ?>
@@ -31,7 +31,7 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
       <?php
         foreach ($agents_students_match as $index => $agent_student_match) : ?>
         <!-- 学生のデータを問い合わせぶん回す -->
-      <div>
+      <div class="agencybox">
         <span><?= $agent_student_match['student_name'] ?></span>
         <span><?= mb_convert_kana($agent_student_match['student_name'], "c", "utf-8"); ?></span>
         <dd>申込みエージェント</dd><dt><?= $agent_student_match['agent_name'] ?></dt>

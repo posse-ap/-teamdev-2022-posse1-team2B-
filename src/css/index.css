@@ -391,8 +391,8 @@ input[type="file"] {
   margin: 20px 10px;
 }
 
-/*BOOZER/AGENTSLIST*/ 
-.agencybox {/*それぞれのエージェンシ囲う箱*/
+/*BOOZER/AGENTSLIST（PAYMENT/INDEX）*/ 
+.agencybox, .indexagencybox {/*それぞれのエージェンシ囲う箱*/
   background-color: white;
   margin: 20px 40px;
 }
@@ -404,19 +404,79 @@ input[type="file"] {
   margin-left: 20px;
   font-size: 20px;
 }
-.agencybox div:not(.agencyboxinner) {/*agencybox内の右端のボタン囲うdiv*/
+.agencybox div:not(.agencyboxinner), .indexagencybox div {/*agencybox内の右端のボタン囲うdiv*/
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-right: 50px;
 }
-.agencybox div input {
+.agencybox div input, .indexagencybox div input {
   margin: 10px 5px 20px 5px;
   height: 30px;
   width: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/*BOOZER PAYMENT*/
+.mainpayment {
+  /* padding: 15px 15px; */
+  padding-top: 150px;
+  padding-bottom: 80px;
+}
+/* .mainpayment div {
+  height: 80px;
+  margin: 30px 20px 30px 20px;
+} */
+.agencybox div a {
+  height: 30px;
+  margin: 10px 5px 20px 5px;
+}
+
+/* ////BOOZERINDEX/// */
+.boozerindexouter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 90px;
+  margin: 20px 30px;
+}
+.boozerindexinner {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.boozerindexinner a {
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: 500;
+  width: 300px;
+}
+.indexagencybox {
+  margin: 18px 0px;
+}
+.indexagencybox div {
+  margin-right: 10px;
+}
+.indexagencybox h3 {
+  font-size: 20px;
+  margin-left: 10px;
+}
+.indexbtn {
+  height: 50px;
+  color: white;
+  background-color: #96D2C4;
+  text-align: center;
+  padding: 15px 30px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 350px;
 }
 
 @media screen and (min-width:1024px) {
@@ -456,9 +516,6 @@ input[type="file"] {
     font-size: 25px;
     margin: 15px auto;
   }
-
-
-
 
   .conditionsearch {/*パソコン版studentsのindexのこだわり条件から探すのところのcss*/
     width: 480px;
@@ -517,5 +574,10 @@ input[type="file"] {
   /*パソコン版BOOZER/AGENTSLIST.PHP*/
   .agencyboxinner {
     height: 50px;
+  }
+
+  /*パソコンBOoozer/index*/
+  .boozerindexouter {
+    flex-direction: row
   }
 };
