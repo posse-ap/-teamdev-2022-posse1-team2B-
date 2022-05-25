@@ -1,5 +1,16 @@
 <?php
-  require('../../dbconnect.php');
+session_start();
+require("../../dbconnect.php");
+if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
+    // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
+    $_SESSION['time'] = time();
+    // SESSIONの時間を現在時刻に更新
+} else {
+    // そうじゃないならログイン画面に飛んでね
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . 'agency_login.php');
+    exit();
+}
+
   //変数の初期化
   // 学生の詳細情報画面や確認画面の表示をスイッチするフラグ
   // 0→詳細画面 1→確認画面

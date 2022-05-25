@@ -102,9 +102,9 @@ if(isset($_POST['create'])) {
 <body>
   <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <div class="main">
-    <h2 class="pagetitle">エージェンシー企業の掲載情報を登録をする</h2>
-    <p>※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
-    <form action="" method="POST">
+    <h2 class="pagetitle">エージェンシー掲載情報を登録</h2>
+    <p class="announce">※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
+    <form action="" method="POST" class="inputform">
       <dl>
         <dd>会社名</dd><dt><input name='name' type="text" required></dt>
         <dd>企業サイトのURL</dd><dt><input name='url' type="text" required></dt>
@@ -119,8 +119,10 @@ if(isset($_POST['create'])) {
         <!-- <dd>アイコン画像</dd><dt><input name='image' type="file"></dt> -->
         <!-- <dd>備考</dd><dt><textarea name="" id="" cols="30" rows="10"></textarea></dt> -->
       </dl>
-      <input class="submitbtn" type='submit' name='create' value ='新規作成'>
-      <a href='javascript:history.back()'>戻る</a>
+      <div class="pageendbuttons">
+        <a href='javascript:history.back()' class="returnbtn endbtn">戻る</a>
+        <input class="submitbtn endbtn ignore" type='submit' name='create' value ='新規作成'>
+      </div>  
     </form>
   </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
