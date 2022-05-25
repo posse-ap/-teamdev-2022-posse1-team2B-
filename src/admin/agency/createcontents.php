@@ -11,15 +11,15 @@
 <body>
   <?php include (dirname(__FILE__) . "/agency_header.php");?>
   <div class="main">
-    <h1>掲載内容新規作成</h1>
+    <h1 class="pagetitle">掲載内容新規作成</h1>
       <div>
-        <form action="../../thanks.php" method="POST">
+        <form action="../../thanks.php" method="POST" class="inputform">
             <div>
-                <label for="companyName">会社名<span>必須</span></label>
+                <label for="companyName">会社名<span class="must">必須</span></label>
                 <input type="text" name="company_name" id="companyName" required>
             </div>
             <div>
-                <label for="companyAddress">会社住所<span>必須</span></label>
+                <label for="companyAddress">会社住所<span class="must">必須</span></label>
                 <input type="text" name="company_address" id="companyAddress" required>
             </div>
             <div>
@@ -27,12 +27,14 @@
                 <input type="text" name="company_remarks" id="companyRemarks">
             </div>
             <div>
-                <label for="iconImage">アイコン画像</label>
-                <input type="file" name="icon_image" id="iconImage"  accept="image/*">
+                <label for="iconImage" class="uploadicon">アイコン画像を選択</label>
+                <input type="file" name="icon_image" id="iconImage" accept="image/*" class="ignore iconimage">
             </div>
-            <a href="./index.php" class="returnbtn">戻る</a>
-            <!-- 入力した値を受け渡す -->
-            <button type="submit" class="submitbtn">作成完了</button>
+            <div class="pageendbuttons">
+              <a href="./index.php" class="returnbtn endbtn">戻る</a>
+              <!-- 入力した値を受け渡す -->
+              <button type="submit" class="submitbtn endbtn">作成完了</button>
+            </div>
             <input type="hidden" name="company_name" value="<?php if(isset($_POST["company_name"])){ echo $_POST["company_name"];} ?>">
             <input type="hidden" name="company_address" value="<?php if(isset($_POST["company_address"])){ echo $_POST["company_address"];} ?>">
             <input type="hidden" name="company_remarks" value="<?php if(isset($_POST["company_remarks"])){ echo $_POST["company_remarks"];} ?>">
