@@ -94,7 +94,6 @@ CREATE TABLE intermediate (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-
 INSERT INTO students
   (student_last_name, student_first_name, student_last_name_kana, student_first_name_kana, post_number, prefecture, municipality, adress_number, tel_number, email, college_name, undergraduate, college_department, graduation_year)
 VALUES
@@ -288,3 +287,75 @@ VALUES
   (20,10),
   (21,10),
   (22,2);
+
+
+DROP TABLE IF EXISTS category;
+CREATE TABLE category(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  category_name VARCHAR(255)
+);
+INSERT INTO category
+  (category_name)
+VALUES
+  ('IT'),
+  ('飲食'),
+  ('メーカー'),
+  ('サービス'),
+  ('商社'),
+  ('建築'),
+  ('小売'),
+  ('事務'),
+  ('広告'),
+  ('金融'),
+  ('人材'),
+  ('コンサル'),
+  ('物流'),
+  ('通信'),
+  ('住宅'),
+  ('保険');
+
+DROP TABLE IF EXISTS job_area;
+CREATE TABLE job_area(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  area VARCHAR(255)
+);
+INSERT INTO job_area
+  (area)
+VALUES
+  ('東京'),
+  ('神奈川'),
+  ('千葉'),
+  ('埼玉'),
+  ('関西'),
+  ('東海'),
+  ('九州');
+
+DROP TABLE IF EXISTS target_student;
+CREATE TABLE target_student(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  graduation_year INT
+);
+INSERT INTO target_student
+  (graduation_year)
+VALUES
+  (23),
+  (24),
+  (25),
+  (26);
+
+-- 絞り込み検索の中間テーブル
+DROP TABLE IF EXISTS characteristic;
+CREATE TABLE characteristic (
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  agent_id INT NOT NULL,
+  category_id INT DEFAULT 0,
+  job_area_id INT DEFAULT 0,
+  target_student_id INT DEFAULT 0
+);
+INSERT INTO characteristic
+  (agent_id, category_id, job_area_id, target_student_id)
+VALUES
+  (1, 1, 2, 2, true),
+  (3, 1, 2, 1, false),
+  (4, 2, 1, 1, true),
+  (4, 2, 1, DEFAULT);

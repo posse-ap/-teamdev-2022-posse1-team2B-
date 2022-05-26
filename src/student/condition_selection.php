@@ -38,6 +38,37 @@ $keeps=array();
 if(isset($_SESSION['keep'])){
   $keeps=$_SESSION['keep'];
   $_SESSION['time'] = time();
+
+
+  // 絞り込み検索
+// $_REQUEST は現在の $_GET、$_POST、$_COOKIE などの内容をまとめた変数
+if(isset($_POST['category'])){
+  $category_array = array();
+  foreach($_POST['category'] as $key => $category) {
+      $category_array[] = "$category";
+      $stmt = $db->prepare('SELECT * FROM agents WHERE category = :category');
+      $stmt -> bindValue(':category', $category_array[$key]);
+      $stmt->execute();
+      $aaaa = $stmt->fetchAll();
+  
+    }
+    print_r($aaaa);
+}
+// ベストではない
+// →カテゴリーが日本語→よろしくない
+// →カテゴリーの名前が変わった時に、エージェンシー企業のテーブル自体も変える
+// →カテゴリーとエージェントのテーブルを分けるべき
+// →中間テーブルを作ってつないであげる
+
+
+
+  
+
+// $where = ""
+// foreach($_REQUEST['category'] as $key => $category) {
+//   $where[] = "category = '$category'"
+// }
+// $print_r($where);
 }
 ?>
 <!DOCTYPE html>

@@ -4,8 +4,6 @@ RUN docker-php-ext-install pdo_mysql
 
 FROM mysql:8.0
 
-COPY my.cnf /etc/mysql/conf.d/my.cnf
-
 # 日本語環境を追加
 RUN apt-get update && apt-get install -y locales \
     && sed -i -e 's/# \(ja_JP.UTF-8\)/\1/' /etc/locale.gen \
