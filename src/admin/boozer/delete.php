@@ -48,10 +48,14 @@ try {
   <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <div?>
     <div class="main">
-      <p>本当にエージェンシー企業の掲載を削除しますか？</p>
-      <dd>会社名</dd><dt><?php echo $agency[0]['agent_name']; ?></dt>
-      <dd>会社住所</dd><dt><?php echo $agency[0]['prefecture']; echo $agency[0]['municipalitie']; echo $agency[0]['adress_number'];?></dt>
-      <dd>備考</dd><dt></dt>
+      <p class="pagetitle">本当にエージェンシー企業の掲載を削除しますか？</p>
+      <div class="tableouter">
+        <div class="table">
+          <dd>会社名</dd><dt><?php echo $agency[0]['agent_name']; ?></dt>
+          <dd>会社住所</dd><dt><?php echo $agency[0]['prefecture']; echo $agency[0]['municipalitie']; echo $agency[0]['adress_number'];?></dt>
+          <dd>備考</dd><dt></dt>
+        </div>  
+      </div>
       <form action="delete.php" method="post">
         <input type="hidden" name="id" value="<?php echo$agency[0]['id'];?>">
         <button type="submit" name="agency_delete" class="deletebtn">掲載を削除</button>
