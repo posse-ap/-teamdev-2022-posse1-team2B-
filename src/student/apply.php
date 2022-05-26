@@ -75,7 +75,7 @@ try {
 if( $res ) {
     ?>
     <script language="javascript" type="text/javascript">
-        window.location = './thanks.php';
+        window.location = '../../thanks.php?contact';
     </script>  
     <?php
     exit; 

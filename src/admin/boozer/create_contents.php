@@ -1,6 +1,6 @@
 <?php
 require("../../dbconnect.php");
-if(isset($_POST['create'])) {
+if(isset($_POST['new_entry'])) {
     $name = $_POST['name'];
     $url = $_POST['url'];
     $notification_email = $_POST['notification_email'];
@@ -13,8 +13,17 @@ if(isset($_POST['create'])) {
    // トランザクション開始
     $db->beginTransaction();
     try {
-      // $stmt = $db->prepare('insert into agents (agent_name, url, notification_email, tel_number, post_number, prefecture, municipalitie, adress_number, category) values ("a", "b", "c", "d", "e", "f", "g", "h", "i")');
-      $stmt = $db->prepare('INSERT INTO agents 
+      // $stmt = $db->prepare('insert into agents 
+      // (agent_name, 
+      // url, 
+      // notification_email, 
+      // tel_number, 
+      // post_number, 
+      // prefecture, 
+      // municipalitie, 
+      // adress_number, 
+      // category) values ("a", "b", "c", "d", "e", "f", "g", "h", "i")');
+      $stmt = $db->prepare('insert into agents 
         (
           agent_name, 
           url, 
@@ -35,12 +44,11 @@ if(isset($_POST['create'])) {
           :post_number, 
           :prefecture, 
           :municipalitie, 
-          :address_number, 
+          :adress_number, 
           :category
         )'
       );
-  //   $created_at = date("Y-m-d H:i:s");
-  //   $updated_at = date("Y-m-d H:i:s");
+
     $param = array(
       ':agent_name' => $name,
       ':url' => $url,
@@ -51,21 +59,18 @@ if(isset($_POST['create'])) {
       ':municipalitie' => $municipalitie,
       ':adress_number' => $address_number,
       ':category' => $category
-      // ':created_at' => $created_at,
-      // ':updated_at' => $updated_at
     );
   // その配列をexecute
     $stmt->execute($param);
     $res = $db->commit();
     }catch(PDOException $e) {
-      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
         $db->rollBack();
-        echo "エラーが発生しました";
     }
     if ($res){
       ?>
       <script language="javascript" type="text/javascript">
-        window.location = './thanks.php';
+        window.location = '../../thanks.php?new_entry';
       </script>
       <?php
       exit;
@@ -73,20 +78,6 @@ if(isset($_POST['create'])) {
       print('データの追加に失敗しました<br>');
     }
 }
-  // $stmt->bindValue(':agent_name', $name);
-  // $stmt->bindValue(':url', $url);
-  // $stmt->bindValue(':notification_email', $notification_email);
-  // $stmt->bindValue(':tel_number', $tel_number);
-  // $stmt->bindValue(':post_number', $post_number);
-  // $stmt->bindValue(':prefecture', $prefecture);
-  // $stmt->bindValue(':municipalitie', $municipalitie);
-  // $stmt->bindValue(':address_number', $address_number);
-  // $stmt->bindValue(':category', $category);
-  // $add = $stmt->execute();
-
-// }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -100,8 +91,19 @@ if(isset($_POST['create'])) {
   <link rel="stylesheet" href="../../css/index.css">
 </head>
 <body>
-  <?php include (dirname(__FILE__) . "/boozer_header.php");?>
+<?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <div class="main">
+    <!-- <h2 class="pagetitle">掲載内容登録</h2> -->
+    <!-- <form action="../thanks.php" method="POST">
+      <dl>
+        <dd>会社名</dd><dt><input type="text"></dt>
+        <dd>郵便番号</dd><dt><input type="text"></dt>
+        <dd>住所</dd><dt><input type="text"></dt>
+        <dd>掲載期間</dd><dt><input type="number"></dt>
+        <dd>アイコン画像</dd><dt><input type="file"></dt>
+        <dd>備考</dd><dt><textarea name="" id="" cols="30" rows="10"></textarea></dt>
+      </dl>
+      <button class="submitbtn" type="submit" name="new_entry">新規作成</button> -->
     <h2 class="pagetitle">エージェンシー掲載情報を登録</h2>
     <p class="announce">※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
     <form action="" method="POST" class="inputform">
@@ -120,11 +122,13 @@ if(isset($_POST['create'])) {
         <!-- <dd>備考</dd><dt><textarea name="" id="" cols="30" rows="10"></textarea></dt> -->
       </dl>
       <div class="pageendbuttons">
-        <a href='javascript:history.back()' class="returnbtn endbtn">戻る</a>
-        <input class="submitbtn endbtn ignore" type='submit' name='create' value ='新規作成'>
+        <!-- <a href='javascript:history.back()' class="returnbtn endbtn">戻る</a> -->
+        <a href='./index.php' class="returnbtn endbtn">戻る</a>
+        <input class="submitbtn endbtn ignore" type='submit' name='new_entry' value ='新規作成'>
       </div>  
+<!-- >>>>>>> ba99c6510cfd4f9eb0cf2595547054573908d894 -->
     </form>
-  </div>
-  <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
+</div>
+<?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>
 </html>
