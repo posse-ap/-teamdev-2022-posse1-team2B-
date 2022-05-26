@@ -560,8 +560,8 @@ input[type="file"] {
     width: 200px;
   }
 
-/*(パソコン版）AGENCY/TOP/PHP*/
-.topbuttons {
+  /*(パソコン版）AGENCY/TOP/PHP*/
+  .topbuttons {
     display: flex;
     justify-content: center;
     margin-top: 130px;
@@ -573,9 +573,17 @@ input[type="file"] {
   .agencyboxinner {
     height: 50px;
   }
-
   /*パソコンBOoozer/index*/
   .boozerindexouter {
     flex-direction: row
   }
-}
+
+  /*BOOZER/DELETE*/
+  .table dd {
+    width: 150px;
+    border-right: 1px solid black;
+  }
+  .table dt {
+    width: calc(100% - 150px);
+  }
+};
