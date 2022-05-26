@@ -1,8 +1,7 @@
 <?php
 require("../../dbconnect.php");
-if(isset($_POST['edit_completion'])){
+if(isset($_POST['edit'])){
     $id = $_POST['agent_id'];
-    echo $id;
     // トランザクション開始
     $db->beginTransaction();
     try {
@@ -24,13 +23,13 @@ if(isset($_POST['edit_completion'])){
       } catch(PDOException $e) {
     // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
       $db->rollBack();
-      echo "エラーが発生しました";
+      // echo "エラーが発生しました";
     }
       // 更新に成功したらサンクスページへ遷移する
     if( $res ) {
     ?>
         <script language="javascript" type="text/javascript">
-          window.location = './thanks.php';
+          window.location = '../../thanks.php?edit';
         </script>
         <?php
         exit;
@@ -62,7 +61,7 @@ if(isset($_POST['edit_completion'])){
       <!-- <dd>アイコン画像</dd><dt><input type="file" name="new_image"></dt> -->
       <dd>備考</dd><dt><textarea name="new_remarks" id="" cols="30" rows="10"></textarea></dt>
       <input type="hidden" name="agent_id" value= "<?php echo $_POST['agent_id']; ?>">
-      <input class="submitbtn" name="edit_completion" type="submit" value="修正完了">
+      <input class="submitbtn" name="edit" type="submit" value="修正完了">
       <a href='javascript:history.back()' class="returnbtn">戻る</a>
     </form>
   </div>

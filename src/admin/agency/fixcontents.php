@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require('../dbconnect.php');
+require('../../dbconnect.php');
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
     // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
     $_SESSION['time'] = time();
@@ -49,7 +49,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
         <label for="companyImage">アイコン画像</label>
         <input type="text" id="companyimage">
       </div>
-      <button type="submit" class="submitbtn">修正を申し込む</button>
+      <button type="submit" name="fix" class="submitbtn">修正を申し込む</button>
     </form>
   </div>
   <?php include (dirname(__FILE__) . "/agency_footer.php");?>
