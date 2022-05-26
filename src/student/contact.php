@@ -248,7 +248,34 @@ if (isset($_POST['contact'])) {
       <input type="hidden" name="undergraduate" value="<?php echo $_POST["undergraduate"]; ?>">
       <input type="hidden" name="college_department" value="<?php echo $_POST["college_department"]; ?>">
       <input type="hidden" name="graduation_year" value="<?php echo $_POST["graduation_year"]; ?>">
-      <button type="submit" name="final_contact" class="inquirybtn">完了</button>
+      <button type="submit" name="final_contact" class="inquirybtn" onclick="
+      <?php 
+      $stmt = $db->prepare('SELECT notification_email FROM agents WHERE id = :id');
+      $stmt->bindValue(':id', $agent_id);
+      $stmt->execute();
+      $agency_adress = $stmt->fetch();
+
+      $destinations = ['test@posse-ap.com', $agency_adress];
+
+      foreach($destinations as $destination) {
+        $from = 'boozer@craft.com';
+        $to   = $destination;
+        $subject = 'contact from a student';
+        $body = 'please check information from here';
+
+        $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
+        var_dump($ret);
+      }
+      ?>
+      ">完了</button>
+      <?php 
+      $stmt = $db->prepare('SELECT notification_email FROM agents WHERE id = :id');
+      $stmt->bindValue(':id', $agent_id);
+      $stmt->execute();
+      $agency_adress = $stmt->fetch();
+
+      echo $agency_adress;
+      ?>
     </form>
   </div>
   <?PHP else : ?>
@@ -267,6 +294,9 @@ if (isset($_POST['contact'])) {
         }};
       ?>
     </div>
+    <?php
+    echo $_POST['agent_id'];
+    ?>
     <form action="contact.php" method="POST">
       <div class="inputform">
         <div class="half">
@@ -335,10 +365,6 @@ if (isset($_POST['contact'])) {
             <label for="graduationYear">卒業年を選択</label><br>
             <input type="text" name="graduation_year" id="graduationYear" maxlength="4" required>
           </div>
-        </div>
-        <div>
-          <label for="department">学科</label>
-          <input type="text" name="college_department" id="department" required>
         </div>
         <div>
           <p>卒業年を選択</p>

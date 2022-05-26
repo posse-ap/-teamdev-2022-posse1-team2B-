@@ -79,7 +79,7 @@ if(isset($_SESSION['keep'])){
           <p>キープ済み</p>
           <?php else: ?>
           <input type="hidden" name="category" value="<?php print_r($category);?>">
-          <input type="hidden" name="agent_id" value="<?php print_r($agent["id"]);?>">
+          <input type="hidden" name="agent_id" value="<?php print_r($agents["id"]);?>">
           <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn">キープする</button>
           <?php endif;?>
           <button type="submit" formaction="./contact.php" class="submitbtn">エージェンシー企業に問い合わせる</button>
