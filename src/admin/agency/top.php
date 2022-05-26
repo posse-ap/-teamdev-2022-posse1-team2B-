@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require('../dbconnect.php');
+require('../../dbconnect.php');
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
     // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
     $_SESSION['time'] = time();
@@ -29,7 +29,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
   </div>
   <div class="topbuttons">
     <a href="./account.php" class="newaccountbtn">新規会員登録</a>
-    <a href="./login.php" class="loginbtn">ログイン</a>
+    <a href="../login.php" class="loginbtn">ログイン</a>
   </div>
 </div>
 <?php include (dirname(__FILE__) . "/agency_footer.php");?>
