@@ -7,7 +7,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
     // SESSIONの時間を現在時刻に更新
 } else {
     // そうじゃないならログイン画面に飛んでね
-    header('Location: http://' . $_SERVER['HTTP_HOST'] . 'agency_login.php');
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . '../login.php');
     exit();
 }
 
