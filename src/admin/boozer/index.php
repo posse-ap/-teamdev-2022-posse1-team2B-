@@ -32,7 +32,7 @@ $agents = $stmt->fetchAll();
               <h3><?php echo $agent['agent_name']; ?></h3>
               <input type="hidden" name="agent_id" value="<?php echo $agent['id'];?>">
               <div>
-                <input class="editbtn" type="submit" name="edit" formaction="edit.php" value="編集">
+                <input class="editbtn" type="submit" name="edit_information" formaction="edit.php" value="編集">
                 <input class="deletebtn" type="submit" name="delete" value="削除">
               </div>
             </form>

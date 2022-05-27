@@ -340,14 +340,14 @@ if (isset($_POST['contact'])) {
           <label for="department">学科</label>
           <input type="text" name="college_department" id="department" required>
         </div>
-        <div>
+        <!-- <div>
           <p>卒業年を選択</p>
           <input type="text" name="graduation_year" id="graduationYear" maxlength="4" required>
-        </div>
+        </div> -->
         <div>
           <!-- <button>戻る</button> -->
           <!-- ここの遷移がない -->
-          <input type="submit" name="contact" value="エージェンシー企業に問い合わせる">
+          <input type="submit" name="contact" value="エージェンシーにお問い合わせ" class="ignore inquirybtn">
         </div>
       </form>
       <?php
