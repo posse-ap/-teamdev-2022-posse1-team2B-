@@ -366,10 +366,10 @@ if (isset($_POST['contact'])) {
             <input type="text" name="graduation_year" id="graduationYear" maxlength="4" required>
           </div>
         </div>
-        <div>
+        <!-- <div>
           <p>卒業年を選択</p>
           <input type="text" name="graduation_year" id="graduationYear" maxlength="4" required>
-        </div>
+        </div> -->
         <div>
           <!-- <button>戻る</button> -->
           <!-- ここの遷移がない -->
