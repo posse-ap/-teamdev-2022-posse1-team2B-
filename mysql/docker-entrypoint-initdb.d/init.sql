@@ -65,7 +65,6 @@ CREATE TABLE agents (
   prefecture VARCHAR(255) NOT NULL,
   municipalitie VARCHAR(255) NOT NULL,
   adress_number VARCHAR(255) UNIQUE NOT NULL,
-  category VARCHAR(255) NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -121,7 +120,7 @@ VALUES
   ('小野', '寛太', 'オノ', 'カンタ', '333-3324', '東京都', '藤沢市', '夢の国コレクション03', '08019999999', 'kanchanonoonigiriman@posse-ap.com', '東京大学', '理工学部', 'システムデザイン工学科', 25);
 
 INSERT INTO agents
-   (agent_name, url, notification_email, tel_number, post_number, prefecture, municipalitie, adress_number, category)
+   (agent_name, url, notification_email, tel_number, post_number, prefecture, municipalitie, adress_number)
 VALUES
   (
     'リクナビ', 
@@ -131,8 +130,7 @@ VALUES
     '234-5678', 
     '東京都',
     '品川区', 
-    '大崎1-2-3',
-    'IT業界'
+    '大崎1-2-3'
   ),
   (
     '就活ジャーナル', 
@@ -142,8 +140,7 @@ VALUES
     '987-1111', 
     '東京都',
     '港区', 
-    '表参道3-4-5',
-    '飲食業界'
+    '表参道3-4-5'
   ),
   (
     '推しに会える世界線', 
@@ -153,8 +150,7 @@ VALUES
     '987-2222', 
     '東京都',
     '港区', 
-    '表参道3-4-1',
-    '飲食業界'
+    '表参道3-4-1'
   ),
   (
     'コナンが黒の組織のリーダー', 
@@ -164,8 +160,7 @@ VALUES
     '987-3333', 
     '東京都',
     '港区', 
-    '表参道3-4-2',
-    '飲食業界'
+    '表参道3-4-2'
   ),
   (
     '推しと結婚したい', 
@@ -175,8 +170,7 @@ VALUES
     '987-4444', 
     '東京都',
     '港区', 
-    '表参道3-4-3',
-    '飲食業界'
+    '表参道3-4-3'
   ),
   (
     '就活より推し活', 
@@ -186,8 +180,7 @@ VALUES
     '987-5555', 
     '東京都',
     '港区', 
-    '表参道3-4-4',
-    '飲食業界'
+    '表参道3-4-4'
   ),
   (
     'エラーに苦戦中の藤間', 
@@ -197,8 +190,7 @@ VALUES
     '987-6666', 
     '東京都',
     '港区', 
-    '表参道3-4-6',
-    '飲食業界'
+    '表参道3-4-6'
   ),
   (
     '世界に１つだけのコンビニ', 
@@ -208,8 +200,7 @@ VALUES
     '987-7777', 
     '東京都',
     '港区', 
-    '表参道3-4-7',
-    '飲食業界'
+    '表参道3-4-7'
   ),
   (
     '友達100人できるかな', 
@@ -219,8 +210,7 @@ VALUES
     '987-8888', 
     '東京都',
     '港区', 
-    '表参道3-4-8',
-    '飲食業界'
+    '表参道3-4-8'
   ),
   (
     '学校に推しがいるから毎日がバラ色です', 
@@ -230,8 +220,7 @@ VALUES
     '987-9999', 
     '東京都',
     '港区', 
-    '表参道3-4-9',
-    '飲食業界'
+    '表参道3-4-9'
   );
   
 
@@ -307,8 +296,7 @@ VALUES
   ('事務'),
   ('広告'),
   ('金融'),
-  ('人材'),
-  ('コンサル'),
+  ('コンサルティング'),
   ('物流'),
   ('通信'),
   ('住宅'),
@@ -322,10 +310,7 @@ CREATE TABLE job_area(
 INSERT INTO job_area
   (area)
 VALUES
-  ('東京'),
-  ('神奈川'),
-  ('千葉'),
-  ('埼玉'),
+  ('関東'),
   ('関西'),
   ('東海'),
   ('九州');
@@ -356,6 +341,13 @@ INSERT INTO characteristic
   (agent_id, category_id, job_area_id, target_student_id)
 VALUES
   (1, 1, 2, 2),
+  (2, 2, 3, 2),
   (3, 1, 2, 1),
-  (4, 2, 1, 1),
-  (4, 2, 1, DEFAULT);
+  (4, 2, 1, DEFAULT),
+  (5, 1, default, 4),
+  (6, 7, 1, 2),
+  (7, 3, 1, 3),
+  (8, 5, 1, 4),
+  (9, 1, 1, 1),
+  (10, 7, 4, 2),
+  (10, 1, 2, default);
