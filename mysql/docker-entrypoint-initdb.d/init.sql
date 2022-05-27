@@ -355,7 +355,7 @@ CREATE TABLE characteristic (
 INSERT INTO characteristic
   (agent_id, category_id, job_area_id, target_student_id)
 VALUES
-  (1, 1, 2, 2, true),
-  (3, 1, 2, 1, false),
-  (4, 2, 1, 1, true),
+  (1, 1, 2, 2),
+  (3, 1, 2, 1),
+  (4, 2, 1, 1),
   (4, 2, 1, DEFAULT);
