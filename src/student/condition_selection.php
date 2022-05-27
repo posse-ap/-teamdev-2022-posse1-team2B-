@@ -152,53 +152,53 @@ print_r($where);
     <h1>絞り込み結果</h1>
     <a href="./condition_selection.php">✕</a>
     <a href="./keep.php">キープ中の企業</a>
-    <?php 
-      if (count($where) > 0) 
-        {
-          $sql = "SELECT * FROM characteristic WHERE " . implode(' AND ', $where);
-          // echo $sql;
-          $stmt = $db->prepare($sql);
-          $stmt->execute();
-          $rows=$stmt->fetchAll();
-          // print_r($rows);
-        foreach($rows as $row) {
-          print_r($row);
-          $stmt = $db->prepare('SELECT * FROM agents WHERE graduation_year = :target_student');
-          $stmt -> bindValue(':target_student', $target_student_array[$key]);
-          $stmt->execute();
-      
-    ?>
-    <ul>
-      <li>
-        <a href="./agent_detail.php">
-          <p><?php ?></p>
-          <img src="../img/<?php ?>.png" alt="エージェンシー企業">
-          <dl>
-            <dt>得意な業種</dt>
-            <dd><?php print_r($row['category_id']);?></dd>
-            <dt>対応エリア</dt>
-            <!-- <dd><?php// print_r($areas);?></dd> -->
-            <dt>対象学生</dt>
-            <!-- <dd><?php //print_r($students);?></dd> -->
-            <dt>対応企業の規模</dt>
-            <!-- <dd><?php ?></dd> -->
-          </dl>
-          <form action="./keep.php" method="POST">
-            <input type="hidden" name="agent_id" value="">
-            <button type="submit" class="keepbtn">キープする</button>
-            <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
-          </form>
-        </a>
-      </li>
-    </ul>
+    <?php if (count($where) > 0) : ?>
+      <ul>
       <?php
-
-      }}
-      else{
-        echo '該当する企業はありません';
-      }
-    ?>
-    
+        $sql = "SELECT * FROM characteristic WHERE " . implode(' AND ', $where);
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $rows=$stmt->fetchAll();
+        foreach($rows as $row) :
+      ?>
+          <li>
+            <a href="./agent_detail.php">
+              <p><?php ?></p>
+              <img src="../img/<?php ?>.png" alt="エージェンシー企業">
+              <dl>
+                <?php
+                  $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id left join category on characteristic.category_id = category.id left join job_area on characteristic.job_area_id = job_area.id left join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
+                  // $stmt = $db->prepare('SELECT * FROM agents WHERE id = :agent_id');
+                  $stmt -> bindValue(':agent_id', $row['agent_id']);
+                  $stmt->execute();
+                  $agent_information=$stmt->fetch();
+                ?>
+                <dt>得意な業種</dt>
+                <dd><?php print_r($agent_information['agent_name']);?></dd>
+                <dt>対応エリア</dt>
+                <dd><?php print_r($agent_information['area']);?></dd>
+                <dt>対象学生</dt>
+                <dd><?php print_r($agent_information['graduation_year']);?></dd>
+              </dl>
+              <form action="./keep.php" method="POST">
+                <input type="hidden" name="agent_id" value="">
+                <button type="submit" class="keepbtn">キープする</button>
+                <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
+              </form>
+            </a>
+          </li>
+        <?php 
+          endforeach;
+          if(empty($rows)) :
+        ?>
+          <p>該当する企業はありません。</p>
+        <?php
+          endif;
+        ?>
+      </ul>
+    <?php else:?>
+      <p>該当する企業はありません</p>
+    <?php endif; ?>
   </div>
   <!-- こだわり条件から探すをクリックした場合に表示 -->
   <?php else:?>
