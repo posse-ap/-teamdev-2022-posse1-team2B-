@@ -126,7 +126,7 @@ header {
   border: none;
   z-index: 100;
   padding: 0px 10px 20px 10px;
-  height: 100px;
+  height: 140px;
   position: relative;
 }
 .navdropdown p {
@@ -279,7 +279,7 @@ footer img {
 .rankingboxes ul {/*studentsのindexの業種別、エリア別ランキングの箱を囲うまとめ*/
   display: flex;
   flex-wrap: wrap;
-  gap: 150px;
+  gap: 20px;
   justify-content: center;
 }
 .rankingboxes ul li {/*studentsのindexのランキングの各箱*/
@@ -300,16 +300,16 @@ footer img {
 .monthlyrankingbox ul li {/*月刊ランキング内の各エージェンシー別の詳細*/
   background-color: white;
   width: 80%;
-  /* height: 160px; */
-  padding: 10px;
+  height: 160px;
+  padding: 10px 10px;
 }
 .agentcategory {
   font-size: 14px;
-  /* margin-bottom: 10px; */
+  margin: 10px 5px;
 }
 .agentname { /*月間ランキングの角箱の企業名*/
   font-size: 20px;
-  /* margin: 10px 5px; */
+  margin: 10px 5px;
 }
 
 /*STUDENTS/CONDITION_SELECTION.PHP*/
@@ -806,4 +806,9 @@ input[type="file"] {
   .table dt {
     width: calc(100% - 150px);
   }
-};
+
+  /* .monthlyrankingbox ul li {/*月刊ランキング内の各エージェンシー別の詳細*/
+    /* display: flex;
+    flex-direction: row
+}; */ 
+}
