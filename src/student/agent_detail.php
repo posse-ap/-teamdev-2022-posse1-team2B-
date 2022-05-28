@@ -117,7 +117,7 @@ if (isset($_SESSION['keep'])) {
       </div>
       <form action="" method="POST">
         <?php
-        if (isset($keeps[$agent['id']]) === true) :
+        if (isset($keeps[$agents[0]['id']]) === true) :
         ?>
           <p>キープ済み</p>
         <?php else : ?>
