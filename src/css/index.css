@@ -150,15 +150,8 @@ footer img {
 }
 
 /*メジャーボタンと背景色*/
-/* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
-.keepbtn {
-  background-color: #EFB448;
-  border: none;
-  padding: 3px 15px;
-}
-
 /* メジャー：検索ボタン（オレンジ背景白文字） */
-.searchbtn, .submitbtn, .inquirybtn, .editbtn, .unpaid {
+.searchbtn, .submitbtn, .inquirybtn, .editbtn, .unpaid, .keepbtn {
   background-color: #EFB448;
   color: white;
   border: none;
@@ -169,12 +162,16 @@ footer img {
   margin: 0 auto;
   text-align: center;
 }
-.inquirybtn { /*お問い合わせボタン*/
+.inquirybtn { /*お問い合わせボタン、keep中の企業一覧*/
   width: 300px;
   font-weight: 500;
 }
 .submitbtn {/*修正申し込む*/
   width: 300px;
+}
+.keepbtn {
+  margin-bottom: 20px;
+  width: 150px;
 }
 
 /* メジャー：戻るボタン（パステル緑背景白文字） */
@@ -343,7 +340,42 @@ footer img {
 .uploadicon {
   display: inline-block;
   position: relative;
-} */ 
+} 
+
+/*STUDENTS/AGENTDETAIL*/
+.agentdetailinner {
+  background-color: white;
+  margin: 25px 18px 25px 18px;
+  padding: 20px 17px 20px 17px;
+}
+.agentheader {
+  display: flex;
+  /* justify-content: center;
+  align-items: center;
+  gap: 50px; */
+}
+.agentheader p {
+  font-size: 40px;
+  display: flex;
+  margin-left: 50px;
+  align-items: center;
+}
+.agentdetailinner div img {
+  width: 20%;
+  max-width: 100px;
+}
+.agentinfo {
+  width: 80%;
+  margin: 20px 5px 20px 5px;
+  text-align: center;
+}
+.agentinfo div {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
 
 /*AGENCY/TOP.PHP*/
 .topbuttons {
@@ -641,6 +673,17 @@ input[type="file"] {
   }
   .rankingboxes ul li {
     width: 200px;
+  }
+
+  /*パソコン版STUDENTS/DETAIL*/
+  .agentdetailinner {
+    padding: 40px 37px 40px 37px;
+  }
+  .agentdetailinner img {
+    width: 190px;
+  }
+  .agentinfo {
+    font-size: 20px;
   }
 
   /*(パソコン版）AGENCY/TOP/PHP*/
