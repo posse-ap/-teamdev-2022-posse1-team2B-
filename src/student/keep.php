@@ -101,7 +101,7 @@ if (isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()) {
             endforeach; ?>
     <form action="./contact.php" method="POST">
       <?php foreach ($keeps as $keep) : ?>
-        <input type="hidden" value="<?php print_r($keep); ?>">
+        <input type="hidden" name="agent_id" value="<?php print_r($keep); ?>">
       <?php endforeach; ?>
       <button type="submit" name='keep_agency_contact' class="inquirybtn">エージェンシーにお問い合わせ</button>
     </form>

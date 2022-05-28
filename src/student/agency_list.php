@@ -162,7 +162,7 @@ if(isset($_POST['aria'])) {
       </ol>
     </div>
   </div>
-  <? endif; ?>
+  <?php endif; ?>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
   <script src="./student.js"></script>
 </body>
