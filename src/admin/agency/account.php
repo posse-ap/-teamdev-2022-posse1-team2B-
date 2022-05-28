@@ -104,7 +104,16 @@ if (isset(
     ':agent_department' => $agent_department
   );
 
-  $manager_stmt->execute($parameter);
+  $res=$manager_stmt->execute($parameter);
+  // 更新に成功したらサンクスページへ遷移する
+  if( $res ) {
+    ?>
+        <script language="javascript" type="text/javascript">
+          window.location = '../../thanks.php?edit';
+        </script>
+        <?php
+        exit;
+  }
 //   echo $manager_last_name;
 }
 ?> 
