@@ -16,6 +16,9 @@
 .show_contents {
   display: block;
 }
+.displaynone {
+  display: none;
+}
 
 /* ＜pagetitleのcss＞ */
 .pagetitle {
@@ -233,6 +236,11 @@ footer img {
 }
 .marginleft {
   margin-left: 20px;
+}
+.marginright {
+  right: 30px;
+  top: 11px;
+  position: absolute;
 }
 
 /* //一度きりボタン等// */
@@ -628,11 +636,13 @@ input[type="file"] {
   background-color: white;
   width: 80%;
   margin: 0 auto;
+  margin-top: 30px;
   padding: 20px 20px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   gap: 30px;
+  position: relative;
 }
 .months {
   display: flex;
