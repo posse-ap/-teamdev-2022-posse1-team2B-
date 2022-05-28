@@ -75,7 +75,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
         <label for="companyImage">アイコン画像</label>
         <input type="text" id="companyimage">
       </div>
-      <button type="submit" class="submitbtn" onclick="
+      <button name="fix" type="submit" class="submitbtn" onclick="
               <?php
               $from = 'boozer@craft.com';
               $to   = 'test@posse-ap.com';
