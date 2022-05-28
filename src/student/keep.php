@@ -59,7 +59,7 @@ if (isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()) {
               $stmt->execute();
               $agent = $stmt->fetch();
             ?>
-              <tr>
+              <tr class="agentdetailinner">
                 <th>エージェンシー企業名</th>
                 <td><?php print_r($agent['agent_name']); ?></td>
                 <?php

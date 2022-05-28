@@ -98,10 +98,10 @@ if(isset($_POST['aria'])) {
   <div class="main">
     <?php if($page_flag === 1): ?>
     <div>
-      <h1>
+      <h1 class="pagetitle">
         <?php 
         print_r($category);
-      ?>が得意なエージェンシー企業一覧</h1>
+      ?>が得意なエージェンシー一覧</h1>
       <a href="./index.php">✕</a>
       <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
       <a href="./keep.php">キープ中の企業</a>
@@ -109,7 +109,7 @@ if(isset($_POST['aria'])) {
         <?php
           foreach($agents as $index => $agent):
         ?>
-        <li>        
+        <li class="agencybox">        
           <p>会社名:<?php echo $agent['agent_name'];?></p>
           <p>得意な業種</p>
           <p>対応エリア</p>
@@ -131,10 +131,10 @@ if(isset($_POST['aria'])) {
     <!-- 対応エリア別ランキングをクリックしたとき -->
     <?php elseif($page_flag = 2): ?>
     <div id="areaRank">
-      <h1>
+      <h1  class="pagetitle">
       <?php 
         print_r($aria);
-        ?>エリアに対応しているエージェンシー企業一覧</h1>
+        ?>エリアに対応しているエージェンシー一覧</h1>
       <a href="./index.php" class="exitbtn">✕</a>
       <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
       <a href="./keep.php">キープ中の企業</a>
