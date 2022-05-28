@@ -23,7 +23,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
   } elseif(isset($_POST["report"])) {
     $page_flag = 2;
   }
-  
+
 $stmt = $db->prepare('select * from intermediate left join students on intermediate.student_id = students.id right join agents on intermediate.agent_id = agents.id where agent_id = 1');
 // $stmt->bindValue(':agent_id', $agent['id']);
   // bindevalueの１が？の１個めってこと。これがあれば何個でもはてなつけられる！1,2とかだとわかりにくいから、「:agent_id」を設定する
@@ -104,15 +104,14 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
       <h2>学生一覧</h2>
       <?php foreach ($matched_students as $matched_student) : ?>
       <div>
-        <span><?= $matched_student['student_name'] ?></span>
-        <span><?= $matched_student['student_name'] ?></span>
+        <span><?php echo $matched_student['student_last_name'] . $matched_student['student_first_name']; ?></span>
+        <span><?php echo $matched_student['student_last_name_kana'] . $matched_student['student_first_name_kana']; ?></span>
         <span>お問い合わせ日時：<?= $matched_student['updated_at'] ?></span>
       </div>
   </section>
   <section>
-    <dd>名前</dd><dt><?= $matched_student['student_name'] ?></dt>
-    <!-- テーブルにカナない？ -->
-    <dd>カナ</dd><dt><?= $matched_student['student_name_kana'] ?></dt>
+    <dd>名前</dd><dt><?= $matched_student['student_last_name'] . $matched_student['student_first_name'];?></dt>
+    <dd>カナ</dd><dt><?= $matched_student['student_first_name_kana'] . $matched_student['student_first_name_kana']; ?></dt>
     <dd>電話番号</dd><dt><?= $matched_student['tel_number'] ?></dt>
     <dd>メールアドレス</dd><dt><?= $matched_student['email'] ?></dt>
     <dd>出身大学</dd><dt><?= $matched_student['college_name'] ?></dt>
@@ -121,7 +120,10 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
     <dd>卒業年</dd><dt><?= $matched_student['graduation_year'] ?></dt>
     <dd>お問い合わせ内容</dd><dt></dt>
     <form action="" method="POST">
-        <input type="hidden" name="name" value="<?php echo $matched_student['student_name']; ?>">
+        <input type="hidden" name="name" value="<?php echo $matched_student['student_last_name']; ?>">
+        <input type="hidden" name="name" value="<?php echo $matched_student['student_first_name']; ?>">
+        <input type="hidden" name="name" value="<?php echo $matched_student['student_last_name_kana']; ?>">
+        <input type="hidden" name="name" value="<?php echo $matched_student['student_first_name_kana']; ?>">
         <input type="hidden" name="tel_number" value="<?php echo $matched_student["tel_number"]; ?>">
         <input type="hidden" name="email" value="<?php echo $matched_student["email"]; ?>">
         <input type="hidden" name="college_name" value="<?php echo $matched_student["college_name"]; ?>">
