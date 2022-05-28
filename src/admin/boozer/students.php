@@ -50,6 +50,7 @@ $agents_students_match = $stmt->fetchAll();
           <dd>申込みエージェント</dd>
           <dt><?= $agent_student_match['agent_name'] ?></dt>
         </div>
+        
     </section>
 
 
