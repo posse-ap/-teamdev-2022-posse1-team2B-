@@ -1,5 +1,15 @@
 <?php
+session_start();
 require('../../dbconnect.php');
+if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
+    // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
+    $_SESSION['time'] = time();
+    // SESSIONの時間を現在時刻に更新
+} else {
+    // そうじゃないならログイン画面に飛んでね
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . '../login.php');
+    exit();
+}
 if(isset($_POST['delete'])){
   $agent_id = $_POST['agent_id'];
   $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');

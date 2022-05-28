@@ -10,6 +10,7 @@ services:
     volumes:
       - ./nginx/etc/nginx/conf.d:/etc/nginx/conf.d
       - ./src:/var/www/html
+
   app:
     platform: linux/amd64
     build: ./php
@@ -17,6 +18,7 @@ services:
       - db
     volumes:
       - ./src:/var/www/html
+
   db:
     platform: linux/amd64
     # image: mysql:8.0 
@@ -30,3 +32,11 @@ services:
       - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./mysql/etc/mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./mysql/data:/var/lib/mysql
+      
+  mailhog:
+    container_name: docker-compose-mailhog-mailhog
+    image: 'mailhog/mailhog:latest'
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+  

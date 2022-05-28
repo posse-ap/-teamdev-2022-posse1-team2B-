@@ -7,7 +7,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
     // SESSIONの時間を現在時刻に更新
 } else {
     // そうじゃないならログイン画面に飛んでね
-    header('Location: http://' . $_SERVER['HTTP_HOST'] . 'agency_login.php');
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . '../login.php');
     exit();
 }
 
@@ -52,8 +52,20 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
         <p>いたずら・迷惑行為とみなされたお問い合わせのみ取り消されます。</p>
       <!-- 入力した値を受け渡す -->
         <a href='javascript:history.back()'>戻る</a>
+
         <form action="../../thanks.php" method="POST">
-          <button name="mischief_report">いたずらを申請する</button>
+          <button name="mischief_report" onclick="
+              <?php 
+                $from = 'boozer@craft.com';
+                $to   = 'test@posse-ap.com';
+                $subject = 'error student data from a agency';
+                $body = 'please check information from here';
+
+                $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
+                var_dump($ret);
+              ?>
+              "
+          >いたずらを申請する</button>
         </form>
       </div>
     </div>
