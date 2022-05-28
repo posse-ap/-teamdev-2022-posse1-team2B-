@@ -10,7 +10,8 @@ require("./dbconnect.php");
   // 4 学生からのお問い合わせ取り消し依頼：students thanks////mischief_report//!!!!
 // boozer
   // 5  掲載情報編集：edit thanks///edit ///!!!!!!!!
-  //6 掲載情報新規作成：create_contents thanks////new_entry
+  //6 掲載情報新規作成：create_contents thanks////new_entry!!
+  
 // student
  // 7 お問い合わせ：contact thanks////final_contact///!!!!
 
