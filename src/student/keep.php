@@ -34,13 +34,19 @@ if(isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()){
   <?php include (dirname(__FILE__) . "/student_header.php");
   ?>
   <div class="main">
-    <h1>キープ中のエージェンシー企業</h1>
+    <h1 class="pagetitle">キープ中のエージェンシー企業</h1>
     <?php if(count($keeps) > 0): ?>
       <table>
         <a href="./agent_detail.php">
           <thead>
             <tr>
+<<<<<<< HEAD
             <p>※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
+=======
+            <p class="announce">※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
+              <th>エージェンシー企業名</th>
+              <th>得意な業種</th>
+>>>>>>> 6d51e47d045fe3001fbfe1ba0455c5178f74df10
               <!-- <th>対応エリア</th>
               <th>対象学生</th>
               <th>対応企業の規模</th> -->
@@ -82,10 +88,10 @@ if(isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()){
       <?php foreach($keeps as $keep): ?>
       <input type="hidden" value="<?php print_r($keep);?>">
       <?php endforeach; ?>
-      <button type="submit" name='keep_agency_contact' class="inquirybtn">エージェンシー企業に問い合わせる</button>
+      <button type="submit" name='keep_agency_contact' class="inquirybtn">エージェンシーにお問い合わせ</button>
     </form>
     <?php else: ?>
-      <p>キープしてるエージェンシー企業はありません。</p>
+      <p  class="announce">キープしてるエージェンシーはありません。</p>
     <?php endif;
     // 上手く前のページの戻れない。調べたら、カート機能系は戻るボタンを廃止すべきって出てきた→TOPに戻るボタンにしていいかな、、？
     //   if (isset($_POST["contact_agency"])) {
