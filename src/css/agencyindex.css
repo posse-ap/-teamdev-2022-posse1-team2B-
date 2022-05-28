@@ -160,27 +160,6 @@ footer img {
   margin-top: 20px;
 }
 
-/* メジャー：検索ボタン（オレンジ背景白文字） */
-.searchbtn, .submitbtn, .inquirybtn, .editbtn, .unpaid {
-  background-color: #EFB448;
-  color: white;
-  border: none;
-  font-size: 18px;
-  width: 80px;
-  padding: 7px 15px;
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-}
-.inquirybtn { /*お問い合わせボタン*/
-  width: 300px;
-  font-weight: 500;
-}
-.submitbtn {/*修正申し込む*/
-  width: 300px;
-}
-
-
 /* メジャー：ログイン（緑背景白文字） */
 .loginbtn, .accountdetails, .firstloginbtn {
   background-color: #66a29a;
