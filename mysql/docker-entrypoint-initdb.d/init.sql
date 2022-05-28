@@ -1,11 +1,3 @@
---   こだわり条件別結果
---     使用するテーブル : agents
---     抽出条件 : select name, area, category from agents innerjoin access;
---     どうやって抽出したらいいかわかりません!!!!!!!!!!!!!!!!!!!!!!!!!
--- データベースのカラムにカンマ区切りは良くないから使わないようにしましょう
--- 1つずつのカラムを作る必要がない
--- feature,tagみたいなテーブルを作って、そこに「大企業紹介」「体育会系」などをマスターデータでおいておく。そのタグとエージェントがn:nで用意する感じ
--- それが存在してる分だけ、取ってくるみたいにできる
 DROP SCHEMA IF EXISTS shukatsu;
 
 CREATE SCHEMA shukatsu;
@@ -22,11 +14,11 @@ CREATE TABLE users (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-INSERT INTO
-  users
-SET
-  login_email = 'test@posse-ap.com',
-  password = sha1('password');
+INSERT INTO users
+  (login_email, password)
+VALUES 
+  ('test@posse-ap.com', sha1('password')),
+  ('yumeno@gmail.com', sha1('yumeno'));
   
 -- students_table作成
 DROP TABLE IF EXISTS students;

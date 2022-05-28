@@ -121,7 +121,7 @@ if (isset(
 </head>
 
 <body>
-  <!-- <?php include(dirname(__FILE__) . "/agency_header.php"); ?> -->
+  <?php include(dirname(__FILE__) . "/agency_header.php"); ?>
   <div class="main">
     <h1 class="pagetitle">新規登録</h1>
     <div>
