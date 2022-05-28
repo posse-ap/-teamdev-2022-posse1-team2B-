@@ -64,10 +64,14 @@ if(isset($_POST['edit'])){
     <h2 class="pagetitle">掲載内容修正</h2>
     <form action="" method="POST" class="inputform">
       <dd>会社名</dd><dt><input type="text" name="new_agent_name"></dt>
+      <dd>企業サイトのURL</dd><dt><input type="text" name='new_url' required></dt>
+      <dd>電話番号</dd><dt><input name='new_tel_number' type='tel' required></dt>
       <dd>郵便番号</dd><dt><input type="text" name="new_post_number" pattern="\d{3}-?\d{4}"></dt>
       <dd>都道府県</dd><dt><input type="text" name="new_prefecture"></dt>
       <dd>市区町村</dd><dt><input type="text" name="new_municipalitie"></dt>
       <dd>町域・番地</dd><dt><input type="text" name="new_address_number"></dt>
+      <dd>通知先メールアドレス</dd><dt><input name='new-notification_email' type='email' required></dt>
+      <dd>得意な業種</dd><dt><input name='new_category' type='text' required></dt>
       <!-- <dd>掲載期間</dd><dt><input type="number" name=""></dt>
             掲載期間、アイコン画像、備考→agentsテーブルに入ってないけど、どうする？-->
       <!-- <dd>アイコン画像</dd><dt><input type="file" name="new_image"></dt> -->
