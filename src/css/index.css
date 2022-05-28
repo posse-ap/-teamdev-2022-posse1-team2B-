@@ -162,6 +162,8 @@ footer img {
   padding: 7px 15px;
   display: block;
   margin: 0 auto;
+  margin-bottom: 15px;
+  margin-top: 15px;
   text-align: center;
 }
 .inquirybtn { /*お問い合わせボタン、keep中の企業一覧*/
@@ -192,6 +194,9 @@ footer img {
   text-align: center;
   width: 300px;
   font-weight: 500;
+}
+.returnbtn {
+  width: 150px;
 }
 
 /* メジャー：ログイン（緑背景白文字） */

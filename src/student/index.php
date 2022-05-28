@@ -97,7 +97,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                 // echo $agent['id'];
                 if(isset($keeps[$agent['id']]) === true):
                 ?>
-                <p class=">キープ済み</p>
+                <p class="returnbtn">キープ済み</p>
                 <?php else: ?>
                 <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn margintop">キープする</button>
                 <?php endif;?>
