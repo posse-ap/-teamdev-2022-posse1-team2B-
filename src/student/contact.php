@@ -251,11 +251,6 @@ if (isset($_POST['contact'])) {
         <input type="hidden" name="notification_email" value="<?php echo $_POST["notification_email"]; ?>">
         <button type="submit" name="final_contact" class="inquirybtn" onclick="
       <?php
-      // $stmt = $db->prepare('SELECT notification_email FROM agents WHERE id = :id');
-      // $stmt->bindValue(':id', $_POST['agent_id']);
-      // $stmt->execute();
-      // $agency_adress = $stmt->fetch();
-
       $addresses = ['test@posse-ap.com', $_POST['notification_email']];
 
       foreach ($addresses as $address) {
