@@ -170,7 +170,7 @@ footer img {
   text-align: center;
 }
 .inquirybtn { /*お問い合わせボタン*/
-  width: 350px;
+  width: 300px;
   font-weight: 500;
 }
 .submitbtn {/*修正申し込む*/
@@ -498,7 +498,7 @@ input[type="file"] {
   border-left: 1px solid black;
   border-right: 1px solid black;
 }
-.table dd {
+.table dd, .table td {
   background: #66a29a;
   text-align: center;
   padding: 7px;

@@ -121,7 +121,13 @@ if (isset(
 </head>
 
 <body>
-  <!-- <?php include(dirname(__FILE__) . "/agency_header.php"); ?> -->
+  <header>
+    <div class="headertitle">
+      <p class="craft">CRAFT</p>
+      <p class="craftby">by</p>
+      <img src="../../img/syukatudotcom_logo_white.png" alt="就活.com">
+    </div>
+  </header>
   <div class="main">
     <h1 class="pagetitle">新規登録</h1>
     <div>

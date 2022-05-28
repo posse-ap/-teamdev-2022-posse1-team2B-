@@ -22,11 +22,11 @@ CREATE TABLE users (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-INSERT INTO
-  users
-SET
-  login_email = 'test@posse-ap.com',
-  password = sha1('password');
+INSERT INTO users
+  (login_email, password)
+VALUES 
+  ('test@posse-ap.com', sha1('password')),
+  ('yumeno@gmail.com', sha1('yumeno'));
   
 -- students_table作成
 DROP TABLE IF EXISTS students;

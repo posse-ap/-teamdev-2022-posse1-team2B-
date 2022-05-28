@@ -36,7 +36,7 @@ if(isset($_POST['btn_confirm'])){ // agency
     // 5  掲載情報編集：edit thanks///edit
     $action = "掲載情報の編集";
     $user_name = "boozer";
-}  else if (issetexit($_GET['new_entry'])) {
+}  else if (isset($_GET['new_entry'])) {
     //6 掲載情報新規作成：create_contents thanks////new_entry
     $action = "掲載の新規作成";
     $user_name = "boozer";
@@ -65,9 +65,9 @@ if(isset($_POST['btn_confirm'])){ // agency
     }
     ?>
   <div class="main">
-    <h2><?php print_r($action);?>完了</h2>
+    <h2 class="pagetitle"><?php print_r($action);?>完了</h2>
     <div>
-      <p><?php print_r($action);?>が完了しました</p>
+      <p class="announce"><?php print_r($action);?>が完了しました</p>
       <a href="
         <?php if($user_name === "boozer"):?>
         ../admin/boozer/index.php
@@ -76,7 +76,7 @@ if(isset($_POST['btn_confirm'])){ // agency
         <?php else : ?>
           ../student/index.php
         <?php endif;?>
-      ">Top画面に戻る</a>
+      " class="returnbtn">Top画面に戻る</a>
     </div>
   </div>
   <?php 

@@ -36,7 +36,7 @@ if(isset($_SESSION['keep'])){
   <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <!-- <?php include (dirname(__FILE__) . "/student_header.php");?> -->
+    <?php include (dirname(__FILE__) . "/student_header.php");?>
     <div class="main">
       <div>
         <a href="./keep.php" class="keepbtn">キープ中の企業</a>
@@ -93,7 +93,7 @@ if(isset($_SESSION['keep'])){
           <input type="hidden" name="agent_id" value="<?php print_r($agents["id"]);?>">
           <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn">キープする</button>
           <?php endif;?>
-          <button type="submit" formaction="./contact.php" class="submitbtn">エージェンシー企業に問い合わせる</button>
+          <button type="submit" formaction="./contact.php" class="submitbtn">エージェンシーにお問い合わせ</button>
         </form>
       </div>
     </div>
