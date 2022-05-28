@@ -72,9 +72,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
           foreach($agents as $index => $agent): ?>
           <li>
             <a href="./agent_detail.php?id=<?php echo$agent['id']; ?>">
-              <p><?= $agent['agent_name']?></p>
+              <p class="agentname"><?= $agent['agent_name']?></p>
 
-              <p>得意な業種<?php
+              <p class="agentcategory">得意な業種：<?php
               $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id');
               $stmt->bindValue(':agent_id', $agent['id']);
               $stmt->execute();
@@ -82,7 +82,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
               print_r($matched_category[0]['category_name']);
               ?></p>
 
-              <p>対応エリア<?php
+              <p class="agentcategory">対応エリア：<?php
               $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id');
               $stmt->bindValue(':agent_id', $agent['id']);
               $stmt->execute();
@@ -97,7 +97,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                 // echo $agent['id'];
                 if(isset($keeps[$agent['id']]) === true):
                 ?>
-                <p>キープ済み</p>
+                <p class=">キープ済み</p>
                 <?php else: ?>
                 <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn">キープする</button>
                 <?php endif;?>

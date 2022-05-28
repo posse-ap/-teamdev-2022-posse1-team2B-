@@ -301,7 +301,16 @@ footer img {
 .monthlyrankingbox ul li {/*月刊ランキング内の各エージェンシー別の詳細*/
   background-color: white;
   width: 80%;
-  height: 120px;
+  /* height: 160px; */
+  padding: 10px;
+}
+.agentcategory {
+  font-size: 14px;
+  /* margin-bottom: 10px; */
+}
+.agentname { /*月間ランキングの角箱の企業名*/
+  font-size: 20px;
+  /* margin: 10px 5px; */
 }
 
 /*STUDENTS/CONDITION_SELECTION.PHP*/
