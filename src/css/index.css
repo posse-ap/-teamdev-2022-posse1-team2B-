@@ -431,6 +431,9 @@ input[type="file"] {
   font-size: 18px;
   text-align: center;
 }
+.studenttable {
+  display: none;
+}
 
 /*BOOZER/CREATECONTENTS*/
 .announce {

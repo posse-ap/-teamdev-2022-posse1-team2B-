@@ -82,7 +82,6 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
   ?>
   <div class="main">
     <h2 class="pagetitle">学生の詳細情報</h2>
-
     <div id="studentDetail" class="student_detail">
       <a href="./students.php">☓</a>
       <dd>名前</dd><dt><?= $student_name ?></dt>
@@ -103,14 +102,14 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
   <div class="main">
     <section>
       <h2 class="pagetitle">学生一覧</h2>
-      <?php foreach ($matched_students as $matched_student) : ?>
-      <div class="studentbox">
+      <?php foreach ($matched_students as $index => $matched_student) : ?>
+      <div class="studentbox" id="student_info<?php $index?>">
         <span><?php echo $matched_student['student_last_name'] . $matched_student['student_first_name']; ?></span>
         <span><?php echo $matched_student['student_last_name_kana'] . $matched_student['student_first_name_kana']; ?></span>
         <span>お問い合わせ日時：<?= $matched_student['updated_at'] ?></span>
       </div>
     </section>
-    <section class="tableouter">
+    <section class="studenttable tableouter" id="student_detail_table<?php $index?>">
       <div class="table">
         <dd>名前</dd><dt><?= $matched_student['student_last_name'] . $matched_student['student_first_name'];?></dt>
         <dd>カナ</dd><dt><?= $matched_student['student_first_name_kana'] . $matched_student['student_first_name_kana']; ?></dt>
