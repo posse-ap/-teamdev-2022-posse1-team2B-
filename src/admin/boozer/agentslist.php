@@ -1,20 +1,36 @@
 <?php
-require("../../dbconnect.php");
+session_start();
+require('../../dbconnect.php');
+if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
+    // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
+    $_SESSION['time'] = time();
+    // SESSIONの時間を現在時刻に更新
+} else {
+    // そうじゃないならログイン画面に飛んでね
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . '../login.php');
+    exit();
+}
+
 $stmt = $db->prepare('select * from agents');
 $stmt->execute();
 $agents = $stmt->fetchAll();
 $page_flag = 0;
+
 if(isset($_GET['agent_id'])){
   $page_flag = 1;
   $id = $_GET['agent_id'];
+
   $stmt = $db->prepare('SELECT * FROM agents WHERE id = :agent_id');
   $stmt->bindValue(':agent_id', $id);
   $stmt->execute();
   $agency = $stmt->fetchAll();
+
   $stmt = $db->prepare('SELECT * FROM managers WHERE agent_id = :agent_id');
   $stmt->bindValue(':agent_id', $id);
   $stmt->execute();
   $managers = $stmt->fetchAll();
+
+
 }
 ?>
 
@@ -47,10 +63,16 @@ if(isset($_GET['agent_id'])){
           <dt>電話番号</dt><dd><?= $agency[0]['tel_number'] ?></dd>
           <dt>会社住所</dt>
           <dd><?= $agency[0]['post_number'], $agency[0]['prefecture'], $agency[0]['municipalitie'], $agency[0]['adress_number']?></dd>
-          <dt>特異な業種</dt><dd><?= $category ?></dd>
+          <!-- <dt>得意な業種</dt><dd><?= $category ?></dd> -->
           <dt>登録エージェント</dt>
-          <?php foreach($managers as $index => $manager): ?>
+          <?php foreach($managers as $index => $manager):
+              $stmt = $db->prepare('SELECT login_email FROM users WHERE id = :id');
+              $stmt->bindValue(':id', $manager['user_id']);
+              $stmt->execute();
+              $agent_login_email = $stmt->fetch();
+            ?>
             <dd><?= $manager['manager_last_name'], $manager['manager_first_name']?></dd>
+            <p><?= $agent_login_email[0] ?></p>
           <?php endforeach;?>
         </dl>
         <input type="hidden" name="agent_id" value="<?php echo $agency[0]['id'];?>">
