@@ -1,11 +1,3 @@
---   こだわり条件別結果
---     使用するテーブル : agents
---     抽出条件 : select name, area, category from agents innerjoin access;
---     どうやって抽出したらいいかわかりません!!!!!!!!!!!!!!!!!!!!!!!!!
--- データベースのカラムにカンマ区切りは良くないから使わないようにしましょう
--- 1つずつのカラムを作る必要がない
--- feature,tagみたいなテーブルを作って、そこに「大企業紹介」「体育会系」などをマスターデータでおいておく。そのタグとエージェントがn:nで用意する感じ
--- それが存在してる分だけ、取ってくるみたいにできる
 DROP SCHEMA IF EXISTS shukatsu;
 
 CREATE SCHEMA shukatsu;

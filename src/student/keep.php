@@ -40,9 +40,13 @@ if(isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()){
         <a href="./agent_detail.php">
           <thead>
             <tr>
+<<<<<<< HEAD
+            <p>※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
+=======
             <p class="announce">※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
               <th>エージェンシー企業名</th>
               <th>得意な業種</th>
+>>>>>>> 6d51e47d045fe3001fbfe1ba0455c5178f74df10
               <!-- <th>対応エリア</th>
               <th>対象学生</th>
               <th>対応企業の規模</th> -->
@@ -60,7 +64,9 @@ if(isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()){
               $agent = $stmt->fetch();
             ?>
             <tr>
+              <th>エージェンシー企業名</th>
               <td><?php print_r($agent['agent_name']); ?></td>
+              <th>得意な業種</th>
               <td><?php print_r($agent['category']); ?></td>
               <!-- <td><?php //print($agent['supported_area']); ?></td>
               <td><?php //print($agent['target_student']); ?></td>

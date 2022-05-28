@@ -483,6 +483,10 @@ input[type="file"] {
 }
 
 /*BOOZER/DELETE&boozer/students*/
+.table_hide {
+  display: none;
+}
+
 .tableouter{
   width: 80%;
   margin: 0 auto;
