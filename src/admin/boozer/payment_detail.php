@@ -11,6 +11,16 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
     exit();
 }
 $agent_id = $_GET['agent_id'];
+
+$stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
+$stmt->bindValue(':id', $agent_id);
+$stmt->execute();
+$agent = $stmt->fetch();
+
+$stmt = $db->prepare('SELECT * FROM managers WHERE agent_id = :agent_id');
+$stmt->bindValue(':agent_id', $agent_id);
+$stmt->execute();
+$managers = $stmt->fetch();
 ?>
 
 
@@ -26,7 +36,7 @@ $agent_id = $_GET['agent_id'];
   <link rel="stylesheet" href="../../css/index.css">
 </head>
 <body>
-  <?php include (dirname(__FILE__) . "/boozer_header.php");?>
+  <!-- <?php include (dirname(__FILE__) . "/boozer_header.php");?> -->
   <div class="main">
     <?php 
       $months = [1,2,3,4,5,6,7,8,9,10,11,12];
@@ -36,22 +46,32 @@ $agent_id = $_GET['agent_id'];
     <?php endforeach;?>
 
     <div>
-      <span>発行日 </span>
-      <span>集計期間 </span>
       <div>
-        <span></span>
-        <span><?= $payment ?></span>
+        <!-- <span><?= $payment ?></span> -->
       </div>
       <div>
-        <span><?=$agent_name?></span>
-        <span><?=$agent_email ?></span>
-        <span><?=$agent_name ?></span>
-        <span><?=$agent_email ?></span>
-        <span><?=$notification_email ?></span>
+        <span><?=$agent['agent_name']?></span>
+        <span><?=$agent['notification_email'] ?></span>
+        <span><?php print_r($managers['manager_last_name']);?></span>
+        <span><?php print_r($managers['manager_first_name']);?></span>
+        <span><?php print_r($managers['agent_department']);?></span>
+        <!-- <span><?php print_r($manager[0]['email']);?></span> -->
       </div>
       <div>
         <h4>請求詳細</h4>
-        <span><?php echo"($action_number - $error_number) * 3000 = $payment 円"; ?></span>
+        <span><?php 
+        // $this_month = date('Y-m');
+        // $stmt = $db->prepare("SELECT COUNT(*) FROM students where id = :id and created_at like :this_month");
+        // $stmt->bindValue(':id', $agent_id);
+        // $stmt->bindValue(':this_month', $this_month);
+        // $stmt->execute();
+        // $count = $stmt->fetchColumn();
+
+        // echo $this_month;
+        // echo $count;
+      
+        
+        echo"($action_number - $error_number) * 3000 = $payment 円"; ?></span>
       </div>
       <div>
         <h4>問い合わせ数</h4>

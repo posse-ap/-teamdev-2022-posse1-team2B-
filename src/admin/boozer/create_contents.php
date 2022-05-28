@@ -107,14 +107,6 @@ if(isset($_POST['new_entry'])) {
   <div class="main">
     <!-- <h2 class="pagetitle">掲載内容登録</h2> -->
     <!-- <form action="../thanks.php" method="POST">
-      <dl>
-        <dd>会社名</dd><dt><input type="text"></dt>
-        <dd>郵便番号</dd><dt><input type="text"></dt>
-        <dd>住所</dd><dt><input type="text"></dt>
-        <dd>掲載期間</dd><dt><input type="number"></dt>
-        <dd>アイコン画像</dd><dt><input type="file"></dt>
-        <dd>備考</dd><dt><textarea name="" id="" cols="30" rows="10"></textarea></dt>
-      </dl>
       <button class="submitbtn" type="submit" name="new_entry">新規作成</button> -->
     <h2 class="pagetitle">エージェンシー掲載情報を登録</h2>
     <p class="announce">※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
@@ -128,10 +120,11 @@ if(isset($_POST['new_entry'])) {
         <dd>都道府県</dd><dt><input name='prefecture' type="text" required></dt>
         <dd>市区町村</dd><dt><input name='municipalitie' type="text" required></dt>
         <dd>町域・番地</dd><dt><input name='address_number' type="text" required></dt>
-        <dd>特異な業種</dd><dt><input name='category' type='text' required></dt>
-        <!-- <dd>掲載期間</dd><dt><input name='post_period' type="number"></dt> -->
-        <!-- <dd>アイコン画像</dd><dt><input name='image' type="file"></dt> -->
-        <!-- <dd>備考</dd><dt><textarea name="" id="" cols="30" rows="10"></textarea></dt> -->
+        <dd>得意な業種</dd><dt><input name='category' type='text' required></dt>
+        <dd>対応エリア</dd><dt><input name='category' type='text' required></dt>
+        <dd>対応学年</dd><dt><input name='category' type='text' required></dt>
+        <dd>アイコン画像</dd><dt><input name='image' type="file"></dt>
+        <dd>備考</dd><dt><textarea name="" id="" cols="30" rows="10"></textarea></dt>
       </dl>
       <div class="pageendbuttons">
         <!-- <a href='javascript:history.back()' class="returnbtn endbtn">戻る</a> -->
