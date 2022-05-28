@@ -8,8 +8,8 @@ if(isset($_SESSION['keep'])){
 $stmt = $db->prepare('SELECT * FROM agents');
 $stmt->execute();
 $agents = $stmt->fetchAll();
-session_start();
 if($_SERVER['REQUEST_METHOD']==='POST'){
+
   if(isset($_POST['agent_id'])){
     $agent_id = $_POST['agent_id'];
     $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
@@ -36,7 +36,7 @@ if(isset($_SESSION['keep'])){
   <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <?php include (dirname(__FILE__) . "/student_header.php");?>
+    <!-- <?php include (dirname(__FILE__) . "/student_header.php");?> -->
     <div class="main">
       <div>
         <a href="./keep.php" class="keepbtn">キープ中の企業</a>
@@ -44,34 +44,45 @@ if(isset($_SESSION['keep'])){
       <!-- 閉じるボタン。前のページに戻る -->
       <?php 
           echo('<a href=' . '"javascript:history.back()"' . '>戻る</a>');
+
+          $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
+          $stmt->bindValue(':id', $_POST['agent_id']);
+          $stmt->execute();
+          $agents = $stmt->fetch();
+          foreach($agents as $agent) :
         ?>
       <div>
         <p>
-          <?php print_r($agent_name);?>
+          <?= $agent[0]["name"];?>
         </p>
-        <img src="../img/<?php print_r($agent_id);?>.png" alt="エージェンシー企業の写真">
+        <img src="../img/<?$agent[0]["id"];?>.png" alt="エージェンシー企業の写真">
         <dl>
-          <dt>得意な業種</dt>
-          <dd>
-            <?php print_r($industry);?>
-          </dd>
-          <dt>対応エリア</dt>
-          <dd>
-            <?php print_r($supported_area);?>
-          </dd>
-          <dt>対象学生</dt>
-          <dd>
-            <?php print_r($target_student);?>
-          </dd>
-          <dt>対応企業の規模</dt>
-          <dd>
-            <?php print_r($corporate_scale);?>
-          </dd>
-          <dt>備考</dt>
-          <dd>
-            <?php print_r($remarks)?>
-          </dd>
+            <?php
+            $stmt = $db->prepare('SELECT * FROM 中間テーブル left join このカラムと結合 category right join agents このカラムと結合 WHERE  = :id');
+            $stmt->bindValue(':id', $_POST['agent_id']);
+            $stmt->execute();
+            $categories = $stmt->fetch();
+             
+            foreach($categories as $category) : ?>
+              <dt>得意な業種</dt>
+              <dd><?= $category[0]["name"]; ?></dd>
+              <dt>対象学生</dt>
+              <dd>
+                <?= "ああああ";?>
+              </dd>
+              <dt>対応企業の規模</dt>
+              <dd>
+                <?= "ああああああああ";?>
+              </dd>
+              <dt>備考</dt>
+              <dd>
+                <?= "あああああああああ"?>
+              </dd>
+              <?php endforeach; ?>
         </dl>
+        <?php endforeach; ?>
+
+
         <form action="" method="POST">
           <?php
           if(isset($keeps[$agent['id']]) === true):
