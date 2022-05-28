@@ -117,11 +117,21 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
               <h2 class="pagetitle">業種別ランキング</h2>
               <ul class>
                 <li><input type="submit" name="finance" value="金融"></li>
-                <li><input type="submit" name="it" value="IT"></li>
-                <li><input type="submit" name="ad" value="広告"></li>
-                <li><input type="submit" name="tradingCompany" value="商社"></li>
-                <li><input type="submit" name="food" value="食品"></li>
-                <li><input type="submit" name="realEstate" value="不動産"></li>
+                <input type="checkbox" name="it" value='IT' id="it">
+                <input type="checkbox" name="food" value='飲食' id="food">
+                <input type="checkbox" name="maker" value='メーカー' id="maker">
+                <input type="checkbox" name="service" value='サービス' id="service">
+                <input type="checkbox" name="tradingCompany" value='商社' id="tradingCompany">
+                <input type="checkbox" name="architecture" value='建築' id="architecture">
+                <input type="checkbox" name="retail" value='小売' id="retail">
+                <input type="checkbox" name="officeWork" value='事務' id="officeWork">
+                <input type="checkbox" name="ad" value='広告' id="ad">
+                <input type="checkbox" name="finance" value='金融' id="finance">
+                <input type="checkbox" name="consulting" value='コンサルティング' id="consulting">
+                <input type="checkbox" name="logistics" value='物流' id="logistics">
+                <input type="checkbox" name="communication" value='通信' id="communication">
+                <input type="checkbox" name="residence" value='住宅' id="residence">
+                <input type="checkbox" name="insurance" value='保険' id="insurance">
               </ul>
             </div>
             <div class="rankingboxes">
