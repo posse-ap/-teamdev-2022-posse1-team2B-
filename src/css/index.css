@@ -168,6 +168,7 @@ footer img {
 }
 .submitbtn {/*修正申し込む*/
   width: 300px;
+  margin-top: 20px;
 }
 .keepbtn {
   margin-bottom: 20px;
@@ -420,6 +421,15 @@ input[type="file"] {
 }
 .iconimage[type="file"] {
   display: none;
+}
+
+/*AGENCY/STUDENTS*/
+.studentbox {
+  background-color: white;
+  padding: 20px 25px 20px 25px;
+  margin: 20px 40px;
+  font-size: 18px;
+  text-align: center;
 }
 
 /*BOOZER/CREATECONTENTS*/
