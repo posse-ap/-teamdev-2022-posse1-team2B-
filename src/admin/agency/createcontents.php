@@ -1,13 +1,13 @@
 <?php
 session_start();
-require('../dbconnect.php');
+require('../../dbconnect.php');
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
     // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
     $_SESSION['time'] = time();
     // SESSIONの時間を現在時刻に更新
 } else {
     // そうじゃないならログイン画面に飛んでね
-    header('Location: http://' . $_SERVER['HTTP_HOST'] . 'agency_login.php');
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . '../login.php');
     exit();
 }
 ?>
@@ -41,15 +41,26 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
                 <input type="text" name="company_remarks" id="companyRemarks">
             </div>
             <div>
-                <label for="iconImage" class="uploadicon">アイコン画像を選択</label>
+                <label for="iconImage" class="uploadicon">ロゴ画像を選択</label><br>
                 <input type="file" name="icon_image" id="iconImage" accept="image/*" class="ignore iconimage">
             </div>
             <div class="pageendbuttons">
               <a href="./index.php" class="returnbtn endbtn">戻る</a>
               <!-- 入力した値を受け渡す -->
-              <button type="submit" class="submitbtn endbtn">作成完了</button>
+              <button type="submit" class="submitbtn endbtn" onclick="
+              <?php 
+                $from = 'boozer@craft.com';
+                $to   = 'test@posse-ap.com';
+                $subject = 'Posting request from a agency';
+                $body = 'please check information from here';
+
+                $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
+                var_dump($ret);
+              ?>
+              ">作成完了</button>
             </div>
             <input type="hidden" name="company_name" value="<?php if(isset($_POST["company_name"])){ echo $_POST["company_name"];} ?>">
+            <input type="hidden" name="create">
             <input type="hidden" name="company_address" value="<?php if(isset($_POST["company_address"])){ echo $_POST["company_address"];} ?>">
             <input type="hidden" name="company_remarks" value="<?php if(isset($_POST["company_remarks"])){ echo $_POST["company_remarks"];} ?>">
             <input type="hidden" name="icon_image" value="<?php if(isset($_POST["icon_image"])){ echo $_POST["icon_image"];} ?>">

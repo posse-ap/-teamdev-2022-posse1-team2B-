@@ -45,6 +45,12 @@ $stmt = $db->query('SELECT id FROM students');
 $students = $stmt->fetchAll();
 ?>
 
+<!--
+TODO
+リーディング
+複製
+それぞれ対応させる 
+-->
 
 
 

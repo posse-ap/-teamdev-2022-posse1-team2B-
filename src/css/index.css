@@ -50,6 +50,7 @@
 .inputform div label, .inputform div div label, .inputform dl dd, .inputform dd { /*inputformのラベル系*/
   font-size: 20px;
   text-align: left;
+  margin-bottom: 10px;
 }
 .inputform div input:not(.ignore), .inputbox, .inputform dl input/*boozer/createcontent*/, .inputform input:not(.ignore)/*boozer/edit*/{ 
   background-color: white;
@@ -150,15 +151,8 @@ footer img {
 }
 
 /*メジャーボタンと背景色*/
-/* 詳細・キープ・検索ボタン（オレンジ背景黒文字） */
-.keepbtn {
-  background-color: #EFB448;
-  border: none;
-  padding: 3px 15px;
-}
-
 /* メジャー：検索ボタン（オレンジ背景白文字） */
-.searchbtn, .submitbtn, .inquirybtn, .editbtn, .unpaid {
+.searchbtn, .submitbtn, .inquirybtn, .editbtn, .unpaid, .keepbtn {
   background-color: #EFB448;
   color: white;
   border: none;
@@ -169,12 +163,17 @@ footer img {
   margin: 0 auto;
   text-align: center;
 }
-.inquirybtn { /*お問い合わせボタン*/
-  width: 350px;
+.inquirybtn { /*お問い合わせボタン、keep中の企業一覧*/
+  width: 300px;
   font-weight: 500;
 }
 .submitbtn {/*修正申し込む*/
   width: 300px;
+  margin-top: 20px;
+}
+.keepbtn {
+  margin-bottom: 20px;
+  width: 150px;
 }
 
 /* メジャー：戻るボタン（パステル緑背景白文字） */
@@ -343,7 +342,42 @@ footer img {
 .uploadicon {
   display: inline-block;
   position: relative;
-} */ 
+} 
+
+/*STUDENTS/AGENTDETAIL*/
+.agentdetailinner {
+  background-color: white;
+  margin: 25px 18px 25px 18px;
+  padding: 20px 17px 20px 17px;
+}
+.agentheader {
+  display: flex;
+  /* justify-content: center;
+  align-items: center;
+  gap: 50px; */
+}
+.agentheader p {
+  font-size: 40px;
+  display: flex;
+  margin-left: 50px;
+  align-items: center;
+}
+.agentdetailinner div img {
+  width: 20%;
+  max-width: 100px;
+}
+.agentinfo {
+  width: 80%;
+  margin: 20px 5px 20px 5px;
+  text-align: center;
+}
+.agentinfo div {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
 
 /*AGENCY/TOP.PHP*/
 .topbuttons {
@@ -375,8 +409,9 @@ input[type="file"] {
   display: none;
 } */
 
-.uploadicon {
+/* .uploadicon {
   padding: 5px 20px;
+  margin-top: 40px;
   color: #ffffff;
   background-color: #66a29a;
   cursor: pointer;
@@ -388,6 +423,15 @@ input[type="file"] {
 }
 .iconimage[type="file"] {
   display: none;
+} */
+
+/*AGENCY/STUDENTS*/
+.studentbox {
+  background-color: white;
+  padding: 20px 25px 20px 25px;
+  margin: 20px 40px;
+  font-size: 18px;
+  text-align: center;
 }
 
 /*BOOZER/CREATECONTENTS*/
@@ -437,6 +481,48 @@ input[type="file"] {
 .unpaid {
   width: 110px;
 }
+
+/*BOOZER/PAYMENTDETAIL*/
+.paymentboxouter {
+  background-color: #96D2C4;
+  margin: 30px 30px;
+  padding: 10px 20px;
+}
+.paymentdetailbox {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+.paymentbox {
+  background-color: white;
+  width: 30%;
+  margin-bottom: 20px;
+  padding: 10px 10px;
+}
+.agencyname {
+  background-color: white;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 10px;
+  width: 80%;
+  font-size: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+.paymentmanager {
+  flex-direction: column;
+  margin: 30px 40px;
+}
+.paymentbox h4 {
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+.paymentbox span, .paymentbox p {
+  font-size: 18px;
+  line-height: 30px;
+}
+
 /* ////BOOZERINDEX/// */
 .boozerindexouter {
   display: flex;
@@ -483,6 +569,10 @@ input[type="file"] {
 }
 
 /*BOOZER/DELETE&boozer/students*/
+.table_hide {
+  display: none;
+}
+
 .tableouter{
   width: 80%;
   margin: 0 auto;
@@ -498,7 +588,7 @@ input[type="file"] {
   border-left: 1px solid black;
   border-right: 1px solid black;
 }
-.table dd {
+.table dd, .table td {
   background: #66a29a;
   text-align: center;
   padding: 7px;
@@ -529,6 +619,7 @@ input[type="file"] {
   justify-content: center;
   gap: 15px;
   width: 100%;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 .monthcircle {
@@ -643,8 +734,19 @@ input[type="file"] {
     width: 200px;
   }
 
-/*(パソコン版）AGENCY/TOP/PHP*/
-.topbuttons {
+  /*パソコン版STUDENTS/DETAIL*/
+  .agentdetailinner {
+    padding: 40px 37px 40px 37px;
+  }
+  .agentdetailinner img {
+    width: 190px;
+  }
+  .agentinfo {
+    font-size: 20px;
+  }
+
+  /*(パソコン版）AGENCY/TOP/PHP*/
+  .topbuttons {
     display: flex;
     justify-content: center;
     margin-top: 130px;
@@ -656,7 +758,6 @@ input[type="file"] {
   .agencyboxinner {
     height: 50px;
   }
-
   /*パソコンBOoozer/index*/
   .boozerindexouter {
     flex-direction: row
@@ -666,6 +767,7 @@ input[type="file"] {
   .table dd {
    width: 150px;
    border-right: 1px solid black;
+
   }
   .table dt {
     width: calc(100% - 150px);

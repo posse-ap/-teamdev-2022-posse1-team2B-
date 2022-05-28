@@ -13,8 +13,9 @@ if (isset(
   $_POST['login_email'],
   $_POST['password']
 )) {
+  echo $_POST['agent_name'];
+  
   // ログイン情報の登録
-  // echo $_POST['password'];
   $user_stmt = $db->prepare(
     'insert into users
     (
@@ -37,6 +38,7 @@ if (isset(
   );
   
   $user_stmt->execute($param);
+
 
   // その他の情報の登録
   $manager_stmt = $db->prepare(
@@ -75,14 +77,14 @@ if (isset(
   $agent_id = $agent_id_stmt->fetchAll();
   // 持ってきたものをエージェントIDという名前にする
 
-  echo $agent_id[0]['id'];
+  // echo $agent_id[0]['id'];
 
   
   $user_id_stmt = $db->prepare('SELECT id FROM users where login_email = :login_email');
   $user_id_stmt->bindValue(':login_email', $login_email);
   $user_id_stmt->execute();
   $user_id = $user_id_stmt->fetchAll();
-  echo $user_id[0]['id'];
+  // echo $user_id[0]['id'];
 
   $manager_last_name = $_POST['manager_last_name'];
   $manager_first_name = $_POST['manager_first_name'];
@@ -105,28 +107,7 @@ if (isset(
   $manager_stmt->execute($parameter);
 //   echo $manager_last_name;
 }
-
-// データを削除して再起動すると、登録したデータが消えてしまう
-
-
-
-?>
-  <!-- 
-    ・入力画面→確認画面の遷移
-    →https://gray-code.com/php/make-the-form-vol2/
-  -->
-
-<?php
-require(dirname(__FILE__, 3) . '/dbconnect.php');
-  //変数の初期化
-  // 入力画面や確認画面の表示をスイッチするフラグ
-  // 0→入力画面 1→確認画面
-  $page_flag = 0;
-  // もし会員登録ボタンがおされたら＝フォームデータの中に$_POST[""membership registration"]が含まれていたら→page_flag変数の値を1にする＝確認画面に表示を変える
-  if(isset($_POST["membership_registration"])) {
-    $page_flag = 1;
-  } 
-  ?>
+?> 
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -140,7 +121,13 @@ require(dirname(__FILE__, 3) . '/dbconnect.php');
 </head>
 
 <body>
-  <?php include(dirname(__FILE__) . "/agency_header.php"); ?>
+  <header>
+    <div class="headertitle">
+      <p class="craft">CRAFT</p>
+      <p class="craftby">by</p>
+      <img src="../../img/syukatudotcom_logo_white.png" alt="就活.com">
+    </div>
+  </header>
   <div class="main">
     <h1 class="pagetitle">新規登録</h1>
     <div>
@@ -181,9 +168,7 @@ require(dirname(__FILE__, 3) . '/dbconnect.php');
           <label for="loginPassWord">ログイン用パスワード<span class="must">必須</span></label><br>
           <input type="password" name="password" id="loginPassword" required>
         </div>
-        <div class="submitbtn">
-          <input type="submit" name="btn_confirm" class="ignore submitbtn" style="display:none">会員登録</input>
-        </div>
+          <button type="submit" name="btn_confirm" class="ignore submitbtn" style="display:hide">会員登録</button>
       </form>
     </div>
   </div>
