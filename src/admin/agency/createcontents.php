@@ -51,7 +51,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
               <?php 
                 $from = 'boozer@craft.com';
                 $to   = 'test@posse-ap.com';
-                $subject = 'contact from a agency';
+                $subject = 'Posting request from a agency';
                 $body = 'please check information from here';
 
                 $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
