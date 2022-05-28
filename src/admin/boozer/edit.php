@@ -77,7 +77,7 @@ if(isset($_POST['edit'])){
       <!-- <dd>アイコン画像</dd><dt><input type="file" name="new_image"></dt> -->
       <dd>備考</dd><dt><textarea name="new_remarks" id="" cols="30" rows="10"></textarea></dt>
       <input type="hidden" name="agent_id" value= "<?php echo $_POST['agent_id']; ?>">
-      <input class="submitbtn" name="edit" type="submit" value="修正完了">
+      <input class="submitbtn ignore" name="edit" type="submit" value="修正完了">
       <a href='javascript:history.back()' class="returnbtn">戻る</a>
     </form>
   </div>

@@ -52,7 +52,7 @@
   text-align: left;
   margin-bottom: 10px;
 }
-.inputform div input:not(.ignore), .inputbox, .inputform dl input/*boozer/createcontent*/, .inputform input:not(.ignore)/*boozer/edit*/{ 
+.inputform div input:not(.ignore), .inputform dt textarea, .inputbox, .inputform dl input/*boozer/createcontent*/, .inputform input:not(.ignore)/*boozer/edit*/{ 
   background-color: white;
   height: 35px;
   display: block;
@@ -446,13 +446,13 @@ input[type="file"] {
   margin: 20px 40px;
 }
 .agencyboxinner {
-  height: 90px;
+  height: 80px;
   padding-top: 15px;
 }
-.agencybox h3 {
+.agencybox h3, .agencydetailbox h3 {
   text-align: left;
   margin-left: 20px;
-  font-size: 20px;
+  font-size: 30px;
 }
 .agencybox div:not(.agencyboxinner), .indexagencybox div {/*agencybox内の右端のボタン囲うdiv*/
   display: flex;
@@ -468,6 +468,12 @@ input[type="file"] {
   justify-content: center;
   align-items: center;
 }
+.agencydetailbox { /*詳細ばんのbox、情報はagentinfoで共有css*/
+  background-color: white;
+  margin: 20px 40px;
+  padding: 20px 20px;
+}
+
 
 /*BOOZER PAYMENT*/
 .accountdetails, .unpaid {/*agencybox div a, span*/
