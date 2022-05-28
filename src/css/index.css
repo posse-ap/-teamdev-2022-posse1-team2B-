@@ -231,6 +231,9 @@ footer img {
 .margintop {
   margin-top: 20px;
 }
+.marginleft {
+  margin-left: 20px;
+}
 
 /* //一度きりボタン等// */
 .agencybtn {
@@ -628,6 +631,7 @@ input[type="file"] {
   padding: 20px 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 30px;
 }
 .months {
