@@ -51,12 +51,14 @@ CREATE TABLE agents (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   agent_name VARCHAR(255) NOT NULL,
   url VARCHAR(255) UNIQUE NOT NULL,
+  image VARCHAR(255) NOT NULL,
   notification_email VARCHAR(255) UNIQUE NOT NULL,
   tel_number  VARCHAR(255) UNIQUE NOT NULL,
   post_number VARCHAR(255) UNIQUE NOT NULL,
   prefecture VARCHAR(255) NOT NULL,
   municipalitie VARCHAR(255) NOT NULL,
   adress_number VARCHAR(255) UNIQUE NOT NULL,
+  detail VARCHAR(2550),
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -112,107 +114,127 @@ VALUES
   ('小野', '寛太', 'オノ', 'カンタ', '333-3324', '東京都', '藤沢市', '夢の国コレクション03', '08019999999', 'kanchanonoonigiriman@posse-ap.com', '東京大学', '理工学部', 'システムデザイン工学科', 25);
 
 INSERT INTO agents
-   (agent_name, url, notification_email, tel_number, post_number, prefecture, municipalitie, adress_number)
+   (agent_name, url, image, notification_email, tel_number, post_number, prefecture, municipalitie, adress_number, detail)
 VALUES
   (
     'リクナビ', 
     'https://www.r-agent.com/entry/ts/?param=a-brand-1007&vos=evnarag7000xac_2399729792_cm_1721857628_gp_68037326872_cr_569695960012_kw_kwd-2389242410_dv_c_sl_&gclid=CjwKCAjwx46TBhBhEiwArA_DjMyL9LHPfmYNJVUuNukw_Pv6a_ooBzMNomO4CGYCwB3CethPaS0YqRoCxawQAvD_BwE', 
+    'mynavi.png',
     'rikunabi_boozer.com',
     '0120123456',
     '234-5678', 
     '東京都',
     '品川区', 
-    '大崎1-2-3'
+    '大崎1-2-3',
+    '一緒に頑張ろう'
   ),
   (
     '就活ジャーナル', 
     'https://journal.rikunabi.com/',
+    'mynavi.png',
     'shukatsujounal_boozer.com',
     '0120789012',
     '987-1111', 
     '東京都',
     '港区', 
-    '表参道3-4-5'
+    '表参道3-4-5',
+    '君ならできる'
   ),
   (
     '推しに会える世界線', 
     'https://oshiniaerusekaisen.com/',
+    'mynavi.png',
     'oshiniaerusekaisen_boozer.com',
     '0120789013',
     '987-2222', 
     '東京都',
     '港区', 
-    '表参道3-4-1'
+    '表参道3-4-1',
+    '必ず内定取らせます'
   ),
   (
     'コナンが黒の組織のリーダー', 
     'https://journalblack.konan.com/',
+    'mynavi.png',
     'blackconan_boozer.com',
     '0120789014',
     '987-3333', 
     '東京都',
     '港区', 
-    '表参道3-4-2'
+    '表参道3-4-2',
+    'ともにおなじからだ'
   ),
   (
     '推しと結婚したい', 
     'https://journal.oshikatsu.com/',
+    'mynavi.png',
     'oshitokekkon_boozer.com',
     '0120789015',
     '987-4444', 
     '東京都',
     '港区', 
-    '表参道3-4-3'
+    '表参道3-4-3',
+    'わあああああああおうおう'
   ),
   (
     '就活より推し活', 
     'https://journal.shukatsuoshikatsudocchi.com/',
+    'mynavi.png',
     'oshikatsushukatsudocchi_boozer.com',
     '0120789016',
     '987-5555', 
     '東京都',
     '港区', 
-    '表参道3-4-4'
+    '表参道3-4-4',
+    'がんばるぞおおおおおおおおおおおおおおおおおおお'
   ),
   (
     'エラーに苦戦中の藤間', 
     'https://journal.errorfujima.com/',
+    'mynavi.png',
     'errorfujima_boozer.com',
     '0120789017',
     '987-6666', 
     '東京都',
     '港区', 
-    '表参道3-4-6'
+    '表参道3-4-6',
+    ''
   ),
   (
     '世界に１つだけのコンビニ', 
     'https://journal.onlyone.com/',
+    'mynavi.png',
     'onluone_boozer.com',
     '0120789018',
     '987-7777', 
     '東京都',
     '港区', 
-    '表参道3-4-7'
+    '表参道3-4-7',
+    'みんなだいすきがんばろうね'
   ),
   (
     '友達100人できるかな', 
     'https://journal.haundredfriends.com/',
+    'mynavi.png',
     'haundredfriends_boozer.com',
     '0120789019',
     '987-8888', 
     '東京都',
     '港区', 
-    '表参道3-4-8'
+    '表参道3-4-8',
+    'これ終わったら絶対打ち上げ行く'
   ),
   (
     '学校に推しがいるから毎日がバラ色です', 
     'https://journal.barairobarairosekaihaheiwa.com/',
+    'mynavi.png',
     'barairobarairosekaihaheiwa_boozer.com',
     '0120789010',
     '987-9999', 
     '東京都',
     '港区', 
-    '表参道3-4-9'
+    '表参道3-4-9',
+    ''
   );
   
 
