@@ -44,8 +44,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
         <input type="text" id="companyAddress">
       </div>
       <div>
-        <label for="companyAddress">電話番号</label>
-        <input type="text" id="companyAddress">
+        <label for="companyPostnumber">電話番号</label>
+        <input type="text" id="companyTelnumber">
       </div>
       <div>
         <label for="companyRemarks">郵便番号</label>
