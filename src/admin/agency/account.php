@@ -162,9 +162,7 @@ if (isset(
           <label for="loginPassWord">ログイン用パスワード<span class="must">必須</span></label><br>
           <input type="password" name="password" id="loginPassword" required>
         </div>
-        <div class="submitbtn">
           <button type="submit" name="btn_confirm" class="ignore submitbtn" style="display:hide">会員登録</button>
-        </div>
       </form>
     </div>
   </div>

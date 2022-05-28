@@ -52,7 +52,18 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
         <p>いたずら・迷惑行為とみなされたお問い合わせのみ取り消されます。</p>
       <!-- 入力した値を受け渡す -->
         <a href='javascript:history.back()'>戻る</a>
-        <a href="../../thanks.php">いたずらを申請する</a>
+        <a href="../../thanks.php" onclick="
+              <?php 
+                $from = 'boozer@craft.com';
+                $to   = 'test@posse-ap.com';
+                $subject = 'error student data from a agency';
+                $body = 'please check information from here';
+
+                $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
+                var_dump($ret);
+              ?>
+              "
+        >いたずらを申請する</a>
       </div>
     </div>
     <!-- 学生詳細 -->
