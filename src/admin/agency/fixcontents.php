@@ -82,7 +82,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
               $subject = 'Modification request from a agency';
               $body = 'please check information from here';
 
-              $ret = mb_send_mail($to, $subject, $body, 'From: {$from} \r\n');
+              $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
               var_dump($ret);
               ?>
               ">修正を申し込む</button>

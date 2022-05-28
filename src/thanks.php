@@ -5,13 +5,13 @@ require("./dbconnect.php");
 // サンクスページに遷移する画面
 // agency
   //1 アカウント作成完了：top account thanks////btn_confirm  
-  // 2  掲載情報新規作成：createcontents thanks/////create //!!!!
-  // 3 掲載情報修正依頼：fixcontents thanks///fix//!!!!!!!
-  // 4 学生からのお問い合わせ取り消し依頼：students thanks////mischief_report//!!!!
+  // 2  掲載情報新規作成：createcontents thanks/////create //!!!!..
+  // 3 掲載情報修正依頼：fixcontents thanks///fix//!!!!!!!..
+  // 4 学生からのお問い合わせ取り消し依頼：students thanks////mischief_report//!!!!//
 // boozer
   // 5  掲載情報編集：edit thanks///edit ///!!!!!!!!
   //6 掲載情報新規作成：create_contents thanks////new_entry!!
-  
+
 // student
  // 7 お問い合わせ：contact thanks////final_contact///!!!!
 
