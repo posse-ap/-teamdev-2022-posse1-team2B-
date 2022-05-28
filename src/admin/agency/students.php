@@ -18,7 +18,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
   // もしいたずら報告ボタンがおされたら
   // ＝フォームデータの中に$_POST["mischief_report"]が含まれていたら
   // →page_flag変数の値を1にする＝確認画面に表示を変える
-  if(isset($_POST["mischief_report"])) {
+  if(isset($_POST["mischief"])) {
     $page_flag = 1;
   } elseif(isset($_POST["report"])) {
     $page_flag = 2;
@@ -52,7 +52,9 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
         <p>いたずら・迷惑行為とみなされたお問い合わせのみ取り消されます。</p>
       <!-- 入力した値を受け渡す -->
         <a href='javascript:history.back()'>戻る</a>
-        <a href="../../thanks.php" onclick="
+
+        <form action="../../thanks.php" method="POST">
+          <button name="mischief_report" onclick="
               <?php 
                 $from = 'boozer@craft.com';
                 $to   = 'test@posse-ap.com';
@@ -63,7 +65,8 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
                 var_dump($ret);
               ?>
               "
-        >いたずらを申請する</a>
+          >いたずらを申請する</button>
+        </form>
       </div>
     </div>
     <!-- 学生詳細 -->
@@ -91,7 +94,7 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
       <dd>卒業年</dd><dt><?= $graduation_year ?></dt>
       <dd>お問い合わせ内容</dd><dt><?php //お問い合わせ内容ってテーブルになくない？？？？？？？？？？？？？？ ?></dt>
       <form method="POST">
-        <button type="submit" name="mischief_report">いたずらをboozerに報告</button>
+        <button type="submit" name="mischief">いたずらをboozerに報告</button>
       </form>
     </div>
     <!-- 学生一覧画面 -->

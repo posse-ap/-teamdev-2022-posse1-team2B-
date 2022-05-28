@@ -91,8 +91,8 @@ if(isset($_GET['agent_id'])){
       <a href='./agentslist.php?agent_id=<?php echo $agent['id'];?>'>
         <div class="agencybox">
          <form method="POST" action="edit.php">
-           <img src="" alt="">
            <div class="agencyboxinner">
+              <img src="" alt="">
               <h3><?=$agent['agent_name'] ?></h3>
               <input type="hidden" name="agent_id" value="<?php echo $agent['id']; ?>">
            </div>

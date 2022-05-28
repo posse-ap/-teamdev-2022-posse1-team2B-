@@ -21,15 +21,16 @@ services:
 
   db:
     platform: linux/amd64
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-    # command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    # image: mysql:8.0 
+    build: ./mysql
+    # environment:
+    #   MYSQL_ROOT_PASSWORD: password
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - "3306:3306"
     volumes:
       - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-      - ./mysql/etc/mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/etc/mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./mysql/data:/var/lib/mysql
       
   mailhog:
@@ -38,4 +39,4 @@ services:
     ports:
       - '1025:1025'
       - '8025:8025'
-    
+  

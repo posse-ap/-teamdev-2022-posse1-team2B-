@@ -60,6 +60,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
               ">作成完了</button>
             </div>
             <input type="hidden" name="company_name" value="<?php if(isset($_POST["company_name"])){ echo $_POST["company_name"];} ?>">
+            <input type="hidden" name="create">
             <input type="hidden" name="company_address" value="<?php if(isset($_POST["company_address"])){ echo $_POST["company_address"];} ?>">
             <input type="hidden" name="company_remarks" value="<?php if(isset($_POST["company_remarks"])){ echo $_POST["company_remarks"];} ?>">
             <input type="hidden" name="icon_image" value="<?php if(isset($_POST["icon_image"])){ echo $_POST["icon_image"];} ?>">

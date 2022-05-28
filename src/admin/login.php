@@ -45,6 +45,12 @@ $stmt = $db->query('SELECT id FROM students');
 $students = $stmt->fetchAll();
 ?>
 
+<!--
+TODO
+リーディング
+複製
+それぞれ対応させる 
+-->
 
 
 
@@ -63,10 +69,16 @@ $students = $stmt->fetchAll();
 <body>
   <div class="main">
     <h1 class="pagetitle">管理者ログイン</h1>
-    <form action="/admin/login.php" method="POST">
-      <input type="email" name="email" required>
-      <input type="password" required name="password">
-      <input type="submit" value="ログイン">
+    <form action="/admin/login.php" method="POST" class="inputform">
+      <div>
+        <label>ログイン用メールアドレス</label><br>
+        <input type="email" name="email" required>
+      </div>
+      <div>
+        <label>パスワード</label><br>
+        <input type="password" required name="password">
+      </div>
+      <input type="submit" value="ログイン" class="ignore firstloginbtn">
     </form>
   </div>
 </body>
