@@ -59,7 +59,7 @@ if(isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()){
               $stmt->execute();
               $agent = $stmt->fetch();
             ?>
-            <tr class="table">
+            <tr>
               <td><?php print_r($agent['agent_name']); ?></td>
               <td><?php print_r($agent['category']); ?></td>
               <!-- <td><?php //print($agent['supported_area']); ?></td>

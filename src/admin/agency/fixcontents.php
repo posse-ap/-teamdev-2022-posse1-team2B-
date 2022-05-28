@@ -40,11 +40,35 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
         <input type="text" id="companyName">
       </div>
       <div>
-        <label for="companyAddress">会社住所</label>
+        <label for="companyAddress">会社公式ホームページURL</label>
         <input type="text" id="companyAddress">
       </div>
       <div>
+        <label for="companyAddress">電話番号</label>
+        <input type="text" id="companyAddress">
+      </div>
+      <div>
+        <label for="companyRemarks">郵便番号</label>
+        <input type="text" name="company_remarks" id="companyRemarks">
+      </div>
+      <div>
+        <label for="companyAddress">都道府県</label>
+        <input type="text" id="companyAddress">
+      </div>
+      <div>
+        <label for="companyRemarks">市区町村</label>
+        <input type="text" name="company_remarks" id="companyRemarks">
+      </div>
+      <div>
+        <label for="companyRemarks">番地以降</label>
+        <input type="text" name="company_remarks" id="companyRemarks">
+      </div>
+      <div>
         <label for="companyRemarks">備考</label>
+        <input type="text" name="company_remarks" id="companyRemarks">
+      </div>
+      <div>
+        <label for="companyRemarks">通知用メールアドレス（掲載されない情報です）</label>
         <input type="text" name="company_remarks" id="companyRemarks">
       </div>
       <div>
