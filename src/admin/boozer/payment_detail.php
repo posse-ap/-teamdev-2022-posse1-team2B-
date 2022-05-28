@@ -65,13 +65,6 @@ $payment = ($month_total - $error_total) * 3000;
 <body>
   <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <div class="main">
-    <?php 
-      $months = [1,2,3,4,5,6,7,8,9,10,11,12];
-      foreach ($months as $key => $month) : 
-      ?>
-      <button><?= $month;?></button>
-    <?php endforeach;?>
-
     <div>
       <div>
         <span><?=$agent['agent_name']?></span>
@@ -99,6 +92,22 @@ $payment = ($month_total - $error_total) * 3000;
         <span>お支払い期日: </span>
       </div>
     </div>
+    <a href="payment.php" onclick="
+    <?php
+      $notification_email = $agent['notification_email'];
+      $addresses = ['test@posse-ap.com', $notification_email];
+
+      foreach ($addresses as $address) {
+        $from = 'boozer@craft.com';
+        $to   = $address;
+        $subject = 'payment from boozer';
+        $body = 'please check information from here';
+
+        $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
+        var_dump($ret);
+      }
+      ?>
+    ">発行する</a>
     <a href='javascript:history.back()'>戻る</a>
   </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
