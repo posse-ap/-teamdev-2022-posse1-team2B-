@@ -50,6 +50,7 @@
 .inputform div label, .inputform div div label, .inputform dl dd, .inputform dd { /*inputformのラベル系*/
   font-size: 20px;
   text-align: left;
+  margin-bottom: 10px;
 }
 .inputform div input:not(.ignore), .inputbox, .inputform dl input/*boozer/createcontent*/, .inputform input:not(.ignore)/*boozer/edit*/{ 
   background-color: white;
@@ -408,8 +409,9 @@ input[type="file"] {
   display: none;
 } */
 
-.uploadicon {
+/* .uploadicon {
   padding: 5px 20px;
+  margin-top: 40px;
   color: #ffffff;
   background-color: #66a29a;
   cursor: pointer;
@@ -421,7 +423,7 @@ input[type="file"] {
 }
 .iconimage[type="file"] {
   display: none;
-}
+} */
 
 /*AGENCY/STUDENTS*/
 .studentbox {
@@ -479,6 +481,48 @@ input[type="file"] {
 .unpaid {
   width: 110px;
 }
+
+/*BOOZER/PAYMENTDETAIL*/
+.paymentboxouter {
+  background-color: #96D2C4;
+  margin: 30px 30px;
+  padding: 10px 20px;
+}
+.paymentdetailbox {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+.paymentbox {
+  background-color: white;
+  width: 30%;
+  margin-bottom: 20px;
+  padding: 10px 10px;
+}
+.agencyname {
+  background-color: white;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 10px;
+  width: 80%;
+  font-size: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+.paymentmanager {
+  flex-direction: column;
+  margin: 30px 40px;
+}
+.paymentbox h4 {
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+.paymentbox span, .paymentbox p {
+  font-size: 18px;
+  line-height: 30px;
+}
+
 /* ////BOOZERINDEX/// */
 .boozerindexouter {
   display: flex;
@@ -575,6 +619,7 @@ input[type="file"] {
   justify-content: center;
   gap: 15px;
   width: 100%;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 .monthcircle {

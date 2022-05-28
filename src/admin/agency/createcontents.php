@@ -41,7 +41,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
                 <input type="text" name="company_remarks" id="companyRemarks">
             </div>
             <div>
-                <label for="iconImage" class="uploadicon">アイコン画像を選択</label>
+                <label for="iconImage" class="uploadicon">ロゴ画像を選択</label><br>
                 <input type="file" name="icon_image" id="iconImage" accept="image/*" class="ignore iconimage">
             </div>
             <div class="pageendbuttons">
