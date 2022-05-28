@@ -1,5 +1,15 @@
 <?php
-require("../../dbconnect.php");
+session_start();
+require('../../dbconnect.php');
+if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
+    // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
+    $_SESSION['time'] = time();
+    // SESSIONの時間を現在時刻に更新
+} else {
+    // そうじゃないならログイン画面に飛んでね
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . '../login.php');
+    exit();
+}
 $stmt = $db->prepare('SELECT * FROM agents');
 $stmt->execute();
 $agents = $stmt->fetchAll();
@@ -16,16 +26,21 @@ $agents = $stmt->fetchAll();
   <link rel="stylesheet" href="../../css/index.css">
 </head>
 <body>
+  <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <div class="main">
-    <?php include (dirname(__FILE__) . "/boozer_header.php");
-    foreach ($agents as $agent) : ?>
-    <div>
-      <h3><?php echo $agent['agent_name'];?></h3>
-      <a href="./payment_detail.php?agent_id=<?php echo $agent['id'];?>">明細情報の詳細</a>
-      <span>未払い</span>
+  <h2 class="pagetitle">契約企業明細一覧</h2>
+    <?php foreach ($agents as $agent) : ?>
+    <div class="agencybox">
+      <div class="agencyboxinner">
+        <h3><?php echo $agent['agent_name'];?></h3>
+      </div>
+      <div>
+        <a href="./payment_detail.php?agent_id=<?php echo $agent['id'];?>" class="accountdetails">明細情報の詳細</a>
+        <span class="unpaid">未払い</span>
+      </div>
     </div>
     <?php endforeach; ?>
-    <a href='javascript:history.back()'>戻る</a>
+    <a href='javascript:history.back()' class="returnbtn">戻る</a>
   </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
 </body>

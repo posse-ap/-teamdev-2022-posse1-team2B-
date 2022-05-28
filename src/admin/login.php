@@ -1,3 +1,50 @@
+<?php
+session_start();
+require('../dbconnect.php');
+
+if (!empty($_POST)) {
+  // なにか入力されていたら
+  $login = $db->prepare('SELECT * FROM users WHERE login_email = ? AND password = ?');
+  // usersからデータを取ってくる
+  $login->execute(array(
+    $_POST['email'],
+    sha1($_POST['password'])
+  ));
+  // ポストされたものと一致するデータがあれば取得を実行
+  $user = $login->fetch();
+  // userって名前をつける
+
+  if ($user) {
+    // もしIDとパスワードが一致していたら
+    $_SESSION = array();
+    // 空の配列をSESSIONに格納
+    $_SESSION['user_id'] = $user['id'];
+    // SESSIONの中のuser_idカラムに上で取ってきたデータのIDを与える
+    $_SESSION['time'] = time();
+    // SESSION中のtimeカラムに今の時間を入れる
+    if($_POST['email'] =='test@posse-ap.com') {
+      header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/boozer/index.php');
+      // アクセスした瞬間にadmin_index.phpに移動する
+      exit();
+      
+    }else {
+      header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/agency/index.php');
+      // アクセスした瞬間にadmin_index.phpに移動する
+      exit();
+
+    }
+    // 終わる
+  } else {
+    // IDとパスワードが一致していなかったら
+    $error = 'fail';
+    // エラー文がでる
+  }
+}
+
+$stmt = $db->query('SELECT id FROM students');
+$students = $stmt->fetchAll();
+?>
+
 <!--
 TODO
 リーディング
@@ -6,32 +53,6 @@ TODO
 -->
 
 
-<?php
-session_start();
-require('../dbconnect.php');
-
-if (!empty($_POST)) {
-  $login = $db->prepare('SELECT * FROM users WHERE email=? AND password=?');
-  $login->execute(array(
-    $_POST['email'],
-    sha1($_POST['password'])
-  ));
-  $user = $login->fetch();
-
-  if ($user) {
-    $_SESSION = array();
-    $_SESSION['user_id'] = $user['id'];
-    $_SESSION['time'] = time();
-    header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/index.php');
-    exit();
-  } else {
-    $error = 'fail';
-  }
-}
-
-$stmt = $db->query('SELECT id FROM students');
-$students = $stmt->fetchAll();
-?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -48,12 +69,17 @@ $students = $stmt->fetchAll();
 <body>
   <div class="main">
     <h1 class="pagetitle">管理者ログイン</h1>
-    <form action="/admin/login.php" method="POST">
-      <input type="email" name="email" required>
-      <input type="password" required name="password">
-      <input type="submit" value="ログイン">
+    <form action="/admin/login.php" method="POST" class="inputform">
+      <div>
+        <label>ログイン用メールアドレス</label><br>
+        <input type="email" name="email" required>
+      </div>
+      <div>
+        <label>パスワード</label><br>
+        <input type="password" required name="password">
+      </div>
+      <input type="submit" value="ログイン" class="ignore firstloginbtn">
     </form>
-    <a href="/index.php">イベント一覧</a>
   </div>
 </body>
 
