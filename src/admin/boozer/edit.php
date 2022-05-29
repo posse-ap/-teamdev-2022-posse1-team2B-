@@ -136,6 +136,7 @@ if (isset($_POST['edit_entry'])) {
   <?php include(dirname(__FILE__) . "/boozer_header.php"); ?>
   <div class="main">
     <h2 class="pagetitle">掲載内容修正</h2>
+<<<<<<< HEAD
     <form action="../../thanks.php" method="POST" class="inputform">
       <dd>会社名</dd>
       <dt><input name='new_name' type="text"></dt>
@@ -184,6 +185,24 @@ if (isset($_POST['edit_entry'])) {
       </dl>
       <input type="submit" class="submitbtn" name="edit_entry" value="修正完了">
       <input type="hidden" name="agent_id" value="<?php echo $_POST['agent_id']; ?>">
+=======
+    <form action="" method="POST" class="inputform">
+      <dd>会社名</dd><dt><input type="text" name="new_agent_name"></dt>
+      <dd>企業サイトのURL</dd><dt><input type="text" name='new_url' required></dt>
+      <dd>電話番号</dd><dt><input name='new_tel_number' type='tel' required></dt>
+      <dd>郵便番号</dd><dt><input type="text" name="new_post_number" pattern="\d{3}-?\d{4}"></dt>
+      <dd>都道府県</dd><dt><input type="text" name="new_prefecture"></dt>
+      <dd>市区町村</dd><dt><input type="text" name="new_municipalitie"></dt>
+      <dd>町域・番地</dd><dt><input type="text" name="new_address_number"></dt>
+      <dd>通知先メールアドレス</dd><dt><input name='new-notification_email' type='email' required></dt>
+      <dd>得意な業種</dd><dt><input name='new_category' type='text' required></dt>
+      <!-- <dd>掲載期間</dd><dt><input type="number" name=""></dt>
+            掲載期間、アイコン画像、備考→agentsテーブルに入ってないけど、どうする？-->
+      <!-- <dd>アイコン画像</dd><dt><input type="file" name="new_image"></dt> -->
+      <dd>備考（アピールポイントなど）</dd><dt><textarea name="new_remarks" id="" cols="30" rows="10"></textarea></dt>
+      <input type="hidden" name="agent_id" value= "<?php echo $_POST['agent_id']; ?>">
+      <input class="submitbtn ignore" name="edit" type="submit" value="修正完了">
+>>>>>>> c5d7cb75af27d277d20d0c885aeb6486bce22f79
       <a href='javascript:history.back()' class="returnbtn">戻る</a>
     </form>
   </div>

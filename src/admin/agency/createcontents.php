@@ -63,7 +63,7 @@ $target_students = $stmt->fetchAll();
           <input name='post_number' type="text" required>
         </div>
         <div>
-          <label for="companyName">都道府県<span class="must">必須</span></label>
+          <label for="prefecture">都道府県<span class="must">必須</span></label>
           <input name='prefecture' type="text" required>
         </div>
         <div>
@@ -75,7 +75,7 @@ $target_students = $stmt->fetchAll();
           <input name='address_number' type="text" required>
         </div>
         <div>
-          <label for="companyName">得意な業種(最も該当するものを１つお選びください)<span class="must">必須</span></label>
+          <label for="category">得意な業種(最も該当するものを１つお選びください)<span class="must">必須</span></label>
           <select name='category' required>
             <?php foreach ($categories as $index => $category) : ?>
               <option value="<?php print_r($categories[$index]['category_name']); ?>"><?php print_r($categories[$index]['category_name']); ?></option>
@@ -83,7 +83,7 @@ $target_students = $stmt->fetchAll();
           </select>
         </div>
         <div>
-          <label for="companyName">対応エリア(最も該当するものを１つお選びください)<span class="must">必須</span></label>
+          <label for="jobArea">対応エリア(最も該当するものを１つお選びください)<span class="must">必須</span></label>
           <select name='job_area' required>
             <?php foreach ($job_areas as $index => $job_area) : ?>
               <option value="<?php print_r($job_areas[$index]['area']); ?>"><?php print_r($job_areas[$index]['area']); ?></option>
@@ -91,7 +91,7 @@ $target_students = $stmt->fetchAll();
           </select>
         </div>
         <div>
-          <label for="companyName">対応学年(最も該当するものを１つお選びください)<span class="must">必須</span></label>
+          <label for="targetStudent">対応学年(最も該当するものを１つお選びください)<span class="must">必須</span></label>
           <select name='target_student' required>
             <?php foreach ($target_students as $index => $target_student) : ?>
               <option value="<?php print_r($target_students[$index]['graduation_year']); ?>"><?php print_r($target_students[$index]['graduation_year']); ?></option>

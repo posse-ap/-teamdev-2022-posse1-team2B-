@@ -357,7 +357,7 @@ if (isset($_POST['contact'])) {
             </div>
           </div>
           <div>
-            <input type="submit" name="contact" value="エージェンシー企業に問い合わせる">
+            <input type="submit" name="contact" class="ignore inquirybtn" value="エージェンシーにお問い合わせ">
           </div>
       </form>
       <?php
