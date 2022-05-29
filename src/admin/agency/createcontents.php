@@ -103,7 +103,7 @@ $target_students = $stmt->fetchAll();
           <input name='image' type="file" required>
         </div>
         <div>
-          <label for="companyRemarks">備考</label>
+          <label for="companyRemarks">備考（アピールポイントなど）</label>
           <textarea name="detail" id="detail" cols="30" rows="10"></textarea>
         </div>
 
