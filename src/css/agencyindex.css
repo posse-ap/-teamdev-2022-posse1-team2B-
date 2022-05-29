@@ -1,0 +1,275 @@
+/* マリア描いてくれたとこ */
+.contact {
+  cursor: default;
+}
+.contact_email_address {
+  display: none;
+}
+
+/* まりあが描いてくれたもとagency.css */
+/* .student_detail {
+  display: none;
+} */
+.student_information {
+  text-decoration: none;  /* 寡占を失くす */
+  color: black;  /* 文字の色が青くならないようにする */
+  display: none;
+}
+.show_contents {
+  display: block;
+}
+
+/* ＜pagetitleのcss＞ */
+.pagetitle {
+  text-align: center;
+  font-size: 20px;
+  margin: 15px auto;
+  margin-top: 30px;
+  display: flex;
+  align-items: center; /* 垂直中心 */
+  justify-content: center; /* 水平中心 */
+}
+.pagetitle:before, .pagetitle:after {
+  border-top: 1px solid;
+  content: "";
+  width: 2.8em; /* 線の長さ */
+}
+.pagetitle:before {
+  margin-right: 0.8em; /* 文字の右隣 */
+}
+.pagetitle:after {
+  margin-left: 0.8em; /* 文字の左隣 */
+}
+
+/* inputの白い箱？のcss群です:)form全てを囲う箱 */
+.inputform {
+  width: 85%;
+  display: block; /*maringで中央寄せさせるために必須*/
+  margin: 0 auto;
+}
+.inputform div label, .inputform div div label, .inputform dl dd, .inputform dd { /*inputformのラベル系*/
+  font-size: 20px;
+  text-align: left;
+}
+.inputform div input:not(.ignore), .inputbox, .inputform dl input/*boozer/createcontent*/, .inputform input:not(.ignore)/*boozer/edit*/{ 
+  background-color: white;
+  height: 35px;
+  display: block;
+  margin: 10px auto;
+  margin-bottom: 20px;
+  width: 100%; /*横幅に合わせて白い箱が伸びたり縮んだり*/
+  padding: 5px 5px;
+}
+/* .full {
+  display: block;
+  margin: 10px auto;
+  width: 100%;
+} */
+.half { /*一行を半分に分けた場合のテキストボックス*/
+  display: flex;
+  justify-content: space-between;
+  gap: 10px
+}
+
+/* bodyとmainの BASICCSS!!!!!!!!!!!!!!!!!!!! */
+body {
+  background-color: #ebedf1;
+}
+.main {
+  padding: 15px 15px;
+  padding-top: 120px;
+  padding-bottom: 80px;
+}
+
+/* HEADERFOOTERCSS!!! */
+header {
+  background-color: #66a29a;
+  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  height: 110px;
+}
+.headertitle { /* craftby就活.com */
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  height: 80px;
+  align-items: baseline;
+  color: white;
+}
+.craft {
+  cursor: pointer;
+  font-size: 55px;
+  font-weight: 550;
+  margin-bottom: 0;
+}
+.craftby {
+  font-size: 15px;
+}
+.headertitle img {
+  height: 20px;
+}
+.headernav ul { /* ナビゲーション */
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+}
+.headernav ul li, .headernav p /*.headernav ul li a */ {
+  color: white;
+  font-size: 18px;
+  padding: 3px
+}
+.navdropdown {
+  background-color: #96D2C4;
+  border: none;
+  z-index: 100;
+  padding: 0px 10px 20px 10px;
+  height: 100px;
+  position: relative;
+}
+.navdropdown p {
+  /* text-align: center; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.navdropdown button {
+  background-color: #96D2C4;
+}
+footer { 
+  background-color: #66a29a;
+  text-align: center; /*ロゴの中央よせ*/
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+footer img {
+  height: 20px;
+  margin: 10px auto;
+}
+
+.agencyindex div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 150px;
+}
+.agencyindex a {
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+/* メジャー：ログイン（緑背景白文字） */
+.loginbtn, .accountdetails, .firstloginbtn {
+  background-color: #66a29a;
+  color: white;
+  padding: 7px 15px;
+}
+
+/* 閉じるボタン（バッテン！） */
+.exitbtn {
+  background-color: white;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: white;
+  text-align: center;
+}
+
+
+/* //一度きりボタン等// */
+.agencybtn {
+  width: 70%;
+  font-size: 18px;
+  vertical-align: middle;
+  text-align: left;
+}
+.newaccountbtn {/*主にagency/topでちょっといつもよりぶっといボタン勢*/
+  background-color: #EFB448;
+  color: white;
+}
+.newaccountbtn, .loginbtn {
+  width: 350px;
+  height: 100px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.backgroundnone {
+  background-color: transparent!important;
+}
+
+
+
+/*LOGIN*/
+.firstloginbtn {
+  display: block;
+  color: white;
+  background-color: #66a29a;
+  margin: 0 auto;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+}
+
+@media screen and (min-width:1024px) {
+.agencybox {
+  margin: 30px 60px;
+}
+  /*パソコン版MAINHEADERFOOTER群*/
+  .main {
+    padding-top: 160px;
+  }
+  header {
+    height: 155px;
+  }
+  .headertitle {
+    height: 115px;
+  }
+  .craft {
+    font-size: 100px;
+  }
+  .craftby {
+    font-size: 20px;
+  }
+  .headertitle img {
+    height: 30px;
+  }
+  .headernav ul li {  /* ナビゲーション */
+    font-size: 20px;
+    padding: 8px;
+  }
+  footer img { /*パソコンのfooter*/
+    height: 40px;
+  }
+
+    /* ＜pagetitleのcss＞ */
+  .pagetitle {
+    text-align: center;
+    font-size: 25px;
+    margin: 15px auto;
+  }
+
+/* ページの終わりにボタンを置くとき！ */
+.pageendbuttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 0;
+}
+.endbtn { /*agency/createcontesページの横並びbuttons */
+  width: 350px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 0 0;
+}
+
+
+};
+
