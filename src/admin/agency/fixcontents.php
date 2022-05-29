@@ -105,7 +105,7 @@ $target_students = $stmt->fetchAll();
         <input type="text" name="company_remarks" id="companyRemarks">
       </div>
 
-      <button type="submit" name="fix_entry" class="submitbtn margintop" onclick="
+      <button type="submit" name="fix" class="submitbtn margintop" onclick="
       <button name="fix" type="submit" class="submitbtn margintop" onclick="
               <?php
               $from = 'boozer@craft.com';
