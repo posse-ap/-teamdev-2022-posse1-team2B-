@@ -180,7 +180,7 @@ if (isset($_POST['new_entry'])) {
         <dt><input name='municipalitie' type="text" required></dt>
         <dd>町域・番地</dd>
         <dt><input name='address_number' type="text" required></dt>
-        <dd>得意な業種(最も該当するものを１つお選びください)</dd>
+        <dd>得意な業種</dd>
         <dt>
           <select name='category' required>
             <?php foreach ($categories as $index => $category) : ?>
@@ -188,7 +188,7 @@ if (isset($_POST['new_entry'])) {
             <?php endforeach; ?>
           </select>
         </dt>
-        <dd>対応エリア(最も該当するものを１つお選びください)</dd>
+        <dd>対応エリア</dd>
         <dt>
           <select name='job_area' required>
             <?php foreach ($job_areas as $index => $job_area) : ?>
@@ -196,7 +196,7 @@ if (isset($_POST['new_entry'])) {
             <?php endforeach; ?>
           </select>
         </dt>
-        <dd>対応学年(最も該当するものを１つお選びください)</dd>
+        <dd>対応学年</dd>
         <dt>
           <select name='target_student' required>
             <?php foreach ($target_students as $index => $target_student) : ?>

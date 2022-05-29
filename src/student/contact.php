@@ -94,7 +94,6 @@ if (isset(
   $college_department = $_POST['college_department'];
   $graduation_year = $_POST['graduation_year'];
 
-  // ：〇〇と上の変数をつなげる＄param = array()で配列を作る
   $param = array(
     ':student_last_name' => $student_last_name,
     ':student_first_name' => $student_first_name,
