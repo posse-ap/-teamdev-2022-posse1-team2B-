@@ -7,7 +7,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
   // SESSIONの時間を現在時刻に更新
 } else {
   // そうじゃないならログイン画面に飛んでね
-  header('Location: http://' . $_SERVER['HTTP_HOST'] . '../login.php');
+  header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
   exit();
 }
 
@@ -103,7 +103,7 @@ $target_students = $stmt->fetchAll();
           <input name='image' type="file" required>
         </div>
         <div>
-          <label for="companyRemarks">備考</label>
+          <label for="companyRemarks">備考（アピールポイントなど）</label>
           <textarea name="detail" id="detail" cols="30" rows="10"></textarea>
         </div>
 
