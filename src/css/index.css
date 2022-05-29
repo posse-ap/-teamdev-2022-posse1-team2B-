@@ -73,7 +73,7 @@
   justify-content: space-between;
   gap: 10px
 }
-.inputform div textarea { /*agency/createcontents備考欄*/
+.inputform div textarea, .inputform dl dd textarea { /*agency/createcontents備考欄*/
     height: 50px;
 }
 

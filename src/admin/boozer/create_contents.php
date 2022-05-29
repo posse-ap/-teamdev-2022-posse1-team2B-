@@ -204,7 +204,7 @@ if (isset($_POST['new_entry'])) {
             <?php endforeach; ?>
           </select>
         </dt>
-        <dd>アイコン画像</dd>
+        <dd>ロゴ画像</dd>
         <dt><input name='image' type="file" required></dt>
         <dd>備考</dd>
         <dt><textarea name="detail" id="detail" cols="30" rows="10"></textarea></dt>
