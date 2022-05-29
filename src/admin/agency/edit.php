@@ -3,10 +3,16 @@ session_start();
 require('../../dbconnect.php');
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
   $_SESSION['time'] = time();
+  $login = $_SESSION['login'];  //ログイン情報を保持
 } else {
   header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
   exit();
 }
+print_r($login);
+$stmt = $db->prepare('select * from managers left join users on managers.user_id = users.id where login_email = :login_email');
+$stmt->bindValue(':login_email', $login['email']);
+$stmt->execute();
+$matched_agent = $stmt->fetch();
 
 $stmt = $db->prepare('SELECT * FROM category');
 $stmt->execute();
@@ -20,9 +26,9 @@ $stmt = $db->prepare('SELECT * FROM target_student');
 $stmt->execute();
 $target_students = $stmt->fetchAll();
 
-
+$id = $matched_agent["id"];
+echo $id;
 if (isset($_POST['edit_entry'])) {
-  $id = $_POST['agent_id'];
   if (isset($_POST['new_name'])) {
     $new_name = $_POST['new_name'];
     try {
@@ -510,8 +516,7 @@ if (isset($_POST['edit_entry'])) {
       <dd>備考（アピールポイントなど）</dd>
       <dt><textarea name="new_detail" id="detail" cols="30" rows="10"></textarea></dt>
       </dl>
-      <!-- <input type="submit" class="submitbtn ignore" name="edit_entry" value="修正完了"> -->
-      <input type="hidden" name="agent_id" value="<?php echo $_POST['agent_id']; ?>">
+      <input type="hidden" name="agent_id" value="<?php echo $id; ?>">
       <button type="submit" name="edit_entry" class="submitbtn margintop" onclick="
               <?php
               $from = 'boozer@craft.com';

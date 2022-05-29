@@ -8,17 +8,13 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
     // SESSIONの時間を現在時刻に更新
     $login = $_SESSION['login'];  //ログイン情報を保持
 } else {
-  $email = $_POST['email'];
-  $_SESSION['login']['email'] = $email;
-  $login=array();
-  if(isset($_SESSION['login'])){
-    $login = $_SESSION['login'];
-  }
+
     // そうじゃないならログイン画面に飛んでね
     header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
     exit();
 }
 
+print_r($login);
 //変数の初期化
 // 学生の詳細情報画面や確認画面の表示をスイッチするフラグ
 // 0→詳細画面 1→確認画面

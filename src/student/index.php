@@ -32,7 +32,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   } elseif(isset($_POST["ad"])) {
     $page_flag = 1;
     $ad = $_POST['ad'];
-    $_SESSION['category']=$ad;} elseif (isset($_POST["tradingCompany"])){
+    $_SESSION['category']=$ad;
+  } 
+    elseif (isset($_POST["tradingCompany"])){
     $page_flag = 1;
     $tradingCompany = $_POST['tradingCompany'];
     $_SESSION['category']=$tradingCompany;
