@@ -852,6 +852,9 @@ input[type="file"] {
   margin-top: 30px;
   gap: 0;
 }
+.flexdirectionreverse {
+  flex-direction: row-reverse;
+}
 .endbtn { /*agency/createcontesページの横並びbuttons */
   width: 350px;
   height: 45px;
