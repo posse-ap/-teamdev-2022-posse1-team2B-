@@ -838,8 +838,8 @@ input[type="file"] {
     width: 480px;
     font-size: 19px;
   }
-.half div input {
-  width: 400px!important;
+.half {
+  gap: 30px;
 }
 
  
