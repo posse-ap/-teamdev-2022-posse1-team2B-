@@ -35,8 +35,8 @@ print_r($login);
     <div class="agencyindex">
       <h2 class="pagetitle">掲載情報登録</h2>
       <div>
-        <a href="./createcontents.php" class="newaccountbtn">新規作成</a>
-        <a href="./fixcontents.php" class="loginbtn">掲載情報修正依頼</a>
+        <a href="./create_contents.php" class="newaccountbtn">新規作成</a>
+        <a href="./edit.php" class="loginbtn">掲載情報修正依頼</a>
       </div>
       <h2 class="pagetitle">申し込み済み学生情報</h2>
       <a href="./students.php" class="newaccountbtn">学生情報</a>

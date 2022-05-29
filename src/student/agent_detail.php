@@ -5,7 +5,7 @@ if (isset($_SESSION['keep'])) {
   $keeps = $_SESSION['keep'];
   $_SESSION['time'] = time();
 }
-$stmt = $db->prepare('SELECT * FROM agents');
+$stmt = $db->prepare('SELECT * FROM agents where valid = 1');
 $stmt->execute();
 $agents = $stmt->fetchAll();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

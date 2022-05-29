@@ -10,9 +10,6 @@ $stmt = $db->prepare('SELECT * FROM agents');
 $stmt->execute();
 $agents = $stmt->fetchAll();
 
-$stmt = $db->prepare('SELECT * FROM agents');
-$stmt->execute();
-$agents = $stmt->fetchAll();
 if($_SERVER['REQUEST_METHOD']==='POST'){
   if(isset($_POST['agent_id'])){
     $agent_id = $_POST['agent_id'];
@@ -64,7 +61,6 @@ if(isset($_POST['target_student'])) {
     $where[] = 'target_student_id =' . $targets[0]['id'];
   }
 }
-print_r($where);
 
 }
 ?>
@@ -82,7 +78,6 @@ print_r($where);
   <?php include (dirname(__FILE__) . "/student_header.php");?>
   <?php 
   if($page_flag === 1 || isset($_GET["back"])):?>
-    <!-- 絞り込み結果 -->
   <div class="main">
     <h1 class="pagetitle">絞り込み結果</h1>
     <div class="exitcontainer">

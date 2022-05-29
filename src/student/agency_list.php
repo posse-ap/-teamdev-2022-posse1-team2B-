@@ -55,7 +55,7 @@ foreach($rows as $row) {
 if($_SERVER['REQUEST_METHOD']==='POST'){
   if(isset($_POST['agent_id'])){
     $agent_id = $_POST['agent_id'];
-    $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
+    $_SESSION['keep'][$agent_id]=$agent_id; 
     if(isset($_POST['cancel'])) {
       unset($_SESSION['keep'][$agent_id]);
     }
@@ -66,7 +66,6 @@ if(isset($_SESSION['keep'])){
   $keeps=$_SESSION['keep'];
   $_SESSION['time'] = time();
 }
-// キープするボタンを押しても、金融とか何も選択していない状態のページにさせないため
 if(isset($_POST['category'])) {
   $page_flag = 1;
 }
@@ -86,7 +85,6 @@ if(isset($_POST['aria'])) {
 </head>
 <body>
 <?php include (dirname(__FILE__) . "/student_header.php");?>
-  <!-- 業種別ランキングをクリックした時 -->
   <div class="main">
     <?php if($page_flag === 1): ?>
     <div>
@@ -97,7 +95,6 @@ if(isset($_POST['aria'])) {
       <div class="exitcontainer">
         <a href="./index.php" class="exitbtn">✕</a>
       </div>
-      <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
       <a href="./keep.php" class="keepbtn">キープ中の企業</a>
       <ol>
         <?php
