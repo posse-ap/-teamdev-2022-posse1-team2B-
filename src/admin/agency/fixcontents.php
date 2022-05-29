@@ -64,7 +64,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
         <input type="text" name="company_remarks" id="companyRemarks">
       </div>
       <div>
-        <label for="companyRemarks">備考</label>
+        <label for="companyRemarks">備考（アピールポイントなど）</label>
         <input type="text" name="company_remarks" id="companyRemarks">
       </div>
       <div>
@@ -72,10 +72,10 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
         <input type="text" name="company_remarks" id="companyRemarks">
       </div>
       <div>
-        <label for="companyImage">アイコン画像</label>
-        <input type="text" id="companyimage">
+        <label for="companyImage">ロゴ画像</label><br>
+        <input type="file" name="companyImage" id="companyimage" accept="image/*" class="ignore iconimage margintop">
       </div>
-      <button type="submit" class="submitbtn" onclick="
+      <button type="submit" class="submitbtn margintop" onclick="
               <?php
               $from = 'boozer@craft.com';
               $to   = 'test@posse-ap.com';

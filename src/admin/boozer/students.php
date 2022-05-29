@@ -47,13 +47,17 @@ $agents_students_match = $stmt->fetchAll();
         <div class="studentsbox">
           <span><?= $agent_student_match['student_last_name'], $agent_student_match['student_first_name']; ?></span>
           <span><?= $agent_student_match['student_last_name_kana'], $agent_student_match['student_first_name_kana']; ?></span>
-          <dd>申込みエージェント</dd>
+          <dd>申込みエージェント：</dd>
           <dt><?= $agent_student_match['agent_name'] ?></dt>
+          <form action="" method="POST">
+            <input type='submit' name='report' value='詳細' class="submitbtn" id="boozer_student_detailbtn">
+          </form>
         </div>
+        
     </section>
 
 
-    <section class="tableouter">
+    <section class="tableouter" id="boozer_student_table">
       <!-- <button>☓</button> -->
       <div class="table" onclick="showModal();">
         <dd>名前</dd>
@@ -76,7 +80,7 @@ $agents_students_match = $stmt->fetchAll();
         <dt><?= $agent_student_match['agent_name'] ?></dt>
       </div>
       <form action="students.php" method="post">
-        <button type="submit" name="valid<?= $index+1 ?>">いたずら認定</button>
+        <button type="submit" name="valid<?= $index+1 ?>" class="deletebtn margintop">いたずら認定</button>
       </form>
       <?php
         if (isset($_POST["valid" . $index+1])) {

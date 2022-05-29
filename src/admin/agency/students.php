@@ -48,13 +48,12 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
 ?>
     <!-- 確認画面 -->
     <div class="main">
-        <p>本当に取り消し申請を行いますか？</p>
-        <p>いたずら・迷惑行為とみなされたお問い合わせのみ取り消されます。</p>
+        <p class="pagetitle">本当に取り消し申請を行いますか？</p>
+        <p class="announce">いたずら・迷惑行為とみなされたお問い合わせのみ取り消されます。</p>
       <!-- 入力した値を受け渡す -->
-        <a href='javascript:history.back()'>戻る</a>
-
+        <a href='javascript:history.back()' class="returnbtn">戻る</a>
         <form action="../../thanks.php" method="POST">
-          <button name="mischief_report" onclick="
+          <button name="mischief_report" class="deletebtn" onclick="
               <?php 
                 $from = 'boozer@craft.com';
                 $to   = 'test@posse-ap.com';
@@ -83,21 +82,25 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
   <div class="main">
     <h2 class="pagetitle">学生の詳細情報</h2>
 
-    <div id="studentDetail" class="student_detail">
-      <a href="./students.php">☓</a>
-      <dd>名前</dd><dt><?= $student_name ?></dt>
-      <!-- <dd>カナ</dd><dt></dt> -->
-      <dd>電話番号</dd><dt><?= $tel_number?></dt>
-      <dd>メールアドレス</dd><dt><?= $email ?></dt>
-      <dd>出身大学</dd><dt><?= $college_name ?></dt>
-      <dd>学部</dd><dt><?= $undergraduate ?></dt>
-      <dd>学科</dd><dt><?= $college_department ?></dt>
-      <dd>卒業年</dd><dt><?= $graduation_year ?></dt>
-      <dd>お問い合わせ内容</dd><dt><?php //お問い合わせ内容ってテーブルになくない？？？？？？？？？？？？？？ ?></dt>
+    <div id="studentDetail" class="tableouter">
+      <div class="table">
+        <dd>名前</dd><dt><?= $student_name ?></dt>
+        <!-- <dd>カナ</dd><dt></dt> -->
+        <dd>電話番号</dd><dt><?= $tel_number?></dt>
+        <dd>メールアドレス</dd><dt><?= $email ?></dt>
+        <dd>出身大学</dd><dt><?= $college_name ?></dt>
+        <dd>学部</dd><dt><?= $undergraduate ?></dt>
+        <dd>学科</dd><dt><?= $college_department ?></dt>
+        <dd>卒業年</dd><dt><?= $graduation_year ?></dt>
+        <dd>お問い合わせ内容</dd><dt><?php //お問い合わせ内容ってテーブルになくない？？？？？？？？？？？？？？ ?></dt>
+      </div>
       <form method="POST">
-        <button type="submit" name="mischief">いたずらをboozerに報告</button>
+        <button type="submit" name="mischief" class="deletebtn margintop">いたずらをboozerに報告</button>
       </form>
     </div>
+    <a href="./students.php" class="returnbtn">戻る</a>
+
+
     <!-- 学生一覧画面 -->
   <?php else: ?>
   <div class="main">
@@ -108,9 +111,22 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
         <span><?php echo $matched_student['student_last_name'] . $matched_student['student_first_name']; ?></span>
         <span><?php echo $matched_student['student_last_name_kana'] . $matched_student['student_first_name_kana']; ?></span>
         <span>お問い合わせ日時：<?= $matched_student['updated_at'] ?></span>
+        <form action="" method="POST">
+          <input type="hidden" name="name" value="<?php echo $matched_student['student_last_name']; ?>">
+          <input type="hidden" name="name" value="<?php echo $matched_student['student_first_name']; ?>">
+          <input type="hidden" name="name" value="<?php echo $matched_student['student_last_name_kana']; ?>">
+          <input type="hidden" name="name" value="<?php echo $matched_student['student_first_name_kana']; ?>">
+          <input type="hidden" name="tel_number" value="<?php echo $matched_student["tel_number"]; ?>">
+          <input type="hidden" name="email" value="<?php echo $matched_student["email"]; ?>">
+          <input type="hidden" name="college_name" value="<?php echo $matched_student["college_name"]; ?>">
+          <input type="hidden" name="undergraduate" value="<?php echo $matched_student["undergraduate"]; ?>">
+          <input type="hidden" name="college_department" value="<?php echo $matched_student["college_department"]; ?>">
+          <input type="hidden" name="graduation_year" value="<?php echo $matched_student["graduation_year"]; ?>">
+          <input type='submit' name='report' value='詳細' class="submitbtn">
+      </form>
       </div>
     </section>
-    <section class="tableouter">
+    <!-- <section class="tableouter">
       <div class="table">
         <dd>名前</dd><dt><?= $matched_student['student_last_name'] . $matched_student['student_first_name'];?></dt>
         <dd>カナ</dd><dt><?= $matched_student['student_first_name_kana'] . $matched_student['student_first_name_kana']; ?></dt>
@@ -135,7 +151,7 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
           <input type="hidden" name="graduation_year" value="<?php echo $matched_student["graduation_year"]; ?>">
         <input type='submit' name='report' value='詳細' class="submitbtn">
       </form>
-    </section>
+    </section> -->
   <?php endforeach; ?>
   <a href='./index.php' class="returnbtn">戻る</a>
   <?php endif; 
