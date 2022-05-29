@@ -390,7 +390,7 @@ if (isset($_POST['edit_entry'])) {
 </head>
 
 <body>
-  <?php include(dirname(__FILE__) . "/boozer_header.php"); ?>
+  <?php include (dirname(__FILE__) . "/agency_header.php");?>
   <div class="main">
     <h2 class="pagetitle">掲載内容修正</h2>
     <form action="" method="POST" class="inputform">
@@ -440,11 +440,21 @@ if (isset($_POST['edit_entry'])) {
       <dt><textarea name="new_detail" id="detail" cols="30" rows="10"></textarea></dt>
       </dl>
       <input type="hidden" name="agent_id" value="<?php echo $_POST['agent_id']; ?>">
-      <input type="submit" class="submitbtn" name="edit_entry" value="修正完了">
+      <button type="submit" name="edit_entry" class="submitbtn margintop" onclick="
+              <?php
+              $from = 'boozer@craft.com';
+              $to   = 'test@posse-ap.com';
+              $subject = 'Hi, from craft';
+              $body = 'contact from a agency about remake contents';
+
+              $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
+              var_dump($ret);
+              ?>
+              ">修正を申し込む</button>
       <a href='javascript:history.back()' class="returnbtn">戻る</a>
     </form>
   </div>
-  <?php include(dirname(__FILE__) . "/boozer_footer.php"); ?>
+  <?php include (dirname(__FILE__) . "/agency_footer.php");?>
 </body>
 
 </html>

@@ -148,7 +148,7 @@ if (isset($_POST['new_entry'])) {
 </head>
 
 <body>
-  <?php include(dirname(__FILE__) . "/boozer_header.php"); ?>
+  <?php include (dirname(__FILE__) . "/agency_header.php");?>
   <div class="main">
     <h2 class="pagetitle">エージェンシー掲載情報を登録</h2>
     <p class="announce">※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
@@ -201,11 +201,22 @@ if (isset($_POST['new_entry'])) {
       </dl>
       <div class="pageendbuttons">
         <a href='./index.php' class="returnbtn endbtn">戻る</a>
-        <input class="submitbtn endbtn ignore" type='submit' name='new_entry' value='新規作成'>
+        <button type="submit" class="submitbtn endbtn"  name='new_entry' onclick="
+              <?php
+              $from = 'boozer@craft.com';
+              $to   = 'test@posse-ap.com';
+              $subject = 'Hi, from craft';
+              $body = 'contact from agency about create contents';
+
+              $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
+              var_dump($ret);
+
+              ?>
+              ">新規作成依頼を送信</button>
       </div>
     </form>
   </div>
-  <?php include(dirname(__FILE__) . "/boozer_footer.php"); ?>
+  <?php include (dirname(__FILE__) . "/agency_footer.php");?>
 </body>
 
 </html>
