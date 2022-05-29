@@ -53,8 +53,6 @@ if (isset($_GET['agent_id'])) {
       <form method="POST" action="edit.php" class="agencydetailbox">
         <h3><?= $agency[0]['agent_name'] ?></h3>
         <dl class="agentinfo">
-        <img src="../../img/companylogo/<?php print_r($agents[0]['image']); ?>" alt="エージェンシー企業の写真">
-
           <div>
             <dt>企業サイトのURL：</dt>
             <dd><?= $agency[0]['url'] ?></dd>
@@ -119,7 +117,6 @@ if (isset($_GET['agent_id'])) {
         </dl>
         <input type="hidden" name="agent_id" value="<?php echo $agency[0]['id']; ?>">
         <div class="pageendbuttons">
-          <input class="submitbtn endbtn" type="submit" name="edit" value="編集">
           <input class="deletebtn endbtn" type="submit" name="delete" formaction="delete.php" value="削除">
         </div>
       </form>
