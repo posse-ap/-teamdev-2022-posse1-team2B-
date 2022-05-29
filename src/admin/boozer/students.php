@@ -50,14 +50,14 @@ $agents_students_match = $stmt->fetchAll();
           <dd>申込みエージェント：</dd>
           <dt><?= $agent_student_match['agent_name'] ?></dt>
           <form action="" method="POST">
-            <input type='submit' name='report' value='詳細' class="submitbtn marginright" id="boozer_student_detailbtn">
+            <input type='submit' name='report' value='詳細' class="submitbtn" id="boozer_student_detailbtn">
           </form>
         </div>
         
     </section>
 
 
-    <section class="tableouter displaynone" id="boozer_student_table">
+    <section class="tableouter" id="boozer_student_table">
       <!-- <button>☓</button> -->
       <div class="table" onclick="showModal();">
         <dd>名前</dd>

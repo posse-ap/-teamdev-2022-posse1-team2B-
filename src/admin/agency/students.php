@@ -112,11 +112,21 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
         <span><?php echo $matched_student['student_last_name_kana'] . $matched_student['student_first_name_kana']; ?></span>
         <span>お問い合わせ日時：<?= $matched_student['updated_at'] ?></span>
         <form action="" method="POST">
+          <input type="hidden" name="name" value="<?php echo $matched_student['student_last_name']; ?>">
+          <input type="hidden" name="name" value="<?php echo $matched_student['student_first_name']; ?>">
+          <input type="hidden" name="name" value="<?php echo $matched_student['student_last_name_kana']; ?>">
+          <input type="hidden" name="name" value="<?php echo $matched_student['student_first_name_kana']; ?>">
+          <input type="hidden" name="tel_number" value="<?php echo $matched_student["tel_number"]; ?>">
+          <input type="hidden" name="email" value="<?php echo $matched_student["email"]; ?>">
+          <input type="hidden" name="college_name" value="<?php echo $matched_student["college_name"]; ?>">
+          <input type="hidden" name="undergraduate" value="<?php echo $matched_student["undergraduate"]; ?>">
+          <input type="hidden" name="college_department" value="<?php echo $matched_student["college_department"]; ?>">
+          <input type="hidden" name="graduation_year" value="<?php echo $matched_student["graduation_year"]; ?>">
           <input type='submit' name='report' value='詳細' class="submitbtn">
-        </form>
+      </form>
       </div>
     </section>
-    <section class="tableouter">
+    <!-- <section class="tableouter">
       <div class="table">
         <dd>名前</dd><dt><?= $matched_student['student_last_name'] . $matched_student['student_first_name'];?></dt>
         <dd>カナ</dd><dt><?= $matched_student['student_first_name_kana'] . $matched_student['student_first_name_kana']; ?></dt>
@@ -141,7 +151,7 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
           <input type="hidden" name="graduation_year" value="<?php echo $matched_student["graduation_year"]; ?>">
         <input type='submit' name='report' value='詳細' class="submitbtn">
       </form>
-    </section>
+    </section> -->
   <?php endforeach; ?>
   <a href='./index.php' class="returnbtn">戻る</a>
   <?php endif; 
