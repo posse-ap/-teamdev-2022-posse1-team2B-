@@ -114,7 +114,7 @@ TODO
       </div>
       <p class="announce">xxxx@co.jp までご連絡ください。 </p>
     </div>
-    <a href="../student/index.php">学生の方はこちら</a>
+    <a href="../student/index.php" class="announce">学生の方はこちら</a>
   <script src="index.js"></script>
 </body>
 

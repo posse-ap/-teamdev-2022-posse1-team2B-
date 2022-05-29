@@ -134,10 +134,7 @@ if(isset($_POST['aria'])) {
       <div class="exitcontainer">
         <a href="./index.php" class="exitbtn">✕</a>
       </div>
-      <h1  class="pagetitle">
-      <?php 
-        print_r($area);
-        ?>エリアに対応しているエージェンシー一覧</h1>
+      <h1  class="pagetitle">エリアに対応しているエージェンシー一覧</h1>
       <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
       <a href="./keep.php" class="keepbtn">キープ中の企業</a>
       <ol>
