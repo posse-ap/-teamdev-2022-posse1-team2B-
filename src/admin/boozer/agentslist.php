@@ -11,7 +11,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
   exit();
 }
 
-$stmt = $db->prepare('select * from agents');
+$stmt = $db->prepare('select * from agents where valid = 1');
 $stmt->execute();
 $agents = $stmt->fetchAll();
 $page_flag = 0;
@@ -20,7 +20,7 @@ if (isset($_GET['agent_id'])) {
   $page_flag = 1;
   $id = $_GET['agent_id'];
 
-  $stmt = $db->prepare('SELECT * FROM agents WHERE id = :agent_id');
+  $stmt = $db->prepare('SELECT * FROM agents WHERE id = :agent_id where valid = 1');
   $stmt->bindValue(':agent_id', $id);
   $stmt->execute();
   $agency = $stmt->fetchAll();
@@ -51,7 +51,6 @@ if (isset($_GET['agent_id'])) {
     <div class="main">
       <h2 class="pagetitle">エージェンシー企業の詳細情報</h2>
       <form method="POST" action="edit.php" class="agencydetailbox">
-        <img src="" alt="">
         <h3><?= $agency[0]['agent_name'] ?></h3>
         <dl class="agentinfo">
         <img src="../../img/companylogo/<?php print_r($agents[0]['image']); ?>" alt="エージェンシー企業の写真">
@@ -72,7 +71,7 @@ if (isset($_GET['agent_id'])) {
             <dt>得意な業界：</dt>
             <dd>
               <?php
-              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id');
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id where valid = 1');
               $stmt->bindValue(':agent_id', $id);
               $stmt->execute();
               $matched_category = $stmt->fetchAll();
@@ -83,7 +82,7 @@ if (isset($_GET['agent_id'])) {
             <dt>対応エリア：</dt>
             <dd>
               <?php
-              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id');
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id where valid = 1');
               $stmt->bindValue(':agent_id', $id);
               $stmt->execute();
               $matched_job_area = $stmt->fetchAll();
@@ -94,7 +93,7 @@ if (isset($_GET['agent_id'])) {
             <dt>対象学生：</dt>
             <dd>
               <?php
-              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id where valid = 1');
               $stmt->bindValue(':agent_id', $id);
               $stmt->execute();
               $matched_target_student = $stmt->fetchAll();

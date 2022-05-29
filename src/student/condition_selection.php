@@ -6,13 +6,10 @@ if(isset($_POST["search"])) {
 } 
 
 session_start();
-$stmt = $db->prepare('SELECT * FROM agents');
+$stmt = $db->prepare('SELECT * FROM agents where valid = 1');
 $stmt->execute();
 $agents = $stmt->fetchAll();
 
-$stmt = $db->prepare('SELECT * FROM agents');
-$stmt->execute();
-$agents = $stmt->fetchAll();
 if($_SERVER['REQUEST_METHOD']==='POST'){
   if(isset($_POST['agent_id'])){
     $agent_id = $_POST['agent_id'];
@@ -28,71 +25,6 @@ if(isset($_SESSION['keep'])){
   $_SESSION['time'] = time();
 }
 
-// 絞り込み検索
-// if(isset($_POST['category'])){
-
-//   foreach($_POST['category'] as $category) {
-//     $category_array = array();
-
-//     // print_r($category);
-//     $category_array[] = "$category";
-//     // print_r($category_array[1]);
-
-//       $stmt = $db->prepare('SELECT id FROM category WHERE category_name = :category');
-//       $stmt -> bindValue(':category', $category_array[0]);
-//       $stmt->execute();
-//       $categories = $stmt->fetchAll();
-//       $stmt = $db->prepare('SELECT * FROM characteristic WHERE category_id = :category_id');
-//       $stmt -> bindValue(':category_id', $categories[0]['id']);
-//       $stmt->execute();
-//       $agent_categories = $stmt->fetchAll();
-//   }
-//   // foreach($agent_categories as $agent_category) {
-//   //   $stmt = $db->prepare('SELECT * FROM agents WHERE id = :agent_id');
-//   //   $stmt -> bindValue(':agent_id', $agent_category['agent_id']);
-//   //   $stmt->execute();
-//   //   $agents_information = $stmt->fetch();
-//   //   print_r($agents_information['agent_name']);
-//   // }
-// } 
-
-// if(isset($_POST['job_area'])){
-// foreach($_POST['job_area'] as $key => $job_area) {
-//   $job_area_array = array();
-//     $job_area_array[] = "$job_area";
-//     $stmt = $db->prepare('SELECT id FROM job_area WHERE area = :job_area');
-//     $stmt -> bindValue(':job_area', $job_area_array[$key]);
-//     $stmt->execute();
-//     $areas = $stmt->fetchAll();
-//     $stmt = $db->prepare('SELECT * FROM characteristic WHERE job_area_id = :area_id');
-//     $stmt -> bindValue(':area_id', $areas[$key]['id']);
-//     $stmt->execute();
-//     $agent_job_areas = $stmt->fetchAll();
-// }
-// foreach($agent_categories as $agent_category) {
-//         print_r($agent_category);
-// } 
-// }
-// if(isset($_POST['target_student'])){
-// foreach($_POST['target_student'] as $key => $target_student) {
-//   $target_student_array = array();
-//     $target_student_array[] = "$target_student";
-//     $stmt = $db->prepare('SELECT id FROM target_student WHERE graduation_year = :target_student');
-//     $stmt -> bindValue(':target_student', $target_student_array[$key]);
-//     $stmt->execute();
-//     $targets = $stmt->fetchAll();
-//     $stmt = $db->prepare('SELECT * FROM characteristic WHERE target_student_id = :target_id');
-//     $stmt -> bindValue(':target_id', $targets[$key]['id']);
-//     $stmt->execute();
-//     $target_students = $stmt->fetchAll();
-// }
-// foreach($agent_categories as $agent_category) {
-//         print_r($agent_category);
-// }
-// }
-
-// →これだと、同時にカテゴリーとエリアを選択された時にできない
-// https://www.suzuco.net/entry/php-search/#i-8
 if(isset($_POST["search"])) {
 $where = array();
 if(isset($_POST['category'])) {
@@ -129,7 +61,6 @@ if(isset($_POST['target_student'])) {
     $where[] = 'target_student_id =' . $targets[0]['id'];
   }
 }
-print_r($where);
 
 }
 ?>
@@ -147,7 +78,6 @@ print_r($where);
   <?php include (dirname(__FILE__) . "/student_header.php");?>
   <?php 
   if($page_flag === 1 || isset($_GET["back"])):?>
-    <!-- 絞り込み結果 -->
   <div class="main">
     <h1 class="pagetitle">絞り込み結果</h1>
     <div class="exitcontainer">
@@ -171,7 +101,7 @@ print_r($where);
               </div>
               <dl class="agentinfo">
                 <?php
-                  $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id left join category on characteristic.category_id = category.id left join job_area on characteristic.job_area_id = job_area.id left join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
+                  $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id left join category on characteristic.category_id = category.id left join job_area on characteristic.job_area_id = job_area.id left join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id where valid = 1');
                   // $stmt = $db->prepare('SELECT * FROM agents WHERE id = :agent_id');
                   $stmt -> bindValue(':agent_id', $row['agent_id']);
                   $stmt->execute();

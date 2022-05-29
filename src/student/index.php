@@ -1,7 +1,7 @@
 <?php
 require("../dbconnect.php");
 //全エージェント会社の情報取得
-$stmt = $db->prepare('SELECT * FROM agents');
+$stmt = $db->prepare('SELECT * FROM agents where valid = 1');
 $stmt->execute();
 $agents = $stmt->fetchAll();
 session_start();
@@ -75,7 +75,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
               <p class="agentname"><?= $agent['agent_name']?></p>
 
               <p class="agentcategory">得意な業種：<?php
-              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id');
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id where valid = 1');
               $stmt->bindValue(':agent_id', $agent['id']);
               $stmt->execute();
               $matched_category = $stmt->fetchAll();
@@ -83,7 +83,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
               ?></p>
 
               <p class="agentcategory">対応エリア：<?php
-              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id');
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id where valid = 1');
               $stmt->bindValue(':agent_id', $agent['id']);
               $stmt->execute();
               $matched_job_area = $stmt->fetchAll();
@@ -91,10 +91,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
               ?></p>
 
               <form action="" method="POST">
-                <!-- <form action="keep.php" method="POST"> -->
                 <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
                 <?php
-                // echo $agent['id'];
                 if(isset($keeps[$agent['id']]) === true):
                 ?>
                 <p class="returnbtn">キープ済み</p>

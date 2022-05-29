@@ -5,7 +5,7 @@ if (isset($_SESSION['keep'])) {
   $keeps = $_SESSION['keep'];
   $_SESSION['time'] = time();
 }
-$stmt = $db->prepare('SELECT * FROM agents');
+$stmt = $db->prepare('SELECT * FROM agents where valid = 1');
 $stmt->execute();
 $agents = $stmt->fetchAll();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -47,7 +47,7 @@ if (isset($_SESSION['keep'])) {
     <?php
     echo ('<a href=' . '"javascript:history.back()"' . ' class="returnbtn">戻る</a>');
 
-    $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
+    $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id where valid = 1');
     $id = $_GET["id"];
     $stmt->bindValue(':id', $id);
     $stmt->execute();
@@ -79,17 +79,17 @@ if (isset($_SESSION['keep'])) {
 
         <dl>
           <?php
-          $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id');
+          $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id where valid = 1');
           $stmt->bindValue(':agent_id', $id);
           $stmt->execute();
           $matched_job_area = $stmt->fetchAll();
 
-          $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id');
+          $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id where valid = 1');
           $stmt->bindValue(':agent_id', $id);
           $stmt->execute();
           $matched_category = $stmt->fetchAll();
 
-          $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
+          $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id where valid = 1');
           $stmt->bindValue(':agent_id', $id);
           $stmt->execute();
           $matched_target_student = $stmt->fetchAll();

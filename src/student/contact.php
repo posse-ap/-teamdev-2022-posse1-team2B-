@@ -22,7 +22,6 @@ if (isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()) {
   session_destroy();
 }
 if (isset(
-  // これらが入力されていたら
   $_POST['student_last_name'],
   $_POST['student_first_name'],
   $_POST['student_last_name_kana'],
@@ -38,11 +37,7 @@ if (isset(
   $_POST['college_department'],
   $_POST['graduation_year']
 )
-  // ２回目のときポストされない
 ) {
-
-  // データの保存
-  // sql文書きます
   $stmt = $db->prepare('insert into students 
   (
     student_last_name, 
@@ -78,7 +73,6 @@ if (isset(
     :graduation_year
   )');
 
-  // ポストを定数に置いて
   $student_last_name = $_POST['student_last_name'];
   $student_first_name = $_POST['student_first_name'];
   $student_last_name_kana = $_POST['student_last_name_kana'];
@@ -111,17 +105,16 @@ if (isset(
     ':graduation_year' => $graduation_year
   );
 
-  // その配列をexecute
   $stmt->execute($param);
 }
 
 
 $page = 0;
-// デフォルトは0
+
 if (isset($_POST['contact'])) {
-  // コンタクトされたとき
+
   $page = 1;
-  // ページを1に
+
 }
 ?>
 
@@ -144,7 +137,6 @@ if (isset($_POST['contact'])) {
   ?>
     <!-- 確認画面 -->
     <div class="main">
-      <!-- 登録いたしました！だと完了ボタン押さないでブラウザバックする人いそうだから、登録いたしますか？でよくない？ -->
       <h1>内容の確認をおねがいします</h1>
       <form method="POST" action="apply.php">
         <div>
@@ -231,7 +223,6 @@ if (isset($_POST['contact'])) {
             <?php echo $_POST["graduation_year"]; ?>
           </p>
         </div>
-        <!-- 入力した値を受け渡す -->
         <button type="submit" name="btn_back" formaction="contact.php" class="returnbtn">登録し直す</button>
         <input type="hidden" name="student_last_name" value="<?php echo $_POST["student_last_name"]; ?>">
         <input type="hidden" name="student_last_name_kana" value="<?php echo $_POST["student_last_name_kana"]; ?>">
@@ -271,7 +262,7 @@ if (isset($_POST['contact'])) {
     <div class="main">
       <h1 class="pagetitle">企業にお問い合わせ</h1>
       <?php
-            $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
+            $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id where valid = 1');
             $stmt->bindValue(':id', $_POST['agent_id']);
             $stmt->execute();
             $agencies = $stmt->fetch();
@@ -280,7 +271,7 @@ if (isset($_POST['contact'])) {
         <?php
         if (isset($_POST['keep_agency_contact'])) {
           foreach ($keeps as $keep) {
-            $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
+            $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id where valid = 1');
             $stmt->bindValue(':id', $keep);
             $stmt->execute();
             $agent = $stmt->fetch();
