@@ -249,6 +249,7 @@ if (isset($_POST['contact'])) {
         <input type="hidden" name="college_department" value="<?php echo $_POST["college_department"]; ?>">
         <input type="hidden" name="graduation_year" value="<?php echo $_POST["graduation_year"]; ?>">
         <input type="hidden" name="notification_email" value="<?php echo $_POST["notification_email"]; ?>">
+        <input type="hidden" name="contact_agent_id" value="<?php echo $_POST["contact_agent_id"]; ?>">
         <button type="submit" name="final_contact" class="inquirybtn" onclick="
       <?php
       $addresses = ['test@posse-ap.com', $_POST['notification_email']];
@@ -277,7 +278,7 @@ if (isset($_POST['contact'])) {
             $stmt->execute();
             $agencies = $stmt->fetch();
             ?>
-      <div class="agencybtn">申し込み先企業：<?php print_r($agencies['agent_name']);?>
+      <div class="agencybtn">申し込み先企業：
         <?php
         if (isset($_POST['keep_agency_contact'])) {
           foreach ($keeps as $keep) {
@@ -287,7 +288,9 @@ if (isset($_POST['contact'])) {
             $agent = $stmt->fetch();
             echo '<br>・' . $agent['agent_name'];
           }
-        };
+        } else {
+          print_r($agencies['agent_name']);
+        }
         ?>
       </div>
       <form action="contact.php" method="POST">
@@ -358,6 +361,7 @@ if (isset($_POST['contact'])) {
             </div>
           </div>
           <div>
+          <input type="hidden" name="contact_agent_id" value="<?php echo $agencies['agent_name']; ?>">
             <input type="submit" name="contact" value="エージェンシー企業に問い合わせる">
           </div>
       </form>

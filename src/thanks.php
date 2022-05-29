@@ -40,7 +40,7 @@ if(isset($_POST['btn_confirm'])){ // agency
     //6 掲載情報新規作成：create_contents thanks////new_entry
     $action = "掲載の新規作成";
     $user_name = "boozer";
-}  else if (isset($_GET['final_contact'])) { //student
+}  else if (isset($_GET['contact'])) { //student
    // 7 お問い合わせ：contact thanks////final_contact
     $action = "エージェンシー企業へのお問い合わせ";
     $user_name = "student";
@@ -58,11 +58,11 @@ if(isset($_POST['btn_confirm'])){ // agency
 </head>
 <body>
 <?php 
-    if($user_name === "boozer" || $user_name === "agency") {
-      include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_header.php");
-    }else{
-      include (dirname(__FILE__) . "/" . $user_name . "/" . $user_name . "_header.php");
-    }
+    // if($user_name === "boozer" || $user_name === "agency") {
+    //   include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_header.php");
+    // }else{
+    //   include (dirname(__FILE__) . "/" . $user_name . "/" . $user_name . "_header.php");
+    // }
     ?>
   <div class="main">
     <h2 class="pagetitle"><?php print_r($action);?>完了</h2>
@@ -80,16 +80,16 @@ if(isset($_POST['btn_confirm'])){ // agency
     </div>
   </div>
   <?php 
-  if($user_name === "boozer" || $user_name === "agency") {
-    include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_footer.php");
-    echo('<script src="./admin/boozer/boozer.js"></script>');
-  } elseif($user_name === "agency") {
-    include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_footer.php");
-    echo('<script src="../admin/agency/agency.js"></script>');
-  } else {
-    include (dirname(__FILE__) . "/" . $user_name . "/" . $user_name . "_footer.php");
-    echo('<script src="../student/student.js"></script>');
-  }
+  // if($user_name === "boozer" || $user_name === "agency") {
+  //   include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_footer.php");
+  //   echo('<script src="./admin/boozer/boozer.js"></script>');
+  // } elseif($user_name === "agency") {
+  //   include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_footer.php");
+  //   echo('<script src="../admin/agency/agency.js"></script>');
+  // } else {
+  //   include (dirname(__FILE__) . "/" . $user_name . "/" . $user_name . "_footer.php");
+  //   echo('<script src="../student/student.js"></script>');
+  // }
   ?>
 </body>
 </html>
