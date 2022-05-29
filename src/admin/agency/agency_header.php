@@ -1,8 +1,8 @@
   <header>
     <div class="headertitle">
-      <p class="craft">CRAFT</p>
+      <p onclick="location.href='index.php'" class="craft">CRAFT</p>
       <p class="craftby">by</p>
-      <img src="../../img/syukatudotcom_logo_white.png" alt="就活.com">
+      <img id="headerImg" src="../../img/syukatudotcom_logo_white.png" alt="就活.com">
     </div>
     <nav class="headernav">
       <ul>

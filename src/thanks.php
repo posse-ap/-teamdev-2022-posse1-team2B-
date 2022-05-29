@@ -1,6 +1,16 @@
 <?php
-require("./dbconnect.php");
-
+session_start();
+require('./dbconnect.php');
+if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
+  // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
+  $_SESSION['time'] = time();
+  // SESSIONの時間を現在時刻に更新
+  $login = $_SESSION['login'];  //ログイン情報を保持
+} else {
+  // そうじゃないならログイン画面に飛んでね
+  header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
+  exit();
+}
 // もしname属性~の送信ボタンを押したら、この文言を出力する
 // サンクスページに遷移する画面
 // agency
@@ -35,13 +45,13 @@ if(isset($_POST['btn_confirm'])){ // agency
     $user_name = "agency";
 }  else if (isset($_GET['edit'])) { //boozer
     // 5  掲載情報編集：edit thanks///edit
-    $action = "掲載情報の編集";
-    $user_name = "boozer";
+    $action = "掲載情報の修正依頼";
+    $user_name = "agency";
 }  else if (isset($_GET['new_entry'])) {
     //6 掲載情報新規作成：create_contents thanks////new_entry
     $action = "掲載の新規作成";
-    $user_name = "boozer";
-}  else if (isset($_GET['final_contact'])) { //student
+    $user_name = "agency";
+}  else if (isset($_GET['contact'])) { //student
    // 7 お問い合わせ：contact thanks////final_contact
     $action = "エージェンシー企業へのお問い合わせ";
     $user_name = "student";

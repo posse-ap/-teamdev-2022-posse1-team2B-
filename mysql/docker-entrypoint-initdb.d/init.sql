@@ -348,9 +348,9 @@ DROP TABLE IF EXISTS characteristic;
 CREATE TABLE characteristic (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   agent_id INT NOT NULL,
-  category_id INT DEFAULT 0,
-  job_area_id INT DEFAULT 0,
-  target_student_id INT DEFAULT 0
+  category_id INT NOT NULL,
+  job_area_id INT NOT NULL,
+  target_student_id INT NOT NULL
 );
 INSERT INTO characteristic
   (agent_id, category_id, job_area_id, target_student_id)
@@ -358,11 +358,11 @@ VALUES
   (1, 1, 2, 2),
   (2, 2, 3, 2),
   (3, 1, 2, 1),
-  (4, 2, 1, DEFAULT),
-  (5, 1, default, 4),
+  (4, 2, 1, 1),
+  (5, 1, 3, 4),
   (6, 7, 1, 2),
   (7, 3, 1, 3),
   (8, 5, 1, 4),
   (9, 1, 1, 1),
   (10, 7, 4, 2),
-  (10, 1, 2, default);
+  (10, 1, 2, 4);

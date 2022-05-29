@@ -1,6 +1,6 @@
 <?php
-session_start();
 require('../dbconnect.php');
+session_start();
 
 if (!empty($_POST)) {
   // なにか入力されていたら
@@ -28,6 +28,12 @@ if (!empty($_POST)) {
       exit();
       
     }else {
+      $email = $_POST['email'];
+      $_SESSION['login']['email'] = $email;
+      $login=array();
+      if(isset($_SESSION['login'])){
+        $login = $_SESSION['login'];
+      }
       header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/agency/index.php');
       // アクセスした瞬間にadmin_index.phpに移動する
       exit();
@@ -43,6 +49,27 @@ if (!empty($_POST)) {
 
 $stmt = $db->query('SELECT id FROM students');
 $students = $stmt->fetchAll();
+
+
+
+// if($_SERVER['REQUEST_METHOD']==='POST'){
+
+//   if(isset($_POST['email']) && isset($_POST['password'])) {
+//     $email = $_POST['email'];
+//     $password = $_POST['password'];
+//     $password = $_POST['password'];
+//     $_SESSION['login'][$email] = $email;
+//     $_SESSION['login'][$password] = $password;
+//   }
+//   }
+//   $login=array();
+//   if(isset($_SESSION['login'])){
+//     $login = $_SESSION['login'];
+//   }
+  
+
+
+
 ?>
 
 <!--
@@ -78,7 +105,7 @@ TODO
         <label>パスワード</label><br>
         <input type="password" required name="password">
       </div>
-      <input type="submit" value="ログイン" class="ignore firstloginbtn">
+      <input type="submit" name="login" value="ログイン" class="ignore firstloginbtn">
     </form>
     <div id="forget">ログイン用メールアドレス・パスワードをお忘れの方はこちら</div>
     <div id="loginEmailAddress" class="login_email_address">

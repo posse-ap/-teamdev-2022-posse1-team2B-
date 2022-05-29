@@ -9,13 +9,7 @@ let studentInformation = document.getElementsByClassName("student_information");
 // ヘッダーのお問い合わせをクリックした時の処理
 contact.addEventListener("click", function() {
   contactEmailAddress.classList.add("show_contents");
-});
+})
 closeButton.addEventListener("click", function() {
   contactEmailAddress.classList.remove("show_contents");
 })
-
-
-// アカウント登録画面
-// studentInformationCloseButton.addEventListener("click", function() {
-//   studentDetail.style.display = "none";
-// })

@@ -3,10 +3,16 @@ session_start();
 require('../../dbconnect.php');
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
   $_SESSION['time'] = time();
+  $login = $_SESSION['login'];  //ログイン情報を保持
 } else {
   header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
   exit();
 }
+print_r($login);
+$stmt = $db->prepare('select * from managers left join users on managers.user_id = users.id where login_email = :login_email');
+$stmt->bindValue(':login_email', $login['email']);
+$stmt->execute();
+$matched_agent = $stmt->fetch();
 
 $stmt = $db->prepare('SELECT * FROM category');
 $stmt->execute();
@@ -20,14 +26,11 @@ $stmt = $db->prepare('SELECT * FROM target_student');
 $stmt->execute();
 $target_students = $stmt->fetchAll();
 
-
+$id = $matched_agent["id"];
+echo $id;
 if (isset($_POST['edit_entry'])) {
-
-  $id = $_POST['agent_id'];
-
   if (isset($_POST['new_name'])) {
     $new_name = $_POST['new_name'];
-    $db->beginTransaction();
     try {
       $stmt = $db->prepare(
         'UPDATE
@@ -43,15 +46,13 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
-      $db->rollBack();
+      // $db->rollBack();
     }
   } else {
     exit;
   }
-
   if (isset($_POST['new_url'])) {
     $new_url = $_POST['new_url'];
-    $db->beginTransaction();
     try {
       $stmt = $db->prepare(
         'UPDATE
@@ -67,15 +68,20 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
-      $db->rollBack();
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      // echo "エラーが発生しました";
+      ?>
+      <script language="javascript" type="text/javascript">
+      window.location = '../../thanks.php?edit';
+    </script>
+    <?php
+      // $db->rollBack();
     }
   } else {
     exit;
   }
-
   if (isset($_POST['new_image'])) {
     $new_image = $_POST['new_image'];
-    $db->beginTransaction();
     try {
       $stmt = $db->prepare(
         'UPDATE
@@ -89,17 +95,21 @@ if (isset($_POST['edit_entry'])) {
       $stmt->bindValue(':id', $id);
       $stmt->bindParam(':new_image', $new_image);
       $stmt->execute();
-      $res = $db->commit();
     } catch (PDOException $e) {
-      $db->rollBack();
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      // echo "エラーが発生しました";
+      ?>
+      <script language="javascript" type="text/javascript">
+      window.location = '../../thanks.php?edit';
+    </script>
+    <?php
+      // $db->rollBack();
     }
   } else {
     exit;
   }
-
   if (isset($_POST['new_notification_email'])) {
     $new_notification_email = $_POST['new_notification_email'];
-    $db->beginTransaction();
     try {
       $stmt = $db->prepare(
         'UPDATE
@@ -115,15 +125,21 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
-      $db->rollBack();
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      // echo "エラーが発生しました";
+      ?>
+      <script language="javascript" type="text/javascript">
+      window.location = '../../thanks.php?edit';
+    </script>
+    <?php
+      // $db->rollBack();
     }
   } else {
     exit;
   }
-
+  // $db->beginTransaction();
   if (isset($_POST['new_tel_number'])) {
     $new_tel_number = $_POST['new_tel_number'];
-    $db->beginTransaction();
     try {
       $stmt = $db->prepare(
         'UPDATE
@@ -137,17 +153,23 @@ if (isset($_POST['edit_entry'])) {
       $stmt->bindValue(':id', $id);
       $stmt->bindParam(':new_tel_number', $new_tel_number);
       $stmt->execute();
-      $res = $db->commit();
+      // $res = $db->commit();
     } catch (PDOException $e) {
-      $db->rollBack();
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      // echo "エラーが発生しました";
+      ?>
+      <script language="javascript" type="text/javascript">
+      window.location = '../../thanks.php?edit';
+    </script>
+    <?php
+      // $db->rollBack();
     }
   } else {
     exit;
   }
-
+  // $db->beginTransaction();
   if (isset($_POST['new_post_number'])) {
     $new_post_number = $_POST['new_post_number'];
-    $db->beginTransaction();
     try {
       $stmt = $db->prepare(
         'UPDATE
@@ -163,15 +185,22 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
-      $db->rollBack();
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      // $db->rollBack();
+      // echo "エラーが発生しました";
+      ?>
+      <script language="javascript" type="text/javascript">
+      window.location = '../../thanks.php?edit';
+    </script>
+    <?php
+      // $db->rollBack();
     }
   } else {
     exit;
   }
-
+  // $db->beginTransaction();
   if (isset($_POST['new_prefecture'])) {
     $new_prefecture = $_POST['new_prefecture'];
-    $db->beginTransaction();
     try {
       $stmt = $db->prepare(
         'UPDATE
@@ -187,15 +216,22 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
-      $db->rollBack();
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      // $db->rollBack();
+      ?>
+      <script language="javascript" type="text/javascript">
+      window.location = '../../thanks.php?edit';
+    </script>
+    <?php
+      // echo "エラーが発生しました";
+      // $db->rollBack();
     }
   } else {
     exit;
   }
-
+  // $db->beginTransaction();
   if (isset($_POST['new_municipalitie'])) {
     $new_municipalitie = $_POST['new_municipalitie'];
-    $db->beginTransaction();
     try {
       $stmt = $db->prepare(
         'UPDATE
@@ -211,15 +247,22 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
-      $db->rollBack();
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      // $db->rollBack();
+      // echo "エラーが発生しました";
+      ?>
+      <script language="javascript" type="text/javascript">
+      window.location = '../../thanks.php?edit';
+    </script>
+    <?php
+      // $db->rollBack();
     }
   } else {
     exit;
   }
-
+  // $db->beginTransaction();
   if (isset($_POST['new_adress_number'])) {
     $new_adress_number = $_POST['new_adress_number'];
-    $db->beginTransaction();
     try {
       $stmt = $db->prepare(
         'UPDATE
@@ -235,15 +278,21 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
-      $db->rollBack();
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      // $db->rollBack();
+      // echo "エラーが発生しました";
+      ?>
+      <script language="javascript" type="text/javascript">
+      window.location = '../../thanks.php?edit';
+    </script>
+    <?php
     }
   } else {
     exit;
   }
-
+  // $db->beginTransaction();
   if (isset($_POST['new_detail'])) {
     $new_detail = $_POST['new_detail'];
-    $db->beginTransaction();
     try {
       $stmt = $db->prepare(
         'UPDATE
@@ -259,14 +308,20 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
-      $db->rollBack();
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      // $db->rollBack();
+      // echo "エラーが発生しました";
+      ?>
+      <script language="javascript" type="text/javascript">
+      window.location = '../../thanks.php?edit';
+    </script>
+    <?php
     }
   } else {
     exit;
   }
-
+  // $db->beginTransaction();
   if (isset($_POST['new_category'])) {
-    $db->beginTransaction();
     try {
       $stmt = $db->prepare(
         'UPDATE
@@ -288,14 +343,20 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
-      $db->rollBack();
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      // $db->rollBack();
+      // echo "エラーが発生しました";
+      ?>
+      <script language="javascript" type="text/javascript">
+      window.location = '../../thanks.php?edit';
+    </script>
+    <?php
     }
   } else {
     exit;
   }
-
+  // $db->beginTransaction();
   if (isset($_POST['new_job_area'])) {
-    $db->beginTransaction();
     try {
       $stmt = $db->prepare(
         'UPDATE
@@ -317,20 +378,26 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
-      $db->rollBack();
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      // $db->rollBack();
+      // echo "エラーが発生しました";
+      ?>
+      <script language="javascript" type="text/javascript">
+      window.location = '../../thanks.php?edit';
+    </script>
+    <?php
     }
   } else {
     exit;
   }
-
+  // $db->beginTransaction();
   if (isset($_POST['new_target_student'])) {
-    $db->beginTransaction();
     try {
       $stmt = $db->prepare(
         'UPDATE
           characteristic
         SET
-          target_student_id = :target_student_id
+          target_student_id = :target_student_id, valid = 0
         WHERE
           id = :id'
       );
@@ -347,14 +414,17 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
-      $db->rollBack();
+  ?>
+      <script language="javascript" type="text/javascript">
+      window.location = '../../thanks.php?edit';
+    </script>
+    <?php
     }
   } else {
     exit;
   }
-
+  // $db->beginTransaction();
   if (isset($_POST['agent_id'])) {
-    $db->beginTransaction();
     try {
       $stmt = $db->prepare(
         'UPDATE
@@ -368,9 +438,16 @@ if (isset($_POST['edit_entry'])) {
       $stmt->bindValue(':agent_id', $id);
       $stmt->bindParam(':id', $id);
       $stmt->execute();
-      $res = $db->commit();
+      // $res = $db->commit();
     } catch (PDOException $e) {
-      $db->rollBack();
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      // $db->rollBack();
+      // echo "エラーが発生しました";
+      ?>
+      <script language="javascript" type="text/javascript">
+      window.location = '../../thanks.php?edit';
+    </script>
+    <?php
     }
   } else {
     exit;
@@ -436,10 +513,10 @@ if (isset($_POST['edit_entry'])) {
       </dt>
       <dd>アイコン画像</dd>
       <dt><input name='new_image' type="file"></dt>
-      <dd>備考</dd>
+      <dd>備考（アピールポイントなど）</dd>
       <dt><textarea name="new_detail" id="detail" cols="30" rows="10"></textarea></dt>
       </dl>
-      <input type="hidden" name="agent_id" value="<?php echo $_POST['agent_id']; ?>">
+      <input type="hidden" name="agent_id" value="<?php echo $id; ?>">
       <button type="submit" name="edit_entry" class="submitbtn margintop" onclick="
               <?php
               $from = 'boozer@craft.com';
