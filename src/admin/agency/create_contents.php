@@ -1,5 +1,12 @@
 <?php
+session_start();
 require('../../dbconnect.php');
+if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
+  $_SESSION['time'] = time();
+} else {
+  header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
+  exit();
+}
 
 $stmt = $db->prepare('SELECT * FROM category');
 $stmt->execute();
@@ -23,9 +30,11 @@ if (isset($_POST['new_entry'])) {
   $prefecture = $_POST['prefecture'];
   $municipalitie = $_POST['municipalitie'];
   $address_number = $_POST['address_number'];
+  $image = $_POST['image'];
   $detail = $_POST['detail'];
 
-  // $db->beginTransaction();
+  $db->beginTransaction();
+  try {
     $stmt = $db->prepare(
       'insert into agents 
         (
@@ -58,6 +67,7 @@ if (isset($_POST['new_entry'])) {
     $param = array(
       ':agent_name' => $name,
       ':url' => $url,
+      ':image' => $image,
       ':notification_email' => $notification_email,
       ':tel_number' => $tel_number,
       ':post_number' => $post_number,
@@ -67,8 +77,13 @@ if (isset($_POST['new_entry'])) {
       ':detail' => $detail
     );
     $stmt->execute($param);
+    $res = $db->commit();
+  } catch (PDOException $e) {
+    $db->rollBack();
+  }
 
-    // $db->beginTransaction();
+  $db->beginTransaction();
+  try {
     $stm = $db->prepare(
       'insert into characteristic 
         (
@@ -85,6 +100,7 @@ if (isset($_POST['new_entry'])) {
           :target_student_id
         )'
     );
+
     $stmt = $db->prepare('SELECT id FROM agents where agent_name = :name');
     $stmt->bindValue(':name', $name);
     $stmt->execute();
@@ -175,6 +191,8 @@ if (isset($_POST['new_entry'])) {
             <?php endforeach; ?>
           </select>
         </dt>
+        <dd>アイコン画像</dd>
+        <dt><input name='image' type="file" required></dt>
         <dd>備考</dd>
         <dt><textarea name="detail" id="detail" cols="30" rows="10"></textarea></dt>
       </dl>
