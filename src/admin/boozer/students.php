@@ -27,7 +27,7 @@ $agents_students_match = $stmt->fetchAll();
 </head>
 
 <body>
-  <!-- <?php include(dirname(__FILE__) . "/boozer_header.php"); ?> -->
+  <?php include(dirname(__FILE__) . "/boozer_header.php"); ?>
   <div class="main">
     <section>
       <h2 class="pagetitle">学生一覧</h2>
