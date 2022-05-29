@@ -1,5 +1,12 @@
 <?php
+session_start();
 require('../../dbconnect.php');
+if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
+  $_SESSION['time'] = time();
+} else {
+  header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
+  exit();
+}
 
 $category_stmt = $db->prepare('SELECT * FROM category');
 $category_stmt->execute();
@@ -25,7 +32,9 @@ if (isset($_POST['new_entry'])) {
   $address_number = $_POST['address_number'];
   $detail = $_POST['detail'];
 
-    $entry_stmt = $db->prepare(
+  $db->beginTransaction();
+  try {
+    $stmt = $db->prepare(
       'insert into agents 
         (
           agent_name, 
@@ -63,9 +72,15 @@ if (isset($_POST['new_entry'])) {
       ':adress_number' => $address_number,
       ':detail' => $detail
     );
-    $entry_stmt->execute($parameter);
+    $stmt->execute($parameter);
+    $res = $db->commit();
+  } catch (PDOException $e) {
+    $db->rollBack();
+  }
 
-    $character_stm = $db->prepare(
+  $db->beginTransaction();
+  try {
+    $stm = $db->prepare(
       'insert into characteristic 
         (
           agent_id,
@@ -81,33 +96,38 @@ if (isset($_POST['new_entry'])) {
           :target_student_id
         )'
     );
+
     $stmt = $db->prepare('SELECT id FROM agents where agent_name = :name');
     $stmt->bindValue(':name', $name);
     $stmt->execute();
-    $agent_id = $stmt->fetchAll();
+    $agent_id = $stmt->fetch();
 
     $categories_stmt = $db->prepare('SELECT id FROM category where category_name = :category_name');
-    $categories_stmt->bindValue(':category_name', $_POST["category"]);
+    $categories_stmt->bindValue(':category_name', $_POST['category']);
     $categories_stmt->execute();
-    $category_id = $categories_stmt->fetchAll();
+    $category_id = $categories_stmt->fetch();
 
     $job_areas_stmt = $db->prepare('SELECT id FROM job_area where area = :area');
-    $job_areas_stmt->bindValue(':area', $_POST["job_area"]);
+    $job_areas_stmt->bindValue(':area', $_POST['job_area']);
     $job_areas_stmt->execute();
-    $job_area_id = $job_areas_stmt->fetchAll();
+    $job_area_id = $job_areas_stmt->fetch();
 
-    $target_students_stmt = $db->prepare('SELECT id FROM target_student where graduation_year = :graduation_year');
-    $target_students_stmt->bindValue(':graduation_year', $_POST["target_student"]);
-    $target_students_stmt->execute();
-    $target_student_id = $target_students_stmt->fetchAll();
+    $stmt = $db->prepare('SELECT id FROM target_student where graduation_year = :graduation_year');
+    $stmt->bindValue(':graduation_year', $_POST['target_student']);
+    $stmt->execute();
+    $target_student_id = $stmt->fetch();
 
     $param = array(
-      ':agent_id' => $agent_id[0],
+      ':agent_id' => $agent_id,
       ':category_id' => $category_id[0],
       ':job_area_id' => $job_area_id[0],
       ':target_student_id' => $target_student_id[0]
     );
-    $character_stm->execute($param);
+    $stm->execute($param);
+    $response = $db->commit();
+  } catch (PDOException $e) {
+    $db->rollBack();
+  }
 }
 ?>
 
@@ -124,7 +144,7 @@ if (isset($_POST['new_entry'])) {
 </head>
 
 <body>
-  <?php include (dirname(__FILE__) . "/agency_header.php");?>
+  <!-- <?php include (dirname(__FILE__) . "/agency_header.php");?> -->
   <div class="main">
     <h2 class="pagetitle">エージェンシー掲載情報を登録</h2>
     <p class="announce">※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
