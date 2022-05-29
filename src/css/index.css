@@ -214,6 +214,7 @@ footer img {
   width: 300px;
 }
 
+
 /* メジャー：ログイン（緑背景白文字） */
 .loginbtn, .accountdetails, .firstloginbtn {
   background-color: #66a29a;
@@ -253,7 +254,6 @@ footer img {
   color: white;
   padding: 3px 5px;
   text-align: center;
-
 }
 .must  {
   margin-left: 10px;
@@ -284,6 +284,10 @@ footer img {
 .marginbottom {
   margin-bottom: 20px;
 }
+.thinbtn {
+  width: 100px;
+}
+
 
 /* //一度きりボタン等// */
 .agencybtn {
@@ -573,6 +577,15 @@ input[type="file"] {
   margin: 20px 10px;
 }
 
+.indexagencybox {
+  height: 100px;
+  position: relative;
+}
+.buttonstatic {
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+}
 /*BOOZER/AGENTSLIST（PAYMENT/INDEX）*/ 
 .agencybox, .indexagencybox {/*それぞれのエージェンシ囲う箱*/
   background-color: white;

@@ -38,7 +38,7 @@ $agents = $stmt->fetchAll();
               <img src="" alt="">
               <h3><?php echo $agent['agent_name']; ?></h3>
               <input type="hidden" name="agent_id" value="<?php echo $agent['id'];?>">
-              <input type='submit' formaction='delete.php' name='delete' value='削除' class="deletebtn">
+              <input type='submit' formaction='delete.php' name='delete' value='削除' class="deletebtn thinbtn buttonstatic">
             </form>
           </a>
         </div>
