@@ -287,6 +287,9 @@ footer img {
 .thinbtn {
   width: 100px;
 }
+.regbtn {
+  width: 150px;
+}
 
 
 /* //一度きりボタン等// */
@@ -769,6 +772,9 @@ input[type="file"] {
   justify-content: space-between;
   align-items: center;
 }
+/* .studentsbox div {
+  display: flex;
+} */
 .months {
   display: flex;
   justify-content: center;
