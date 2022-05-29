@@ -105,15 +105,15 @@ if (isset($_POST['new_entry'])) {
     $stmt->execute();
     $target_student_id = $stmt->fetchAll();
 
-  $param = array(
-    ':agent_id' => $agent_id,
-    ':category_id' => $category_id,
-    ':job_area_id' => $job_area_id,
-    ':target_student_id' => $target_student_id
-  );
-  $stm->execute($param);
+    $param = array(
+      ':agent_id' => $agent_id,
+      ':category_id' => $category_id,
+      ':job_area_id' => $job_area_id,
+      ':target_student_id' => $target_student_id
+    );
+    $stm->execute($param);
     // $response = $db->commit();
-} 
+  } 
 ?>
 
 <!DOCTYPE html>

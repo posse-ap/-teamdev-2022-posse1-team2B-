@@ -58,7 +58,7 @@ if(isset($_POST['btn_confirm'])){ // agency
 } else if (isset($_GET['delete'])) { //student
    // 7 お問い合わせ：contact thanks////final_contact
     $action = "エージェンシー企業の掲載の削除";
-    $user_name = "agency";
+    $user_name = "boozer";
 } else if(isset($_GET['login'])) {
   $action = "アカウントの登録";
   $user_name = "new_agency";
