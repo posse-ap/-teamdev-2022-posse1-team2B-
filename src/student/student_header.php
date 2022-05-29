@@ -1,6 +1,6 @@
 <header>
   <div class="headertitle">
-    <p class="craft">CRAFT</p>
+    <p onclick="location.href='index.php'" class="craft">CRAFT</p>
     <p class="craftby">by</p>
     <img src="../img/syukatudotcom_logo_white.png" alt="就活.com">
   </div>
@@ -14,6 +14,6 @@
   <div id="contactEmailAddress" class="contact_email_address navdropdown">
     <button id="closeButton" class="exitbtn">✕</button><br>
     サービス等に関するお問い合わせは、xxx@co.jp までご連絡ください。 
-    エージェンシー企業向け掲載依頼のお問い合わせは、yyy@co.jpまでご連絡ください。
+    エージェンシー向け掲載依頼のお問い合わせは、yyy@co.jpまでご連絡ください。
   </div>
 </header>

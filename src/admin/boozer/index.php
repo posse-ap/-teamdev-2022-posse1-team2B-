@@ -2,15 +2,12 @@
 session_start();
 require('../../dbconnect.php');
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
-    // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
     $_SESSION['time'] = time();
-    // SESSIONの時間を現在時刻に更新
 } else {
-    // そうじゃないならログイン画面に飛んでね
-    header('Location: http://' . $_SERVER['HTTP_HOST'] . '../login.php');
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
     exit();
 }
-$stmt = $db->prepare('SELECT * FROM agents');
+$stmt = $db->prepare('SELECT * FROM agents where valid = 1');
 $stmt->execute();
 $agents = $stmt->fetchAll();
 ?>
@@ -41,10 +38,7 @@ $agents = $stmt->fetchAll();
               <img src="" alt="">
               <h3><?php echo $agent['agent_name']; ?></h3>
               <input type="hidden" name="agent_id" value="<?php echo $agent['id'];?>">
-              <div>
-                <input class="editbtn" type="submit" name="edit_information" formaction="edit.php" value="編集">
-                <input class="deletebtn" type="submit" name="delete" value="削除">
-              </div>
+              <input type='submit' formaction='delete.php' name='delete' value='削除' class="deletebtn">
             </form>
           </a>
         </div>
@@ -60,7 +54,7 @@ $agents = $stmt->fetchAll();
         <a class="inquirybtn" href="./students.php">学生情報</a>
       </div>
     </div>
-    <a href="./create_contents.php" class="indexbtn">エージェンシーの掲載内容を登録する</a>
+    <a href="./contact_from_agency.php" class="indexbtn">掲載依頼一覧・管理</a>
   </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
   <script src="boozer.js"></script>
