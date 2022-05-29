@@ -4,7 +4,7 @@ require("../dbconnect.php");
 $stmt = $db->prepare('SELECT * FROM agents where valid = 1');
 $stmt->execute();
 $agents = $stmt->fetchAll();
-session_start();
+
 if($_SERVER['REQUEST_METHOD']==='POST'){
   if(isset($_POST['agent_id'])){
     $agent_id = $_POST['agent_id'];
@@ -75,7 +75,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
               <p class="agentname"><?= $agent['agent_name']?></p>
 
               <p class="agentcategory">得意な業種：<?php
-              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id where valid = 1');
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id');
               $stmt->bindValue(':agent_id', $agent['id']);
               $stmt->execute();
               $matched_category = $stmt->fetchAll();
@@ -83,11 +83,11 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
               ?></p>
 
               <p class="agentcategory">対応エリア：<?php
-              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id where valid = 1');
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id');
               $stmt->bindValue(':agent_id', $agent['id']);
               $stmt->execute();
               $matched_job_area = $stmt->fetchAll();
-              print_r($matched_job_area[0]['area']);
+              print_r($matched_job_area['area']);
               ?></p>
 
               <form action="" method="POST">

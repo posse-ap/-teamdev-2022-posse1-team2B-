@@ -101,7 +101,7 @@ if(isset($_POST['target_student'])) {
               </div>
               <dl class="agentinfo">
                 <?php
-                  $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id left join category on characteristic.category_id = category.id left join job_area on characteristic.job_area_id = job_area.id left join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id where valid = 1');
+                  $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id left join category on characteristic.category_id = category.id left join job_area on characteristic.job_area_id = job_area.id left join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
                   // $stmt = $db->prepare('SELECT * FROM agents WHERE id = :agent_id');
                   $stmt -> bindValue(':agent_id', $row['agent_id']);
                   $stmt->execute();

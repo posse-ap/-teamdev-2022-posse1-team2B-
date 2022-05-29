@@ -60,17 +60,17 @@ if (isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()) {
                     <th>エージェンシー企業名：</th>
                     <td><?php print_r($agent['agent_name']); ?></td>
                     <?php
-                    $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id where valid = 1');
+                    $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id ');
                     $stmt->bindValue(':agent_id', $agent['id']);
                     $stmt->execute();
                     $matched_category = $stmt->fetchAll();
 
-                    $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id where valid = 1');
+                    $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id');
                     $stmt->bindValue(':agent_id', $agent['id']);
                     $stmt->execute();
                     $matched_job_area = $stmt->fetchAll();
 
-                    $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id where valid = 1');
+                    $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
                     $stmt->bindValue(':agent_id', $agent['id']);
                     $stmt->execute();
                     $matched_target_student = $stmt->fetchAll();
