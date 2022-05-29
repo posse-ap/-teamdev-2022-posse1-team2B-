@@ -10,14 +10,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
   header('Location: http://' . $_SERVER['HTTP_HOST'] . '../login.php');
   exit();
 } ?>
-
-<!-- 掲載修正依頼画面
-・会社名
-・ 会社住所
-・アイコン画像
-・備考
-・修正を申し込む画面
--->
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -40,8 +32,12 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
         <input type="text" id="companyName">
       </div>
       <div>
-        <label for="companyAddress">会社公式ホームページURL</label>
+        <label for="companyAddress">企業サイトのURL</label>
         <input type="text" id="companyAddress">
+      </div>
+      <div>
+        <label for="notificationEmail">通知先メールアドレス<span class="must">必須</span></label>
+        <input name='notification_email' type='email'>
       </div>
       <div>
         <label for="companyPostnumber">電話番号</label>

@@ -27,7 +27,6 @@ $target_students = $stmt->fetchAll();
 if (isset($_POST['edit_entry'])) {
 
   $id = $_POST['agent_id'];
-  $new_name = $_POST['new_name'];
   $new_url = $_POST['new_url'];
   $new_notification_email = $_POST['new_notification_email'];
   $new_tel_number = $_POST['new_tel_number'];
@@ -39,82 +38,384 @@ if (isset($_POST['edit_entry'])) {
   $new_detail = $_POST['new_detail'];
 
   // トランザクション開始
-  $db->beginTransaction();
-  try {
-    $stmt = $db->prepare(
-      'UPDATE 
-        agents 
-      SET 
-        agent_name = :new_name, 
-        url = :new_url, 
-        image = :new_image, 
-        notification_email = :new_notification_email, 
-        tel_number = :new_tel_number, 
-        post_number = :new_post_number, 
-        prefecture = :new_prefecture, 
-        municipalitie = :new_municipalitie, 
-        adress_number = :new_address_number,
-        detail = :new_detail 
-      WHERE id = :id'
-    );
 
-    $stmt->bindValue(':id', $id);
-    $stmt->bindParam(':new_name', $new_name);
-    $stmt->bindParam(':new_url', $new_url);
-    $stmt->bindParam(':new_image', $new_image);
-    $stmt->bindParam(':new_notification_email', $new_notification_email);
-    $stmt->bindParam(':new_tel_number', $new_tel_number);
-    $stmt->bindParam(':new_post_number', $new_post_number);
-    $stmt->bindParam(':new_prefecture', $new_prefecture);
-    $stmt->bindParam(':new_municipalitie', $new_municipalitie);
-    $stmt->bindParam(':new_address_number', $new_address_number);
-    $stmt->bindParam(':new_detail', $new_detail);
-    $stmt->execute();
-    $res = $db->commit();
-  } catch (PDOException $e) {
-    // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
-    $db->rollBack();
-    // echo "エラーが発生しました";
+  if (isset($_POST['new_name'])) {
+    $new_name = $_POST['new_name'];
+    $db->beginTransaction();
+    try {
+      $stmt = $db->prepare(
+        'UPDATE
+          agents
+        SET
+          agent_name = :new_name
+        WHERE
+          id = :id'
+      );
+
+      $stmt->bindValue(':id', $id);
+      $stmt->bindParam(':new_name', $new_name);
+      $stmt->execute();
+      $res = $db->commit();
+    } catch (PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      $db->rollBack();
+      // echo "エラーが発生しました";
+    }
+  } else {
+    exit;
   }
 
+  if (isset($_POST['new_url'])) {
+    $new_url = $_POST['new_url'];
+    $db->beginTransaction();
+    try {
+      $stmt = $db->prepare(
+        'UPDATE
+          agents
+        SET
+          url = :new_url
+        WHERE
+          id = :id'
+      );
 
-  $db->beginTransaction();
-  try {
-    $statement = $db->prepare(
-      'UPDATE 
-        characteristic
-      SET 
-        agent_id = :agent_id,
-        category_id = :category_id,
-        job_area_id = :job_area_id,
-        target_student_id = :target_student_id
-      WHERE id = :id'
-    );
+      $stmt->bindValue(':id', $id);
+      $stmt->bindParam(':new_url', $new_url);
+      $stmt->execute();
+      $res = $db->commit();
+    } catch (PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      $db->rollBack();
+      // echo "エラーが発生しました";
+    }
+  } else {
+    exit;
+  }
 
-    $stmt = $db->prepare('SELECT id FROM category where category_name = :category_name');
-    $stmt->bindValue(':category_name', $_POST["new_category"]);
-    $stmt->execute();
-    $category_id = $stmt->fetchAll();
+  if (isset($_POST['new_image'])) {
+    $new_image = $_POST['new_image'];
+    $db->beginTransaction();
+    try {
+      $stmt = $db->prepare(
+        'UPDATE
+          agents
+        SET
+          image = :new_image
+        WHERE
+          id = :id'
+      );
 
-    $stmt = $db->prepare('SELECT id FROM job_area where area = :area');
-    $stmt->bindValue(':area', $_POST["new_job_area"]);
-    $stmt->execute();
-    $job_area_id = $stmt->fetchAll();
+      $stmt->bindValue(':id', $id);
+      $stmt->bindParam(':new_image', $new_image);
+      $stmt->execute();
+      $res = $db->commit();
+    } catch (PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      $db->rollBack();
+      // echo "エラーが発生しました";
+    }
+  } else {
+    exit;
+  }
 
-    $stmt = $db->prepare('SELECT id FROM target_student where graduation_year = :graduation_year');
-    $stmt->bindValue(':graduation_year', $_POST["new_target_student"]);
-    $stmt->execute();
-    $target_student_id = $stmt->fetchAll();
+  if (isset($_POST['new_notification_email'])) {
+    $new_notification_email = $_POST['new_notification_email'];
+    $db->beginTransaction();
+    try {
+      $stmt = $db->prepare(
+        'UPDATE
+          agents
+        SET
+          notification_email = :new_notification_email
+        WHERE
+          id = :id'
+      );
 
-    $stmt->bindValue(':agent_id', $id);
-    $stmt->bindParam(':category_id', $category_id[0]['id']);
-    $stmt->bindParam(':job_area_id', $job_area_id[0]['id']);
-    $stmt->bindParam(':target_student_id', $target_student_id[0]['id']);
-    $stmt->execute();
-    $res = $db->commit();
-  } catch (PDOException $e) {
-    // エラーが発生した時トランザクションが開始したところまで巻き戻せる
-    $db->rollBack();
+      $stmt->bindValue(':id', $id);
+      $stmt->bindParam(':new_notification_email', $new_notification_email);
+      $stmt->execute();
+      $res = $db->commit();
+    } catch (PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      $db->rollBack();
+      // echo "エラーが発生しました";
+    }
+  } else {
+    exit;
+  }
+
+  if (isset($_POST['new_tel_number'])) {
+    $new_tel_number = $_POST['new_tel_number'];
+    $db->beginTransaction();
+    try {
+      $stmt = $db->prepare(
+        'UPDATE
+          agents
+        SET
+          tel_number = :new_tel_number
+        WHERE
+          id = :id'
+      );
+
+      $stmt->bindValue(':id', $id);
+      $stmt->bindParam(':new_tel_number', $new_tel_number);
+      $stmt->execute();
+      $res = $db->commit();
+    } catch (PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      $db->rollBack();
+      // echo "エラーが発生しました";
+    }
+  } else {
+    exit;
+  }
+
+  if (isset($_POST['new_post_number'])) {
+    $new_post_number = $_POST['new_post_number'];
+    $db->beginTransaction();
+    try {
+      $stmt = $db->prepare(
+        'UPDATE
+          agents
+        SET
+          post_number = :new_post_number
+        WHERE
+          id = :id'
+      );
+
+      $stmt->bindValue(':id', $id);
+      $stmt->bindParam(':new_post_number', $new_post_number);
+      $stmt->execute();
+      $res = $db->commit();
+    } catch (PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      $db->rollBack();
+      // echo "エラーが発生しました";
+    }
+  } else {
+    exit;
+  }
+
+  if (isset($_POST['new_prefecture'])) {
+    $new_prefecture = $_POST['new_prefecture'];
+    $db->beginTransaction();
+    try {
+      $stmt = $db->prepare(
+        'UPDATE
+          agents
+        SET
+          prefecture = :new_prefecture
+        WHERE
+          id = :id'
+      );
+
+      $stmt->bindValue(':id', $id);
+      $stmt->bindParam(':new_prefecture', $new_prefecture);
+      $stmt->execute();
+      $res = $db->commit();
+    } catch (PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      $db->rollBack();
+      // echo "エラーが発生しました";
+    }
+  } else {
+    exit;
+  }
+
+  if (isset($_POST['new_municipalitie'])) {
+    $new_municipalitie = $_POST['new_municipalitie'];
+    $db->beginTransaction();
+    try {
+      $stmt = $db->prepare(
+        'UPDATE
+          agents
+        SET
+          municipalitie = :new_municipalitie
+        WHERE
+          id = :id'
+      );
+
+      $stmt->bindValue(':id', $id);
+      $stmt->bindParam(':new_municipalitie', $new_municipalitie);
+      $stmt->execute();
+      $res = $db->commit();
+    } catch (PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      $db->rollBack();
+      // echo "エラーが発生しました";
+    }
+  } else {
+    exit;
+  }
+
+  if (isset($_POST['new_adress_number'])) {
+    $new_adress_number = $_POST['new_adress_number'];
+    $db->beginTransaction();
+    try {
+      $stmt = $db->prepare(
+        'UPDATE
+          agents
+        SET
+          adress_number = :new_adress_number
+        WHERE
+          id = :id'
+      );
+
+      $stmt->bindValue(':id', $id);
+      $stmt->bindParam(':new_adress_number', $new_adress_number);
+      $stmt->execute();
+      $res = $db->commit();
+    } catch (PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      $db->rollBack();
+      // echo "エラーが発生しました";
+    }
+  } else {
+    exit;
+  }
+
+  if (isset($_POST['new_detail'])) {
+    $new_detail = $_POST['new_detail'];
+    $db->beginTransaction();
+    try {
+      $stmt = $db->prepare(
+        'UPDATE
+          agents
+        SET
+          detail = :new_detail
+        WHERE
+          id = :id'
+      );
+
+      $stmt->bindValue(':id', $id);
+      $stmt->bindParam(':new_detail', $new_detail);
+      $stmt->execute();
+      $res = $db->commit();
+    } catch (PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      $db->rollBack();
+      // echo "エラーが発生しました";
+    }
+  } else {
+    exit;
+  }
+
+  if (isset($_POST['new_category'])) {
+    $db->beginTransaction();
+    try {
+      $stmt = $db->prepare(
+        'UPDATE
+          characteristic
+        SET
+          category_id = :category_id
+        WHERE
+          id = :id'
+      );
+
+      $stmt = $db->prepare('SELECT id FROM category where category_name = :category_name');
+      $stmt->bindValue(':category_name', $_POST["new_category"]);
+      $stmt->execute();
+      $category_id = $stmt->fetchAll();
+
+
+      $stmt->bindValue(':id', $id);
+      $stmt->bindParam(':category_id', $category_id[0]['id']);
+      $stmt->execute();
+      $res = $db->commit();
+    } catch (PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      $db->rollBack();
+      // echo "エラーが発生しました";
+    }
+  } else {
+    exit;
+  }
+
+  if (isset($_POST['new_job_area'])) {
+    $db->beginTransaction();
+    try {
+      $stmt = $db->prepare(
+        'UPDATE
+          characteristic
+        SET
+          job_area_id = :job_area_id
+        WHERE
+          id = :id'
+      );
+
+      $stmt = $db->prepare('SELECT id FROM job_area where area = :area');
+      $stmt->bindValue(':area', $_POST["new_job_area"]);
+      $stmt->execute();
+      $job_area_id = $stmt->fetchAll();
+
+
+      $stmt->bindValue(':id', $id);
+      $stmt->bindParam(':job_area_id', $job_area_id[0]['id']);
+      $stmt->execute();
+      $res = $db->commit();
+    } catch (PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      $db->rollBack();
+      // echo "エラーが発生しました";
+    }
+  } else {
+    exit;
+  }
+
+  if (isset($_POST['new_target_student'])) {
+    $db->beginTransaction();
+    try {
+      $stmt = $db->prepare(
+        'UPDATE
+          characteristic
+        SET
+          target_student_id = :target_student_id
+        WHERE
+          id = :id'
+      );
+
+      $stmt = $db->prepare('SELECT id FROM target_student where graduation_year = :graduation_year');
+      $stmt->bindValue(':graduation_year', $_POST["new_target_student"]);
+      $stmt->execute();
+      $target_student_id = $stmt->fetchAll();
+
+
+
+      $stmt->bindValue(':id', $id);
+      $stmt->bindParam(':target_student_id', $target_student_id[0]['id']);
+      $stmt->execute();
+      $res = $db->commit();
+    } catch (PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      $db->rollBack();
+      // echo "エラーが発生しました";
+    }
+  } else {
+    exit;
+  }
+
+  if (isset($_POST['agent_id'])) {
+    $db->beginTransaction();
+    try {
+      $stmt = $db->prepare(
+        'UPDATE
+          characteristic
+        SET
+          agent_id = :agent_id
+        WHERE
+          id = :id'
+      );
+
+      $stmt->bindValue(':agent_id', $id);
+      $stmt->bindParam(':id', $id);
+      $stmt->execute();
+      $res = $db->commit();
+    } catch (PDOException $e) {
+      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
+      $db->rollBack();
+      // echo "エラーが発生しました";
+    }
+  } else {
+    exit;
   }
 }
 ?>
@@ -179,9 +480,9 @@ if (isset($_POST['edit_entry'])) {
       <dt><input name='new_image' type="file"></dt>
       <dd>備考</dd>
       <dt><textarea name="new_detail" id="detail" cols="30" rows="10"></textarea></dt>
-    </dl>
-    <input type="hidden" name="agent_id" value="<?php echo $_POST['agent_id']; ?>">
-    <input type="submit" class="submitbtn" name="edit_entry" value="修正完了">
+      </dl>
+      <input type="hidden" name="agent_id" value="<?php echo $_POST['agent_id']; ?>">
+      <input type="submit" class="submitbtn" name="edit_entry" value="修正完了">
       <a href='javascript:history.back()' class="returnbtn">戻る</a>
     </form>
   </div>
