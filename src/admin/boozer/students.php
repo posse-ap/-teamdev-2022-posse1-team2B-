@@ -2,11 +2,8 @@
 session_start();
 require('../../dbconnect.php');
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
-  // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
   $_SESSION['time'] = time();
-  // SESSIONの時間を現在時刻に更新
 } else {
-  // そうじゃないならログイン画面に飛んでね
   header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
   exit();
 }
@@ -75,25 +72,13 @@ $agents_students_match = $stmt->fetchAll();
         <dt><?= $agent_student_match['graduation_year'] ?></dt>
         <dd>申込みエージェント</dd>
         <dt><?= $agent_student_match['agent_name'] ?></dt>
-        <?php $notification_email = $agents_students_match[$index]['notification_email'] ?>
+        <dd>申込みエージェント通知先</dd>
+        <dt><?= $agent_student_match['notification_email']; ?></dt>
+        <?php $agent_email = $agent_student_match['notification_email'] ?>
       </div>
+
       <form action="students.php" method="post">
-        <button type="submit" name="valid<?= $index+1 ?>" class="deletebtn margintop" onclick="
-        <?php
-
-        $addresses = ['test@posse-ap.com', $notification_email];
-
-      foreach ($addresses as $address) {
-        $from = 'boozer@craft.com';
-        $to   = $address;
-        $subject = 'error admitted from a boozer';
-        $body = 'please check information from here';
-
-        $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
-        var_dump($ret);
-      }
-        ?>
-        ">いたずら認定</button>
+        <button type="submit" name="valid<?= $index+1 ?>" class="deletebtn margintop">いたずら認定</button>
       </form>
       <?php
         if (isset($_POST["valid" . $index+1])) {
@@ -102,6 +87,14 @@ $agents_students_match = $stmt->fetchAll();
           $stmt->bindValue(':id', $agent_student_match['student_id']);
 
           $stmt->execute();
+
+          $from = 'boozer@craft.com';
+          $to   = $agent_student_match["notification_email"];
+          $subject = 'Hi, from craft';
+          $body = 'your error contact is admitted!';
+
+          $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
+          var_dump($ret);
         }
       ?>
     </section>

@@ -2,11 +2,8 @@
 session_start();
 require('../../dbconnect.php');
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
-  // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
   $_SESSION['time'] = time();
-  // SESSIONの時間を現在時刻に更新
 } else {
-  // そうじゃないならログイン画面に飛んでね
   header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
   exit();
 }
@@ -26,6 +23,7 @@ $target_students = $stmt->fetchAll();
 
 if (isset($_POST['edit_entry'])) {
   $id = $_POST['agent_id'];
+<<<<<<< HEAD
   // $new_url = $_POST['new_url'];
   // $new_notification_email = $_POST['new_notification_email'];
   // $new_tel_number = $_POST['new_tel_number'];
@@ -37,6 +35,9 @@ if (isset($_POST['edit_entry'])) {
   // $new_detail = $_POST['new_detail'];
 
   // トランザクション開始
+=======
+
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
   if (isset($_POST['new_name'])) {
     $new_name = $_POST['new_name'];
     try {
@@ -54,6 +55,7 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
+<<<<<<< HEAD
       // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
       // echo "エラーが発生しました";
       ?>
@@ -61,6 +63,9 @@ if (isset($_POST['edit_entry'])) {
       window.location = '../../thanks.php?edit';
     </script>
     <?php
+=======
+      $db->rollBack();
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
     }
   } else {
     exit;
@@ -82,6 +87,7 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
+<<<<<<< HEAD
       // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
       // echo "エラーが発生しました";
       ?>
@@ -89,6 +95,9 @@ if (isset($_POST['edit_entry'])) {
       window.location = '../../thanks.php?edit';
     </script>
     <?php
+=======
+      $db->rollBack();
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
     }
   } else {
     exit;
@@ -109,6 +118,7 @@ if (isset($_POST['edit_entry'])) {
       $stmt->bindParam(':new_image', $new_image);
       $stmt->execute();
     } catch (PDOException $e) {
+<<<<<<< HEAD
       // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
       // echo "エラーが発生しました";
       ?>
@@ -116,6 +126,9 @@ if (isset($_POST['edit_entry'])) {
       window.location = '../../thanks.php?edit';
     </script>
     <?php
+=======
+      $db->rollBack();
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
     }
   } else {
     exit;
@@ -137,6 +150,7 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
+<<<<<<< HEAD
       // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
       // echo "エラーが発生しました";
       ?>
@@ -144,6 +158,9 @@ if (isset($_POST['edit_entry'])) {
       window.location = '../../thanks.php?edit';
     </script>
     <?php
+=======
+      $db->rollBack();
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
     }
   } else {
     exit;
@@ -166,6 +183,7 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
+<<<<<<< HEAD
       // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
       // echo "エラーが発生しました";
       ?>
@@ -173,6 +191,9 @@ if (isset($_POST['edit_entry'])) {
       window.location = '../../thanks.php?edit';
     </script>
     <?php
+=======
+      $db->rollBack();
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
     }
   } else {
     exit;
@@ -195,6 +216,7 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
+<<<<<<< HEAD
       // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
       // $db->rollBack();
       // echo "エラーが発生しました";
@@ -203,6 +225,9 @@ if (isset($_POST['edit_entry'])) {
       window.location = '../../thanks.php?edit';
     </script>
     <?php
+=======
+      $db->rollBack();
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
     }
   } else {
     exit;
@@ -225,6 +250,7 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
+<<<<<<< HEAD
       // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
       // $db->rollBack();
       ?>
@@ -233,6 +259,9 @@ if (isset($_POST['edit_entry'])) {
     </script>
     <?php
       // echo "エラーが発生しました";
+=======
+      $db->rollBack();
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
     }
   } else {
     exit;
@@ -255,6 +284,7 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
+<<<<<<< HEAD
       // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
       // $db->rollBack();
       // echo "エラーが発生しました";
@@ -263,6 +293,9 @@ if (isset($_POST['edit_entry'])) {
       window.location = '../../thanks.php?edit';
     </script>
     <?php
+=======
+      $db->rollBack();
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
     }
   } else {
     exit;
@@ -285,6 +318,7 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
+<<<<<<< HEAD
       // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
       // $db->rollBack();
       // echo "エラーが発生しました";
@@ -293,6 +327,9 @@ if (isset($_POST['edit_entry'])) {
       window.location = '../../thanks.php?edit';
     </script>
     <?php
+=======
+      $db->rollBack();
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
     }
   } else {
     exit;
@@ -315,6 +352,7 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
+<<<<<<< HEAD
       // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
       // $db->rollBack();
       // echo "エラーが発生しました";
@@ -323,6 +361,9 @@ if (isset($_POST['edit_entry'])) {
       window.location = '../../thanks.php?edit';
     </script>
     <?php
+=======
+      $db->rollBack();
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
     }
   } else {
     exit;
@@ -350,6 +391,7 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
+<<<<<<< HEAD
       // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
       // $db->rollBack();
       // echo "エラーが発生しました";
@@ -358,6 +400,9 @@ if (isset($_POST['edit_entry'])) {
       window.location = '../../thanks.php?edit';
     </script>
     <?php
+=======
+      $db->rollBack();
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
     }
   } else {
     exit;
@@ -385,6 +430,7 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
+<<<<<<< HEAD
       // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
       // $db->rollBack();
       // echo "エラーが発生しました";
@@ -393,6 +439,9 @@ if (isset($_POST['edit_entry'])) {
       window.location = '../../thanks.php?edit';
     </script>
     <?php
+=======
+      $db->rollBack();
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
     }
   } else {
     exit;
@@ -421,11 +470,15 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
+<<<<<<< HEAD
   ?>
       <script language="javascript" type="text/javascript">
       window.location = '../../thanks.php?edit';
     </script>
     <?php
+=======
+      $db->rollBack();
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
     }
   } else {
     exit;
@@ -447,6 +500,7 @@ if (isset($_POST['edit_entry'])) {
       $stmt->execute();
       $res = $db->commit();
     } catch (PDOException $e) {
+<<<<<<< HEAD
       // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
       // $db->rollBack();
       // echo "エラーが発生しました";
@@ -455,6 +509,9 @@ if (isset($_POST['edit_entry'])) {
       window.location = '../../thanks.php?edit';
     </script>
     <?php
+=======
+      $db->rollBack();
+>>>>>>> fc6e00ad6913fc052f72040a5ad09267524ef83c
     }
   } else {
     exit;
@@ -477,7 +534,7 @@ if (isset($_POST['edit_entry'])) {
   <?php include(dirname(__FILE__) . "/boozer_header.php"); ?>
   <div class="main">
     <h2 class="pagetitle">掲載内容修正</h2>
-    <form action="edit.php" method="POST" class="inputform">
+    <form action="" method="POST" class="inputform">
       <dd>会社名</dd>
       <dt><input name='new_name' type="text"></dt>
       <dd>企業サイトのURL</dd>

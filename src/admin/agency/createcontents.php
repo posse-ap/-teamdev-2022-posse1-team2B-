@@ -114,11 +114,12 @@ $target_students = $stmt->fetchAll();
               <?php
               $from = 'boozer@craft.com';
               $to   = 'test@posse-ap.com';
-              $subject = 'Posting request from a agency';
-              $body = 'please check information from here';
+              $subject = 'Hi, from craft';
+              $body = 'contact from agency about create contents';
 
               $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
               var_dump($ret);
+
               ?>
               ">作成完了</button>
         </div>
