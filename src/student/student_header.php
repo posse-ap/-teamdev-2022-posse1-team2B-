@@ -13,7 +13,7 @@
   </nav>
   <div id="contactEmailAddress" class="contact_email_address navdropdown">
     <button id="closeButton" class="exitbtn">✕</button><br>
-    サービス等に関するお問い合わせは、xxx@co.jp までご連絡ください。 
+    サービス等に関するお問い合わせは、xxx@co.jp までご連絡ください。<br>
     エージェンシー向け掲載依頼のお問い合わせは、yyy@co.jpまでご連絡ください。
   </div>
 </header>

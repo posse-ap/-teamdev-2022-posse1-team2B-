@@ -125,11 +125,8 @@ if (isset($_POST['new_entry'])) {
       ':target_student_id' => $target_student_id[0]
     );
     $stm->execute($param);
-    $response = $db->commit();
-  } catch (PDOException $e) {
-    $db->rollBack();
-  }
-}
+    // $response = $db->commit();
+  } 
 ?>
 
 <!DOCTYPE html>
