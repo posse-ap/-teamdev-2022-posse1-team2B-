@@ -112,7 +112,6 @@ if (isset($_POST['new_entry'])) {
     $stmt->bindValue(':area', $_POST["job_area"]);
     $stmt->execute();
     $job_area_id = $stmt->fetch();
-    echo $job_area_id[0];
 
     $stmt = $db->prepare('SELECT id FROM target_student where graduation_year = :graduation_year');
     $stmt->bindValue(':graduation_year', $_POST["target_student"]);
@@ -146,7 +145,7 @@ if (isset($_POST['new_entry'])) {
 </head>
 
 <body>
-  <!-- <?php include (dirname(__FILE__) . "/agency_header.php");?> -->
+  <?php include (dirname(__FILE__) . "/agency_header.php");?>
   <div class="main">
     <h2 class="pagetitle">エージェンシー掲載情報を登録</h2>
     <p class="announce">※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
