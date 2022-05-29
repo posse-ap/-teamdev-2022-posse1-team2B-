@@ -136,7 +136,6 @@ if (isset($_POST['edit_entry'])) {
   <?php include(dirname(__FILE__) . "/boozer_header.php"); ?>
   <div class="main">
     <h2 class="pagetitle">掲載内容修正</h2>
-<<<<<<< HEAD
     <form action="../../thanks.php" method="POST" class="inputform">
       <dd>会社名</dd>
       <dt><input name='new_name' type="text"></dt>

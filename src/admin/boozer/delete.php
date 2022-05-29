@@ -58,7 +58,7 @@ if (isset($_POST['agency_delete'])) {
   if ($res) {
 ?>
     <script language="javascript" type="text/javascript">
-      window.location = '../../thanks.php';
+      window.location = '../../thanks.php?delete';
     </script>
 <?php
     exit;

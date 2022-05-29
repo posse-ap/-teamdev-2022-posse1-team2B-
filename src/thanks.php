@@ -5,12 +5,13 @@ require("./dbconnect.php");
 // サンクスページに遷移する画面
 // agency
   //1 アカウント作成完了：top account thanks////btn_confirm  
-  // 2  掲載情報新規作成：createcontents thanks/////create //!!!!
-  // 3 掲載情報修正依頼：fixcontents thanks///fix//!!!!!!!
-  // 4 学生からのお問い合わせ取り消し依頼：students thanks////mischief_report//!!!!
+  // 2  掲載情報新規作成：createcontents thanks/////create //!!!!..
+  // 3 掲載情報修正依頼：fixcontents thanks///fix//!!!!!!!..
+  // 4 学生からのお問い合わせ取り消し依頼：students thanks////mischief_report//!!!!//
 // boozer
   // 5  掲載情報編集：edit thanks///edit ///!!!!!!!!
-  //6 掲載情報新規作成：create_contents thanks////new_entry
+  //6 掲載情報新規作成：create_contents thanks////new_entry!!
+
 // student
  // 7 お問い合わせ：contact thanks////final_contact///!!!!
 
@@ -44,7 +45,14 @@ if(isset($_POST['btn_confirm'])){ // agency
    // 7 お問い合わせ：contact thanks////final_contact
     $action = "エージェンシー企業へのお問い合わせ";
     $user_name = "student";
-} 
+} else if (isset($_GET['delete'])) { //student
+   // 7 お問い合わせ：contact thanks////final_contact
+    $action = "エージェンシー企業の掲載の削除";
+    $user_name = "agency";
+} else if(isset($_GET['login'])) {
+  $action = "アカウントの登録";
+  $user_name = "new_agency";
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -64,6 +72,13 @@ if(isset($_POST['btn_confirm'])){ // agency
     //   include (dirname(__FILE__) . "/" . $user_name . "/" . $user_name . "_header.php");
     // }
     ?>
+  <header>
+    <div class="headertitle">
+      <p class="craft">CRAFT</p>
+      <p class="craftby">by</p>
+      <img src="../../img/syukatudotcom_logo_white.png" alt="就活.com">
+    </div>
+  </header>
   <div class="main">
     <h2 class="pagetitle"><?php print_r($action);?>完了</h2>
     <div>
@@ -72,23 +87,28 @@ if(isset($_POST['btn_confirm'])){ // agency
         <?php if($user_name === "boozer"):?>
         ../admin/boozer/index.php
         <?php elseif($user_name === "agency"): ?>
-        ../admin/agency/index.php 
+        ../admin/agency/index.php
+        <?php elseif($user_name === "new_agency"): ?>
+          ../admin/agency/top.php
         <?php else : ?>
           ../student/index.php
         <?php endif;?>
       " class="returnbtn">Top画面に戻る</a>
     </div>
   </div>
+  <footer>
+    <img src="../../img/boozer_logo_white.png" alt="boozer">
+  </footer>
   <?php 
   // if($user_name === "boozer" || $user_name === "agency") {
-  //   include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_footer.php");
-  //   echo('<script src="./admin/boozer/boozer.js"></script>');
+  //   // include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_footer.php");
+  //   // echo('<script src="./admin/boozer/boozer.js"></script>');
   // } elseif($user_name === "agency") {
   //   include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_footer.php");
-  //   echo('<script src="../admin/agency/agency.js"></script>');
+  //   // echo('<script src="../admin/agency/agency.js"></script>');
   // } else {
   //   include (dirname(__FILE__) . "/" . $user_name . "/" . $user_name . "_footer.php");
-  //   echo('<script src="../student/student.js"></script>');
+  //   // echo('<script src="../student/student.js"></script>');
   // }
   ?>
 </body>
