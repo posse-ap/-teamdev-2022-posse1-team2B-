@@ -140,13 +140,13 @@ if(isset($_POST['aria'])) {
         ?>エリアに対応しているエージェンシー企業一覧</h1>
       <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
       <a href="./keep.php">キープ中の企業</a>
-      <ol>
+      <ol class="agencydetailbox">
         <?php
             if (isset($agent_areas)) {
               foreach($agent_areas as $index => $agent_area):
         ?>
         <div class="agencydetailbox">
-          <li class="agencydetailbox">        
+          <li class="agencydetailbox agencylistbox">        
               <p>会社名:<?php echo$agent_area['agent_name'];?></p>
               <p>得意な業種:<?php echo$agent_area['category_name'];?></p>
               <p>対応エリア:<?php echo$agent_area['area'];?></p>

@@ -460,6 +460,7 @@ footer img {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: white;
 }
 .keptagency {
   background-color: white;
@@ -479,6 +480,10 @@ footer img {
 .keepcategory {
   font-weight: 500px;
   font-size: 15px;
+}
+
+.agencylistbox {
+  background-color: white;
 }
 
 /*AGENCY/TOP.PHP*/
