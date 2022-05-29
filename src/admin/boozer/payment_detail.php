@@ -65,6 +65,15 @@ $payment = ($month_total - $error_total) * 3000;
 <body>
   <?php include (dirname(__FILE__) . "/boozer_header.php");?>
   <div class="main">
+    <div class="months">
+      <?php 
+        $months = [1,2,3,4,5,6,7,8,9,10,11,12];
+        foreach ($months as $key => $month) : 
+        ?>
+        <button class="monthcircle"><?= $month;?></button>
+      <?php endforeach;?>
+    </div>
+
     <div class="paymentboxouter">
       <div class="agencyname">
         <span><?=$agent['agent_name']?></span>

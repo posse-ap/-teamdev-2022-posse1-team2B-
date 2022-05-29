@@ -146,7 +146,7 @@ if (isset($_POST['contact'])) {
     <!-- 確認画面 -->
     <div class="main">
       <!-- 登録いたしました！だと完了ボタン押さないでブラウザバックする人いそうだから、登録いたしますか？でよくない？ -->
-      <h1>こちらの内容で登録いたします</h1>
+      <h1>内容の確認をおねがいします</h1>
       <form method="POST" action="apply.php">
         <div>
           <label>氏</label>
