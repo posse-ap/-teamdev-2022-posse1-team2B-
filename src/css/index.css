@@ -138,7 +138,7 @@ header {
   background-color: #96D2C4;
   border: none;
   z-index: 100;
-  padding: 0px 10px 20px 10px;
+  padding: 23px 10px 20px 10px;
   height: 140px;
   position: relative;
 }
@@ -172,7 +172,7 @@ footer img {
   border: none;
   font-size: 18px;
   width: 80px;
-  padding: 7px 15px;
+  padding: 7px 10px;
   display: block;
   margin: 0 auto;
   margin-bottom: 15px;
@@ -417,7 +417,7 @@ footer img {
 /*STUDENTS/AGENTDETAIL*/
 .agentdetailinner {
   background-color: white;
-  margin: 25px 18px 25px 18px;
+  margin: 25px 14px 25px 14px;
   padding: 20px 17px 20px 17px;
 }
 .agentheader {
