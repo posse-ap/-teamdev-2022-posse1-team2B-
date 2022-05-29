@@ -22,7 +22,6 @@ if (isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()) {
   session_destroy();
 }
 if (isset(
-  // これらが入力されていたら
   $_POST['student_last_name'],
   $_POST['student_first_name'],
   $_POST['student_last_name_kana'],
@@ -38,11 +37,7 @@ if (isset(
   $_POST['college_department'],
   $_POST['graduation_year']
 )
-  // ２回目のときポストされない
 ) {
-
-  // データの保存
-  // sql文書きます
   $stmt = $db->prepare('insert into students 
   (
     student_last_name, 
@@ -78,7 +73,6 @@ if (isset(
     :graduation_year
   )');
 
-  // ポストを定数に置いて
   $student_last_name = $_POST['student_last_name'];
   $student_first_name = $_POST['student_first_name'];
   $student_last_name_kana = $_POST['student_last_name_kana'];
@@ -111,17 +105,16 @@ if (isset(
     ':graduation_year' => $graduation_year
   );
 
-  // その配列をexecute
   $stmt->execute($param);
 }
 
 
 $page = 0;
-// デフォルトは0
+
 if (isset($_POST['contact'])) {
-  // コンタクトされたとき
+
   $page = 1;
-  // ページを1に
+
 }
 ?>
 
@@ -144,7 +137,6 @@ if (isset($_POST['contact'])) {
   ?>
     <!-- 確認画面 -->
     <div class="main">
-      <!-- 登録いたしました！だと完了ボタン押さないでブラウザバックする人いそうだから、登録いたしますか？でよくない？ -->
       <h1>内容の確認をおねがいします</h1>
       <form method="POST" action="apply.php">
         <div>
@@ -231,7 +223,6 @@ if (isset($_POST['contact'])) {
             <?php echo $_POST["graduation_year"]; ?>
           </p>
         </div>
-        <!-- 入力した値を受け渡す -->
         <button type="submit" name="btn_back" formaction="contact.php" class="returnbtn">登録し直す</button>
         <input type="hidden" name="student_last_name" value="<?php echo $_POST["student_last_name"]; ?>">
         <input type="hidden" name="student_last_name_kana" value="<?php echo $_POST["student_last_name_kana"]; ?>">
@@ -248,6 +239,7 @@ if (isset($_POST['contact'])) {
         <input type="hidden" name="college_department" value="<?php echo $_POST["college_department"]; ?>">
         <input type="hidden" name="graduation_year" value="<?php echo $_POST["graduation_year"]; ?>">
         <input type="hidden" name="notification_email" value="<?php echo $_POST["notification_email"]; ?>">
+        <input type="hidden" name="contact_agent_id" value="<?php echo $_POST["contact_agent_id"]; ?>">
         <button type="submit" name="final_contact" class="inquirybtn" onclick="
       <?php
       $addresses = ['test@posse-ap.com', $_POST['notification_email']];
@@ -255,8 +247,8 @@ if (isset($_POST['contact'])) {
       foreach ($addresses as $address) {
         $from = 'boozer@craft.com';
         $to   = $address;
-        $subject = 'contact from a student';
-        $body = 'please check information from here';
+        $subject = 'Hi, from craft';
+        $body = 'student contacts to craft';
 
         $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
         var_dump($ret);
@@ -276,7 +268,7 @@ if (isset($_POST['contact'])) {
             $stmt->execute();
             $agencies = $stmt->fetch();
             ?>
-      <div class="agencybtn">申し込み先企業：<?php print_r($agencies['agent_name']);?>
+      <div class="agencybtn">申し込み先企業：
         <?php
         if (isset($_POST['keep_agency_contact'])) {
           foreach ($keeps as $keep) {
@@ -286,7 +278,9 @@ if (isset($_POST['contact'])) {
             $agent = $stmt->fetch();
             echo '<br>・' . $agent['agent_name'];
           }
-        };
+        } else {
+          print_r($agencies['agent_name']);
+        }
         ?>
       </div>
       <form action="contact.php" method="POST">
@@ -357,7 +351,8 @@ if (isset($_POST['contact'])) {
             </div>
           </div>
           <div>
-            <input type="submit" name="contact" class="ignore inquirybtn" value="エージェンシーにお問い合わせ">
+          <input type="hidden" name="contact_agent_id" value="<?php echo $agencies['agent_name']; ?>">
+            <input type="submit" name="contact" value="エージェンシー企業に問い合わせる">
           </div>
       </form>
       <?php

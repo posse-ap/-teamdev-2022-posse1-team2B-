@@ -44,6 +44,10 @@ if (isset($_POST['agency_delete'])) {
     $stmt = $db->prepare('DELETE FROM agents WHERE id = :id');
     $stmt->bindValue(':id', $id);
     $stmt->execute();
+    // $res = $db->commit();
+    $stmt = $db->prepare('DELETE FROM characteristic WHERE agent_id = :id');
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
     $res = $db->commit();
   } catch (PDOException $e) {
     // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
@@ -54,7 +58,7 @@ if (isset($_POST['agency_delete'])) {
   if ($res) {
 ?>
     <script language="javascript" type="text/javascript">
-      window.location = './thanks.php';
+      window.location = '../../thanks.php?delete';
     </script>
 <?php
     exit;

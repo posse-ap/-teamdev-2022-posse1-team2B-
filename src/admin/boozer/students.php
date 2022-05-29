@@ -2,12 +2,9 @@
 session_start();
 require('../../dbconnect.php');
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
-  // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
   $_SESSION['time'] = time();
-  // SESSIONの時間を現在時刻に更新
 } else {
-  // そうじゃないならログイン画面に飛んでね
-  header('Location: http://' . $_SERVER['HTTP_HOST'] . '../login.php');
+  header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
   exit();
 }
 
@@ -15,6 +12,12 @@ $stmt = $db->prepare('select * from intermediate left join students on intermedi
 $stmt->execute();
 $agents_students_match = $stmt->fetchAll();
 
+
+
+$page_flag = 0;
+if($_POST['report']) {
+  $page_flag = 1;
+} 
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +35,47 @@ $agents_students_match = $stmt->fetchAll();
 <body>
   <?php include(dirname(__FILE__) . "/boozer_header.php"); ?>
   <div class="main">
+    <?php
+    if($page_flag === 1) :
+      $student_id = $_POST['student_id'];
+      $stmt = $db->prepare('select * from students where id = :student_id');
+      $stmt->bindValue(':student_id', $student_id);
+      $stmt->execute();
+      $student_information = $stmt->fetch();
+      $stmt = $db->prepare('select * from intermediate left join students on intermediate.student_id = students.id right join agents on intermediate.agent_id = agents.id where student_id = :student_id');
+      $stmt->bindValue(':student_id', $student_id);
+      $stmt->execute();
+      $agents_information = $stmt->fetchAll();
+    ?>
+    <div class="table" onclick="showModal();">
+        <dd>名前</dd>
+        <dt><?= $student_information['student_last_name'], $student_information['student_first_name']; ?></dt>
+        <dd>カナ</dd>
+        <dt><?= $student_information['student_last_name_kana'], $student_information['student_first_name_kana']; ?></dt>
+        <dd>電話番号</dd>
+        <dt><?= $student_information['tel_number'] ?></dt>
+        <dd>メールアドレス</dd>
+        <dt><?= $student_information['email'] ?></dt>
+        <dd>出身大学</dd>
+        <dt><?= $student_information['college_name'] ?></dt>
+        <dd>学部</dd>
+        <dt><?= $student_information['undergraduate'] ?></dt>
+        <dd>学科</dd>
+        <dt><?= $student_information['college_department'] ?></dt>
+        <dd>卒業年</dd>
+        <dt><?= $student_information['graduation_year'] ?></dt>
+        <dd>申込みエージェント</dd>
+        <?php foreach($agents_information as $agent_information) : ?>
+        <dt><?= $agent_information['agent_name']; ?></dt>
+        <?php endforeach; ?>
+        <dd>申込みエージェント通知先</dd>
+        <dt><?= $agent_information['notification_email']; ?></dt>
+        <?php $agent_email = $agent_information['notification_email'] ?>
+    </div>
+    <a href="index.php" class="returnbtn">TOPに戻る</a>
+    <?php
+    else:
+    ?>
     <section>
       <h2 class="pagetitle">学生一覧</h2>
       <div class="months">
@@ -43,62 +87,43 @@ $agents_students_match = $stmt->fetchAll();
       </div>
       <?php
       foreach ($agents_students_match as $index => $agent_student_match) : ?>
-        <!-- 学生のデータを問い合わせぶん回す -->
         <div class="studentsbox">
-          <span><?= $agent_student_match['student_last_name'], $agent_student_match['student_first_name']; ?></span>
-          <span><?= $agent_student_match['student_last_name_kana'], $agent_student_match['student_first_name_kana']; ?></span>
-          <dd>申込みエージェント：</dd>
-          <dt><?= $agent_student_match['agent_name'] ?></dt>
-          <form action="" method="POST">
-            <input type='submit' name='report' value='詳細' class="submitbtn" id="boozer_student_detailbtn">
-          </form>
+            <span><?= $agent_student_match['student_last_name'], $agent_student_match['student_first_name']; ?></span>
+            <span><?= $agent_student_match['student_last_name_kana'], $agent_student_match['student_first_name_kana']; ?></span>
+            <dd>申込みエージェント：</dd>
+            <dt><?= $agent_student_match['agent_name'] ?></dt>
+            <form action="" method="POST">
+              <input type="hidden" name="student_id" value="<?php echo $agent_student_match['student_id']; ?>">
+              <input type='submit' name='report' value='詳細' class="width submitbtn" id="boozer_student_detailbtn">
+            </form>
+            <form action="students.php" method="post">
+              <button type="submit" name="valid<?= $index+1 ?>" class="width deletebtn">いたずら認定</button>
+                </form>
+          <?php
+            if (isset($_POST["valid" . $index+1])) {
+              $stmt = $db->prepare('UPDATE students SET valid = 1 WHERE id = :id');
+
+              $stmt->bindValue(':id', $agent_student_match['student_id']);
+
+              $stmt->execute();
+
+              $from = 'boozer@craft.com';
+              $to   = $agent_student_match["notification_email"];
+              $subject = 'Hi, from craft';
+              $body = 'your error contact is admitted!';
+
+              $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
+              var_dump($ret);
+            }
+          ?>
         </div>
-        
     </section>
-
-
-    <section class="tableouter" id="boozer_student_table">
-      <!-- <button>☓</button> -->
-      <div class="table" onclick="showModal();">
-        <dd>名前</dd>
-        <dt><?= $agent_student_match['student_last_name'], $agent_student_match['student_first_name']; ?></dt>
-        <dd>カナ</dd>
-        <dt><?= $agent_student_match['student_last_name_kana'], $agent_student_match['student_first_name_kana']; ?></dt>
-        <dd>電話番号</dd>
-        <dt><?= $agent_student_match['tel_number'] ?></dt>
-        <dd>メールアドレス</dd>
-        <dt><?= $agent_student_match['email'] ?></dt>
-        <dd>出身大学</dd>
-        <dt><?= $agent_student_match['college_name'] ?></dt>
-        <dd>学部</dd>
-        <dt><?= $agent_student_match['undergraduate'] ?></dt>
-        <dd>学科</dd>
-        <dt><?= $agent_student_match['college_department'] ?></dt>
-        <dd>卒業年</dd>
-        <dt><?= $agent_student_match['graduation_year'] ?></dt>
-        <dd>申込みエージェント</dd>
-        <dt><?= $agent_student_match['agent_name'] ?></dt>
-      </div>
-      <form action="students.php" method="post">
-        <button type="submit" name="valid<?= $index+1 ?>" class="deletebtn margintop">いたずら認定</button>
-      </form>
-      <?php
-        if (isset($_POST["valid" . $index+1])) {
-          // 特定のボタンがクリックされたら
-          $stmt = $db->prepare('UPDATE students SET valid = 1 WHERE id = :id');
-          // validを１にする
-
-          // 値をセット
-          $stmt->bindValue(':id', $agent_student_match['student_id']);
-
-          // SQL実行
-          $stmt->execute();
-        }
-      ?>
-    </section>
+    <!-- <section class="tableouter" id="boozer_student_table">
+ 
+    </section> -->
   <?php endforeach; ?>
-  <a href="index.php" class="returnbtn">戻る</a>
   </div>
+  <?php endif; ?>
   <?php include(dirname(__FILE__) . "/boozer_footer.php"); ?>
   <script src="./boozer.js"></script>
 </body>

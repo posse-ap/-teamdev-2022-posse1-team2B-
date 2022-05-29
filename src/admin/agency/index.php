@@ -1,16 +1,21 @@
 <?php
 session_start();
 require('../../dbconnect.php');
+$login=array();
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
     // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
     $_SESSION['time'] = time();
     // SESSIONの時間を現在時刻に更新
+    $login = $_SESSION['login'];
 } else {
     // そうじゃないならログイン画面に飛んでね
     header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
     exit();
 }
 // 1日以上間隔が空いた時にログインをさせる仕組み
+
+print_r($login);
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -30,8 +35,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
     <div class="agencyindex">
       <h2 class="pagetitle">掲載情報登録</h2>
       <div>
-        <a href="./createcontents.php" class="newaccountbtn">新規作成</a>
-        <a href="./fixcontents.php" class="loginbtn">掲載情報修正依頼</a>
+        <a href="./create_contents.php" class="newaccountbtn">新規作成</a>
+        <a href="./edit.php" class="loginbtn">掲載情報修正依頼</a>
       </div>
       <h2 class="pagetitle">申し込み済み学生情報</h2>
       <a href="./students.php" class="newaccountbtn">学生情報</a>

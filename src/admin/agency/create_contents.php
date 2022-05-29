@@ -1,15 +1,12 @@
 <?php
-session_start();
-require('../../dbconnect.php');
-if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
-  // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
-  $_SESSION['time'] = time();
-  // SESSIONの時間を現在時刻に更新
-} else {
-  // そうじゃないならログイン画面に飛んでね
-  header('Location: http://' . $_SERVER['HTTP_HOST'] . '../login.php');
-  exit();
-}
+// session_start();
+// require('../../dbconnect.php');
+// if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
+//   $_SESSION['time'] = time();
+// } else {
+//   header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
+//   exit();
+// }
 
 $stmt = $db->prepare('SELECT * FROM category');
 $stmt->execute();
@@ -22,8 +19,6 @@ $job_areas = $stmt->fetchAll();
 $stmt = $db->prepare('SELECT * FROM target_student');
 $stmt->execute();
 $target_students = $stmt->fetchAll();
-
-// print_r($categories[1]['category_name']);
 
 if (isset($_POST['new_entry'])) {
 
@@ -38,7 +33,6 @@ if (isset($_POST['new_entry'])) {
   $image = $_POST['image'];
   $detail = $_POST['detail'];
 
-  // トランザクション開始
   $db->beginTransaction();
   try {
     $stmt = $db->prepare(
@@ -82,11 +76,9 @@ if (isset($_POST['new_entry'])) {
       ':adress_number' => $address_number,
       ':detail' => $detail
     );
-    // その配列をexecute
     $stmt->execute($param);
     $res = $db->commit();
   } catch (PDOException $e) {
-    // エラーが発生した時トランザクションが開始したところまで巻き戻せる
     $db->rollBack();
   }
 
@@ -135,11 +127,9 @@ if (isset($_POST['new_entry'])) {
       ':job_area_id' => $job_area_id,
       ':target_student_id' => $target_student_id
     );
-    // その配列をexecute
     $stm->execute($param);
     $response = $db->commit();
   } catch (PDOException $e) {
-    // エラーが発生した時トランザクションが開始したところまで巻き戻せる
     $db->rollBack();
   }
 }
@@ -158,7 +148,7 @@ if (isset($_POST['new_entry'])) {
 </head>
 
 <body>
-  <?php include(dirname(__FILE__) . "/boozer_header.php"); ?>
+  <?php include (dirname(__FILE__) . "/agency_header.php");?>
   <div class="main">
     <h2 class="pagetitle">エージェンシー掲載情報を登録</h2>
     <p class="announce">※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
@@ -210,13 +200,23 @@ if (isset($_POST['new_entry'])) {
         <dt><textarea name="detail" id="detail" cols="30" rows="10"></textarea></dt>
       </dl>
       <div class="pageendbuttons">
-        <!-- <a href='javascript:history.back()' class="returnbtn endbtn">戻る</a> -->
         <a href='./index.php' class="returnbtn endbtn">戻る</a>
-        <input class="submitbtn endbtn ignore" type='submit' name='new_entry' value='新規作成'>
+        <button type="submit" class="submitbtn endbtn"  name='new_entry' onclick="
+              <?php
+              $from = 'boozer@craft.com';
+              $to   = 'test@posse-ap.com';
+              $subject = 'Hi, from craft';
+              $body = 'contact from agency about create contents';
+
+              $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
+              var_dump($ret);
+
+              ?>
+              ">新規作成依頼を送信</button>
       </div>
     </form>
   </div>
-  <?php include(dirname(__FILE__) . "/boozer_footer.php"); ?>
+  <?php include (dirname(__FILE__) . "/agency_footer.php");?>
 </body>
 
 </html>
