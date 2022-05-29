@@ -264,6 +264,9 @@ footer img {
 .marginbottomnone {
   margin-bottom: 0px;
 }
+.marginbottom {
+  margin-bottom: 20px;
+}
 
 /* //一度きりボタン等// */
 .agencybtn {
@@ -431,17 +434,35 @@ footer img {
 }
 
 /*STUDENTS/KEEP.PHP*/
+.KEEP {
+  background-color: white;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  width: 90%;
+}
+.keptagencyouter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .keptagency {
   background-color: white;
-  margin-top: 20px;
+  padding: 10px 10px;
   display: flex;
   flex-direction: column;
 }
-.keptagency div th {
-  font-weight: 500px;
+.keptagency td, .keptagency th {
+  padding: 5px 10px;
+}
+.keptagency div {
+  display: flex;
+}
+.keepcategorygroup {
+  display: flex;
 }
 .keepcategory {
   font-weight: 500px;
+  font-size: 15px;
 }
 
 /*AGENCY/TOP.PHP*/
