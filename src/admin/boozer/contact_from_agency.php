@@ -38,98 +38,102 @@ $agents = $stmt->fetchAll();
 
     <div class="main">
       <h2 class="pagetitle">エージェンシー企業の詳細情報</h2>
-      <h3><?= $agent['agent_name'] ?></h3>
-      <dl class="agentinfo">
-        <div>
-          <dt>企業サイトのURL：</dt>
-          <dd><?= $agent['url'] ?></dd>
-        </div>
-        <div>
-          <dt>電話番号：</dt>
-          <dd><?= $agent['tel_number'] ?></dd>
-        </div>
-        <div>
-          <dt>会社住所：</dt>
-          <dd><?= $agent['post_number'], $agent['prefecture'], $agent['municipalitie'], $agent['adress_number'] ?></dd>
-        </div>
-        <div>
-          <dt>得意な業界：</dt>
-          <dd>
+      <div class="agentdetailinner">
+        <div class="agentheader">
+          <h3><?= $agent['agent_name'] ?></h3>
+         </div>
+        <dl class="agentinfo">
+          <div>
+            <dt>企業サイトのURL：</dt>
+            <dd><?= $agent['url'] ?></dd>
+          </div>
+          <div>
+            <dt>電話番号：</dt>
+            <dd><?= $agent['tel_number'] ?></dd>
+          </div>
+          <div>
+            <dt>会社住所：</dt>
+            <dd><?= $agent['post_number'], $agent['prefecture'], $agent['municipalitie'], $agent['adress_number'] ?></dd>
+          </div>
+          <div>
+            <dt>得意な業界：</dt>
+            <dd>
+              <?php
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id');
+              $stmt->bindValue(':agent_id', $agent['id']);
+              $stmt->execute();
+              $matched_category = $stmt->fetchAll();
+              print_r($matched_category[0]['category_name']);
+              ?></dd>
+          </div>
+          <div>
+            <dt>対応エリア：</dt>
+            <dd>
+              <?php
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id');
+              $stmt->bindValue(':agent_id', $agent['id']);
+              $stmt->execute();
+              $matched_job_area = $stmt->fetchAll();
+              print_r($matched_job_area[0]['area']);
+              ?></dd>
+          </div>
+          <div>
+            <dt>対象学生：</dt>
+            <dd>
+              <?php
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
+              $stmt->bindValue(':agent_id', $agent['id']);
+              $stmt->execute();
+              $matched_target_student = $stmt->fetchAll();
+              print_r($matched_target_student[0]['graduation_year']);
+              ?></dd>
+          </div>
+          <div>
+            <dt>通知先メールアドレス：</dt>
+            <dd><?= $agent['notification_email'] ?></dd>
+          </div>
+          <div>
+            <dt>登録エージェント：</dt>
             <?php
-            $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id');
+            $stmt = $db->prepare('SELECT * FROM managers WHERE agent_id = :agent_id');
             $stmt->bindValue(':agent_id', $agent['id']);
             $stmt->execute();
-            $matched_category = $stmt->fetchAll();
-            print_r($matched_category[0]['category_name']);
-            ?></dd>
-        </div>
-        <div>
-          <dt>対応エリア：</dt>
-          <dd>
-            <?php
-            $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id');
-            $stmt->bindValue(':agent_id', $agent['id']);
-            $stmt->execute();
-            $matched_job_area = $stmt->fetchAll();
-            print_r($matched_job_area[0]['area']);
-            ?></dd>
-        </div>
-        <div>
-          <dt>対象学生：</dt>
-          <dd>
-            <?php
-            $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
-            $stmt->bindValue(':agent_id', $agent['id']);
-            $stmt->execute();
-            $matched_target_student = $stmt->fetchAll();
-            print_r($matched_target_student[0]['graduation_year']);
-            ?></dd>
-        </div>
-        <div>
-          <dt>通知先メールアドレス：</dt>
-          <dd><?= $agent['notification_email'] ?></dd>
-        </div>
-        <div>
-          <dt>登録エージェント：</dt>
+            $managers = $stmt->fetchAll();
+            foreach ($managers as $manager) :
+
+              $stmt = $db->prepare('SELECT login_email FROM users WHERE id = :id');
+              $stmt->bindValue(':id', $manager['user_id']);
+              $stmt->execute();
+              $agent_login_email = $stmt->fetch();
+            ?>
+              <dd><?= $manager['manager_last_name'], $manager['manager_first_name'] ?></dd>
+              <p><?= $agent_login_email[0] ?></p>
+            <?php endforeach; ?>
+          </div>
+        </dl>
+        <div class="pageendbuttons flexdirectionreverse">
+          <form method="POST" action="./contact_from_agency.php">
+            <button type="submit" name="go<?= $index + 1 ?>" class="submitbtn endbtn">公開</button>
+          </form>
           <?php
-          $stmt = $db->prepare('SELECT * FROM managers WHERE agent_id = :agent_id');
-          $stmt->bindValue(':agent_id', $agent['id']);
-          $stmt->execute();
-          $managers = $stmt->fetchAll();
-          foreach ($managers as $manager) :
-
-            $stmt = $db->prepare('SELECT login_email FROM users WHERE id = :id');
-            $stmt->bindValue(':id', $manager['user_id']);
+          if (isset($_POST["go" . $index + 1])) {
+            $stmt = $db->prepare('UPDATE agents SET valid = 1 WHERE id = :id');
+            $stmt->bindValue(':id', $agent['id']);
             $stmt->execute();
-            $agent_login_email = $stmt->fetch();
+          }
           ?>
-            <dd><?= $manager['manager_last_name'], $manager['manager_first_name'] ?></dd>
-            <p><?= $agent_login_email[0] ?></p>
-          <?php endforeach; ?>
+          <form method="POST" action="./contact_from_agency.php">
+            <button type="submit" name="reject<?= $index + 1 ?>" class="deletebtn endbtn">拒否</button>
+          </form>
+          <?php
+          if (isset($_POST["reject" . $index + 1])) {
+            $stmt = $db->prepare('DELETE from agents WHERE id = :id');
+            $stmt->bindValue(':id', $agent['id']);
+            $stmt->execute();
+          }
+          ?>
         </div>
-      </dl>
-
-      <form method="POST" action="./contact_from_agency.php" class="agencydetailbox">
-        <button type="submit" name="go<?= $index + 1 ?>" class="submitbtn endbtn">公開</button>
-      </form>
-      <?php
-      if (isset($_POST["go" . $index + 1])) {
-        $stmt = $db->prepare('UPDATE agents SET valid = 1 WHERE id = :id');
-        $stmt->bindValue(':id', $agent['id']);
-        $stmt->execute();
-      }
-      ?>
-
-      <form method="POST" action="./contact_from_agency.php" class="agencydetailbox">
-        <button type="submit" name="reject<?= $index + 1 ?>" class="deletebtn endbtn">拒否</button>
-      </form>
-      <?php
-      if (isset($_POST["reject" . $index + 1])) {
-        $stmt = $db->prepare('DELETE from agents WHERE id = :id');
-        $stmt->bindValue(':id', $agent['id']);
-        $stmt->execute();
-      }
-      ?>
+      </div>
       <a href='javascript:history.back()' class="returnbtn">戻る</a>
     </div>
 

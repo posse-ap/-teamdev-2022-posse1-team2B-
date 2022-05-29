@@ -99,7 +99,7 @@ if(isset($_POST['target_student'])) {
             <div class="agentheader">
               <img src="../img/<?php ?>.png" alt="エージェンシー企業">
             </div>
-                <dl class="agentinfo">
+              <dl class="agentinfo">
                 <?php
                     $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id left join category on characteristic.category_id = category.id left join job_area on characteristic.job_area_id = job_area.id left join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
                     // $stmt = $db->prepare('SELECT * FROM agents WHERE id = :agent_id');
@@ -107,24 +107,30 @@ if(isset($_POST['target_student'])) {
                     $stmt->execute();
                     $agent_information=$stmt->fetch();
                 ?>
-                <dt>得意な業種</dt>
-                <dd><?php print_r($agent_information['agent_name']);?></dd>
-                <dt>対応エリア</dt>
-                <dd><?php print_r($agent_information['area']);?></dd>
-                <dt>対象学生</dt>
-                <dd><?php print_r($agent_information['graduation_year']);?></dd>
+                <div>
+                  <dt>得意な業種</dt>
+                  <dd><?php print_r($agent_information['agent_name']);?></dd>
+                </div>
+                <div>
+                  <dt>対応エリア</dt>
+                  <dd><?php print_r($agent_information['area']);?></dd>
+                </div>
+                <div>
+                  <dt>対象学生</dt>
+                  <dd><?php print_r($agent_information['graduation_year']);?></dd>
+                </div>
               </dl>
                 <form action="" method="POST">
                 <input type="hidden" name="agent_id" value="<?php print_r($row['agent_id']);?>">
                 <?php
                 if(isset($keeps[$agent_information['agent_id']]) === true):
                 ?>
-                <p>キープ済み</p>
+                <p class="returnbtn">キープ済み</p>
                 <?php else: ?>
                 <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn">キープする</button>
                 <?php endif;?>
               </form>
-                <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
+                <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシーにお問い合わせ</button>
               </form>
             </a>
           </li>

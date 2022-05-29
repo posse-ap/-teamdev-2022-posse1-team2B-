@@ -52,15 +52,20 @@
   font-size: 20px;
   text-align: left;
   margin-bottom: 10px;
+  line-height: 25px;
 }
-.inputform div input:not(.ignore), .inputform dt textarea, .inputbox, .inputform dl input/*boozer/createcontent*/, .inputform input:not(.ignore)/*boozer/edit*/{ 
+.inputform div input:not(.ignore), .inputform dt textarea, .inputform select, .inputform div textarea, .inputbox, .inputform dl input/*boozer/createcontent*/, .inputform input:not(.ignore),/*boozer/edit*/.inputform div p, .inputform div div p{ 
   background-color: white;
   height: 35px;
-  display: block;
+  /* display: block;
   margin: 10px auto;
-  margin-bottom: 20px;
+  margin-bottom: 20px; */
   width: 100%; /*横幅に合わせて白い箱が伸びたり縮んだり*/
-  padding: 5px 5px;
+  padding: 7px 7px;
+  display: flex;
+  text-align: center;
+  margin: 10px auto 20px auto;
+
 }
 /* .full {
   display: block;
@@ -72,6 +77,13 @@
   justify-content: space-between;
   gap: 10px
 }
+.half div {
+  width: 50%;
+}
+.inputform div textarea, .inputform dl dd textarea { /*agency/createcontents備考欄*/
+    height: 50px;
+}
+
 
 /* bodyとmainの BASICCSS!!!!!!!!!!!!!!!!!!!! */
 body {
@@ -126,7 +138,7 @@ header {
   background-color: #96D2C4;
   border: none;
   z-index: 100;
-  padding: 0px 10px 20px 10px;
+  padding: 23px 10px 20px 10px;
   height: 140px;
   position: relative;
 }
@@ -160,7 +172,7 @@ footer img {
   border: none;
   font-size: 18px;
   width: 80px;
-  padding: 7px 15px;
+  padding: 7px 10px;
   display: block;
   margin: 0 auto;
   margin-bottom: 15px;
@@ -196,8 +208,12 @@ footer img {
   font-weight: 500;
 }
 .returnbtn {
-  width: 150px;
+  width: 170px;
 }
+.widebtn {
+  width: 300px;
+}
+
 
 /* メジャー：ログイン（緑背景白文字） */
 .loginbtn, .accountdetails, .firstloginbtn {
@@ -238,7 +254,6 @@ footer img {
   color: white;
   padding: 3px 5px;
   text-align: center;
-
 }
 .must  {
   margin-left: 10px;
@@ -264,10 +279,18 @@ footer img {
 }
 .marginbottomnone {
   margin-bottom: 0px;
+  font-size: 18px;
 }
 .marginbottom {
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 }
+.thinbtn {
+  width: 100px;
+}
+.regbtn {
+  width: 150px;
+}
+
 
 /* //一度きりボタン等// */
 .agencybtn {
@@ -326,7 +349,7 @@ footer img {
 .monthlyrankingbox ul li {/*月刊ランキング内の各エージェンシー別の詳細*/
   background-color: white;
   width: 80%;
-  height: 160px;
+  height: 190px;
   padding: 10px 10px;
 }
 .agentcategory {
@@ -402,19 +425,25 @@ footer img {
 /*STUDENTS/AGENTDETAIL*/
 .agentdetailinner {
   background-color: white;
-  margin: 25px 18px 25px 18px;
+  margin: 25px 14px 25px 14px;
   padding: 20px 17px 20px 17px;
+}
+.agentdetailinner h3 {/*contactfromagency*/
+  font-size: 40px;
+  display: flex;
+  align-items: center;
 }
 .agentheader {
   display: flex;
+  gap: 20px;
   /* justify-content: center;
   align-items: center;
   gap: 50px; */
 }
 .agentheader p {
-  font-size: 40px;
+  font-size: 35px;
   display: flex;
-  margin-left: 50px;
+  margin-left: 20px;
   align-items: center;
   line-height: 45px;
 }
@@ -445,6 +474,7 @@ footer img {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: white;
 }
 .keptagency {
   background-color: white;
@@ -465,6 +495,29 @@ footer img {
   font-weight: 500px;
   font-size: 15px;
 }
+
+/*students/agency_detail*/
+/* ol li {
+  background-color: white;
+  margin-top: 20px;
+  padding: 10px 10px;
+}
+ol li form p, ol li form button {
+  background-color: #96D2C4;
+  color: white;
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+  border: none;
+  font-size: 18px;
+  padding: 7px 15px;
+  text-align: center;
+  width: 160px;
+  font-weight: 500;
+}
+ol li form button {
+  background-color: #EFB448;
+} */
 
 /*AGENCY/TOP.PHP*/
 .topbuttons {
@@ -533,6 +586,15 @@ input[type="file"] {
   margin: 20px 10px;
 }
 
+.indexagencybox {
+  height: 100px;
+  position: relative;
+}
+.buttonstatic {
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+}
 /*BOOZER/AGENTSLIST（PAYMENT/INDEX）*/ 
 .agencybox, .indexagencybox {/*それぞれのエージェンシ囲う箱*/
   background-color: white;
@@ -716,6 +778,9 @@ input[type="file"] {
   justify-content: space-between;
   align-items: center;
 }
+/* .studentsbox div {
+  display: flex;
+} */
 .months {
   display: flex;
   justify-content: center;
@@ -748,9 +813,12 @@ input[type="file"] {
   text-align: center;
   font-size: 20px;
 }
-
 .login_email_address {
   display: none;
+  background-color: #66a29a;
+  width: 80%;
+  padding: 20px 20px;
+  margin: 0 auto;
 }
 
 @media screen and (min-width:1024px) {
@@ -795,8 +863,8 @@ input[type="file"] {
     width: 480px;
     font-size: 19px;
   }
-.half div input {
-  width: 400px!important;
+.half {
+  gap: 30px;
 }
 
  
@@ -808,6 +876,9 @@ input[type="file"] {
   justify-content: center;
   margin-top: 30px;
   gap: 0;
+}
+.flexdirectionreverse {
+  flex-direction: row-reverse;
 }
 .endbtn { /*agency/createcontesページの横並びbuttons */
   width: 350px;

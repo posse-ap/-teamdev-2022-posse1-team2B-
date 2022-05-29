@@ -37,7 +37,7 @@ if (isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()) {
   <?php include(dirname(__FILE__) . "/student_header.php");
   ?>
   <div class="main">
-    <h1 class="pagetitle">キープ中のエージェンシー企業</h1>
+    <h1 class="pagetitle">キープ中のエージェンシー</h1>
     <?php if (count($keeps) > 0) : ?>
       <table>
         <a href="./agent_detail.php">
@@ -58,7 +58,7 @@ if (isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()) {
               <table class="keptagencyouter">
                 <tr class="keptagency">
                   <div class="keepcategorygroup">
-                    <th>エージェンシー企業名：</th>
+                    <th>エージェンシー名：</th>
                     <td><?php print_r($agent['agent_name']); ?></td>
                     <?php
                       $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id left join category on characteristic.category_id = category.id left join job_area on characteristic.job_area_id = job_area.id left join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');

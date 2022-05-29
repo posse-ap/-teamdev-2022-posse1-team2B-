@@ -87,10 +87,10 @@ if($_POST['report']) {
             <dt><?= $agent_student_match['agent_name'] ?></dt>
             <form action="" method="POST">
               <input type="hidden" name="student_id" value="<?php echo $agent_student_match['student_id']; ?>">
-              <input type='submit' name='report' value='詳細' class="width submitbtn" id="boozer_student_detailbtn">
+              <input type='submit' name='report' value='詳細' class="width submitbtn thinbtn" id="boozer_student_detailbtn">
             </form>
             <form action="students.php" method="post">
-              <button type="submit" name="valid<?= $index+1 ?>" class="width deletebtn">いたずら認定</button>
+              <button type="submit" name="valid<?= $index+1 ?>" class="width deletebtn regbtn">いたずら認定</button>
             </form>
           <?php
             if (isset($_POST["valid" . $index+1])) {

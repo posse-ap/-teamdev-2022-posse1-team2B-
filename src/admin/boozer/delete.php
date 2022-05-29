@@ -110,10 +110,10 @@ if (isset($_POST['agency_delete'])) {
           <dt><?php echo $agency[0]['detail'] ?></dt>
         </div>
       </div>
-      <form action="delete.php" method="post">
+      <form action="delete.php" method="post" class="pageendbuttons flexdirectionreverse">
         <input type="hidden" name="id" value="<?php echo $agency[0]['id']; ?>">
-        <button type="submit" name="agency_delete" class="deletebtn">掲載を削除</button>
-        <a href='javascript:history.back()' class="returnbtn">戻る</a>
+        <button type="submit" name="agency_delete" class="deletebtn endbtn">掲載を削除</button>
+        <a href='javascript:history.back()' class="returnbtn endbtn">戻る</a>
       </form>
     </div>
     </div>

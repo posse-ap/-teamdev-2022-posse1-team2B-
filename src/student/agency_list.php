@@ -101,24 +101,24 @@ if(isset($_POST['aria'])) {
           if (isset($agent_categories)) {
             foreach($agent_categories as $index => $agent_category):
         ?>
-            <li>
-              <a href="./agent_detail.php?id=<?php echo $agent_category['agent_id']; ?>">
-                <p>会社名:<?php echo $agent_category['agent_name'];?></p>
-                <p>得意な業種:<?php echo $agent_category['category_name'];?></p>
-                <p>対応エリア:<?php echo $agent_category['area'];?></p>
-                <form action="" method="POST">
-                  <?php
-                      if(isset($keeps[$agent_category['agent_id']]) === true):
-                      ?>
-                      <p>キープ済み</p>
-                      <?php else: ?>
-                      <!-- <input type="hidden" name="category" value="<?php //print_r($agent_category);?>"> -->
-                      <input type="hidden" name="agent_id" value="<?php print_r($agent_category["agent_id"]);?>">
-                      <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn">キープする</button>
-                      <?php endif;?>
-                </form>
-              </a>        
-            </li>
+          <li class="agentdetailinner">
+            <a href="./agent_detail.php?id=<?php echo $agent_category['agent_id']; ?>">
+              <p>会社名：<?php echo $agent_category['agent_name'];?></p>
+              <p>得意な業種：<?php echo $agent_category['category_name'];?></p>
+              <p>対応エリア：<?php echo $agent_category['area'];?></p>
+              <form action="" method="POST">
+                <?php
+                    if(isset($keeps[$agent_category['agent_id']]) === true):
+                    ?>
+                    <p class="returnbtn marginbottomnone">キープ済み</p>
+                    <?php else: ?>
+                    <!-- <input type="hidden" name="category" value="<?php //print_r($agent_category);?>"> -->
+                    <input type="hidden" name="agent_id" value="<?php print_r($agent_category["agent_id"]);?>">
+                    <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn marginbottomnone">キープする</button>
+                    <?php endif;?>
+              </form>
+            </a>        
+          </li>
         <?php 
           endforeach;
         }
@@ -131,19 +131,18 @@ if(isset($_POST['aria'])) {
     <!-- 対応エリア別ランキングをクリックしたとき -->
     <?php elseif($page_flag = 2): ?>
     <div id="areaRank">
-      <h1  class="pagetitle">
-      <?php 
-        print_r($area);
-        ?>エリアに対応しているエージェンシー企業一覧</h1>
-      <a href="./index.php" class="exitbtn">✕</a>
+      <div class="exitcontainer">
+        <a href="./index.php" class="exitbtn">✕</a>
+      </div>
+      <h1  class="pagetitle">エリアに対応しているエージェンシー一覧</h1>
       <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
-      <a href="./keep.php">キープ中の企業</a>
+      <a href="./keep.php" class="keepbtn">キープ中の企業</a>
       <ol>
         <?php
             if (isset($agent_areas)) {
               foreach($agent_areas as $index => $agent_area):
         ?>
-        <li>        
+        <li class="agentdetailinner">        
             <p>会社名:<?php echo$agent_area['agent_name'];?></p>
             <p>得意な業種:<?php echo$agent_area['category_name'];?></p>
             <p>対応エリア:<?php echo$agent_area['area'];?></p>
@@ -162,7 +161,7 @@ if(isset($_POST['aria'])) {
           endforeach;
         }
         else {
-        echo('<p>該当する企業はありません。</p>');
+        echo('<p class="announce">該当する企業はありません。</p>');
         }
         ?>
       </ol>
