@@ -31,8 +31,8 @@ $agents = $stmt->fetchAll();
 </head>
 
 <body>
-  <?php 
-  // include(dirname(__FILE__) . "/boozer_header.php"); 
+  <?php
+  include(dirname(__FILE__) . "/boozer_header.php");
   foreach ($agents as $index => $agent) :
   ?>
 
@@ -94,11 +94,11 @@ $agents = $stmt->fetchAll();
         <div>
           <dt>登録エージェント：</dt>
           <?php
-            $stmt = $db->prepare('SELECT * FROM managers WHERE agent_id = :agent_id');
-            $stmt->bindValue(':agent_id', $agent['id']);
-            $stmt->execute();
-            $managers = $stmt->fetchAll();
-          foreach($managers as $manager) :
+          $stmt = $db->prepare('SELECT * FROM managers WHERE agent_id = :agent_id');
+          $stmt->bindValue(':agent_id', $agent['id']);
+          $stmt->execute();
+          $managers = $stmt->fetchAll();
+          foreach ($managers as $manager) :
 
             $stmt = $db->prepare('SELECT login_email FROM users WHERE id = :id');
             $stmt->bindValue(':id', $manager['user_id']);
@@ -112,23 +112,33 @@ $agents = $stmt->fetchAll();
       </dl>
 
       <form method="POST" action="./contact_from_agency.php" class="agencydetailbox">
-          <button type="submit" name="go<?= $index+1 ?>" class="submitbtn endbtn">公開</button>
+        <button type="submit" name="go<?= $index + 1 ?>" class="submitbtn endbtn">公開</button>
       </form>
-          <?php
-          if (isset($_POST["go" . $index+1])) {
-            $stmt = $db->prepare('UPDATE agents SET valid = 1 WHERE id = :id');
-            $stmt->bindValue(':id', $agent['id']);
-            $stmt->execute();
-          }
-          ?>
-        <!-- </div> -->
+      <?php
+      if (isset($_POST["go" . $index + 1])) {
+        $stmt = $db->prepare('UPDATE agents SET valid = 1 WHERE id = :id');
+        $stmt->bindValue(':id', $agent['id']);
+        $stmt->execute();
+      }
+      ?>
+
+      <form method="POST" action="./contact_from_agency.php" class="agencydetailbox">
+        <button type="submit" name="reject<?= $index + 1 ?>" class="deletebtn endbtn">拒否</button>
+      </form>
+      <?php
+      if (isset($_POST["reject" . $index + 1])) {
+        $stmt = $db->prepare('DELETE from agents WHERE id = :id');
+        $stmt->bindValue(':id', $agent['id']);
+        $stmt->execute();
+      }
+      ?>
       <a href='javascript:history.back()' class="returnbtn">戻る</a>
     </div>
 
-  
-  <?php 
+
+  <?php
   endforeach;
-  include(dirname(__FILE__) . "/boozer_footer.php");?>
+  include(dirname(__FILE__) . "/boozer_footer.php"); ?>
 </body>
 
 </html>
