@@ -80,7 +80,12 @@ TODO
       </div>
       <input type="submit" value="ログイン" class="ignore firstloginbtn">
     </form>
-  </div>
+    <div id="forget">ログイン用メールアドレス・パスワードをお忘れの方はこちら</div>
+    <div id="loginEmailAddress" class="login_email_address">
+      <button id="closeButton" class="exitbtn">✕</button>
+      <p>xxxx@co.jp までご連絡ください。 </p>
+    </div>
+  <script src="index.js"></script>
 </body>
 
 </html>

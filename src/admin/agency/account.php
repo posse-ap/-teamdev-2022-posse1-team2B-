@@ -13,7 +13,13 @@ if (isset(
   $_POST['login_email'],
   $_POST['password']
 )) {
-  echo $_POST['agent_name'];
+  // echo $_POST['manager_last_name'];
+  // echo $_POST['manager_first_name'];
+  // echo $_POST['manager_last_name_kana'];
+  // echo $_POST['manager_first_name_kana'];
+  // echo $_POST['agent_department'];
+  // echo $_POST['login_email'];
+  // echo $_POST['agent_name'];
   
   // ログイン情報の登録
   $user_stmt = $db->prepare(
@@ -72,9 +78,9 @@ if (isset(
   // agentsテーブルからIDをとりたい
   $agent_id_stmt->bindValue(':agent_id_parameter', $agent_id_parameter);
   // 条件は、登録されている名前と、取得したエージェント名が等しいこと
-  $agent_id_stmt->execute();
+  $res = $agent_id_stmt->execute();
   // 実行
-  $agent_id = $agent_id_stmt->fetchAll();
+  $agent_id = $agent_id_stmt->fetch();
   // 持ってきたものをエージェントIDという名前にする
 
   // echo $agent_id[0]['id'];
@@ -83,7 +89,7 @@ if (isset(
   $user_id_stmt = $db->prepare('SELECT id FROM users where login_email = :login_email');
   $user_id_stmt->bindValue(':login_email', $login_email);
   $user_id_stmt->execute();
-  $user_id = $user_id_stmt->fetchAll();
+  $user_id = $user_id_stmt->fetch();
   // echo $user_id[0]['id'];
 
   $manager_last_name = $_POST['manager_last_name'];
@@ -95,8 +101,8 @@ if (isset(
 
 
   $parameter = array(
-    ':agent_id' => $agent_id[0]['id'],
-    ':user_id' => $user_id[0]['id'],
+    ':agent_id' => $agent_id['id'],
+    ':user_id' => $user_id['id'],
     ':manager_last_name' => $manager_last_name,
     ':manager_first_name' => $manager_first_name,
     ':manager_last_name_kana' => $manager_last_name_kana,
@@ -105,6 +111,15 @@ if (isset(
   );
 
   $manager_stmt->execute($parameter);
+  // 更新に成功したらサンクスページへ遷移する
+  if( $res ) {
+    ?>
+        <script language="javascript" type="text/javascript">
+          window.location = '../../thanks.php?login';
+        </script>
+        <?php
+        exit;
+  }
 //   echo $manager_last_name;
 }
 ?> 
