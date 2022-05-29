@@ -23,7 +23,6 @@ if (isset($_POST['new_entry'])) {
   $prefecture = $_POST['prefecture'];
   $municipalitie = $_POST['municipalitie'];
   $address_number = $_POST['address_number'];
-  $image = $_POST['image'];
   $detail = $_POST['detail'];
 
     $entry_stmt = $db->prepare(
@@ -58,7 +57,6 @@ if (isset($_POST['new_entry'])) {
     $parameter = array(
       ':agent_name' => $name,
       ':url' => $url,
-      ':image' => $image,
       ':notification_email' => $notification_email,
       ':tel_number' => $tel_number,
       ':post_number' => $post_number,
@@ -85,11 +83,10 @@ if (isset($_POST['new_entry'])) {
           :target_student_id
         )'
     );
-
-    $agent_id_stmt = $db->prepare('SELECT id FROM agents where agent_name = :name');
-    $agent_id_stmt->bindValue(':name', $name);
-    $agent_id_stmt->execute();
-    $agent_id = $agent_id_stmt->fetchAll();
+    $stmt = $db->prepare('SELECT id FROM agents where agent_name = :name');
+    $stmt->bindValue(':name', $name);
+    $stmt->execute();
+    $agent_id = $stmt->fetchAll();
 
     $categories_stmt = $db->prepare('SELECT id FROM category where category_name = :category_name');
     $categories_stmt->bindValue(':category_name', $_POST["category"]);
@@ -175,8 +172,6 @@ if (isset($_POST['new_entry'])) {
             <?php endforeach; ?>
           </select>
         </dt>
-        <dd>アイコン画像</dd>
-        <dt><input name='image' type="file" required></dt>
         <dd>備考</dd>
         <dt><textarea name="detail" id="detail" cols="30" rows="10"></textarea></dt>
       </dl>

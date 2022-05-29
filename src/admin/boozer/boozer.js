@@ -12,9 +12,9 @@ closeButton.addEventListener("click", function() {
 })
 }
 
-let boozerStudentTable = document.getElementById("boozer_student_table")
-let boozerStudentDetailbtn = document.getElementById("boozer_student_detailbtn")
+// let boozerStudentTable = document.getElementById("boozer_student_table")
+// let boozerStudentDetailbtn = document.getElementById("boozer_student_detailbtn")
 
-boozerStudentDetailbtn.addEventListener("click", function() {
-  boozerStudentTable.classList.remove("displaynone");
-})
+// boozerStudentDetailbtn.addEventListener("click", function() {
+//   boozerStudentTable.classList.remove("displaynone");
+// })

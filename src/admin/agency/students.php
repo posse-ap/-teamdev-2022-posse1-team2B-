@@ -1,16 +1,20 @@
 <?php
 session_start();
 require("../../dbconnect.php");
+$login=array();
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
-  // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
-  $_SESSION['time'] = time();
-  // SESSIONの時間を現在時刻に更新
+    // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
+    $_SESSION['time'] = time();
+    // SESSIONの時間を現在時刻に更新
+    $login = $_SESSION['login'];  //ログイン情報を保持
 } else {
-  // そうじゃないならログイン画面に飛んでね
-  header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
-  exit();
+
+    // そうじゃないならログイン画面に飛んでね
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
+    exit();
 }
 
+print_r($login);
 //変数の初期化
 // 学生の詳細情報画面や確認画面の表示をスイッチするフラグ
 // 0→詳細画面 1→確認画面
@@ -24,11 +28,15 @@ if (isset($_POST["mischief"])) {
   $page_flag = 2;
 }
 
-$stmt = $db->prepare('select * from intermediate left join students on intermediate.student_id = students.id right join agents on intermediate.agent_id = agents.id where agent_id = 1');
-// $stmt->bindValue(':agent_id', $agent['id']);
-// bindevalueの１が？の１個めってこと。これがあれば何個でもはてなつけられる！1,2とかだとわかりにくいから、「:agent_id」を設定する
+
+print_r($login);
+
+// $stmt = $db->prepare('select * from intermediate left join students on intermediate.student_id = students.id right join agents on intermediate.agent_id = agents.id where agent_id = 1');
+$stmt = $db->prepare('select * from managers left join users on managers.user_id = users.id left join intermediate on managers.agent_id = intermediate.agent_id left join students on intermediate.student_id = students.id where login_email = :login_email');
+$stmt->bindValue(':login_email', $login['email']);
 $stmt->execute();
 $matched_students = $stmt->fetchAll();
+// print_r($matched_students);
 ?>
 
 <!DOCTYPE html>
@@ -147,32 +155,6 @@ $matched_students = $stmt->fetchAll();
               </form>
             </div>
         </section>
-        <!-- <section class="tableouter">
-      <div class="table">
-        <dd>名前</dd><dt><?= $matched_student['student_last_name'] . $matched_student['student_first_name']; ?></dt>
-        <dd>カナ</dd><dt><?= $matched_student['student_first_name_kana'] . $matched_student['student_first_name_kana']; ?></dt>
-        <dd>電話番号</dd><dt><?= $matched_student['tel_number'] ?></dt>
-        <dd>メールアドレス</dd><dt><?= $matched_student['email'] ?></dt>
-        <dd>出身大学</dd><dt><?= $matched_student['college_name'] ?></dt>
-        <dd>学部</dd><dt><?= $matched_student['undergraduate'] ?></dt>
-        <dd>学科</dd><dt><?= $matched_student['college_department'] ?></dt>
-        <dd>卒業年</dd><dt><?= $matched_student['graduation_year'] ?></dt>
-        <dd>お問い合わせ内容</dd><dt></dt>
-      </div>
-      <form action="" method="POST">
-          <input type="hidden" name="name" value="<?php echo $matched_student['student_last_name']; ?>">
-          <input type="hidden" name="name" value="<?php echo $matched_student['student_first_name']; ?>">
-          <input type="hidden" name="name" value="<?php echo $matched_student['student_last_name_kana']; ?>">
-          <input type="hidden" name="name" value="<?php echo $matched_student['student_first_name_kana']; ?>">
-          <input type="hidden" name="tel_number" value="<?php echo $matched_student["tel_number"]; ?>">
-          <input type="hidden" name="email" value="<?php echo $matched_student["email"]; ?>">
-          <input type="hidden" name="college_name" value="<?php echo $matched_student["college_name"]; ?>">
-          <input type="hidden" name="undergraduate" value="<?php echo $matched_student["undergraduate"]; ?>">
-          <input type="hidden" name="college_department" value="<?php echo $matched_student["college_department"]; ?>">
-          <input type="hidden" name="graduation_year" value="<?php echo $matched_student["graduation_year"]; ?>">
-        <input type='submit' name='report' value='詳細' class="submitbtn">
-      </form>
-    </section> -->
       <?php endforeach; ?>
       <a href='./index.php' class="returnbtn">戻る</a>
     <?php endif;

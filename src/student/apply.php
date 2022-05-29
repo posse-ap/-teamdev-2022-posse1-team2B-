@@ -26,28 +26,28 @@ $undergraduate = $_POST['undergraduate'];
 $college_department = $_POST['college_department'];
 $graduation_year = $_POST['graduation_year'];
 
-$param = array(
-  ':post_number' => $post_number,
-  ':tel_number' => $tel_number,
-  ':email' => $email,
-  ':graduation_year' => $graduation_year
-);
 // $param = array(
-//   ':student_last_name' => $student_last_name,
-//   ':student_first_name' => $student_first_name,
-//   ':student_last_name_kana' => $student_last_name_kana,
-//   ':student_first_name_kana' => $student_first_name_kana,
 //   ':post_number' => $post_number,
-//   ':prefecture' => $prefecture,
-//   ':municipality' => $municipality,
-//   ':adress_number' => $adress_number,
 //   ':tel_number' => $tel_number,
 //   ':email' => $email,
-//   ':college_name' => $college_name,
-//   ':undergraduate' => $undergraduate,
-//   ':college_department' => $college_department,
 //   ':graduation_year' => $graduation_year
 // );
+$param = array(
+  ':student_last_name' => $student_last_name,
+  ':student_first_name' => $student_first_name,
+  ':student_last_name_kana' => $student_last_name_kana,
+  ':student_first_name_kana' => $student_first_name_kana,
+  ':post_number' => $post_number,
+  ':prefecture' => $prefecture,
+  ':municipality' => $municipality,
+  ':adress_number' => $adress_number,
+  ':tel_number' => $tel_number,
+  ':email' => $email,
+  ':college_name' => $college_name,
+  ':undergraduate' => $undergraduate,
+  ':college_department' => $college_department,
+  ':graduation_year' => $graduation_year
+);
 if(isset($_POST['final_contact'])){
 try {
     // echo '!111';
@@ -57,8 +57,8 @@ try {
     $stmt->execute();
     $agent = $stmt->fetch();
     $agent_id = $keep;
-    // $stmt = $db->prepare('SELECT id FROM students WHERE student_last_name = :student_last_name AND student_first_name = :student_last_name AND student_last_name_kana = :student_last_name_kana AND student_first_name_kana = :student_first_name_kana AND post_number = :post_number AND prefecture = :prefecture AND municipality = :municipality AND adress_number = :adress_number AND tel_number = :tel_number AND email = :email AND college_name = :college_name AND undergraduate = :undergraduate AND college_department = :college_department AND graduation_year = :graduation_year');
-    $stmt = $db->prepare('SELECT id FROM students WHERE post_number = :post_number AND tel_number = :tel_number AND email = :email AND graduation_year = :graduation_year');
+    $stmt = $db->prepare('SELECT id FROM students WHERE student_last_name = :student_last_name AND student_first_name = :student_first_name AND student_last_name_kana = :student_last_name_kana AND student_first_name_kana = :student_first_name_kana AND post_number = :post_number AND prefecture = :prefecture AND municipality = :municipality AND adress_number = :adress_number AND tel_number = :tel_number AND email = :email AND college_name = :college_name AND undergraduate = :undergraduate AND college_department = :college_department AND graduation_year = :graduation_year');
+    // $stmt = $db->prepare('SELECT id FROM students WHERE post_number = :post_number AND tel_number = :tel_number AND email = :email AND graduation_year = :graduation_year');
     // その配列をexecute
     $stmt->execute($param);
     $student_id = $stmt->fetch();
@@ -71,12 +71,31 @@ try {
 } catch(PDOException $e) {
   echo "エラーが発生しました";
 }
-  // 更新に成功したらサンクスページへ遷移する
 if( $res ) {
-    ?>
-    <script language="javascript" type="text/javascript">
-        window.location = '../../thanks.php?contact';
-    </script>  
-    <?php
-    exit; 
-}};
+  ?>
+  <script language="javascript" type="text/javascript">
+      window.location = '../../thanks.php?contact';
+  </script>  
+  <?php
+  exit; 
+}
+  // 更新に成功したらサンクスページへ遷移する
+} 
+// elseif(isset($_POST['final_contact']) && empty($keeps)){
+//   $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
+//   $stmt->bindValue(':id', $_POST["contact_agent_id"]);
+//   $stmt->execute();
+//   $agent = $stmt->fetch();
+//   $agent_id = $keep;
+//   $stmt = $db->prepare('SELECT id FROM students WHERE student_last_name = :student_last_name AND student_first_name = :student_first_name AND student_last_name_kana = :student_last_name_kana AND student_first_name_kana = :student_first_name_kana AND post_number = :post_number AND prefecture = :prefecture AND municipality = :municipality AND adress_number = :adress_number AND tel_number = :tel_number AND email = :email AND college_name = :college_name AND undergraduate = :undergraduate AND college_department = :college_department AND graduation_year = :graduation_year');
+//   $stmt->execute($param);
+//   $student_id = $stmt->fetch();
+//   $studentId = $student_id[0];
+//   $stmt = $db->prepare('insert into intermediate (student_id, agent_id) values (:student_id, :agent_id)');
+//   $stmt->bindValue(':student_id', $studentId);
+//   $stmt->bindValue(':agent_id', $agent_id);
+//   $res = $stmt->execute();
+
+// }
+
+

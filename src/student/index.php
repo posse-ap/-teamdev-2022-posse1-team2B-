@@ -32,7 +32,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   } elseif(isset($_POST["ad"])) {
     $page_flag = 1;
     $ad = $_POST['ad'];
-    $_SESSION['category']=$ad;} elseif (isset($_POST["tradingCompany"])){
+    $_SESSION['category']=$ad;
+  } 
+    elseif (isset($_POST["tradingCompany"])){
     $page_flag = 1;
     $tradingCompany = $_POST['tradingCompany'];
     $_SESSION['category']=$tradingCompany;
@@ -122,21 +124,31 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             <div class="rankingboxes">
               <h2 class="pagetitle">業種別ランキング</h2>
               <ul class>
-                <li><input type="submit" name="finance" value="金融"></li>
-                <li><input type="submit" name="it" value="IT"></li>
-                <li><input type="submit" name="ad" value="広告"></li>
-                <li><input type="submit" name="tradingCompany" value="商社"></li>
-                <li><input type="submit" name="food" value="食品"></li>
-                <li><input type="submit" name="realEstate" value="不動産"></li>
+                <li><input type="submit" name="category" value='金融'></li>
+                <li><input type="submit" name="category" value='IT'></li>
+                <li><input type="submit" name="category" value='飲食'></li>
+                <li><input type="submit" name="category" value='メーカー'></li>
+                <li><input type="submit" name="category" value='サービス'></li>
+                <li><input type="submit" name="category" value='商社'></li>
+                <li><input type="submit" name="category" value='建築'></li>
+                <li><input type="submit" name="category" value='小売'></li>
+                <li><input type="submit" name="category" value='事務'></li>
+                <li><input type="submit" name="category" value='広告'></li>
+                <li><input type="submit" name="category" value='金融'></li>
+                <li><input type="submit" name="category" value='コンサルティング'></li>
+                <li><input type="submit" name="category" value='物流'></li>
+                <li><input type="submit" name="category" value='通信'></li>
+                <li><input type="submit" name="category" value='住宅'></li>
+                <li><input type="submit" name="category" value='保険'></li>
               </ul>
             </div>
             <div class="rankingboxes">
               <h2 class="pagetitle">求人エリア別ランキング</h2>
               <ul class>
-                <li><input type="submit" name="kanto" value="関東"></li>
-                <li><input type="submit" name="kansai" value="関西"></li>
-                <li><input type="submit" name="tokai" value="東海"></li>
-                <li><input type="submit" name="kyushu" value="九州"></li>
+                <li><input type="submit" name="area" value="関東"></li>
+                <li><input type="submit" name="area" value="関西"></li>
+                <li><input type="submit" name="area" value="東海"></li>
+                <li><input type="submit" name="area" value="九州"></li>
               </ul>
             </div>
           </div>
