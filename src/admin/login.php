@@ -88,14 +88,14 @@ TODO
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>管理者ログイン</title>
+  <title>ログイン</title>
   <link rel="stylesheet" href="../../css/reset.css">
   <link rel="stylesheet" href="../../css/index.css">
 </head>
 
 <body>
   <div class="main">
-    <h1 class="pagetitle">管理者ログイン</h1>
+    <h1 class="pagetitle">ログイン</h1>
     <form action="/admin/login.php" method="POST" class="inputform">
       <div>
         <label>ログイン用メールアドレス</label><br>
@@ -112,6 +112,7 @@ TODO
       <button id="closeButton" class="exitbtn">✕</button>
       <p>xxxx@co.jp までご連絡ください。 </p>
     </div>
+    <a href="../student/index.php">学生の方はこちら</a>
   <script src="index.js"></script>
 </body>
 
