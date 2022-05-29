@@ -100,16 +100,13 @@ $target_students = $stmt->fetchAll();
         <label for="companyImage">アイコン画像</label><br>
         <input type="file" name="companyImage" id="companyimage" accept="image/*" class="ignore iconimage margintop">
       </div>
-<<<<<<< HEAD
       <div>
         <label for="companyRemarks">備考（アピールポイントなど）</label>
         <input type="text" name="company_remarks" id="companyRemarks">
       </div>
 
       <button type="submit" name="fix_entry" class="submitbtn margintop" onclick="
-=======
       <button name="fix" type="submit" class="submitbtn margintop" onclick="
->>>>>>> 39b24010cebc04b2e749f550514a245a3f3f4bee
               <?php
               $from = 'boozer@craft.com';
               $to   = 'test@posse-ap.com';
