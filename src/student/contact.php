@@ -137,31 +137,36 @@ if (isset($_POST['contact'])) {
   ?>
     <!-- 確認画面 -->
     <div class="main">
-      <h1>内容の確認をおねがいします</h1>
-      <form method="POST" action="apply.php">
-        <div>
-          <label>氏</label>
-          <p>
-            <?php echo $_POST["student_last_name"]; ?>
-          </p>
+      <h1 class="pagetitle">登録内容の確認</h1>
+      <form method="POST" action="apply.php" class="inputform">
+        <div class="half">
+          <div>
+            <label>氏</label>
+            <p>
+              <?php echo $_POST["student_last_name"]; ?>
+            </p>
+          </div>
+          <div>
+            <label>名</label>
+            <p>
+              <?php echo $_POST["student_first_name"]; ?>
+            </p>
+          </div>
         </div>
-        <div>
-          <label>名</label>
-          <p>
-            <?php echo $_POST["student_first_name"]; ?>
-          </p>
-        </div>
-        <div>
-          <label>氏(カナルビ)</label>
-          <p>
-            <?php echo $_POST["student_last_name_kana"]; ?>
-          </p>
-        </div>
-        <div>
-          <label>名(カナルビ)</label>
-          <p>
-            <?php echo $_POST["student_first_name_kana"]; ?>
-          </p>
+        <div class="half">
+          <div>
+            <label>氏（カナ）
+            </label>
+            <p>
+              <?php echo $_POST["student_last_name_kana"]; ?>
+            </p>
+          </div>
+          <div>
+            <label>名（カナ）</label>
+            <p>
+              <?php echo $_POST["student_first_name_kana"]; ?>
+            </p>
+          </div>
         </div>
         <div>
           <label>郵便番号</label>
@@ -223,7 +228,7 @@ if (isset($_POST['contact'])) {
             <?php echo $_POST["graduation_year"]; ?>
           </p>
         </div>
-        <button type="submit" name="btn_back" formaction="contact.php" class="returnbtn">登録し直す</button>
+        <button type="submit" name="btn_back" formaction="contact.php" class="returnbtn widebtn">登録情報編集</button>
         <input type="hidden" name="student_last_name" value="<?php echo $_POST["student_last_name"]; ?>">
         <input type="hidden" name="student_last_name_kana" value="<?php echo $_POST["student_last_name_kana"]; ?>">
         <input type="hidden" name="student_first_name" value="<?php echo $_POST["student_first_name"]; ?>">
@@ -306,27 +311,27 @@ if (isset($_POST['contact'])) {
               <input type="text" name="student_first_name_kana" id="studentNameKana" pattern="(?=.*?[\u30A1-\u30FA])[\u30A1-\u30FC]*" required>
             </div>
           </div>
-          <div class="full">
+          <div>
             <label for="postNumber">郵便番号</label><br>
             <input type="text" name="post_number" id="postNumber" maxlength="7" required>
           </div>
-          <div class="full">
+          <div>
             <label for="prefecture">都道府県</label><br>
             <input type="text" name="prefecture" id="prefecture" required>
           </div>
-          <div class="full">
+          <div>
             <label for="prefecture">市区町村</label><br>
             <input type="text" name="municipality" id="municipality" required>
           </div>
-          <div class="full">
+          <div>
             <label for="adressNumber">番地</label><br>
             <input type="text" name="adress_number" id="adress_number" required>
           </div>
-          <div class="full">
+          <div>
             <label for="telephoneNumber">電話番号</label><br>
             <input type="tel" name="tel_number" id="telephoneNumber" pattern="\d{2,4}-?\d{2,4}-?\d{3,4}" maxlength="11" required>
           </div>
-          <div class="full">
+          <div>
             <label for="emailAddress">メールアドレス</label><br>
             <input type="email" name="email" id="emailAddress" required>
           </div>
@@ -352,7 +357,7 @@ if (isset($_POST['contact'])) {
           </div>
           <div>
           <input type="hidden" name="contact_agent_id" value="<?php echo $agencies['agent_name']; ?>">
-            <input type="submit" name="contact" value="エージェンシー企業に問い合わせる">
+            <input type="submit" name="contact" value="エージェンシーにお問い合わせ" class="ignore inquirybtn">
           </div>
       </form>
       <?php

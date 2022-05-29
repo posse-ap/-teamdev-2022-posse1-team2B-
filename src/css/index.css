@@ -54,14 +54,18 @@
   margin-bottom: 10px;
   line-height: 25px;
 }
-.inputform div input:not(.ignore), .inputform dt textarea, .inputform select, .inputform div textarea, .inputbox, .inputform dl input/*boozer/createcontent*/, .inputform input:not(.ignore)/*boozer/edit*/{ 
+.inputform div input:not(.ignore), .inputform dt textarea, .inputform select, .inputform div textarea, .inputbox, .inputform dl input/*boozer/createcontent*/, .inputform input:not(.ignore),/*boozer/edit*/.inputform div p, .inputform div div p{ 
   background-color: white;
   height: 35px;
-  display: block;
+  /* display: block;
   margin: 10px auto;
-  margin-bottom: 20px;
+  margin-bottom: 20px; */
   width: 100%; /*横幅に合わせて白い箱が伸びたり縮んだり*/
-  padding: 5px 5px;
+  padding: 7px 7px;
+  display: flex;
+  text-align: center;
+  margin: 10px auto 20px auto;
+
 }
 /* .full {
   display: block;
@@ -73,9 +77,13 @@
   justify-content: space-between;
   gap: 10px
 }
+.half div {
+  width: 50%;
+}
 .inputform div textarea, .inputform dl dd textarea { /*agency/createcontents備考欄*/
     height: 50px;
 }
+
 
 /* bodyとmainの BASICCSS!!!!!!!!!!!!!!!!!!!! */
 body {
@@ -201,6 +209,9 @@ footer img {
 }
 .returnbtn {
   width: 170px;
+}
+.widebtn {
+  width: 300px;
 }
 
 /* メジャー：ログイン（緑背景白文字） */
