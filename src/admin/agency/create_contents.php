@@ -8,17 +8,17 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
   exit();
 }
 
-$category_stmt = $db->prepare('SELECT * FROM category');
-$category_stmt->execute();
-$categories = $category_stmt->fetchAll();
+$stmt = $db->prepare('SELECT * FROM category');
+$stmt->execute();
+$categories = $stmt->fetchAll();
 
-$job_area_stmt = $db->prepare('SELECT * FROM job_area');
-$job_area_stmt->execute();
-$job_areas = $job_area_stmt->fetchAll();
+$stmt = $db->prepare('SELECT * FROM job_area');
+$stmt->execute();
+$job_areas = $stmt->fetchAll();
 
-$target_student_stmt = $db->prepare('SELECT * FROM target_student');
-$target_student_stmt->execute();
-$target_students = $target_student_stmt->fetchAll();
+$stmt = $db->prepare('SELECT * FROM target_student');
+$stmt->execute();
+$target_students = $stmt->fetchAll();
 
 if (isset($_POST['new_entry'])) {
 
@@ -61,7 +61,7 @@ if (isset($_POST['new_entry'])) {
         )'
     );
 
-    $parameter = array(
+    $param = array(
       ':agent_name' => $name,
       ':url' => $url,
       ':notification_email' => $notification_email,
@@ -72,7 +72,7 @@ if (isset($_POST['new_entry'])) {
       ':adress_number' => $address_number,
       ':detail' => $detail
     );
-    $stmt->execute($parameter);
+    $stmt->execute($param);
     $res = $db->commit();
   } catch (PDOException $e) {
     $db->rollBack();
@@ -102,23 +102,25 @@ if (isset($_POST['new_entry'])) {
     $stmt->execute();
     $agent_id = $stmt->fetch();
 
-    $categories_stmt = $db->prepare('SELECT id FROM category where category_name = :category_name');
-    $categories_stmt->bindValue(':category_name', $_POST['category']);
-    $categories_stmt->execute();
-    $category_id = $categories_stmt->fetch();
+    $stmt = $db->prepare('SELECT id FROM category where category_name = :category_name');
+    $stmt->bindValue(':category_name', $_POST["category"]);
+    $stmt->execute();
+    $category_id = $stmt->fetch();
 
-    $job_areas_stmt = $db->prepare('SELECT id FROM job_area where area = :area');
-    $job_areas_stmt->bindValue(':area', $_POST['job_area']);
-    $job_areas_stmt->execute();
-    $job_area_id = $job_areas_stmt->fetch();
+
+    $stmt = $db->prepare('SELECT id FROM job_area where area = :area');
+    $stmt->bindValue(':area', $_POST["job_area"]);
+    $stmt->execute();
+    $job_area_id = $stmt->fetch();
+    echo $job_area_id[0];
 
     $stmt = $db->prepare('SELECT id FROM target_student where graduation_year = :graduation_year');
-    $stmt->bindValue(':graduation_year', $_POST['target_student']);
+    $stmt->bindValue(':graduation_year', $_POST["target_student"]);
     $stmt->execute();
     $target_student_id = $stmt->fetch();
 
     $param = array(
-      ':agent_id' => $agent_id,
+      ':agent_id' => $agent_id[0],
       ':category_id' => $category_id[0],
       ':job_area_id' => $job_area_id[0],
       ':target_student_id' => $target_student_id[0]
