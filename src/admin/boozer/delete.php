@@ -106,8 +106,6 @@ if (isset($_POST['agency_delete'])) {
           <dt><?php print_r($matched_job_area[0]['area']);?></dt>
           <dd>対応学年</dd>
           <dt><?php print_r($matched_target_student[0]['graduation_year']);?></dt>
-          <dd>アイコン画像</dd>
-          <dt><img src="../../img/companylogo/<?php echo $agency[0]['image'] ?>" alt="企業ロゴ"></dt>
           <dd>備考</dd>
           <dt><?php echo $agency[0]['detail'] ?></dt>
         </div>

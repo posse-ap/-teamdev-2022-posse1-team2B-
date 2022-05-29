@@ -40,8 +40,6 @@ $agents = $stmt->fetchAll();
       <h2 class="pagetitle">エージェンシー企業の詳細情報</h2>
       <h3><?= $agent['agent_name'] ?></h3>
       <dl class="agentinfo">
-        <img src="../../img/companylogo/<?php print_r($agent['image']); ?>" alt="エージェンシー企業の写真">
-
         <div>
           <dt>企業サイトのURL：</dt>
           <dd><?= $agent['url'] ?></dd>

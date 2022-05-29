@@ -30,7 +30,6 @@ if (isset($_POST['new_entry'])) {
         (
           agent_name, 
           url, 
-          image,
           notification_email, 
           tel_number, 
           post_number, 
@@ -43,7 +42,6 @@ if (isset($_POST['new_entry'])) {
         (
           :agent_name, 
           :url, 
-          :image,
           :notification_email, 
           :tel_number, 
           :post_number, 
@@ -104,10 +102,10 @@ if (isset($_POST['new_entry'])) {
     $target_student_id = $target_students_stmt->fetchAll();
 
     $param = array(
-      ':agent_id' => $agent_id,
-      ':category_id' => $category_id,
-      ':job_area_id' => $job_area_id,
-      ':target_student_id' => $target_student_id
+      ':agent_id' => $agent_id[0],
+      ':category_id' => $category_id[0],
+      ':job_area_id' => $job_area_id[0],
+      ':target_student_id' => $target_student_id[0]
     );
     $character_stm->execute($param);
 }
@@ -130,7 +128,7 @@ if (isset($_POST['new_entry'])) {
   <div class="main">
     <h2 class="pagetitle">エージェンシー掲載情報を登録</h2>
     <p class="announce">※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
-    <form action="../../thanks.php?new_entry" method="POST" class="inputform">
+    <form action="./create_contents.php" method="POST" class="inputform">
       <dl>
         <dd>会社名</dd>
         <dt><input name='name' type="text" required></dt>

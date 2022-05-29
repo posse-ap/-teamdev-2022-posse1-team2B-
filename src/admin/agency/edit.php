@@ -80,34 +80,7 @@ if (isset($_POST['edit_entry'])) {
   } else {
     exit;
   }
-  if (isset($_POST['new_image'])) {
-    $new_image = $_POST['new_image'];
-    try {
-      $stmt = $db->prepare(
-        'UPDATE
-          agents
-        SET
-          image = :new_image
-        WHERE
-          id = :id'
-      );
 
-      $stmt->bindValue(':id', $id);
-      $stmt->bindParam(':new_image', $new_image);
-      $stmt->execute();
-    } catch (PDOException $e) {
-      // 	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
-      // echo "エラーが発生しました";
-      ?>
-      <script language="javascript" type="text/javascript">
-      window.location = '../../thanks.php?edit';
-    </script>
-    <?php
-      // $db->rollBack();
-    }
-  } else {
-    exit;
-  }
   if (isset($_POST['new_notification_email'])) {
     $new_notification_email = $_POST['new_notification_email'];
     try {
@@ -511,8 +484,6 @@ if (isset($_POST['edit_entry'])) {
           <?php endforeach; ?>
         </select>
       </dt>
-      <dd>アイコン画像</dd>
-      <dt><input name='new_image' type="file"></dt>
       <dd>備考（アピールポイントなど）</dd>
       <dt><textarea name="new_detail" id="detail" cols="30" rows="10"></textarea></dt>
       </dl>
