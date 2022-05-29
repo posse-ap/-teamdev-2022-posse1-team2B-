@@ -7,17 +7,22 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
   // SESSIONの時間を現在時刻に更新
 } else {
   // そうじゃないならログイン画面に飛んでね
-  header('Location: http://' . $_SERVER['HTTP_HOST'] . '../login.php');
+  header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
   exit();
-} ?>
+} 
+$stmt = $db->prepare('SELECT * FROM category');
+$stmt->execute();
+$categories = $stmt->fetchAll();
 
-<!-- 掲載修正依頼画面
-・会社名
-・ 会社住所
-・アイコン画像
-・備考
-・修正を申し込む画面
--->
+$stmt = $db->prepare('SELECT * FROM job_area');
+$stmt->execute();
+$job_areas = $stmt->fetchAll();
+
+$stmt = $db->prepare('SELECT * FROM target_student');
+$stmt->execute();
+$target_students = $stmt->fetchAll();
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -37,44 +42,70 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
     <form action="../../thanks.php" method="POST" class="inputform">
       <div>
         <label for="companyName">会社名</label>
-        <input type="text" id="companyName">
+        <input name='name' type="text" id="companyName">
       </div>
       <div>
-        <label for="companyAddress">会社公式ホームページURL</label>
-        <input type="text" id="companyAddress">
+        <label for="companyAddress">企業サイトのURL</label>
+        <input name='url' type="text" id="companyAddress">
+      </div>
+      <div>
+        <label for="notificationEmail">通知先メールアドレス<span class="must">必須</span></label>
+        <input name='notification_email' type='email'>
       </div>
       <div>
         <label for="companyPostnumber">電話番号</label>
-        <input type="text" id="companyTelnumber">
+        <input name='tel_number' type="text" id="companyTelnumber">
       </div>
       <div>
         <label for="companyRemarks">郵便番号</label>
-        <input type="text" name="company_remarks" id="companyRemarks">
+        <input name='post_number' type="text" id="companyRemarks">
       </div>
       <div>
         <label for="companyAddress">都道府県</label>
-        <input type="text" id="companyAddress">
+        <input name='prefecture' type="text" id="companyAddress">
       </div>
       <div>
         <label for="companyRemarks">市区町村</label>
-        <input type="text" name="company_remarks" id="companyRemarks">
+        <input name='municipalitie' type="text" id="companyRemarks">
       </div>
       <div>
-        <label for="companyRemarks">番地以降</label>
-        <input type="text" name="company_remarks" id="companyRemarks">
+        <label for="companyRemarks">町域・番地</label>
+        <input type="text" name="address_number" id="companyRemarks">
+      </div>
+      <div>
+        <label for="category">得意な業種(最も該当するものを１つお選びください)<span class="must">必須</span></label>
+        <select name='category' required>
+          <?php foreach ($categories as $index => $category) : ?>
+            <option value="<?php print_r($categories[$index]['category_name']); ?>"><?php print_r($categories[$index]['category_name']); ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+      <div>
+        <label for="jobArea">対応エリア(最も該当するものを１つお選びください)<span class="must">必須</span></label>
+        <select name='job_area' required>
+          <?php foreach ($job_areas as $index => $job_area) : ?>
+            <option value="<?php print_r($job_areas[$index]['area']); ?>"><?php print_r($job_areas[$index]['area']); ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+      <div>
+        <label for="targetStudent">対応学年(最も該当するものを１つお選びください)<span class="must">必須</span></label>
+        <select name='target_student' required>
+          <?php foreach ($target_students as $index => $target_student) : ?>
+            <option value="<?php print_r($target_students[$index]['graduation_year']); ?>"><?php print_r($target_students[$index]['graduation_year']); ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+      <div>
+        <label for="companyImage">アイコン画像</label><br>
+        <input type="file" name="companyImage" id="companyimage" accept="image/*" class="ignore iconimage margintop">
       </div>
       <div>
         <label for="companyRemarks">備考（アピールポイントなど）</label>
         <input type="text" name="company_remarks" id="companyRemarks">
       </div>
-      <div>
-        <label for="companyRemarks">通知用メールアドレス（掲載されない情報です）</label>
-        <input type="text" name="company_remarks" id="companyRemarks">
-      </div>
-      <div>
-        <label for="companyImage">ロゴ画像</label><br>
-        <input type="file" name="companyImage" id="companyimage" accept="image/*" class="ignore iconimage margintop">
-      </div>
+
+      <button type="submit" name="fix" class="submitbtn margintop" onclick="
       <button name="fix" type="submit" class="submitbtn margintop" onclick="
               <?php
               $from = 'boozer@craft.com';
