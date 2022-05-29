@@ -43,16 +43,10 @@ if (isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()) {
           <thead>
             <tr>
               <p class="announce">※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
-              <!-- <th>対応エリア</th>
-              <th>対象学生</th>
-              <th>対応企業の規模</th> -->
-              <!-- <th>備考</th> -->
             </tr>
           </thead>
           <tbody>
             <?php
-            // var_dump($keeps);
-            // print_r($keeps);
             foreach ($keeps as $keep) :
               $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
               $stmt->bindValue(':id', $keep);
@@ -66,7 +60,7 @@ if (isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()) {
                     <th>エージェンシー企業名：</th>
                     <td><?php print_r($agent['agent_name']); ?></td>
                     <?php
-                    $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id');
+                    $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id ');
                     $stmt->bindValue(':agent_id', $agent['id']);
                     $stmt->execute();
                     $matched_category = $stmt->fetchAll();
@@ -115,24 +109,6 @@ if (isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()) {
   <?php else : ?>
     <p class="announce">キープしてるエージェンシーはありません。</p>
   <?php endif;
-    // 上手く前のページの戻れない。調べたら、カート機能系は戻るボタンを廃止すべきって出てきた→TOPに戻るボタンにしていいかな、、？
-    //   if (isset($_POST["contact_agency"])) {
-    //     echo ('<form action="condition_selection.php" GET="POST">
-    //   <button type="submit" name="back" class="returnbtn">戻る</button>
-    //   </form>');      
-    //   }elseif (isset($_POST["cancel_agency"])){
-    //   echo ('<form action="index.php" GET="POST">
-    //   <button type="submit" name="back" class="returnbtn">戻る</button>
-    //   </form>');   
-    //   //  キープするのをやめた時に、javascript.history.back()だとずっとkeepをループすることになる
-    // } elseif(isset($_POST['category'])){
-    //   echo ('<form action="index.php" GET="POST">
-    //   <button type="submit" name="back" class="returnbtn">戻る</button>
-    //   </form>');
-    // }
-    // else{
-    //   echo ('<a href=' . '"javascript:history.back()"' . ' class="returnbtn">戻る</a>');
-    // }
     echo ('<form action="index.php" GET="POST">
       <button type="submit" name="back" class="returnbtn marginbottom">TOPに戻る</button>
       </form>');

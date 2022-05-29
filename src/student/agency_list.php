@@ -54,14 +54,14 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     $aria = $_SESSION['aria'];
   }
 }
-$stmt = $db->prepare('SELECT * FROM agents');
+$stmt = $db->prepare('SELECT * FROM agents where valid = 1');
 $stmt->execute();
 $agents = $stmt->fetchAll();
 // session_start();
 if($_SERVER['REQUEST_METHOD']==='POST'){
   if(isset($_POST['agent_id'])){
     $agent_id = $_POST['agent_id'];
-    $_SESSION['keep'][$agent_id]=$agent_id; //セッションにデータを格納
+    $_SESSION['keep'][$agent_id]=$agent_id; 
     if(isset($_POST['cancel'])) {
       unset($_SESSION['keep'][$agent_id]);
     }
@@ -72,7 +72,6 @@ if(isset($_SESSION['keep'])){
   $keeps=$_SESSION['keep'];
   $_SESSION['time'] = time();
 }
-// キープするボタンを押しても、金融とか何も選択していない状態のページにさせないため
 if(isset($_POST['category'])) {
   $page_flag = 1;
 }
@@ -92,7 +91,6 @@ if(isset($_POST['aria'])) {
 </head>
 <body>
 <?php include (dirname(__FILE__) . "/student_header.php");?>
-  <!-- 業種別ランキングをクリックした時 -->
   <div class="main">
     <?php if($page_flag === 1): ?>
     <div>
@@ -103,7 +101,6 @@ if(isset($_POST['aria'])) {
       <div class="exitcontainer">
         <a href="./index.php" class="exitbtn">✕</a>
       </div>
-      <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
       <a href="./keep.php" class="keepbtn">キープ中の企業</a>
       <ol>
         <?php
@@ -111,8 +108,29 @@ if(isset($_POST['aria'])) {
         ?>
         <li class="agentdetailinner">        
           <p>会社名:<?php echo $agent['agent_name'];?></p>
-          <p>得意な業種</p>
-          <p>対応エリア</p>
+          <p class="agentcategory">得意な業種：<?php
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id');
+              $stmt->bindValue(':agent_id', $agent['id']);
+              $stmt->execute();
+              $matched_category = $stmt->fetchAll();
+              print_r($matched_category[0]['category_name']);
+              ?></p>
+
+              <p class="agentcategory">対応エリア：<?php
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id');
+              $stmt->bindValue(':agent_id', $agent['id']);
+              $stmt->execute();
+              $matched_job_area = $stmt->fetchAll();
+              print_r($matched_job_area[0]['area']);
+              ?></p>
+
+              <p class="agentcategory">対応学年：<?php
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
+              $stmt->bindValue(':agent_id', $agent['id']);
+              $stmt->execute();
+              $matched_target_student = $stmt->fetchAll();
+              print_r($matched_target_student[0]['graduation_year']);
+              ?></p>
           <form action="" method="POST">
             <?php
                 if(isset($keeps[$agent['id']]) === true):
@@ -146,8 +164,29 @@ if(isset($_POST['aria'])) {
         ?>
         <li class="agentdetailinner">        
             <p>会社名<?php echo$agent['agent_name'];?></p>
-            <p>得意な業種</p>
-            <p>対応エリア</p>
+            <p class="agentcategory">得意な業種：<?php
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id');
+              $stmt->bindValue(':agent_id', $agent['id']);
+              $stmt->execute();
+              $matched_category = $stmt->fetchAll();
+              print_r($matched_category[0]['category_name']);
+              ?></p>
+
+              <p class="agentcategory">対応エリア：<?php
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id');
+              $stmt->bindValue(':agent_id', $agent['id']);
+              $stmt->execute();
+              $matched_job_area = $stmt->fetchAll();
+              print_r($matched_job_area[0]['area']);
+              ?></p>
+
+              <p class="agentcategory">対応学年：<?php
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
+              $stmt->bindValue(':agent_id', $agent['id']);
+              $stmt->execute();
+              $matched_target_student = $stmt->fetchAll();
+              print_r($matched_target_student[0]['graduation_year']);
+              ?></p>
             <form action="" method="POST">
               <?php
                   if(isset($keeps[$agent['id']]) === true):

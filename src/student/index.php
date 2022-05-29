@@ -1,10 +1,10 @@
 <?php
 require("../dbconnect.php");
 //全エージェント会社の情報取得
-$stmt = $db->prepare('SELECT * FROM agents');
+$stmt = $db->prepare('SELECT * FROM agents where valid = 1');
 $stmt->execute();
 $agents = $stmt->fetchAll();
-session_start();
+
 if($_SERVER['REQUEST_METHOD']==='POST'){
   if(isset($_POST['agent_id'])){
     $agent_id = $_POST['agent_id'];
@@ -90,11 +90,17 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
               print_r($matched_job_area[0]['area']);
               ?></p>
 
+              <p class="agentcategory">対応学年：<?php
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
+              $stmt->bindValue(':agent_id', $agent['id']);
+              $stmt->execute();
+              $matched_target_student = $stmt->fetchAll();
+              print_r($matched_target_student[0]['graduation_year']);
+              ?></p>
+
               <form action="" method="POST">
-                <!-- <form action="keep.php" method="POST"> -->
                 <input type="hidden" name="agent_id" value="<?php print_r($agent['id']);?>">
                 <?php
-                // echo $agent['id'];
                 if(isset($keeps[$agent['id']]) === true):
                 ?>
                 <p class="returnbtn">キープ済み</p>
