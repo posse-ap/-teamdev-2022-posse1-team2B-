@@ -30,7 +30,6 @@ if (isset($_POST['new_entry'])) {
   $prefecture = $_POST['prefecture'];
   $municipalitie = $_POST['municipalitie'];
   $address_number = $_POST['address_number'];
-  $image = $_POST['image'];
   $detail = $_POST['detail'];
 
   $db->beginTransaction();
@@ -40,7 +39,6 @@ if (isset($_POST['new_entry'])) {
         (
           agent_name, 
           url, 
-          image,
           notification_email, 
           tel_number, 
           post_number, 
@@ -53,7 +51,6 @@ if (isset($_POST['new_entry'])) {
         (
           :agent_name, 
           :url, 
-          :image,
           :notification_email, 
           :tel_number, 
           :post_number, 
@@ -67,7 +64,6 @@ if (isset($_POST['new_entry'])) {
     $param = array(
       ':agent_name' => $name,
       ':url' => $url,
-      ':image' => $image,
       ':notification_email' => $notification_email,
       ':tel_number' => $tel_number,
       ':post_number' => $post_number,
@@ -104,32 +100,37 @@ if (isset($_POST['new_entry'])) {
     $stmt = $db->prepare('SELECT id FROM agents where agent_name = :name');
     $stmt->bindValue(':name', $name);
     $stmt->execute();
-    $agent_id = $stmt->fetchAll();
+    $agent_id = $stmt->fetch();
 
     $stmt = $db->prepare('SELECT id FROM category where category_name = :category_name');
     $stmt->bindValue(':category_name', $_POST["category"]);
     $stmt->execute();
-    $category_id = $stmt->fetchAll();
+    $category_id = $stmt->fetch();
+
 
     $stmt = $db->prepare('SELECT id FROM job_area where area = :area');
     $stmt->bindValue(':area', $_POST["job_area"]);
     $stmt->execute();
-    $job_area_id = $stmt->fetchAll();
+    $job_area_id = $stmt->fetch();
 
     $stmt = $db->prepare('SELECT id FROM target_student where graduation_year = :graduation_year');
     $stmt->bindValue(':graduation_year', $_POST["target_student"]);
     $stmt->execute();
-    $target_student_id = $stmt->fetchAll();
+    $target_student_id = $stmt->fetch();
 
     $param = array(
-      ':agent_id' => $agent_id,
-      ':category_id' => $category_id,
-      ':job_area_id' => $job_area_id,
-      ':target_student_id' => $target_student_id
+      ':agent_id' => $agent_id[0],
+      ':category_id' => $category_id[0],
+      ':job_area_id' => $job_area_id[0],
+      ':target_student_id' => $target_student_id[0]
     );
     $stm->execute($param);
     // $response = $db->commit();
-  } 
+  } catch(PDOException $e) {
+    $db->rollBack();
+  }
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -149,7 +150,7 @@ if (isset($_POST['new_entry'])) {
   <div class="main">
     <h2 class="pagetitle">エージェンシー掲載情報を登録</h2>
     <p class="announce">※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
-    <form action="../../thanks.php?new_entry" method="POST" class="inputform">
+    <form action="./create_contents.php" method="POST" class="inputform">
       <dl>
         <dd>会社名</dd>
         <dt><input name='name' type="text" required></dt>
@@ -191,8 +192,6 @@ if (isset($_POST['new_entry'])) {
             <?php endforeach; ?>
           </select>
         </dt>
-        <dd>アイコン画像</dd>
-        <dt><input name='image' type="file" required></dt>
         <dd>備考</dd>
         <dt><textarea name="detail" id="detail" cols="30" rows="10"></textarea></dt>
       </dl>

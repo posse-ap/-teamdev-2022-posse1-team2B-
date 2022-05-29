@@ -49,7 +49,6 @@ if (isset($_SESSION['keep'])) {
     ?>
     <div class="agentdetailinner">
       <div class="agentheader">
-        <img src="../img/companylogo/<?php print_r($agents[0]['image']); ?>" alt="エージェンシー企業の写真">
         <p>
           <?php print_r($agents[0]["agent_name"]); ?>
         </p>
