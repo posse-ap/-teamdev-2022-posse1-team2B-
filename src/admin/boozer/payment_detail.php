@@ -99,23 +99,25 @@ $payment = ($month_total - $error_total) * 3000;
         </div>
       </div>
     </div>
-    <a href="payment.php" onclick="
-    <?php
-      $notification_email = $agent['notification_email'];
-      $addresses = ['test@posse-ap.com', $notification_email];
+    <div class="pageendbuttons flexdirectionreverse">
+      <a href="payment.php" class="inquirybtn endbtn" onclick="
+      <?php
+        $notification_email = $agent['notification_email'];
+        $addresses = ['test@posse-ap.com', $notification_email];
 
-      foreach ($addresses as $address) {
-        $from = 'boozer@craft.com';
-        $to   = $address;
-        $subject = 'payment from boozer';
-        $body = $payment;
+        foreach ($addresses as $address) {
+          $from = 'boozer@craft.com';
+          $to   = $address;
+          $subject = 'payment from boozer';
+          $body = $payment;
 
-        $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
-        var_dump($ret);
-      }
-      ?>
-    ">発行する</a>
-    <a href='javascript:history.back()'>戻る</a>
+          $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
+          var_dump($ret);
+        }
+        ?>
+      ">発行する</a>
+      <a href='javascript:history.back()' class="returnbtn endbtn">戻る</a>
+    </div>
   </div>
   <?php include (dirname(__FILE__) . "/boozer_footer.php");?>
   <script src="./boozer.js"></script>
