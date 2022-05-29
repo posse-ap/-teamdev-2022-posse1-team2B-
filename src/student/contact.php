@@ -21,6 +21,9 @@ if (isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()) {
 } else {
   session_destroy();
 }
+
+
+
 if (isset(
   $_POST['student_last_name'],
   $_POST['student_first_name'],
@@ -114,7 +117,7 @@ $page = 0;
 if (isset($_POST['contact'])) {
 
   $page = 1;
-
+  $_SESSION['contact'] = 'thanks';
 }
 ?>
 
@@ -228,7 +231,7 @@ if (isset($_POST['contact'])) {
             <?php echo $_POST["graduation_year"]; ?>
           </p>
         </div>
-        <button type="submit" name="btn_back" formaction="contact.php" class="returnbtn widebtn">登録情報編集</button>
+        <button type="submit" name="btn_back" formaction="index.php" class="returnbtn widebtn">やりなおす</button>
         <input type="hidden" name="student_last_name" value="<?php echo $_POST["student_last_name"]; ?>">
         <input type="hidden" name="student_last_name_kana" value="<?php echo $_POST["student_last_name_kana"]; ?>">
         <input type="hidden" name="student_first_name" value="<?php echo $_POST["student_first_name"]; ?>">
@@ -247,6 +250,7 @@ if (isset($_POST['contact'])) {
         <input type="hidden" name="contact_agent_id" value="<?php echo $_POST["contact_agent_id"]; ?>">
         <button type="submit" name="final_contact" class="inquirybtn" onclick="
       <?php
+      // $_SESSION['contact'] = 'thanks';
       $addresses = ['test@posse-ap.com', $_POST['notification_email']];
 
       foreach ($addresses as $address) {

@@ -80,10 +80,6 @@ if(isset($_POST['target_student'])) {
   if($page_flag === 1 || isset($_GET["back"])):?>
   <div class="main">
     <h1 class="pagetitle">絞り込み結果</h1>
-    <div class="exitcontainer">
-    <a href="./condition_selection.php" class="exitbtn">✕</a>
-    </div>
-    <a href="./keep.php" class="keepbtn">キープ中の企業</a>
     <?php if (count($where) > 0) : ?>
       <ul>
       <?php
@@ -150,6 +146,7 @@ if(isset($_POST['target_student'])) {
     <?php else:?>
       <p class="announce">条件を選択してください</p>
     <?php endif; ?>
+    <a href="./condition_selection.php" class="returnbtn">戻る</a>
   </div>
   <!-- こだわり条件から探すをクリックした場合に表示 -->
   <?php else:?>
