@@ -39,7 +39,7 @@ $param = array(
   ':student_first_name_kana' => $student_first_name_kana,
   ':post_number' => $post_number,
   ':prefecture' => $prefecture,
-  ':municipality' => $municipality,
+  ':municipalitie' => $municipalitie,
   ':adress_number' => $adress_number,
   ':tel_number' => $tel_number,
   ':email' => $email,
@@ -57,7 +57,7 @@ try {
     $stmt->execute();
     $agent = $stmt->fetch();
     $agent_id = $keep;
-    $stmt = $db->prepare('SELECT id FROM students WHERE student_last_name = :student_last_name AND student_first_name = :student_first_name AND student_last_name_kana = :student_last_name_kana AND student_first_name_kana = :student_first_name_kana AND post_number = :post_number AND prefecture = :prefecture AND municipality = :municipality AND adress_number = :adress_number AND tel_number = :tel_number AND email = :email AND college_name = :college_name AND undergraduate = :undergraduate AND college_department = :college_department AND graduation_year = :graduation_year');
+    $stmt = $db->prepare('SELECT id FROM students WHERE student_last_name = :student_last_name AND student_first_name = :student_first_name AND student_last_name_kana = :student_last_name_kana AND student_first_name_kana = :student_first_name_kana AND post_number = :post_number AND prefecture = :prefecture AND municipalitie = :municipalitie AND adress_number = :adress_number AND tel_number = :tel_number AND email = :email AND college_name = :college_name AND undergraduate = :undergraduate AND college_department = :college_department AND graduation_year = :graduation_year');
     // $stmt = $db->prepare('SELECT id FROM students WHERE post_number = :post_number AND tel_number = :tel_number AND email = :email AND graduation_year = :graduation_year');
     // その配列をexecute
     $stmt->execute($param);
