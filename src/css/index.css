@@ -174,7 +174,6 @@ footer img {
   width: 300px;
   /* margin-top: 20px; */
 }
-
 .keepbtn {
   margin-bottom: 20px;
   width: 150px;
@@ -216,6 +215,21 @@ footer img {
   text-align: center;
   font-size: 30px;
 }
+.exitcontainer {
+  /* background-color: #96D2C4;
+  border: none;
+  z-index: 100;
+  padding: 0px 10px 20px 10px;
+  height: 140px; */
+  position: relative;
+}
+.exitbtn {
+  /* text-align: center; */
+  position: absolute;
+  top: 5px;
+  right: 50px;
+  /* transform: translate(-5%, -95%); */
+}
 
 /*メジャー：消去ボタン（赤背景白文字）*/
 .deletebtn, .must {
@@ -246,6 +260,9 @@ footer img {
   right: 30px;
   top: 11px;
   position: absolute;
+}
+.marginbottomnone {
+  margin-bottom: 0px;
 }
 
 /* //一度きりボタン等// */
@@ -371,6 +388,12 @@ footer img {
   display: inline-block;
   position: relative;
 } 
+
+/*STUDENTS/AGENCYDETAIL*/
+.agentdetailinner p {
+  font-size: 20px;
+  line-height: 25px;
+}
 
 /*STUDENTS/AGENTDETAIL*/
 .agentdetailinner {
