@@ -13,7 +13,6 @@ $stmt = $db->prepare('select * from managers left join users on managers.user_id
 $stmt->bindValue(':login_email', $login['email']);
 $stmt->execute();
 $matched_agent = $stmt->fetch();
-
 $stmt = $db->prepare('SELECT * FROM category');
 $stmt->execute();
 $categories = $stmt->fetchAll();
@@ -27,7 +26,7 @@ $stmt->execute();
 $target_students = $stmt->fetchAll();
 
 $id = $matched_agent["id"];
-echo $id;
+// echo $id;
 if (isset($_POST['edit_entry'])) {
   if (isset($_POST['new_name'])) {
     $new_name = $_POST['new_name'];
