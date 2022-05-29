@@ -27,17 +27,6 @@ $target_students = $stmt->fetchAll();
 if (isset($_POST['edit_entry'])) {
 
   $id = $_POST['agent_id'];
-  $new_url = $_POST['new_url'];
-  $new_notification_email = $_POST['new_notification_email'];
-  $new_tel_number = $_POST['new_tel_number'];
-  $new_post_number = $_POST['new_post_number'];
-  $new_prefecture = $_POST['new_prefecture'];
-  $new_municipalitie = $_POST['new_municipalitie'];
-  $new_address_number = $_POST['new_address_number'];
-  $new_image = $_POST['new_image'];
-  $new_detail = $_POST['new_detail'];
-
-  // トランザクション開始
 
   if (isset($_POST['new_name'])) {
     $new_name = $_POST['new_name'];
@@ -435,7 +424,7 @@ if (isset($_POST['edit_entry'])) {
   <?php include(dirname(__FILE__) . "/boozer_header.php"); ?>
   <div class="main">
     <h2 class="pagetitle">掲載内容修正</h2>
-    <form action="edit.php" method="POST" class="inputform">
+    <form action="" method="POST" class="inputform">
       <dd>会社名</dd>
       <dt><input name='new_name' type="text"></dt>
       <dd>企業サイトのURL</dd>
