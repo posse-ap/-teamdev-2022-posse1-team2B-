@@ -114,8 +114,8 @@ $target_students = $stmt->fetchAll();
               <?php
               $from = 'boozer@craft.com';
               $to   = 'test@posse-ap.com';
-              $subject = 'contact from agency';
-              $body = $message_detail;
+              $subject = 'Hi, from craft';
+              $body = 'contact from agency about create contents';
 
               $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
               var_dump($ret);

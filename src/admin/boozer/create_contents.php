@@ -2,11 +2,8 @@
 session_start();
 require('../../dbconnect.php');
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
-  // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
   $_SESSION['time'] = time();
-  // SESSIONの時間を現在時刻に更新
 } else {
-  // そうじゃないならログイン画面に飛んでね
   header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
   exit();
 }
@@ -23,8 +20,6 @@ $stmt = $db->prepare('SELECT * FROM target_student');
 $stmt->execute();
 $target_students = $stmt->fetchAll();
 
-// print_r($categories[1]['category_name']);
-
 if (isset($_POST['new_entry'])) {
 
   $name = $_POST['name'];
@@ -38,7 +33,6 @@ if (isset($_POST['new_entry'])) {
   $image = $_POST['image'];
   $detail = $_POST['detail'];
 
-  // トランザクション開始
   $db->beginTransaction();
   try {
     $stmt = $db->prepare(
@@ -82,11 +76,9 @@ if (isset($_POST['new_entry'])) {
       ':adress_number' => $address_number,
       ':detail' => $detail
     );
-    // その配列をexecute
     $stmt->execute($param);
     $res = $db->commit();
   } catch (PDOException $e) {
-    // エラーが発生した時トランザクションが開始したところまで巻き戻せる
     $db->rollBack();
   }
 
@@ -135,11 +127,9 @@ if (isset($_POST['new_entry'])) {
       ':job_area_id' => $job_area_id,
       ':target_student_id' => $target_student_id
     );
-    // その配列をexecute
     $stm->execute($param);
     $response = $db->commit();
   } catch (PDOException $e) {
-    // エラーが発生した時トランザクションが開始したところまで巻き戻せる
     $db->rollBack();
   }
 }
@@ -210,7 +200,6 @@ if (isset($_POST['new_entry'])) {
         <dt><textarea name="detail" id="detail" cols="30" rows="10"></textarea></dt>
       </dl>
       <div class="pageendbuttons">
-        <!-- <a href='javascript:history.back()' class="returnbtn endbtn">戻る</a> -->
         <a href='./index.php' class="returnbtn endbtn">戻る</a>
         <input class="submitbtn endbtn ignore" type='submit' name='new_entry' value='新規作成'>
       </div>
