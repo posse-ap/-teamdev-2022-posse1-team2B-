@@ -66,12 +66,6 @@ if(isset($_POST['final_contact'])){
     $stmt->bindValue(':student_id', $studentId);
     $stmt->bindValue(':agent_id', $agent_id);
     $res = $stmt->execute();
-    ?>
-
-      <script language="javascript" type="text/javascript">
-          window.location = '../../thanks.php?contact';
-      </script>  
-      <?php
       exit; 
     }
 }
