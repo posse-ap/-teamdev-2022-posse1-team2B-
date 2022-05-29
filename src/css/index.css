@@ -52,8 +52,9 @@
   font-size: 20px;
   text-align: left;
   margin-bottom: 10px;
+  line-height: 25px;
 }
-.inputform div input:not(.ignore), .inputform dt textarea, .inputbox, .inputform dl input/*boozer/createcontent*/, .inputform input:not(.ignore)/*boozer/edit*/{ 
+.inputform div input:not(.ignore), .inputform dt textarea, .inputform select, .inputform div textarea, .inputbox, .inputform dl input/*boozer/createcontent*/, .inputform input:not(.ignore)/*boozer/edit*/{ 
   background-color: white;
   height: 35px;
   display: block;
@@ -71,6 +72,9 @@
   display: flex;
   justify-content: space-between;
   gap: 10px
+}
+.inputform div textarea { /*agency/createcontents備考欄*/
+    height: 50px;
 }
 
 /* bodyとmainの BASICCSS!!!!!!!!!!!!!!!!!!!! */
