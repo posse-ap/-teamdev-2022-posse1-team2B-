@@ -106,7 +106,7 @@ if(isset($_POST['aria'])) {
         <a href="./index.php" class="exitbtn">✕</a>
       </div>
       <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
-      <a href="./keep.php" class="keepbtn">キープ中企業</a>
+      <a href="./keep.php" class="keepbtn">キープ中の企業</a>
       <ol>
         <?php
           foreach($agents as $index => $agent):
@@ -137,10 +137,12 @@ if(isset($_POST['aria'])) {
       <?php 
         print_r($aria);
         ?>エリアに対応しているエージェンシー一覧</h1>
-      <a href="./index.php" class="exitbtn">✕</a>
-      <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
-      <a href="./keep.php" class="inquirybtn">キープ中の企業</a>
-      <ol>
+        <div class="exitcontainer">
+          <a href="./index.php" class="exitbtn">✕</a>
+        </div>
+        <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
+        <a href="./keep.php" class="keepbtn">キープ中の企業</a>
+        <ol>
         <?php
             foreach($agents as $index => $agent):
         ?>

@@ -150,8 +150,10 @@ print_r($where);
     <!-- 絞り込み結果 -->
   <div class="main">
     <h1 class="pagetitle">絞り込み結果</h1>
-    <a href="./condition_selection.php">✕</a>
-    <a href="./keep.php" class="inquirybtn">キープ中の企業</a>
+    <div class="exitcontainer">
+    <a href="./condition_selection.php" class="exitbtn">✕</a>
+    </div>
+    <a href="./keep.php" class="keepbtn">キープ中の企業</a>
     <?php if (count($where) > 0) : ?>
       <ul>
       <?php
