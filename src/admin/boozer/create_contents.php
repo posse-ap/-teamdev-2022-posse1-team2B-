@@ -2,98 +2,152 @@
 session_start();
 require('../../dbconnect.php');
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
-    // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
-    $_SESSION['time'] = time();
-    // SESSIONの時間を現在時刻に更新
+  // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
+  $_SESSION['time'] = time();
+  // SESSIONの時間を現在時刻に更新
 } else {
-    // そうじゃないならログイン画面に飛んでね
-    header('Location: http://' . $_SERVER['HTTP_HOST'] . '../login.php');
-    exit();
+  // そうじゃないならログイン画面に飛んでね
+  header('Location: http://' . $_SERVER['HTTP_HOST'] . '../login.php');
+  exit();
 }
 
-if(isset($_POST['new_entry'])) {
+$stmt = $db->prepare('SELECT * FROM category');
+$stmt->execute();
+$categories = $stmt->fetchAll();
 
-    $name = $_POST['name'];
-    $url = $_POST['url'];
-    $notification_email = $_POST['notification_email'];
-    $tel_number = $_POST['tel_number'];
-    $post_number = $_POST['post_number'];
-    $prefecture = $_POST['prefecture'];
-    $municipalitie = $_POST['municipalitie'];
-    $address_number = $_POST['address_number'];
-    $category = $_POST['category'];
-   // トランザクション開始
-    $db->beginTransaction();
-    try {
-      // $stmt = $db->prepare('insert into agents 
-      // (agent_name, 
-      // url, 
-      // notification_email, 
-      // tel_number, 
-      // post_number, 
-      // prefecture, 
-      // municipalitie, 
-      // adress_number, 
-      // category) values ("a", "b", "c", "d", "e", "f", "g", "h", "i")');
-      $stmt = $db->prepare('insert into agents 
+$stmt = $db->prepare('SELECT * FROM job_area');
+$stmt->execute();
+$job_areas = $stmt->fetchAll();
+
+$stmt = $db->prepare('SELECT * FROM target_student');
+$stmt->execute();
+$target_students = $stmt->fetchAll();
+
+// print_r($categories[1]['category_name']);
+
+if (isset($_POST['new_entry'])) {
+
+  $name = $_POST['name'];
+  $url = $_POST['url'];
+  $notification_email = $_POST['notification_email'];
+  $tel_number = $_POST['tel_number'];
+  $post_number = $_POST['post_number'];
+  $prefecture = $_POST['prefecture'];
+  $municipalitie = $_POST['municipalitie'];
+  $address_number = $_POST['address_number'];
+  $image = $_POST['image'];
+  $detail = $_POST['detail'];
+
+  // トランザクション開始
+  $db->beginTransaction();
+  try {
+    $stmt = $db->prepare(
+      'insert into agents 
         (
           agent_name, 
           url, 
+          image,
           notification_email, 
           tel_number, 
           post_number, 
           prefecture, 
           municipalitie, 
           adress_number, 
-          category
+          detail
         ) 
         values 
         (
           :agent_name, 
           :url, 
+          :image,
           :notification_email, 
           :tel_number, 
           :post_number, 
           :prefecture, 
           :municipalitie, 
           :adress_number, 
-          :category
+          :detail
         )'
-      );
+    );
 
     $param = array(
       ':agent_name' => $name,
       ':url' => $url,
+      ':image' => $image,
       ':notification_email' => $notification_email,
       ':tel_number' => $tel_number,
       ':post_number' => $post_number,
       ':prefecture' => $prefecture,
       ':municipalitie' => $municipalitie,
       ':adress_number' => $address_number,
-      ':category' => $category
+      ':detail' => $detail
     );
-  // その配列をexecute
+    // その配列をexecute
     $stmt->execute($param);
     $res = $db->commit();
-    }catch(PDOException $e) {
-      	// エラーが発生した時トランザクションが開始したところまで巻き戻せる
-        $db->rollBack();
-    }
-    if ($res){
-      ?>
-      <script language="javascript" type="text/javascript">
-        window.location = '../../thanks.php?new_entry';
-      </script>
-      <?php
-      exit;
-    }else{
-      print('データの追加に失敗しました<br>');
-    }
+  } catch (PDOException $e) {
+    // エラーが発生した時トランザクションが開始したところまで巻き戻せる
+    $db->rollBack();
+  }
+
+  $db->beginTransaction();
+  try {
+    $stm = $db->prepare(
+      'insert into characteristic 
+        (
+          agent_id,
+          category_id,
+          job_area_id,
+          target_student_id
+        ) 
+        values 
+        (
+          :agent_id,
+          :category_id,
+          :job_area_id,
+          :target_student_id
+        )'
+    );
+
+    $stmt = $db->prepare('SELECT id FROM agents where agent_name = :name');
+    $stmt->bindValue(':name', $name);
+    $stmt->execute();
+    $agent_id = $stmt->fetchAll();
+
+    $stmt = $db->prepare('SELECT id FROM category where category_name = :category_name');
+    $stmt->bindValue(':category_name', $_POST["category"]);
+    $stmt->execute();
+    $category_id = $stmt->fetchAll();
+
+    $stmt = $db->prepare('SELECT id FROM job_area where area = :area');
+    $stmt->bindValue(':area', $_POST["job_area"]);
+    $stmt->execute();
+    $job_area_id = $stmt->fetchAll();
+
+    $stmt = $db->prepare('SELECT id FROM target_student where graduation_year = :graduation_year');
+    $stmt->bindValue(':graduation_year', $_POST["target_student"]);
+    $stmt->execute();
+    $target_student_id = $stmt->fetchAll();
+
+    $param = array(
+      ':agent_id' => $agent_id,
+      ':category_id' => $category_id,
+      ':job_area_id' => $job_area_id,
+      ':target_student_id' => $target_student_id
+    );
+    // その配列をexecute
+    $stm->execute($param);
+    $response = $db->commit();
+  } catch (PDOException $e) {
+    // エラーが発生した時トランザクションが開始したところまで巻き戻せる
+    $db->rollBack();
+  }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -102,38 +156,67 @@ if(isset($_POST['new_entry'])) {
   <link rel="stylesheet" href="../../css/reset.css">
   <link rel="stylesheet" href="../../css/index.css">
 </head>
+
 <body>
-<?php include (dirname(__FILE__) . "/boozer_header.php");?>
+  <?php include(dirname(__FILE__) . "/boozer_header.php"); ?>
   <div class="main">
-    <!-- <h2 class="pagetitle">掲載内容登録</h2> -->
-    <!-- <form action="../thanks.php" method="POST">
-      <button class="submitbtn" type="submit" name="new_entry">新規作成</button> -->
     <h2 class="pagetitle">エージェンシー掲載情報を登録</h2>
     <p class="announce">※URL、通知先メールアドレス、電話番号は学生画面には表示されません。</p>
-    <form action="" method="POST" class="inputform">
+    <form action="../../thanks.php?new_entry" method="POST" class="inputform">
       <dl>
-        <dd>会社名</dd><dt><input name='name' type="text" required></dt>
-        <dd>企業サイトのURL</dd><dt><input name='url' type="text" required></dt>
-        <dd>通知先メールアドレス</dd><dt><input name='notification_email' type='email' required></dt>
-        <dd>電話番号</dd><dt><input name='tel_number' type='tel' required></dt>
-        <dd>郵便番号</dd><dt><input name='post_number' type="text" required></dt>
-        <dd>都道府県</dd><dt><input name='prefecture' type="text" required></dt>
-        <dd>市区町村</dd><dt><input name='municipalitie' type="text" required></dt>
-        <dd>町域・番地</dd><dt><input name='address_number' type="text" required></dt>
-        <dd>得意な業種</dd><dt><input name='category' type='text' required></dt>
-        <dd>対応エリア</dd><dt><input name='category' type='text' required></dt>
-        <dd>対応学年</dd><dt><input name='category' type='text' required></dt>
-        <dd>アイコン画像</dd><dt><input name='image' type="file"></dt>
-        <dd>備考</dd><dt><textarea name="" id="" cols="30" rows="10"></textarea></dt>
+        <dd>会社名</dd>
+        <dt><input name='name' type="text" required></dt>
+        <dd>企業サイトのURL</dd>
+        <dt><input name='url' type="text" required></dt>
+        <dd>通知先メールアドレス</dd>
+        <dt><input name='notification_email' type='email' required></dt>
+        <dd>電話番号</dd>
+        <dt><input name='tel_number' type='tel' required></dt>
+        <dd>郵便番号</dd>
+        <dt><input name='post_number' type="text" required></dt>
+        <dd>都道府県</dd>
+        <dt><input name='prefecture' type="text" required></dt>
+        <dd>市区町村</dd>
+        <dt><input name='municipalitie' type="text" required></dt>
+        <dd>町域・番地</dd>
+        <dt><input name='address_number' type="text" required></dt>
+        <dd>得意な業種</dd>
+        <dt>
+          <select name='category' required>
+            <?php foreach ($categories as $index => $category) : ?>
+              <option value="<?php print_r($categories[$index]['category_name']); ?>"><?php print_r($categories[$index]['category_name']); ?></option>
+            <?php endforeach; ?>
+          </select>
+        </dt>
+        <dd>対応エリア</dd>
+        <dt>
+          <select name='job_area' required>
+            <?php foreach ($job_areas as $index => $job_area) : ?>
+              <option value="<?php print_r($job_areas[$index]['area']); ?>"><?php print_r($job_areas[$index]['area']); ?></option>
+            <?php endforeach; ?>
+          </select>
+        </dt>
+        <dd>対応学年</dd>
+        <dt>
+          <select name='target_student' required>
+            <?php foreach ($target_students as $index => $target_student) : ?>
+              <option value="<?php print_r($target_students[$index]['graduation_year']); ?>"><?php print_r($target_students[$index]['graduation_year']); ?></option>
+            <?php endforeach; ?>
+          </select>
+        </dt>
+        <dd>アイコン画像</dd>
+        <dt><input name='image' type="file" required></dt>
+        <dd>備考</dd>
+        <dt><textarea name="detail" id="detail" cols="30" rows="10"></textarea></dt>
       </dl>
       <div class="pageendbuttons">
         <!-- <a href='javascript:history.back()' class="returnbtn endbtn">戻る</a> -->
         <a href='./index.php' class="returnbtn endbtn">戻る</a>
-        <input class="submitbtn endbtn ignore" type='submit' name='new_entry' value ='新規作成'>
-      </div>  
-<!-- >>>>>>> ba99c6510cfd4f9eb0cf2595547054573908d894 -->
+        <input class="submitbtn endbtn ignore" type='submit' name='new_entry' value='新規作成'>
+      </div>
     </form>
-</div>
-<?php include (dirname(__FILE__) . "/boozer_footer.php");?>
+  </div>
+  <?php include(dirname(__FILE__) . "/boozer_footer.php"); ?>
 </body>
+
 </html>

@@ -94,7 +94,6 @@ if (isset(
   $college_department = $_POST['college_department'];
   $graduation_year = $_POST['graduation_year'];
 
-  // ：〇〇と上の変数をつなげる＄param = array()で配列を作る
   $param = array(
     ':student_last_name' => $student_last_name,
     ':student_first_name' => $student_first_name,
@@ -146,7 +145,7 @@ if (isset($_POST['contact'])) {
     <!-- 確認画面 -->
     <div class="main">
       <!-- 登録いたしました！だと完了ボタン押さないでブラウザバックする人いそうだから、登録いたしますか？でよくない？ -->
-      <h1>こちらの内容で登録いたします</h1>
+      <h1>内容の確認をおねがいします</h1>
       <form method="POST" action="apply.php">
         <div>
           <label>氏</label>
@@ -358,7 +357,7 @@ if (isset($_POST['contact'])) {
             </div>
           </div>
           <div>
-            <input type="submit" name="contact" value="エージェンシー企業に問い合わせる">
+            <input type="submit" name="contact" class="ignore inquirybtn" value="エージェンシーにお問い合わせ">
           </div>
       </form>
       <?php

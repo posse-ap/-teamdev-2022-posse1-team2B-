@@ -149,9 +149,11 @@ print_r($where);
   if($page_flag === 1 || isset($_GET["back"])):?>
     <!-- 絞り込み結果 -->
   <div class="main">
-    <h1>絞り込み結果</h1>
-    <a href="./condition_selection.php">✕</a>
-    <a href="./keep.php">キープ中の企業</a>
+    <h1 class="pagetitle">絞り込み結果</h1>
+    <div class="exitcontainer">
+    <a href="./condition_selection.php" class="exitbtn">✕</a>
+    </div>
+    <a href="./keep.php" class="keepbtn">キープ中の企業</a>
     <?php if (count($where) > 0) : ?>
       <ul>
       <?php
@@ -161,11 +163,13 @@ print_r($where);
         $rows=$stmt->fetchAll();
         foreach($rows as $row) :
       ?>
-          <li>
+          <li class="agentdetailinner">
             <a href="./agent_detail.php">
-              <p><?php ?></p>
-              <img src="../img/<?php ?>.png" alt="エージェンシー企業">
-              <dl>
+              <div class="agentheader">
+                <p><?php ?></p>
+                <img src="../img/<?php ?>.png" alt="エージェンシー企業">
+              </div>
+              <dl class="agentinfo">
                 <?php
                   $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id left join category on characteristic.category_id = category.id left join job_area on characteristic.job_area_id = job_area.id left join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
                   // $stmt = $db->prepare('SELECT * FROM agents WHERE id = :agent_id');
@@ -173,17 +177,23 @@ print_r($where);
                   $stmt->execute();
                   $agent_information=$stmt->fetch();
                 ?>
-                <dt>得意な業種</dt>
-                <dd><?php print_r($agent_information['agent_name']);?></dd>
-                <dt>対応エリア</dt>
-                <dd><?php print_r($agent_information['area']);?></dd>
-                <dt>対象学生</dt>
-                <dd><?php print_r($agent_information['graduation_year']);?></dd>
+                <div>
+                  <dt>得意な業種：</dt>
+                  <dd><?php print_r($agent_information['agent_name']);?></dd>
+                </div>
+                <div>
+                  <dt>対応エリア：</dt>
+                  <dd><?php print_r($agent_information['area']);?></dd>
+                </div>
+                <div>
+                  <dt>対象学生：</dt>
+                  <dd><?php print_r($agent_information['graduation_year']);?></dd>
+                </div>
               </dl>
               <form action="./keep.php" method="POST">
                 <input type="hidden" name="agent_id" value="">
                 <button type="submit" class="keepbtn">キープする</button>
-                <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシー企業に問い合わせる</button>
+                <button type="submit" formaction="./contact.php" class="inquirybtn">エージェンシーにお問い合わせ</button>
               </form>
             </a>
           </li>
@@ -191,13 +201,13 @@ print_r($where);
           endforeach;
           if(empty($rows)) :
         ?>
-          <p>該当する企業はありません。</p>
+          <p class="announce">該当する企業はありません。</p>
         <?php
           endif;
         ?>
       </ul>
     <?php else:?>
-      <p>条件を選択してください</p>
+      <p class="announce">条件を選択してください</p>
     <?php endif; ?>
   </div>
   <!-- こだわり条件から探すをクリックした場合に表示 -->
