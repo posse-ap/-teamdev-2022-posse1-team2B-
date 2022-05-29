@@ -428,8 +428,14 @@ footer img {
   margin: 25px 14px 25px 14px;
   padding: 20px 17px 20px 17px;
 }
+.agentdetailinner h3 {/*contactfromagency*/
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+}
 .agentheader {
   display: flex;
+  gap: 20px;
   /* justify-content: center;
   align-items: center;
   gap: 50px; */
