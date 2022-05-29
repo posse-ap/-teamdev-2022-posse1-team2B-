@@ -14,7 +14,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   } elseif(isset($_POST["ad"])) {
     $page_flag = 1;
     $ad = $_POST['ad'];
-    $_SESSION['category']=$ad;} elseif (isset($_POST["tradingCompany"])){
+    $_SESSION['category']=$ad;
+  } elseif (isset($_POST["tradingCompany"])){
     $page_flag = 1;
     $tradingCompany = $_POST['tradingCompany'];
     $_SESSION['category']=$tradingCompany;
@@ -31,7 +32,6 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   if(isset($_SESSION['category'])){
     $category = $_SESSION['category'];
   }
-
   if(isset($_POST['kanto'])) {
     $page_flag = 2;
     $kanto = $_POST['kanto'];
@@ -57,7 +57,6 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 $stmt = $db->prepare('SELECT * FROM agents');
 $stmt->execute();
 $agents = $stmt->fetchAll();
-
 // session_start();
 if($_SERVER['REQUEST_METHOD']==='POST'){
   if(isset($_POST['agent_id'])){
@@ -80,7 +79,6 @@ if(isset($_POST['category'])) {
 if(isset($_POST['aria'])) {
   $page_flag = 2;
 }
-
   ?>
 <!DOCTYPE html>
 <html lang="ja">
