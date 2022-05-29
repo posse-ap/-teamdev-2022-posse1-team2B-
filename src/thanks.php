@@ -49,7 +49,10 @@ if(isset($_POST['btn_confirm'])){ // agency
    // 7 お問い合わせ：contact thanks////final_contact
     $action = "エージェンシー企業の掲載の削除";
     $user_name = "agency";
-} 
+} else if(isset($_GET['login'])) {
+  $action = "アカウントの登録";
+  $user_name = "new_agency";
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -84,7 +87,9 @@ if(isset($_POST['btn_confirm'])){ // agency
         <?php if($user_name === "boozer"):?>
         ../admin/boozer/index.php
         <?php elseif($user_name === "agency"): ?>
-        ../admin/agency/index.php 
+        ../admin/agency/index.php
+        <?php elseif($user_name === "new_agency"): ?>
+          ../admin/agency/top.php
         <?php else : ?>
           ../student/index.php
         <?php endif;?>
@@ -95,16 +100,16 @@ if(isset($_POST['btn_confirm'])){ // agency
     <img src="../../img/boozer_logo_white.png" alt="boozer">
   </footer>
   <?php 
-  if($user_name === "boozer" || $user_name === "agency") {
-    // include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_footer.php");
-    // echo('<script src="./admin/boozer/boozer.js"></script>');
-  } elseif($user_name === "agency") {
-    include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_footer.php");
-    // echo('<script src="../admin/agency/agency.js"></script>');
-  } else {
-    include (dirname(__FILE__) . "/" . $user_name . "/" . $user_name . "_footer.php");
-    // echo('<script src="../student/student.js"></script>');
-  }
+  // if($user_name === "boozer" || $user_name === "agency") {
+  //   // include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_footer.php");
+  //   // echo('<script src="./admin/boozer/boozer.js"></script>');
+  // } elseif($user_name === "agency") {
+  //   include (dirname(__FILE__) . "/" . "admin/" . $user_name . "/" . $user_name . "_footer.php");
+  //   // echo('<script src="../admin/agency/agency.js"></script>');
+  // } else {
+  //   include (dirname(__FILE__) . "/" . $user_name . "/" . $user_name . "_footer.php");
+  //   // echo('<script src="../student/student.js"></script>');
+  // }
   ?>
 </body>
 </html>
