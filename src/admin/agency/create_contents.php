@@ -1,24 +1,17 @@
 <?php
-session_start();
 require('../../dbconnect.php');
-if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
-  $_SESSION['time'] = time();
-} else {
-  header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
-  exit();
-}
 
-$stmt = $db->prepare('SELECT * FROM category');
-$stmt->execute();
-$categories = $stmt->fetchAll();
+$category_stmt = $db->prepare('SELECT * FROM category');
+$category_stmt->execute();
+$categories = $category_stmt->fetchAll();
 
-$stmt = $db->prepare('SELECT * FROM job_area');
-$stmt->execute();
-$job_areas = $stmt->fetchAll();
+$job_area_stmt = $db->prepare('SELECT * FROM job_area');
+$job_area_stmt->execute();
+$job_areas = $job_area_stmt->fetchAll();
 
-$stmt = $db->prepare('SELECT * FROM target_student');
-$stmt->execute();
-$target_students = $stmt->fetchAll();
+$target_student_stmt = $db->prepare('SELECT * FROM target_student');
+$target_student_stmt->execute();
+$target_students = $target_student_stmt->fetchAll();
 
 if (isset($_POST['new_entry'])) {
 
@@ -33,9 +26,7 @@ if (isset($_POST['new_entry'])) {
   $image = $_POST['image'];
   $detail = $_POST['detail'];
 
-  $db->beginTransaction();
-  try {
-    $stmt = $db->prepare(
+    $entry_stmt = $db->prepare(
       'insert into agents 
         (
           agent_name, 
@@ -64,7 +55,7 @@ if (isset($_POST['new_entry'])) {
         )'
     );
 
-    $param = array(
+    $parameter = array(
       ':agent_name' => $name,
       ':url' => $url,
       ':image' => $image,
@@ -76,15 +67,9 @@ if (isset($_POST['new_entry'])) {
       ':adress_number' => $address_number,
       ':detail' => $detail
     );
-    $stmt->execute($param);
-    $res = $db->commit();
-  } catch (PDOException $e) {
-    $db->rollBack();
-  }
+    $entry_stmt->execute($parameter);
 
-  $db->beginTransaction();
-  try {
-    $stm = $db->prepare(
+    $character_stm = $db->prepare(
       'insert into characteristic 
         (
           agent_id,
@@ -101,25 +86,25 @@ if (isset($_POST['new_entry'])) {
         )'
     );
 
-    $stmt = $db->prepare('SELECT id FROM agents where agent_name = :name');
-    $stmt->bindValue(':name', $name);
-    $stmt->execute();
-    $agent_id = $stmt->fetchAll();
+    $agent_id_stmt = $db->prepare('SELECT id FROM agents where agent_name = :name');
+    $agent_id_stmt->bindValue(':name', $name);
+    $agent_id_stmt->execute();
+    $agent_id = $agent_id_stmt->fetchAll();
 
-    $stmt = $db->prepare('SELECT id FROM category where category_name = :category_name');
-    $stmt->bindValue(':category_name', $_POST["category"]);
-    $stmt->execute();
-    $category_id = $stmt->fetchAll();
+    $categories_stmt = $db->prepare('SELECT id FROM category where category_name = :category_name');
+    $categories_stmt->bindValue(':category_name', $_POST["category"]);
+    $categories_stmt->execute();
+    $category_id = $categories_stmt->fetchAll();
 
-    $stmt = $db->prepare('SELECT id FROM job_area where area = :area');
-    $stmt->bindValue(':area', $_POST["job_area"]);
-    $stmt->execute();
-    $job_area_id = $stmt->fetchAll();
+    $job_areas_stmt = $db->prepare('SELECT id FROM job_area where area = :area');
+    $job_areas_stmt->bindValue(':area', $_POST["job_area"]);
+    $job_areas_stmt->execute();
+    $job_area_id = $job_areas_stmt->fetchAll();
 
-    $stmt = $db->prepare('SELECT id FROM target_student where graduation_year = :graduation_year');
-    $stmt->bindValue(':graduation_year', $_POST["target_student"]);
-    $stmt->execute();
-    $target_student_id = $stmt->fetchAll();
+    $target_students_stmt = $db->prepare('SELECT id FROM target_student where graduation_year = :graduation_year');
+    $target_students_stmt->bindValue(':graduation_year', $_POST["target_student"]);
+    $target_students_stmt->execute();
+    $target_student_id = $target_students_stmt->fetchAll();
 
     $param = array(
       ':agent_id' => $agent_id,
@@ -127,11 +112,7 @@ if (isset($_POST['new_entry'])) {
       ':job_area_id' => $job_area_id,
       ':target_student_id' => $target_student_id
     );
-    $stm->execute($param);
-    $response = $db->commit();
-  } catch (PDOException $e) {
-    $db->rollBack();
-  }
+    $character_stm->execute($param);
 }
 ?>
 
