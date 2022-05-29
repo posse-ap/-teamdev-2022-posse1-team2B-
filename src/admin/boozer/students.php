@@ -30,7 +30,7 @@ $agents_students_match = $stmt->fetchAll();
 </head>
 
 <body>
-  <?php include(dirname(__FILE__) . "/boozer_header.php"); ?>
+  <!-- <?php include(dirname(__FILE__) . "/boozer_header.php"); ?> -->
   <div class="main">
     <section>
       <h2 class="pagetitle">学生一覧</h2>
@@ -43,7 +43,6 @@ $agents_students_match = $stmt->fetchAll();
       </div>
       <?php
       foreach ($agents_students_match as $index => $agent_student_match) : ?>
-        <!-- 学生のデータを問い合わせぶん回す -->
         <div class="studentsbox">
           <span><?= $agent_student_match['student_last_name'], $agent_student_match['student_first_name']; ?></span>
           <span><?= $agent_student_match['student_last_name_kana'], $agent_student_match['student_first_name_kana']; ?></span>
@@ -53,12 +52,10 @@ $agents_students_match = $stmt->fetchAll();
             <input type='submit' name='report' value='詳細' class="submitbtn" id="boozer_student_detailbtn">
           </form>
         </div>
-        
     </section>
 
 
     <section class="tableouter" id="boozer_student_table">
-      <!-- <button>☓</button> -->
       <div class="table" onclick="showModal();">
         <dd>名前</dd>
         <dt><?= $agent_student_match['student_last_name'], $agent_student_match['student_first_name']; ?></dt>
@@ -78,20 +75,32 @@ $agents_students_match = $stmt->fetchAll();
         <dt><?= $agent_student_match['graduation_year'] ?></dt>
         <dd>申込みエージェント</dd>
         <dt><?= $agent_student_match['agent_name'] ?></dt>
+        <?php $notification_email = $agents_students_match[$index]['notification_email'] ?>
       </div>
       <form action="students.php" method="post">
-        <button type="submit" name="valid<?= $index+1 ?>" class="deletebtn margintop">いたずら認定</button>
+        <button type="submit" name="valid<?= $index+1 ?>" class="deletebtn margintop" onclick="
+        <?php
+
+        $addresses = ['test@posse-ap.com', $notification_email];
+
+      foreach ($addresses as $address) {
+        $from = 'boozer@craft.com';
+        $to   = $address;
+        $subject = 'error admitted from a boozer';
+        $body = 'please check information from here';
+
+        $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
+        var_dump($ret);
+      }
+        ?>
+        ">いたずら認定</button>
       </form>
       <?php
         if (isset($_POST["valid" . $index+1])) {
-          // 特定のボタンがクリックされたら
           $stmt = $db->prepare('UPDATE students SET valid = 1 WHERE id = :id');
-          // validを１にする
 
-          // 値をセット
           $stmt->bindValue(':id', $agent_student_match['student_id']);
 
-          // SQL実行
           $stmt->execute();
         }
       ?>
