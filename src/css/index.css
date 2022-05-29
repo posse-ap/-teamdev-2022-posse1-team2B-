@@ -279,6 +279,7 @@ footer img {
 }
 .marginbottomnone {
   margin-bottom: 0px;
+  font-size: 18px;
 }
 .marginbottom {
   margin-bottom: 20px;
@@ -482,9 +483,28 @@ footer img {
   font-size: 15px;
 }
 
-.agencylistbox {
+/*students/agency_detail*/
+/* ol li {
   background-color: white;
+  margin-top: 20px;
+  padding: 10px 10px;
 }
+ol li form p, ol li form button {
+  background-color: #96D2C4;
+  color: white;
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+  border: none;
+  font-size: 18px;
+  padding: 7px 15px;
+  text-align: center;
+  width: 160px;
+  font-weight: 500;
+}
+ol li form button {
+  background-color: #EFB448;
+} */
 
 /*AGENCY/TOP.PHP*/
 .topbuttons {
