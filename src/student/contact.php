@@ -255,8 +255,8 @@ if (isset($_POST['contact'])) {
       foreach ($addresses as $address) {
         $from = 'boozer@craft.com';
         $to   = $address;
-        $subject = 'contact from a student';
-        $body = 'please check information from here';
+        $subject = 'Hi, from craft';
+        $body = 'student contacts to craft';
 
         $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
         var_dump($ret);

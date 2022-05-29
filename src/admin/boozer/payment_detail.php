@@ -2,11 +2,8 @@
 session_start();
 require('../../dbconnect.php');
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
-    // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
     $_SESSION['time'] = time();
-    // SESSIONの時間を現在時刻に更新
 } else {
-    // そうじゃないならログイン画面に飛んでね
     header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
     exit();
 }
@@ -27,7 +24,6 @@ $stmt->bindValue(':agent_id', $agent_id);
 $stmt->execute();
 $matched_students = $stmt->fetchAll();
 
-// print_r($matched_students);
 
 $month_total = 0;
 foreach($matched_students as $matched_student) {
@@ -112,7 +108,7 @@ $payment = ($month_total - $error_total) * 3000;
         $from = 'boozer@craft.com';
         $to   = $address;
         $subject = 'payment from boozer';
-        $body = 'please check information from here';
+        $body = $payment;
 
         $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
         var_dump($ret);
