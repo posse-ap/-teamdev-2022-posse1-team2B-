@@ -50,35 +50,48 @@ if(isset($_GET['agent_id'])){
     if($page_flag === 1): ?>
   <div class="main">
     <h2 class="pagetitle">エージェンシー企業の詳細情報</h2>
-      <form method="POST" action="edit.php">
+      <form method="POST" action="edit.php" class="agencydetailbox">
         <img src="" alt="">
         <h3><?=$agency[0]['agent_name'] ?></h3>
-        <dl>
-          <dt>電話番号</dt>
-          <dd><?= $agency[0]['tel_number']?></dd>
-          <dt>得意な業界</dt>
-          <dd><?= $agency[0]['category'] ?></dd>
-          <dt>企業サイトのURL</dt><dd><?= $agency[0]['url'] ?></dd>
-          <dt>通知先メールアドレス</dt><dd><?= $agency[0]['notification_email'] ?></dd>
-          <dt>電話番号</dt><dd><?= $agency[0]['tel_number'] ?></dd>
-          <dt>会社住所</dt>
-          <dd><?= $agency[0]['post_number'], $agency[0]['prefecture'], $agency[0]['municipalitie'], $agency[0]['adress_number']?></dd>
+        <dl class="agentinfo">
+          <div>
+            <dt>電話番号：</dt>
+            <dd><?= $agency[0]['tel_number']?></dd>
+          </div>
+          <div>
+            <dt>得意な業界：</dt>
+            <dd><?= $agency[0]['category'] ?></dd>
+          </div>
+          <div>
+            <dt>企業サイトのURL：</dt><dd><?= $agency[0]['url'] ?></dd>
+          </div>
+          <div>
+            <dt>通知先メールアドレス：</dt><dd><?= $agency[0]['notification_email'] ?></dd>
+          </div>
+          <div>
+            <dt>電話番号：</dt><dd><?= $agency[0]['tel_number'] ?></dd>
+          </div>
+          <div>
+            <dt>会社住所：</dt>
+            <dd><?= $agency[0]['post_number'], $agency[0]['prefecture'], $agency[0]['municipalitie'], $agency[0]['adress_number']?></dd>
+          </div>
           <!-- <dt>得意な業種</dt><dd><?= $category ?></dd> -->
-          <dt>登録エージェント</dt>
-          <?php foreach($managers as $index => $manager):
-              $stmt = $db->prepare('SELECT login_email FROM users WHERE id = :id');
-              $stmt->bindValue(':id', $manager['user_id']);
-              $stmt->execute();
-              $agent_login_email = $stmt->fetch();
-            ?>
-            <dd><?= $manager['manager_last_name'], $manager['manager_first_name']?></dd>
-            <p><?= $agent_login_email[0] ?></p>
-          <?php endforeach;?>
+          <div><dt>登録エージェント：</dt>
+            <?php foreach($managers as $index => $manager):
+                $stmt = $db->prepare('SELECT login_email FROM users WHERE id = :id');
+                $stmt->bindValue(':id', $manager['user_id']);
+                $stmt->execute();
+                $agent_login_email = $stmt->fetch();
+              ?>
+              <dd><?= $manager['manager_last_name'], $manager['manager_first_name']?></dd>
+              <p><?= $agent_login_email[0] ?></p>
+            <?php endforeach;?>
+          </div>
         </dl>
         <input type="hidden" name="agent_id" value="<?php echo $agency[0]['id'];?>">
         <div class="pageendbuttons">
-          <input class="submitbtn endbtn" type="submit" name="edit" value="エージェンシ―企業の掲載を編集">
-          <input  class="deletebtn endbtn" type="submit" name="delete" formaction="delete.php"  value="エージェンシ―企業の掲載を削除">
+          <input class="submitbtn endbtn" type="submit" name="edit" value="編集">
+          <input  class="deletebtn endbtn" type="submit" name="delete" formaction="delete.php"  value="削除">
         </div>
       </form>
       <a href='javascript:history.back()' class="returnbtn">戻る</a>

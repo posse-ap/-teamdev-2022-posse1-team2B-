@@ -98,18 +98,20 @@ if(isset($_POST['aria'])) {
   <div class="main">
     <?php if($page_flag === 1): ?>
     <div>
-      <h1>
+      <h1 class="pagetitle">
         <?php 
         print_r($category);
-      ?>が得意なエージェンシー企業一覧</h1>
-      <a href="./index.php">✕</a>
+      ?>が得意なエージェンシー一覧</h1>
+      <div class="exitcontainer">
+        <a href="./index.php" class="exitbtn">✕</a>
+      </div>
       <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
-      <a href="./keep.php">キープ中の企業</a>
+      <a href="./keep.php" class="keepbtn">キープ中の企業</a>
       <ol>
         <?php
           foreach($agents as $index => $agent):
         ?>
-        <li>        
+        <li class="agentdetailinner">        
           <p>会社名:<?php echo $agent['agent_name'];?></p>
           <p>得意な業種</p>
           <p>対応エリア</p>
@@ -117,11 +119,11 @@ if(isset($_POST['aria'])) {
             <?php
                 if(isset($keeps[$agent['id']]) === true):
                 ?>
-                <p>キープ済み</p>
+                <p class="returnbtn marginbottomnone">キープ済み</p>
                 <?php else: ?>
                 <input type="hidden" name="category" value="<?php print_r($category);?>">
                 <input type="hidden" name="agent_id" value="<?php print_r($agent["id"]);?>">
-                <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn">キープする</button>
+                <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn marginbottomnone">キープする</button>
                 <?php endif;?>
           </form>
         </li>
@@ -131,18 +133,20 @@ if(isset($_POST['aria'])) {
     <!-- 対応エリア別ランキングをクリックしたとき -->
     <?php elseif($page_flag = 2): ?>
     <div id="areaRank">
-      <h1>
+      <h1  class="pagetitle">
       <?php 
         print_r($aria);
-        ?>エリアに対応しているエージェンシー企業一覧</h1>
-      <a href="./index.php" class="exitbtn">✕</a>
-      <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
-      <a href="./keep.php">キープ中の企業</a>
-      <ol>
+        ?>エリアに対応しているエージェンシー一覧</h1>
+        <div class="exitcontainer">
+          <a href="./index.php" class="exitbtn">✕</a>
+        </div>
+        <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
+        <a href="./keep.php" class="keepbtn">キープ中の企業</a>
+        <ol>
         <?php
             foreach($agents as $index => $agent):
         ?>
-        <li>        
+        <li class="agentdetailinner">        
             <p>会社名<?php echo$agent['agent_name'];?></p>
             <p>得意な業種</p>
             <p>対応エリア</p>
@@ -150,11 +154,11 @@ if(isset($_POST['aria'])) {
               <?php
                   if(isset($keeps[$agent['id']]) === true):
                   ?>
-                  <p>キープ済み</p>
+                  <p class="returnbtn marginbottomnone">キープ済み</p>
                   <?php else: ?>
                   <input type="hidden" name="aria" value="<?php print_r($aria);?>">
                   <input type="hidden" name="agent_id" value="<?php print_r($agent["id"]);?>">
-                  <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn">キープする</button>
+                  <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn marginbottomnone">キープする</button>
                   <?php endif;?>
             </form>
         </li>
@@ -162,7 +166,7 @@ if(isset($_POST['aria'])) {
       </ol>
     </div>
   </div>
-  <? endif; ?>
+  <?php endif; ?>
   <?php include (dirname(__FILE__) . "/student_footer.php");?>
   <script src="./student.js"></script>
 </body>

@@ -37,7 +37,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
                 <input type="text" name="company_address" id="companyAddress" required>
             </div>
             <div>
-                <label for="companyRemarks">備考</label>
+                <label for="companyRemarks">備考〔アピールポイントなど）</label>
                 <input type="text" name="company_remarks" id="companyRemarks">
             </div>
             <div>
