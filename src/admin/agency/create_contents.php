@@ -126,7 +126,11 @@ if (isset($_POST['new_entry'])) {
     );
     $stm->execute($param);
     // $response = $db->commit();
-  } 
+  } catch(PDOException $e) {
+    $db->rollBack();
+  }
+
+}
 ?>
 
 <!DOCTYPE html>
