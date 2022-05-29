@@ -11,7 +11,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
   exit();
 }
 
-$stmt = $db->prepare('select * from agents where valid = 1');
+$stmt = $db->prepare('select * from agents');
 $stmt->execute();
 $agents = $stmt->fetchAll();
 $page_flag = 0;
@@ -20,7 +20,7 @@ if (isset($_GET['agent_id'])) {
   $page_flag = 1;
   $id = $_GET['agent_id'];
 
-  $stmt = $db->prepare('SELECT * FROM agents WHERE id = :agent_id where valid = 1');
+  $stmt = $db->prepare('SELECT * FROM agents WHERE id = :agent_id');
   $stmt->bindValue(':agent_id', $id);
   $stmt->execute();
   $agency = $stmt->fetchAll();
@@ -139,7 +139,6 @@ if (isset($_GET['agent_id'])) {
                   <input type="hidden" name="agent_id" value="<?php echo $agent['id']; ?>">
                 </div>
                 <div>
-                  <input type="submit" name="edit" value="編集" class="editbtn">
                   <input type='submit' formaction='delete.php' name='delete' value='削除' class="deletebtn">
                 </div>
               </form>
