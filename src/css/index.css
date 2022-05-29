@@ -416,9 +416,9 @@ footer img {
   gap: 50px; */
 }
 .agentheader p {
-  font-size: 40px;
+  font-size: 35px;
   display: flex;
-  margin-left: 50px;
+  margin-left: 20px;
   align-items: center;
   line-height: 45px;
 }

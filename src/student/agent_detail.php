@@ -103,7 +103,7 @@ if (isset($_SESSION['keep'])) {
         <?php
         if (isset($keeps[$agents[0]['id']]) === true) :
         ?>
-          <p>キープ済み</p>
+          <p class="returnbtn">キープ済み</p>
         <?php else : ?>
           <input type="hidden" name="category" value="<?php print_r($category); ?>">
           <input type="hidden" name="agent_id" value="<?php print_r($agents[0]["id"]); ?>">
