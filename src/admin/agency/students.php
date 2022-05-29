@@ -1,11 +1,19 @@
 <?php
 session_start();
 require("../../dbconnect.php");
+$login=array();
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
     // SESSIONにuser_idカラムが設定されていて、SESSIONに登録されている時間から1日以内なら
     $_SESSION['time'] = time();
     // SESSIONの時間を現在時刻に更新
+    $login = $_SESSION['login'];  //ログイン情報を保持
 } else {
+  $email = $_POST['email'];
+  $_SESSION['login']['email'] = $email;
+  $login=array();
+  if(isset($_SESSION['login'])){
+    $login = $_SESSION['login'];
+  }
     // そうじゃないならログイン画面に飛んでね
     header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
     exit();
@@ -24,11 +32,15 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
     $page_flag = 2;
   }
 
-$stmt = $db->prepare('select * from intermediate left join students on intermediate.student_id = students.id right join agents on intermediate.agent_id = agents.id where agent_id = 1');
-// $stmt->bindValue(':agent_id', $agent['id']);
-  // bindevalueの１が？の１個めってこと。これがあれば何個でもはてなつけられる！1,2とかだとわかりにくいから、「:agent_id」を設定する
-  $stmt->execute();
-  $matched_students = $stmt->fetchAll();
+
+print_r($login);
+
+// $stmt = $db->prepare('select * from intermediate left join students on intermediate.student_id = students.id right join agents on intermediate.agent_id = agents.id where agent_id = 1');
+$stmt = $db->prepare('select * from managers left join users on managers.user_id = users.id left join intermediate on managers.agent_id = intermediate.agent_id left join students on intermediate.student_id = students.id where login_email = :login_email');
+$stmt->bindValue(':login_email', $login['email']);
+$stmt->execute();
+$matched_students = $stmt->fetchAll();
+// print_r($matched_students);
 ?>
 
 <!DOCTYPE html>
