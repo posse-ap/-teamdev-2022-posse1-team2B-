@@ -397,7 +397,7 @@ if (isset($_POST['edit_entry'])) {
         'UPDATE
           characteristic
         SET
-          target_student_id = :target_student_id
+          target_student_id = :target_student_id, valid = 0
         WHERE
           id = :id'
       );

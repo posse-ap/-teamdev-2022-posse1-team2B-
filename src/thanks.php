@@ -45,7 +45,7 @@ if(isset($_POST['btn_confirm'])){ // agency
     $user_name = "agency";
 }  else if (isset($_GET['edit'])) { //boozer
     // 5  掲載情報編集：edit thanks///edit
-    $action = "掲載情報の編集";
+    $action = "掲載情報の修正依頼";
     $user_name = "agency";
 }  else if (isset($_GET['new_entry'])) {
     //6 掲載情報新規作成：create_contents thanks////new_entry
