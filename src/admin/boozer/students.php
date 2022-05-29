@@ -78,13 +78,6 @@ if($_POST['report']) {
     ?>
     <section>
       <h2 class="pagetitle">学生一覧</h2>
-      <div class="months">
-        <?php
-        $months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-        foreach ($months as $key => $month) : ?>
-          <button class="monthcircle"><?= $month; ?> </button>
-        <?php endforeach; ?>
-      </div>
       <?php
       foreach ($agents_students_match as $index => $agent_student_match) : ?>
         <div class="studentsbox">
@@ -98,7 +91,7 @@ if($_POST['report']) {
             </form>
             <form action="students.php" method="post">
               <button type="submit" name="valid<?= $index+1 ?>" class="width deletebtn">いたずら認定</button>
-                </form>
+            </form>
           <?php
             if (isset($_POST["valid" . $index+1])) {
               $stmt = $db->prepare('UPDATE students SET valid = 1 WHERE id = :id');
@@ -114,12 +107,17 @@ if($_POST['report']) {
 
               $ret = mb_send_mail($to, $subject, $body, "From: {$from} \r\n");
               var_dump($ret);
+              ?>
+              <script language="javascript" type="text/javascript">
+                window.location = '../../thanks.php?mischief_report';
+              </script>
+            <?php
             }
           ?>
         </div>
     </section>
     <!-- <section class="tableouter" id="boozer_student_table">
- 
+
     </section> -->
   <?php endforeach; ?>
   </div>

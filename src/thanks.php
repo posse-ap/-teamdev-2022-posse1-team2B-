@@ -39,9 +39,9 @@ if(isset($_POST['btn_confirm'])){ // agency
     // 3 掲載情報修正依頼：fixcontents thanks///fix
     $action = "掲載情報の修正依頼";
     $user_name = "agency";
-}  else if (isset($_POST['mischief_report'])) {
+}  else if (isset($_GET['mischief_report'])) {
     // 4 学生からのお問い合わせ取り消し依頼：students thanks////mischief_report
-    $action = "学生からのお問い合わせ取り消し依頼";
+    $action = "いらずらの報告";
     $user_name = "agency";
 }  else if (isset($_GET['edit'])) { //boozer
     // 5  掲載情報編集：edit thanks///edit
