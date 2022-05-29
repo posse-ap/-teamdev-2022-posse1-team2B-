@@ -406,6 +406,19 @@ footer img {
   flex-wrap: wrap;
 }
 
+/*STUDENTS/KEEP.PHP*/
+.keptagency {
+  background-color: white;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.keptagency div th {
+  font-weight: 500px;
+}
+.keepcategory {
+  font-weight: 500px;
+}
 
 /*AGENCY/TOP.PHP*/
 .topbuttons {

@@ -59,42 +59,47 @@ if (isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()) {
               $stmt->execute();
               $agent = $stmt->fetch();
             ?>
-              <tr class="agentdetailinner">
-                <th>エージェンシー企業名</th>
-                <td><?php print_r($agent['agent_name']); ?></td>
-                <?php
-                $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id');
-                $stmt->bindValue(':agent_id', $agent['id']);
-                $stmt->execute();
-                $matched_category = $stmt->fetchAll();
+              <div class="keptagency">
+                <tr class="keptagency">
+                  <div>
+                    <th>エージェンシー企業名</th>
+                    <td><?php print_r($agent['agent_name']); ?></td>
+                    <?php
+                    $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join category on characteristic.category_id = category.id where agent_id = :agent_id');
+                    $stmt->bindValue(':agent_id', $agent['id']);
+                    $stmt->execute();
+                    $matched_category = $stmt->fetchAll();
 
-                $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id');
-                $stmt->bindValue(':agent_id', $agent['id']);
-                $stmt->execute();
-                $matched_job_area = $stmt->fetchAll();
+                    $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join job_area on characteristic.job_area_id = job_area.id where agent_id = :agent_id');
+                    $stmt->bindValue(':agent_id', $agent['id']);
+                    $stmt->execute();
+                    $matched_job_area = $stmt->fetchAll();
 
-                $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
-                $stmt->bindValue(':agent_id', $agent['id']);
-                $stmt->execute();
-                $matched_target_student = $stmt->fetchAll();
-                ?>
-
-                <th>対応エリア</th>
-                <td><?php print_r($matched_job_area[0]['area']); ?></td>
-
-                <th>得意な業種</th>
-                <td><?php print_r($matched_category[0]['category_name']); ?></td>
-
-                <th>対象学生</th>
-                <td><?php print_r($matched_target_student[0]['graduation_year']); ?></td>
-                </dd>
+                    $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
+                    $stmt->bindValue(':agent_id', $agent['id']);
+                    $stmt->execute();
+                    $matched_target_student = $stmt->fetchAll();
+                    ?>
+                  </div>
+                  <div>
+                    <th class="keepcategory">対応エリア</th>
+                    <td><?php print_r($matched_job_area[0]['area']); ?></td>
+                  </div>
+                  <div>
+                    <th>得意な業種</th>
+                    <td><?php print_r($matched_category[0]['category_name']); ?></td>
+                  </div>
+                  <div>
+                  <th>対象学生</th>
+                  <td><?php print_r($matched_target_student[0]['graduation_year']); ?></td>
+                  </div>
                   <form action="" method="POST">
                     <input type="hidden" name="agent_id" value="<?php print_r($agent['id']); ?>">
-                    <button type="submit" name="cancel_agency">キープを取り消す</button>
+                    <button type="submit" name="cancel_agency" class="inquirybtn">キープを取り消す</button>
                   </form>
-                </td>
-              </tr>
-          </tbody>
+                </tr>
+              </div>
+            </tbody>
         </a>
       </table>
     <?php
@@ -103,7 +108,7 @@ if (isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()) {
       <?php foreach ($keeps as $keep) : ?>
         <input type="hidden" value="<?php print_r($keep); ?>">
       <?php endforeach; ?>
-      <button type="submit" name='keep_agency_contact' class="inquirybtn">エージェンシーにお問い合わせ</button>
+      <button type="submit" name='keep_agency_contact' class="inquirybtn margintop">エージェンシーにお問い合わせ</button>
     </form>
   <?php else : ?>
     <p class="announce">キープしてるエージェンシーはありません。</p>
