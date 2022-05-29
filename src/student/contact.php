@@ -262,7 +262,7 @@ if (isset($_POST['contact'])) {
     <div class="main">
       <h1 class="pagetitle">企業にお問い合わせ</h1>
       <?php
-            $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id where valid = 1');
+            $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
             $stmt->bindValue(':id', $_POST['agent_id']);
             $stmt->execute();
             $agencies = $stmt->fetch();
@@ -271,7 +271,7 @@ if (isset($_POST['contact'])) {
         <?php
         if (isset($_POST['keep_agency_contact'])) {
           foreach ($keeps as $keep) {
-            $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id where valid = 1');
+            $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
             $stmt->bindValue(':id', $keep);
             $stmt->execute();
             $agent = $stmt->fetch();

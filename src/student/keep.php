@@ -48,7 +48,7 @@ if (isset($_SESSION['keep']) && $_SESSION['time'] + 60 * 60 * 24  > time()) {
           <tbody>
             <?php
             foreach ($keeps as $keep) :
-              $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id where valid = 1');
+              $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
               $stmt->bindValue(':id', $keep);
               $stmt->execute();
               $agent = $stmt->fetch();

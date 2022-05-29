@@ -6,7 +6,7 @@ if(isset($_POST["search"])) {
 } 
 
 session_start();
-$stmt = $db->prepare('SELECT * FROM agents where valid = 1');
+$stmt = $db->prepare('SELECT * FROM agents');
 $stmt->execute();
 $agents = $stmt->fetchAll();
 

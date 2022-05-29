@@ -47,7 +47,7 @@ if (isset($_SESSION['keep'])) {
     <?php
     echo ('<a href=' . '"javascript:history.back()"' . ' class="returnbtn">戻る</a>');
 
-    $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id where valid = 1');
+    $stmt = $db->prepare('SELECT * FROM agents WHERE id = :id');
     $id = $_GET["id"];
     $stmt->bindValue(':id', $id);
     $stmt->execute();

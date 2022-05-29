@@ -87,7 +87,15 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
               $stmt->bindValue(':agent_id', $agent['id']);
               $stmt->execute();
               $matched_job_area = $stmt->fetchAll();
-              print_r($matched_job_area['area']);
+              print_r($matched_job_area[0]['area']);
+              ?></p>
+
+              <p class="agentcategory">対応学年：<?php
+              $stmt = $db->prepare('select * from characteristic left join agents on characteristic.agent_id = agents.id right join target_student on characteristic.target_student_id = target_student.id where agent_id = :agent_id');
+              $stmt->bindValue(':agent_id', $agent['id']);
+              $stmt->execute();
+              $matched_target_student = $stmt->fetchAll();
+              print_r($matched_target_student[0]['graduation_year']);
               ?></p>
 
               <form action="" method="POST">
