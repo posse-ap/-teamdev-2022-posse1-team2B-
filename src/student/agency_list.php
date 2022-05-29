@@ -137,9 +137,9 @@ if(isset($_POST['aria'])) {
       <h1  class="pagetitle">
       <?php 
         print_r($area);
-        ?>エリアに対応しているエージェンシー企業一覧</h1>
+        ?>エリアに対応しているエージェンシー一覧</h1>
       <!-- 画面の右端に表示。クリックするとキープ画面に飛ぶ -->
-      <a href="./keep.php">キープ中の企業</a>
+      <a href="./keep.php" class="keepbtn">キープ中の企業</a>
       <ol>
         <?php
             if (isset($agent_areas)) {
