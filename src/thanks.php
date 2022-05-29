@@ -51,7 +51,7 @@ if(isset($_POST['btn_confirm'])){ // agency
     //6 掲載情報新規作成：create_contents thanks////new_entry
     $action = "掲載の新規作成";
     $user_name = "agency";
-}  else if (isset($_GET['contact'])) { //student
+}  else if (isset($_SESSION['contact'])) { //student
    // 7 お問い合わせ：contact thanks////final_contact
     $action = "エージェンシー企業へのお問い合わせ";
     $user_name = "student";

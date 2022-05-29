@@ -100,6 +100,9 @@ if (isset($_SESSION['keep'])) {
         </dl>
       </div>
       <form action="" method="POST">
+        <input type="hidden" name="category" value="<?php print_r($category); ?>">
+        <input type="hidden" name="agent_id" value="<?php print_r($agents[0]["id"]); ?>">
+        <button type="submit" formaction="./contact.php" class="submitbtn">エージェンシーにお問い合わせる</button>
         <?php
         if (isset($keeps[$agents[0]['id']]) === true) :
         ?>
@@ -109,7 +112,6 @@ if (isset($_SESSION['keep'])) {
           <input type="hidden" name="agent_id" value="<?php print_r($agents[0]["id"]); ?>">
           <button id="keep<?php echo $index; ?>" type="submit" name='keep' class="keepbtn">キープする</button>
         <?php endif; ?>
-        <button type="submit" formaction="./contact.php" class="submitbtn">エージェンシーにお問い合わせ</button>
         <a href='javascript:history.back()' class="returnbtn">戻る</a>
       </form>
     </div>
