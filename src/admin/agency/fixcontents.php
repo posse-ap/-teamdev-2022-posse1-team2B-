@@ -104,6 +104,7 @@ $target_students = $stmt->fetchAll();
         <label for="companyRemarks">備考（アピールポイントなど）</label>
         <input type="text" name="company_remarks" id="companyRemarks">
       </div>
+
       <button type="submit" name="fix" class="submitbtn margintop" onclick="
               <?php
               $from = 'boozer@craft.com';
